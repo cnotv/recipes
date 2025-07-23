@@ -354,15 +354,6 @@ onMounted(() => {
   .recipe-sections {
     grid-template-columns: 1fr;
   }
-  
-  .recipe-title {
-    font-size: 2rem;
-  }
-  
-  .recipe-meta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 .ingredients-section {
@@ -496,21 +487,96 @@ onMounted(() => {
   }
   
   .main-content {
-    padding: 24px 16px;
+    padding: 16px 12px;
   }
   
   .recipe-header {
-    padding: 24px 20px;
+    padding: 20px 16px;
+  }
+  
+  .recipe-title {
+    font-size: 1.75rem;
+  }
+  
+  .recipe-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .recipe-sections {
+    grid-template-columns: 1fr;
   }
   
   .ingredients-section,
   .instructions-section {
-    padding: 24px 20px;
+    padding: 20px 16px;
   }
   
   .ingredients-section {
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .ingredient-text,
+  .step-text {
+    font-size: 15px;
+  }
+  
+  .step-content {
+    padding: 16px;
+  }
+  
+  .step-header {
+    padding: 12px 16px;
+  }
+  
+  .step-number {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    margin-right: 12px;
+  }
+  
+  .step-title {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px 8px;
+  }
+  
+  .recipe-header {
+    padding: 16px 12px;
+  }
+  
+  .recipe-title {
+    font-size: 1.5rem;
+  }
+  
+  .ingredients-section,
+  .instructions-section {
+    padding: 16px 12px;
+  }
+  
+  .ingredients-section h2,
+  .instructions-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+  
+  .ingredient-text,
+  .step-text {
+    font-size: 14px;
+  }
+  
+  .step-content {
+    padding: 12px;
+  }
+  
+  .step-header {
+    padding: 10px 12px;
   }
 }
 </style>

@@ -236,12 +236,12 @@ onMounted(() => {
 .main-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 24px 16px;
 }
 
 .loading, .error, .no-recipes {
   text-align: center;
-  padding: 48px 24px;
+  padding: 32px 16px;
   font-size: 18px;
   color: #6b7280;
 }
@@ -256,13 +256,13 @@ onMounted(() => {
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-  margin-bottom: 32px;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 @media (max-width: 768px) {
   .app-header {
-    padding: 16px;
+    padding: 12px 16px;
   }
   
   .app-header h1 {
@@ -275,7 +275,7 @@ onMounted(() => {
   }
   
   .main-content {
-    padding: 24px 16px;
+    padding: 16px 12px;
   }
   
   .recipes-grid {
