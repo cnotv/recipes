@@ -1,5 +1,5 @@
 <template>
-  <div class="recipe-card">
+  <div v-if="recipeData" class="recipe-card">
     <div class="recipe-image">
       <img :src="recipeData.steps[0]?.image || 'https://via.placeholder.com/300x200/E5E7EB/9CA3AF?text=No+Image'" :alt="recipeData.title" />
       <div class="language-badge">
@@ -33,7 +33,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
   'view-recipe': [recipe: Recipe, language: SupportedLanguage]
 }>()
 

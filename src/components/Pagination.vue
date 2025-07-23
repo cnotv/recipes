@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<Props>(), {
   maxVisiblePages: 5
 })
 
-const emit = defineEmits<{
+defineEmits<{
   'page-change': [page: number]
 }>()
 
