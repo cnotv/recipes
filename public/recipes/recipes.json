@@ -1,0 +1,295 @@
+[
+  {
+    "url": "https://example.com/chocolate-chip-cookies",
+    "languages": {
+      "en": {
+        "title": "Classic Chocolate Chip Cookies",
+        "ingredients": [
+          "225g all-purpose flour",
+          "1 tsp baking soda",
+          "1 tsp salt",
+          "225g butter, softened",
+          "150g granulated sugar",
+          "165g brown sugar",
+          "2 large eggs",
+          "2 tsp vanilla extract",
+          "340g chocolate chips"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Preheat+Oven",
+            "content": "Preheat your oven to 375°F (190°C). Line baking sheets with parchment paper."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DEB887/FFFFFF?text=Mix+Dry+Ingredients",
+            "content": "In a medium bowl, whisk together flour, baking soda, and salt. Set aside."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F4A460/FFFFFF?text=Cream+Butter",
+            "content": "In a large bowl, cream together the softened butter and both sugars until light and fluffy, about 3-4 minutes."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/FFE4B5/FFFFFF?text=Add+Eggs",
+            "content": "Beat in eggs one at a time, then add vanilla extract. Mix until well combined."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDBF8B/FFFFFF?text=Combine+Ingredients",
+            "content": "Gradually blend in the flour mixture until just combined. Don't overmix."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/D2691E/FFFFFF?text=Add+Chocolate",
+            "content": "Stir in the chocolate chips until evenly distributed throughout the dough."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/CD853F/FFFFFF?text=Shape+Cookies",
+            "content": "Drop rounded tablespoons of dough onto the prepared baking sheets, spacing them about 2 inches apart."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Bake+Cookies",
+            "content": "Bake for 9-11 minutes, or until the edges are golden brown. Centers may look slightly underdone."
+          }
+        ]
+      },
+      "de": {
+        "title": "Klassische Schokoladenkekse",
+        "ingredients": [
+          "225g Mehl",
+          "1 TL Backpulver",
+          "1 TL Salz",
+          "225g Butter, weich",
+          "150g Zucker",
+          "165g brauner Zucker",
+          "2 große Eier",
+          "2 TL Vanilleextrakt",
+          "340g Schokoladenstückchen"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Ofen+vorheizen",
+            "content": "Heizen Sie den Ofen auf 190°C vor. Backbleche mit Backpapier auslegen."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DEB887/FFFFFF?text=Trockene+Zutaten",
+            "content": "In einer mittleren Schüssel Mehl, Backpulver und Salz verquirlen. Beiseite stellen."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F4A460/FFFFFF?text=Butter+cremig",
+            "content": "In einer großen Schüssel die weiche Butter mit beiden Zuckersorten cremig rühren, etwa 3-4 Minuten."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/FFE4B5/FFFFFF?text=Eier+hinzufügen",
+            "content": "Eier einzeln einrühren, dann Vanilleextrakt hinzufügen. Gut vermischen."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDBF8B/FFFFFF?text=Zutaten+mischen",
+            "content": "Die Mehlmischung nach und nach einrühren, bis sie gerade verbunden ist. Nicht zu viel rühren."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/D2691E/FFFFFF?text=Schokolade+einrühren",
+            "content": "Die Schokoladenstückchen einrühren, bis sie gleichmäßig im Teig verteilt sind."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/CD853F/FFFFFF?text=Kekse+formen",
+            "content": "Mit einem Esslöffel Teigportionen auf die vorbereiteten Backbleche setzen, etwa 5 cm Abstand lassen."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Kekse+backen",
+            "content": "9-11 Minuten backen, bis die Ränder goldbraun sind. Die Mitte kann etwas weich aussehen."
+          }
+        ]
+      },
+      "jp": {
+        "title": "クラシックチョコチップクッキー",
+        "ingredients": [
+          "薄力粉 225g",
+          "ベーキングソーダ 小さじ1",
+          "塩 小さじ1",
+          "バター（室温） 225g",
+          "グラニュー糖 150g",
+          "ブラウンシュガー 165g",
+          "卵 2個",
+          "バニラエッセンス 小さじ2",
+          "チョコチップ 340g"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=オーブン予熱",
+            "content": "オーブンを190℃に予熱します。天板にクッキングシートを敷きます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DEB887/FFFFFF?text=粉類を混ぜる",
+            "content": "中サイズのボウルに薄力粉、ベーキングソーダ、塩を入れて泡立て器で混ぜます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F4A460/FFFFFF?text=バターを泡立てる",
+            "content": "大きなボウルで室温のバターと両方の砂糖を3-4分間、白っぽくふわふわになるまで泡立てます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/FFE4B5/FFFFFF?text=卵を加える",
+            "content": "卵を1個ずつ加えて混ぜ、バニラエッセンスも加えてよく混ぜます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDBF8B/FFFFFF?text=粉を合わせる",
+            "content": "粉類を少しずつ加えて、粉っぽさがなくなるまで混ぜます。混ぜすぎないよう注意してください。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/D2691E/FFFFFF?text=チョコチップ",
+            "content": "チョコチップを加えて、生地全体に均等に混ざるまで軽く混ぜます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/CD853F/FFFFFF?text=クッキーを成形",
+            "content": "大さじ1杯分の生地を天板に約5cm間隔で並べます。"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=焼く",
+            "content": "9-11分間、縁が金色になるまで焼きます。中央は少し柔らかくても大丈夫です。"
+          }
+        ]
+      },
+      "th": {
+        "title": "คุกกี้ช็อกโกแลตชิพคลาสสิก",
+        "ingredients": [
+          "แป้งอเนกประสงค์ 225 กรัม",
+          "เบกกิ้งโซดา 1 ช้อนชา",
+          "เกลือ 1 ช้อนชา",
+          "เนยสด (อุณหภูมิห้อง) 225 กรัม",
+          "น้ำตาลทราย 150 กรัม",
+          "น้ำตาลบราวน์ 165 กรัม",
+          "ไข่ไก่ 2 ฟอง",
+          "วานิลลาเอสเซนส์ 2 ช้อนชา",
+          "ช็อกโกแลตชิพ 340 กรัม"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=เปิดเตาอบ",
+            "content": "เปิดเตาอบที่อุณหภูมิ 190 องศาเซลเซียส วางกระดาษรองอบลงบนถาดอบ"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DEB887/FFFFFF?text=ผสมส่วนผสมแห้ง",
+            "content": "ในชามขนาดกลาง ผสมแป้ง เบกกิ้งโซดา และเกลือเข้าด้วยกัน พักไว้"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F4A460/FFFFFF?text=ตีเนย",
+            "content": "ในชามใหญ่ ตีเนยกับน้ำตาลทั้งสองชนิดจนเนียนนุ่มและฟู ประมาณ 3-4 นาที"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/FFE4B5/FFFFFF?text=ใส่ไข่",
+            "content": "ใส่ไข่ทีละฟอง ตีให้เข้ากัน จากนั้นใส่วานิลลาเอสเซนส์ ตีให้เข้ากันดี"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDBF8B/FFFFFF?text=ผสมแป้ง",
+            "content": "ค่อยๆ ใส่ส่วนผสมแป้งลงไป ผสมเบาๆ จนเข้ากัน อย่าผสมมากเกินไป"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/D2691E/FFFFFF?text=ใส่ช็อกโกแลต",
+            "content": "ใส่ช็อกโกแลตชิพลงไป ผสมเบาๆ ให้กระจายทั่วส่วนผสม"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/CD853F/FFFFFF?text=ปั้นคุกกี้",
+            "content": "ตักส่วนผสมด้วยช้อนโต๊ะ วางลงบนถาดอบ เว้นระยะห่างประมาณ 5 เซนติเมตร"
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=อบคุกกี้",
+            "content": "อบ 9-11 นาที หรือจนขอบเป็นสีทอง ตรงกลางอาจดูยังไม่สุกสนิทก็ได้"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://example.com/spaghetti-carbonara",
+    "languages": {
+      "en": {
+        "title": "Authentic Spaghetti Carbonara",
+        "ingredients": [
+          "400g spaghetti",
+          "200g pancetta or guanciale, diced",
+          "4 large eggs",
+          "100g Pecorino Romano cheese, grated",
+          "Black pepper, freshly ground",
+          "Salt for pasta water"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/DAA520/FFFFFF?text=Boil+Water",
+            "content": "Bring a large pot of salted water to a rolling boil. The water should taste like seawater."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/8B4513/FFFFFF?text=Cook+Pancetta",
+            "content": "In a large skillet, cook the diced pancetta over medium heat until crispy and golden, about 5-7 minutes."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/FFE4B5/FFFFFF?text=Prepare+Egg+Mixture",
+            "content": "In a bowl, whisk together eggs, grated Pecorino Romano, and a generous amount of freshly ground black pepper."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F0E68C/FFFFFF?text=Cook+Pasta",
+            "content": "Add spaghetti to the boiling water and cook according to package instructions until al dente."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDA0DD/FFFFFF?text=Reserve+Pasta+Water",
+            "content": "Before draining, reserve 1 cup of the starchy pasta cooking water."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/98FB98/FFFFFF?text=Combine+Pasta",
+            "content": "Add the hot, drained pasta directly to the pan with the crispy pancetta. Toss to combine."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F5DEB3/FFFFFF?text=Add+Egg+Mixture",
+            "content": "Remove the pan from heat and quickly toss the pasta with the egg mixture, adding pasta water gradually to create a creamy sauce."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DAA520/FFFFFF?text=Serve+Immediately",
+            "content": "Serve immediately with additional Pecorino Romano and black pepper. The residual heat will cook the eggs perfectly."
+          }
+        ]
+      }
+    }
+  },
+  {
+    "url": "https://example.com/caesar-salad",
+    "languages": {
+      "en": {
+        "title": "Classic Caesar Salad",
+        "ingredients": [
+          "2 heads romaine lettuce, chopped",
+          "1/2 cup olive oil",
+          "2 cloves garlic, minced",
+          "2 anchovy fillets",
+          "1 lemon, juiced",
+          "1 tsp Worcestershire sauce",
+          "1 egg yolk",
+          "1/2 cup Parmesan cheese, grated",
+          "2 cups croutons",
+          "Salt and pepper to taste"
+        ],
+        "steps": [
+          {
+            "image": "https://via.placeholder.com/400x300/228B22/FFFFFF?text=Wash+Lettuce",
+            "content": "Thoroughly wash and dry the romaine lettuce. Chop into bite-sized pieces and chill in the refrigerator."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F0E68C/FFFFFF?text=Make+Dressing",
+            "content": "In a bowl, mash anchovies and garlic into a paste. Whisk in lemon juice, Worcestershire sauce, and egg yolk."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/DDA0DD/FFFFFF?text=Add+Oil",
+            "content": "Slowly drizzle in olive oil while whisking constantly to create an emulsified dressing."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/98FB98/FFFFFF?text=Season+Dressing",
+            "content": "Season the dressing with salt and freshly ground black pepper to taste."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/F5DEB3/FFFFFF?text=Toss+Salad",
+            "content": "Add the chilled lettuce to a large bowl and toss with the Caesar dressing until well coated."
+          },
+          {
+            "image": "https://via.placeholder.com/400x300/228B22/FFFFFF?text=Add+Toppings",
+            "content": "Top with grated Parmesan cheese and croutons. Serve immediately for the best texture."
+          }
+        ]
+      }
+    }
+  }
+]
