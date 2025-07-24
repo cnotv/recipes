@@ -27,6 +27,9 @@
         </div>
         <div class="recipes-info">
           {{ filteredRecipes.length }} {{ $t('recipesFound') }}
+          <span v-if="recipes.length < totalRecipeCount" class="loading-progress">
+            ({{ recipes.length }}/{{ totalRecipeCount }} loaded)
+          </span>
         </div>
       </div>
     </header>
@@ -51,18 +54,25 @@
       </div>
 
       <div v-else>
-        <div v-if="displayedRecipes.length === 0" class="no-recipes">
+        <div v-if="totalRecipeCount === 0" class="no-recipes">
           {{ $t('noRecipesAvailable', { language: getLanguageName(currentLanguage) }) }}
         </div>
 
         <div v-else>
           <div class="recipes-grid">
+            <!-- Display loaded recipes -->
             <RecipeCard
               v-for="recipe in displayedRecipes"
               :key="recipe.url"
               :recipe="recipe"
               :current-language="currentLanguage"
               @view-recipe="viewRecipe"
+            />
+            
+            <!-- Display skeletons for recipes still loading -->
+            <RecipeSkeleton
+              v-for="n in skeletonCount"
+              :key="`skeleton-${n}`"
             />
           </div>
 
@@ -86,6 +96,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
+import RecipeSkeleton from '../components/RecipeSkeleton.vue'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
@@ -104,9 +115,24 @@ const selectedCuisine = ref('')
 const recipesPerPage = 12
 const currentDisplayCount = ref(recipesPerPage)
 
+// Progressive loading state
+const totalRecipeCount = ref(0)
+const allRecipeFiles = ref<string[]>([])
+const loadingRecipeIndex = ref(0)
+
 // Infinite scroll state
 const isLoadingMore = ref(false)
-const hasMoreRecipes = ref(true)
+const hasMoreRecipes = computed(() => {
+  return currentDisplayCount.value < filteredRecipes.value.length
+})
+
+// Skeleton state
+const skeletonCount = computed(() => {
+  // Show skeletons for recipes that are still loading
+  const remainingToLoad = totalRecipeCount.value - recipes.value.length
+  const remainingToDisplay = Math.max(0, currentDisplayCount.value - recipes.value.length)
+  return Math.min(remainingToLoad, remainingToDisplay)
+})
 
 // Computed properties
 const availableCuisines = computed(() => {
@@ -151,7 +177,6 @@ const loadMoreRecipes = () => {
     const maxCount = filteredRecipes.value.length
     
     currentDisplayCount.value = Math.min(nextCount, maxCount)
-    hasMoreRecipes.value = currentDisplayCount.value < maxCount
     isLoadingMore.value = false
   }, 500)
 }
@@ -161,99 +186,90 @@ const { reset: resetInfiniteScroll } = useInfiniteScroll(loadMoreRecipes)
 // Reset display when filters change
 const resetDisplayedRecipes = () => {
   currentDisplayCount.value = recipesPerPage
-  hasMoreRecipes.value = filteredRecipes.value.length > recipesPerPage
   resetInfiniteScroll()
 }
 
 // Methods
+// Progressive loading methods
+const loadRecipeIndex = async (): Promise<void> => {
+  try {
+    const indexResponse = await fetch('/recipes/index.json')
+    if (indexResponse.ok) {
+      const recipeFiles = await indexResponse.json()
+      if (Array.isArray(recipeFiles)) {
+        allRecipeFiles.value = recipeFiles
+        totalRecipeCount.value = recipeFiles.length
+        console.log(`Found ${recipeFiles.length} recipe files`)
+      }
+    }
+  } catch (err) {
+    console.log('Recipe index not found')
+    error.value = 'Recipe index not found. Please check your recipe files.'
+  }
+}
+
+const loadSingleRecipe = async (fileName: string): Promise<Recipe | null> => {
+  try {
+    const response = await fetch(`/recipes/${fileName}`)
+    if (response.ok) {
+      const data = await response.json()
+      if (data && data.url && data.languages) {
+        return {
+          url: data.url,
+          cuisine: data.cuisine || 'Unknown',
+          languages: data.languages
+        }
+      }
+    }
+  } catch (err) {
+    console.log(`Failed to load ${fileName}:`, err)
+  }
+  return null
+}
+
+const loadNextRecipe = async (): Promise<void> => {
+  if (loadingRecipeIndex.value >= allRecipeFiles.value.length) {
+    return
+  }
+  
+  const fileName = allRecipeFiles.value[loadingRecipeIndex.value]
+  const recipe = await loadSingleRecipe(fileName)
+  
+  if (recipe) {
+    recipes.value.push(recipe)
+  }
+  
+  loadingRecipeIndex.value++
+  
+  // Continue loading next recipe with a small delay to prevent blocking
+  if (loadingRecipeIndex.value < allRecipeFiles.value.length) {
+    setTimeout(() => {
+      loadNextRecipe()
+    }, 50) // 50ms delay between recipe loads
+  }
+}
+
 const loadRecipes = async () => {
   try {
     loading.value = true
     error.value = ''
     
-    const loadedRecipes: Recipe[] = []
+    // First load the recipe index to know how many recipes we have
+    await loadRecipeIndex()
     
-    // Try to load the main recipes.json file first
-    try {
-      const response = await fetch('/recipes/recipes.json')
-      if (response.ok) {
-        const data = await response.json()
-        if (Array.isArray(data)) {
-          loadedRecipes.push(...data)
-        }
-      }
-    } catch (err) {
-      console.log('Main recipes.json not found, trying individual files...')
-    }
-    
-    // Load individual recipe files dynamically using index
-    try {
-      const indexResponse = await fetch('/recipes/index.json')
-      if (indexResponse.ok) {
-        const recipeFiles = await indexResponse.json()
-        if (Array.isArray(recipeFiles)) {
-          for (const fileName of recipeFiles) {
-            try {
-              const response = await fetch(`/recipes/${fileName}`)
-              if (response.ok) {
-                const data = await response.json()
-                // Check if it's a single recipe object with the expected structure
-                if (data && data.url && data.languages) {
-                  loadedRecipes.push({
-                    url: data.url,
-                    cuisine: data.cuisine || 'Unknown',
-                    languages: data.languages
-                  })
-                }
-              }
-            } catch (err) {
-              console.log(`Failed to load ${fileName}:`, err)
-            }
-          }
-        }
-      }
-    } catch (err) {
-      console.log('Recipe index not found, falling back to manual discovery')
-      
-      // Fallback: try common recipe file patterns
-      const commonFiles = [
-        'Khua Kling Recipe - Thai Dry Meat Curry (วิธีทำคั่วกลิ้งหมู).json',
-        'Massaman Curry Meatballs Recipe - Hot Thai Kitchen!.json',
-        'Ricetta Spätzle di spinaci con speck e panna - La Ricetta di GialloZafferano.json',
-        'Varză a la Cluj rețetă veche, prezentată amănunțit _ Laura Laurențiu.json'
-      ]
-      
-      for (const fileName of commonFiles) {
-        try {
-          const response = await fetch(`/recipes/${fileName}`)
-          if (response.ok) {
-            const data = await response.json()
-            if (data && data.url && data.languages) {
-              loadedRecipes.push({
-                url: data.url,
-                cuisine: data.cuisine || 'Unknown',
-                languages: data.languages
-              })
-            }
-          }
-        } catch (err) {
-          console.log(`Failed to load ${fileName}:`, err)
-        }
-      }
-    }
-    
-    recipes.value = loadedRecipes
-    console.log(`Loaded ${loadedRecipes.length} recipes:`, loadedRecipes)
-    
-    if (recipes.value.length === 0) {
+    if (totalRecipeCount.value === 0) {
       error.value = 'No recipes found. Please add JSON files to the public/recipes/ directory.'
+      return
     }
+    
+    // Start loading recipes progressively
+    loadNextRecipe()
+    
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load recipes'
     console.error('Error loading recipes:', err)
   } finally {
     loading.value = false
-    // Initialize display count after loading
     resetDisplayedRecipes()
   }
 }
@@ -361,6 +377,12 @@ onMounted(() => {
   color: #6b7280;
   font-size: 14px;
   font-weight: 500;
+}
+
+.loading-progress {
+  color: #3b82f6;
+  font-size: 12px;
+  margin-left: 8px;
 }
 
 .main-content {
