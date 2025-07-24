@@ -114,8 +114,8 @@ import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const router = useRouter()
 const { currentLanguage, getLanguageName, wasLanguageAutoDetected } = useLanguagePreference()
-const { currentTheme, setTheme, themeConfig, availableThemes, themes } = useTheme()
-const { selectedCuisine, setCuisine } = useCuisinePreference()
+const { currentTheme, setTheme, availableThemes, themes } = useTheme()
+const { selectedCuisine } = useCuisinePreference()
 
 // Show a subtle notification when language was auto-detected
 const showLanguageDetectionInfo = ref(false)
