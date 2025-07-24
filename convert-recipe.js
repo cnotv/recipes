@@ -23,11 +23,16 @@ function convertRecipeFile(inputFile, outputFile) {
       if (item.output && item.output.url && item.output.languages) {
         convertedRecipes.push({
           url: item.output.url,
+          cuisine: item.output.cuisine || 'Unknown',
           languages: item.output.languages
         });
       } else if (item.url && item.languages) {
         // Already in correct format
-        convertedRecipes.push(item);
+        convertedRecipes.push({
+          url: item.url,
+          cuisine: item.cuisine || 'Unknown',
+          languages: item.languages
+        });
       }
     }
     

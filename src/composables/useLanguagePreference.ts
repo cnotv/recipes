@@ -1,11 +1,13 @@
 import { ref, watch } from 'vue'
 import type { SupportedLanguage } from '../types/Recipe'
+import useI18n from './useI18n'
 
 /**
  * Language preference management composable
  * - Automatically detects user's region language on first visit
  * - Stores language preference in localStorage
  * - Provides reactive language state across the app
+ * - Syncs with i18n for UI translations
  */
 
 const LANGUAGE_STORAGE_KEY = 'recipe-app-language'
@@ -86,6 +88,9 @@ export const wasLanguageAutoDetected = ref(!storedLanguage && detectedLanguage !
 // Watch for changes and store them
 watch(currentLanguage, (newLanguage) => {
   storeLanguage(newLanguage)
+  // Sync with i18n
+  const { locale } = useI18n()
+  locale.value = newLanguage
 }, { immediate: true })
 
 // Composable function

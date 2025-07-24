@@ -9,14 +9,14 @@
     <div class="recipe-content">
       <h3 class="recipe-title">{{ recipeData?.title }}</h3>
       <div class="ingredients-preview">
-        <strong>Ingredients ({{ recipeData?.ingredients.length || 0 }}):</strong>
+        <strong>{{ $t('ingredients') }} ({{ recipeData?.ingredients.length || 0 }}):</strong>
         <p class="ingredients-text">{{ ingredientsPreview }}</p>
       </div>
       <div class="steps-info">
-        <span class="steps-count">{{ recipeData?.steps.length || 0 }} steps</span>
+        <span class="steps-count">{{ recipeData?.steps.length || 0 }} {{ $t('steps') }}</span>
       </div>
       <button class="view-recipe-btn" @click="$emit('view-recipe', recipe, currentLanguage)">
-        View Recipe
+        {{ $t('viewRecipe') }}
       </button>
     </div>
   </div>

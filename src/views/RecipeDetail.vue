@@ -3,7 +3,7 @@
     <header class="page-header">
       <div class="header-content">
         <button class="back-btn" @click="$router.go(-1)">
-          ← Back to Recipes
+          ← {{ $t('backToHome') }}
         </button>
         <div class="header-controls">
           <select v-if="recipe" v-model="currentLanguage" class="language-selector" @change="updateLanguage">
@@ -17,7 +17,7 @@
 
     <main class="main-content">
       <div v-if="loading" class="loading">
-        Loading recipe...
+        {{ $t('loading') }}
       </div>
 
       <div v-else-if="error" class="error">
@@ -32,15 +32,15 @@
               View Original Recipe
             </a>
             <div class="recipe-stats">
-              <span class="stat">{{ recipeData.ingredients.length }} ingredients</span>
-              <span class="stat">{{ recipeData.steps.length }} steps</span>
+              <span class="stat">{{ recipeData.ingredients.length }} {{ $t('ingredients') }}</span>
+              <span class="stat">{{ recipeData.steps.length }} {{ $t('steps') }}</span>
             </div>
           </div>
         </div>
 
         <div class="recipe-sections">
           <section class="ingredients-section">
-            <h2>Ingredients</h2>
+            <h2>{{ $t('ingredients') }}</h2>
             <ul class="ingredients-list">
               <li v-for="(ingredient, index) in recipeData.ingredients" :key="index" class="ingredient-item">
                 <span class="ingredient-text">{{ ingredient }}</span>
@@ -49,7 +49,7 @@
           </section>
 
           <section class="instructions-section">
-            <h2>Instructions</h2>
+            <h2>{{ $t('instructions') }}</h2>
             <div class="steps-container">
               <div v-for="(step, index) in recipeData.steps" :key="index" class="step-item">
                 <div class="step-header">

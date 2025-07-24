@@ -5,7 +5,7 @@
       :disabled="currentPage === 1"
       @click="$emit('page-change', currentPage - 1)"
     >
-      ← Previous
+      ← {{ $t('previousPage') }}
     </button>
     
     <div class="pagination-numbers">
@@ -25,7 +25,7 @@
       :disabled="currentPage === totalPages"
       @click="$emit('page-change', currentPage + 1)"
     >
-      Next →
+      {{ $t('nextPage') }} →
     </button>
   </div>
 </template>

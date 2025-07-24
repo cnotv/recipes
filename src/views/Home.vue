@@ -1,21 +1,21 @@
 <template>
   <div class="home-page">
     <header class="app-header">
-      <h1>Recipe Collection</h1>
+      <h1>{{ $t('recipeCollection') }}</h1>
       <div class="header-controls">
         <div class="language-selector">
-          <label for="language">Language:</label>
+          <label for="language">{{ $t('language') }}</label>
           <select id="language" v-model="currentLanguage" @change="resetToFirstPage">
-            <option value="en">English</option>
-            <option value="de">Deutsch</option>
-            <option value="jp">日本語</option>
-            <option value="th">ไทย</option>
+            <option value="en">{{ $t('english') }}</option>
+            <option value="de">{{ $t('german') }}</option>
+            <option value="jp">{{ $t('japanese') }}</option>
+            <option value="th">{{ $t('thai') }}</option>
           </select>
         </div>
         <div class="cuisine-selector">
-          <label for="cuisine">Cuisine:</label>
+          <label for="cuisine">{{ $t('cuisine') }}</label>
           <select id="cuisine" v-model="selectedCuisine" @change="resetToFirstPage">
-            <option value="">All Cuisines ({{ recipes.length }})</option>
+            <option value="">{{ $t('allCuisines') }} ({{ recipes.length }})</option>
             <option 
               v-for="cuisine in availableCuisines" 
               :key="cuisine.name" 
@@ -26,7 +26,7 @@
           </select>
         </div>
         <div class="recipes-info">
-          {{ filteredRecipes.length }} recipes found
+          {{ filteredRecipes.length }} {{ $t('recipesFound') }}
         </div>
       </div>
     </header>
@@ -38,12 +38,12 @@
         class="language-detection-banner"
         @click="showLanguageDetectionInfo = false"
       >
-        <span>🌍 Language automatically set to {{ getLanguageName(currentLanguage) }} based on your region. You can change it above.</span>
+        <span>🌍 {{ $t('languageAutoSet', { language: getLanguageName(currentLanguage) }) }} {{ $t('languageAutoSetDescription') }}</span>
         <button class="close-btn" @click.stop="showLanguageDetectionInfo = false">×</button>
       </div>
 
       <div v-if="loading" class="loading">
-        Loading recipes...
+        {{ $t('loading') }}
       </div>
 
       <div v-else-if="error" class="error">
@@ -52,7 +52,7 @@
 
       <div v-else>
         <div v-if="paginatedRecipes.length === 0" class="no-recipes">
-          No recipes available in {{ getLanguageName(currentLanguage) }}.
+          {{ $t('noRecipesAvailable', { language: getLanguageName(currentLanguage) }) }}
         </div>
 
         <div v-else>
