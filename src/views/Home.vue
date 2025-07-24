@@ -19,6 +19,16 @@
     </header>
 
     <main class="main-content">
+      <!-- Language detection notification -->
+      <div 
+        v-if="showLanguageDetectionInfo" 
+        class="language-detection-banner"
+        @click="showLanguageDetectionInfo = false"
+      >
+        <span>🌍 Language automatically set to {{ getLanguageName(currentLanguage) }} based on your region. You can change it above.</span>
+        <button class="close-btn" @click.stop="showLanguageDetectionInfo = false">×</button>
+      </div>
+
       <div v-if="loading" class="loading">
         Loading recipes...
       </div>
@@ -59,15 +69,19 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
 import Pagination from '../components/Pagination.vue'
+import { useLanguagePreference } from '../composables/useLanguagePreference'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const router = useRouter()
+const { currentLanguage, getLanguageName, wasLanguageAutoDetected } = useLanguagePreference()
+
+// Show a subtle notification when language was auto-detected
+const showLanguageDetectionInfo = ref(false)
 
 // Reactive state
 const recipes = ref<Recipe[]>([])
 const loading = ref(true)
 const error = ref('')
-const currentLanguage = ref<SupportedLanguage>('en')
 const currentPage = ref(1)
 const recipesPerPage = 6
 
@@ -197,19 +211,18 @@ const viewRecipe = (recipe: Recipe, language: SupportedLanguage) => {
   })
 }
 
-const getLanguageName = (key: SupportedLanguage): string => {
-  const languageNames: Record<SupportedLanguage, string> = {
-    en: 'English',
-    de: 'Deutsch',
-    jp: 'Japanese',
-    th: 'Thai'
-  }
-  return languageNames[key] || key
-}
-
 // Lifecycle
 onMounted(() => {
   loadRecipes()
+  
+  // Show language detection info if language was auto-detected
+  if (wasLanguageAutoDetected.value) {
+    showLanguageDetectionInfo.value = true
+    // Auto hide after 5 seconds
+    setTimeout(() => {
+      showLanguageDetectionInfo.value = false
+    }, 5000)
+  }
 })
 </script>
 
@@ -271,6 +284,46 @@ onMounted(() => {
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 16px;
+}
+
+.language-detection-banner {
+  background: #e0f2fe;
+  border: 1px solid #b3e5fc;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #01579b;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.language-detection-banner:hover {
+  background: #b3e5fc;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #01579b;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.close-btn:hover {
+  background: rgba(1, 87, 155, 0.1);
 }
 
 .loading, .error, .no-recipes {

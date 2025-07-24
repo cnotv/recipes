@@ -6,9 +6,9 @@
           ← Back to Recipes
         </button>
         <div class="header-controls">
-          <select v-if="recipe" v-model="selectedLanguage" class="language-selector" @change="updateLanguage">
+          <select v-if="recipe" v-model="currentLanguage" class="language-selector" @change="updateLanguage">
             <option v-for="(_, key) in recipe.languages" :key="key" :value="key">
-              {{ getLanguageName(key as string) }}
+              {{ getLanguageName(key as SupportedLanguage) }}
             </option>
           </select>
         </div>
@@ -74,21 +74,28 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useLanguagePreference } from '../composables/useLanguagePreference'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const route = useRoute()
 const router = useRouter()
+const { currentLanguage, getLanguageName } = useLanguagePreference()
 
 // Reactive state
 const recipe = ref<Recipe | null>(null)
 const loading = ref(true)
 const error = ref('')
-const selectedLanguage = ref<SupportedLanguage>('en')
+
+// Override language from URL query if provided
+const urlLanguage = route.query.lang as SupportedLanguage
+if (urlLanguage && ['en', 'de', 'jp', 'th'].includes(urlLanguage)) {
+  currentLanguage.value = urlLanguage
+}
 
 // Computed properties
 const recipeData = computed(() => {
   if (!recipe.value) return null
-  return recipe.value.languages[selectedLanguage.value] || 
+  return recipe.value.languages[currentLanguage.value] || 
          recipe.value.languages.en || 
          Object.values(recipe.value.languages)[0]
 })
@@ -113,7 +120,7 @@ const loadRecipe = async () => {
         // Set language from query params if available
         const langParam = route.query.lang as SupportedLanguage
         if (langParam && recipe.value && recipe.value.languages[langParam]) {
-          selectedLanguage.value = langParam
+          currentLanguage.value = langParam
         }
         return
       } catch (err) {
@@ -214,18 +221,8 @@ const updateLanguage = () => {
   // Update URL with language parameter
   router.replace({ 
     ...route, 
-    query: { ...route.query, lang: selectedLanguage.value } 
+    query: { ...route.query, lang: currentLanguage.value } 
   })
-}
-
-const getLanguageName = (key: string): string => {
-  const languageNames: Record<string, string> = {
-    en: 'English',
-    de: 'Deutsch',
-    jp: '日本語',
-    th: 'ไทย'
-  }
-  return languageNames[key] || key.toUpperCase()
 }
 
 const handleImageError = (event: Event) => {
