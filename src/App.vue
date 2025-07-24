@@ -1,11 +1,12 @@
 <template>
   <div class="app-container">
+    <PwaStatus />
     <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-// Router will handle all the navigation and views
+import PwaStatus from './components/PwaStatus.vue'
 </script>
 
 <style>
