@@ -27,9 +27,6 @@
         </div>
         <div class="recipes-info">
           {{ filteredRecipes.length }} {{ $t('recipesFound') }}
-          <span v-if="recipes.length < totalRecipeCount" class="loading-progress">
-            ({{ recipes.length }}/{{ totalRecipeCount }} loaded)
-          </span>
         </div>
       </div>
     </header>
