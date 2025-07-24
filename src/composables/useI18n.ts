@@ -48,10 +48,10 @@ const messages = {
     recipesFound: 'recipes found',
     
     // Filters
-    english: 'English',
-    german: 'Deutsch',
-    japanese: '日本語',
-    thai: 'ไทย',
+    english: '🇬🇧 English',
+    german: '🇩🇪 Deutsch',
+    japanese: '🇯🇵 日本語',
+    thai: '🇹🇭 ไทย',
     
     // Recipe display
     viewRecipe: 'View Recipe',
@@ -86,10 +86,10 @@ const messages = {
     recipesFound: 'Rezepte gefunden',
     
     // Filters
-    english: 'English',
-    german: 'Deutsch',
-    japanese: '日本語',
-    thai: 'ไทย',
+    english: '🇬🇧 English',
+    german: '🇩🇪 Deutsch',
+    japanese: '🇯🇵 日本語',
+    thai: '🇹🇭 ไทย',
     
     // Recipe display
     viewRecipe: 'Rezept anzeigen',
@@ -124,10 +124,10 @@ const messages = {
     recipesFound: 'レシピが見つかりました',
     
     // Filters
-    english: 'English',
-    german: 'Deutsch',
-    japanese: '日本語',
-    thai: 'ไทย',
+    english: '🇬🇧 English',
+    german: '🇩🇪 Deutsch',
+    japanese: '🇯🇵 日本語',
+    thai: '🇹🇭 ไทย',
     
     // Recipe display
     viewRecipe: 'レシピを見る',
@@ -162,10 +162,10 @@ const messages = {
     recipesFound: 'สูตรที่พบ',
     
     // Filters
-    english: 'English',
-    german: 'Deutsch',
-    japanese: '日本語',
-    thai: 'ไทย',
+    english: '🇬🇧 English',
+    german: '🇩🇪 Deutsch',
+    japanese: '🇯🇵 日本語',
+    thai: '🇹🇭 ไทย',
     
     // Recipe display
     viewRecipe: 'ดูสูตร',
