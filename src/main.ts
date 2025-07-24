@@ -3,6 +3,12 @@ import './style.css'
 import App from './App.vue'
 import router from './router'
 import { i18n } from './composables/useI18n'
+import { useTheme } from './composables/useTheme'
+import { useCuisinePreference } from './composables/useCuisinePreference'
+
+// Initialize theme and cuisine preferences
+useTheme()
+useCuisinePreference()
 
 const app = createApp(App).use(router).use(i18n)
 

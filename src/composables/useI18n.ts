@@ -5,8 +5,15 @@ export interface UITranslations {
   recipeCollection: string
   language: string
   cuisine: string
+  theme: string
   allCuisines: string
   recipesFound: string
+  
+  // Theme names
+  blueKawaii: string
+  pinkKawaii: string
+  darkMode: string
+  nature: string
   
   // Filters
   english: string
@@ -22,6 +29,7 @@ export interface UITranslations {
   error: string
   noRecipes: string
   noRecipesAvailable: string
+  more: string
   
   // Language detection
   languageAutoSet: string
@@ -46,14 +54,21 @@ const messages = {
     recipeCollection: 'Recipe Collection',
     language: 'Language:',
     cuisine: 'Cuisine:',
+    theme: 'Theme:',
     allCuisines: 'All Cuisines',
     recipesFound: 'recipes found',
     
+    // Theme names
+    blueKawaii: 'Blue Kawaii',
+    pinkKawaii: 'Pink Kawaii',
+    darkMode: 'Dark Mode',
+    nature: 'Nature',
+    
     // Filters
-    english: '🇬🇧 English',
-    german: '🇩🇪 Deutsch',
-    japanese: '🇯🇵 日本語',
-    thai: '🇹🇭 ไทย',
+    english: 'English',
+    german: 'German',
+    japanese: 'Japanese',
+    thai: 'Thai',
     
     // Recipe display
     viewRecipe: 'View Recipe',
@@ -61,12 +76,13 @@ const messages = {
     loadingMore: 'Loading more recipes',
     allRecipesLoaded: 'All recipes loaded',
     error: 'Error loading recipes',
-    noRecipes: 'No recipes found',
-    noRecipesAvailable: 'No recipes available in {language}.',
+    noRecipes: 'No recipes available',
+    noRecipesAvailable: 'No recipes available in {language}',
+    more: 'more',
     
     // Language detection
-    languageAutoSet: 'Language automatically set to {language} based on your region.',
-    languageAutoSetDescription: 'You can change it above.',
+    languageAutoSet: 'Language automatically set to {language}',
+    languageAutoSetDescription: 'Click to dismiss',
     
     // Pagination
     previousPage: 'Previous',
@@ -78,7 +94,7 @@ const messages = {
     ingredients: 'Ingredients',
     instructions: 'Instructions',
     steps: 'Steps',
-    backToHome: 'Back to Recipes'
+    backToHome: 'Back to Home'
   } satisfies UITranslations,
   
   de: {
@@ -86,8 +102,15 @@ const messages = {
     recipeCollection: 'Rezeptsammlung',
     language: 'Sprache:',
     cuisine: 'Küche:',
+    theme: 'Design:',
     allCuisines: 'Alle Küchen',
     recipesFound: 'Rezepte gefunden',
+    
+    // Theme names
+    blueKawaii: 'Blaues Kawaii',
+    pinkKawaii: 'Rosa Kawaii',
+    darkMode: 'Dunkler Modus',
+    nature: 'Natur',
     
     // Filters
     english: '🇬🇧 English',
@@ -96,17 +119,18 @@ const messages = {
     thai: '🇹🇭 ไทย',
     
     // Recipe display
-    viewRecipe: 'Rezept anzeigen',
+    viewRecipe: 'Rezept ansehen',
     loading: 'Rezepte werden geladen...',
-    loadingMore: 'Weitere Rezepte laden',
+    loadingMore: 'Weitere Rezepte werden geladen',
     allRecipesLoaded: 'Alle Rezepte geladen',
     error: 'Fehler beim Laden der Rezepte',
-    noRecipes: 'Keine Rezepte gefunden',
-    noRecipesAvailable: 'Keine Rezepte auf {language} verfügbar.',
+    noRecipes: 'Keine Rezepte verfügbar',
+    noRecipesAvailable: 'Keine Rezepte in {language} verfügbar',
+    more: 'weitere',
     
     // Language detection
-    languageAutoSet: 'Sprache automatisch auf {language} basierend auf Ihrer Region eingestellt.',
-    languageAutoSetDescription: 'Sie können sie oben ändern.',
+    languageAutoSet: 'Sprache automatisch auf {language} gesetzt',
+    languageAutoSetDescription: 'Klicken zum Schließen',
     
     // Pagination
     previousPage: 'Zurück',
@@ -126,8 +150,15 @@ const messages = {
     recipeCollection: 'レシピコレクション',
     language: '言語:',
     cuisine: '料理:',
+    theme: 'テーマ:',
     allCuisines: 'すべての料理',
     recipesFound: 'レシピが見つかりました',
+    
+    // Theme names
+    blueKawaii: 'ブルーかわいい',
+    pinkKawaii: 'ピンクかわいい',
+    darkMode: 'ダークモード',
+    nature: '自然',
     
     // Filters
     english: '🇬🇧 English',
@@ -143,6 +174,7 @@ const messages = {
     error: 'レシピの読み込みエラー',
     noRecipes: 'レシピが見つかりません',
     noRecipesAvailable: '{language}でのレシピがありません。',
+    more: 'その他',
     
     // Language detection
     languageAutoSet: 'お住まいの地域に基づいて言語が{language}に自動設定されました。',
@@ -165,9 +197,16 @@ const messages = {
     // Header
     recipeCollection: 'คอลเลกชันสูตรอาหาร',
     language: 'ภาษา:',
-    cuisine: 'อาหาร:',
-    allCuisines: 'อาหารทั้งหมด',
-    recipesFound: 'สูตรที่พบ',
+    cuisine: 'ประเภทอาหาร:',
+    theme: 'ธีม:',
+    allCuisines: 'อาหารทุกประเภท',
+    recipesFound: 'สูตรอาหารที่พบ',
+    
+    // Theme names
+    blueKawaii: 'คาวาอิสีน้ำเงิน',
+    pinkKawaii: 'คาวาอิสีชมพู',
+    darkMode: 'โหมดมืด',
+    nature: 'ธรรมชาติ',
     
     // Filters
     english: '🇬🇧 English',
@@ -176,17 +215,18 @@ const messages = {
     thai: '🇹🇭 ไทย',
     
     // Recipe display
-    viewRecipe: 'ดูสูตร',
+    viewRecipe: 'ดูสูตรอาหาร',
     loading: 'กำลังโหลดสูตรอาหาร...',
     loadingMore: 'กำลังโหลดสูตรอาหารเพิ่มเติม',
-    allRecipesLoaded: 'โหลดสูตรอาหารครบแล้ว',
+    allRecipesLoaded: 'โหลดสูตรอาหารทั้งหมดแล้ว',
     error: 'เกิดข้อผิดพลาดในการโหลดสูตรอาหาร',
-    noRecipes: 'ไม่พบสูตรอาหาร',
+    noRecipes: 'ไม่มีสูตรอาหารให้ดู',
     noRecipesAvailable: 'ไม่มีสูตรอาหารใน{language}',
+    more: 'เพิ่มเติม',
     
     // Language detection
-    languageAutoSet: 'ตั้งค่าภาษาเป็น{language}โดยอัตโนมัติตามภูมิภาคของคุณ',
-    languageAutoSetDescription: 'คุณสามารถเปลี่ยนได้ข้างบน',
+    languageAutoSet: 'ตั้งค่าภาษาเป็น {language} โดยอัตโนมัติ',
+    languageAutoSetDescription: 'คลิกเพื่อปิด',
     
     // Pagination
     previousPage: 'ก่อนหน้า',
@@ -198,7 +238,7 @@ const messages = {
     ingredients: 'ส่วนผสม',
     instructions: 'วิธีทำ',
     steps: 'ขั้นตอน',
-    backToHome: 'กลับไปที่สูตรอาหาร'
+    backToHome: 'กลับสู่หน้าหลัก'
   } satisfies UITranslations
 }
 
