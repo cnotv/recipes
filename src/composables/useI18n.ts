@@ -17,6 +17,8 @@ export interface UITranslations {
   // Recipe display
   viewRecipe: string
   loading: string
+  loadingMore: string
+  allRecipesLoaded: string
   error: string
   noRecipes: string
   noRecipesAvailable: string
@@ -56,6 +58,8 @@ const messages = {
     // Recipe display
     viewRecipe: 'View Recipe',
     loading: 'Loading recipes...',
+    loadingMore: 'Loading more recipes',
+    allRecipesLoaded: 'All recipes loaded',
     error: 'Error loading recipes',
     noRecipes: 'No recipes found',
     noRecipesAvailable: 'No recipes available in {language}.',
@@ -94,6 +98,8 @@ const messages = {
     // Recipe display
     viewRecipe: 'Rezept anzeigen',
     loading: 'Rezepte werden geladen...',
+    loadingMore: 'Weitere Rezepte laden',
+    allRecipesLoaded: 'Alle Rezepte geladen',
     error: 'Fehler beim Laden der Rezepte',
     noRecipes: 'Keine Rezepte gefunden',
     noRecipesAvailable: 'Keine Rezepte auf {language} verfügbar.',
@@ -132,6 +138,8 @@ const messages = {
     // Recipe display
     viewRecipe: 'レシピを見る',
     loading: 'レシピを読み込み中...',
+    loadingMore: 'さらにレシピを読み込み中',
+    allRecipesLoaded: 'すべてのレシピを読み込みました',
     error: 'レシピの読み込みエラー',
     noRecipes: 'レシピが見つかりません',
     noRecipesAvailable: '{language}でのレシピがありません。',
@@ -170,6 +178,8 @@ const messages = {
     // Recipe display
     viewRecipe: 'ดูสูตร',
     loading: 'กำลังโหลดสูตรอาหาร...',
+    loadingMore: 'กำลังโหลดสูตรอาหารเพิ่มเติม',
+    allRecipesLoaded: 'โหลดสูตรอาหารครบแล้ว',
     error: 'เกิดข้อผิดพลาดในการโหลดสูตรอาหาร',
     noRecipes: 'ไม่พบสูตรอาหาร',
     noRecipesAvailable: 'ไม่มีสูตรอาหารใน{language}',

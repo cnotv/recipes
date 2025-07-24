@@ -5,7 +5,7 @@
       <div class="header-controls">
         <div class="language-selector">
           <label for="language">{{ $t('language') }}</label>
-          <select id="language" v-model="currentLanguage" @change="resetToFirstPage">
+          <select id="language" v-model="currentLanguage">
             <option value="en">{{ $t('english') }}</option>
             <option value="de">{{ $t('german') }}</option>
             <option value="jp">{{ $t('japanese') }}</option>
@@ -14,7 +14,7 @@
         </div>
         <div class="cuisine-selector">
           <label for="cuisine">{{ $t('cuisine') }}</label>
-          <select id="cuisine" v-model="selectedCuisine" @change="resetToFirstPage">
+          <select id="cuisine" v-model="selectedCuisine">
             <option value="">{{ $t('allCuisines') }} ({{ recipes.length }})</option>
             <option 
               v-for="cuisine in availableCuisines" 
@@ -51,14 +51,14 @@
       </div>
 
       <div v-else>
-        <div v-if="paginatedRecipes.length === 0" class="no-recipes">
+        <div v-if="displayedRecipes.length === 0" class="no-recipes">
           {{ $t('noRecipesAvailable', { language: getLanguageName(currentLanguage) }) }}
         </div>
 
         <div v-else>
           <div class="recipes-grid">
             <RecipeCard
-              v-for="recipe in paginatedRecipes"
+              v-for="recipe in displayedRecipes"
               :key="recipe.url"
               :recipe="recipe"
               :current-language="currentLanguage"
@@ -66,11 +66,16 @@
             />
           </div>
 
-          <Pagination
-            :current-page="currentPage"
-            :total-pages="totalPages"
-            @page-change="changePage"
-          />
+          <!-- Infinite scroll loading indicator -->
+          <div v-if="isLoadingMore" class="loading-more">
+            <div class="loading-spinner"></div>
+            <span>{{ $t('loadingMore') }}...</span>
+          </div>
+
+          <!-- End of results indicator -->
+          <div v-if="!hasMoreRecipes && displayedRecipes.length > 0" class="no-more-recipes">
+            {{ $t('allRecipesLoaded') }}
+          </div>
         </div>
       </div>
     </main>
@@ -78,11 +83,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
-import Pagination from '../components/Pagination.vue'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
+import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const router = useRouter()
@@ -95,9 +100,13 @@ const showLanguageDetectionInfo = ref(false)
 const recipes = ref<Recipe[]>([])
 const loading = ref(true)
 const error = ref('')
-const currentPage = ref(1)
 const selectedCuisine = ref('')
 const recipesPerPage = 12
+const currentDisplayCount = ref(recipesPerPage)
+
+// Infinite scroll state
+const isLoadingMore = ref(false)
+const hasMoreRecipes = ref(true)
 
 // Computed properties
 const availableCuisines = computed(() => {
@@ -126,15 +135,35 @@ const filteredRecipes = computed(() => {
   })
 })
 
-const totalPages = computed(() => {
-  return Math.ceil(filteredRecipes.value.length / recipesPerPage)
+const displayedRecipes = computed(() => {
+  return filteredRecipes.value.slice(0, currentDisplayCount.value)
 })
 
-const paginatedRecipes = computed(() => {
-  const start = (currentPage.value - 1) * recipesPerPage
-  const end = start + recipesPerPage
-  return filteredRecipes.value.slice(start, end)
-})
+// Infinite scroll setup
+const loadMoreRecipes = () => {
+  if (isLoadingMore.value) return
+  
+  isLoadingMore.value = true
+  
+  // Simulate loading delay for better UX
+  setTimeout(() => {
+    const nextCount = currentDisplayCount.value + recipesPerPage
+    const maxCount = filteredRecipes.value.length
+    
+    currentDisplayCount.value = Math.min(nextCount, maxCount)
+    hasMoreRecipes.value = currentDisplayCount.value < maxCount
+    isLoadingMore.value = false
+  }, 500)
+}
+
+const { reset: resetInfiniteScroll } = useInfiniteScroll(loadMoreRecipes)
+
+// Reset display when filters change
+const resetDisplayedRecipes = () => {
+  currentDisplayCount.value = recipesPerPage
+  hasMoreRecipes.value = filteredRecipes.value.length > recipesPerPage
+  resetInfiniteScroll()
+}
 
 // Methods
 const loadRecipes = async () => {
@@ -224,16 +253,9 @@ const loadRecipes = async () => {
     console.error('Error loading recipes:', err)
   } finally {
     loading.value = false
+    // Initialize display count after loading
+    resetDisplayedRecipes()
   }
-}
-
-const changePage = (page: number) => {
-  currentPage.value = page
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-const resetToFirstPage = () => {
-  currentPage.value = 1
 }
 
 const viewRecipe = (recipe: Recipe, language: SupportedLanguage) => {
@@ -246,6 +268,11 @@ const viewRecipe = (recipe: Recipe, language: SupportedLanguage) => {
     query: { lang: language }
   })
 }
+
+// Watch for filter changes to reset display
+watch([currentLanguage, selectedCuisine], () => {
+  resetDisplayedRecipes()
+})
 
 // Lifecycle
 onMounted(() => {
@@ -437,5 +464,40 @@ onMounted(() => {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
   }
+}
+
+/* Infinite scroll styles */
+.loading-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 16px;
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  border-top-color: #3b82f6;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-more-recipes {
+  text-align: center;
+  padding: 32px 16px;
+  color: #9ca3af;
+  font-size: 14px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 24px;
 }
 </style>
