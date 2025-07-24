@@ -136,7 +136,7 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
   
   // Try main recipes.json
   try {
-    const response = await fetch('/recipes.json')
+    const response = await fetch('/recipes/recipes.json')
     if (response.ok) {
       const data = await response.json()
       if (Array.isArray(data)) {
@@ -147,24 +147,58 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
     console.log('Main recipes.json not found')
   }
   
-  // Try individual recipe file
+  // Load individual recipe files dynamically using index
   try {
-    const response = await fetch('/recipes/Varză a la Cluj rețetă veche, prezentată amănunțit _ Laura Laurențiu.json')
-    if (response.ok) {
-      const data = await response.json()
-      if (Array.isArray(data)) {
-        for (const item of data) {
-          if (item.output && item.output.url && item.output.languages) {
-            loadedRecipes.push({
-              url: item.output.url,
-              languages: item.output.languages
-            })
+    const indexResponse = await fetch('/recipes/index.json')
+    if (indexResponse.ok) {
+      const recipeFiles = await indexResponse.json()
+      if (Array.isArray(recipeFiles)) {
+        for (const fileName of recipeFiles) {
+          try {
+            const response = await fetch(`/recipes/${fileName}`)
+            if (response.ok) {
+              const data = await response.json()
+              // Check if it's a single recipe object with the expected structure
+              if (data && data.url && data.languages) {
+                loadedRecipes.push({
+                  url: data.url,
+                  languages: data.languages
+                })
+              }
+            }
+          } catch (err) {
+            console.log(`Failed to load ${fileName}:`, err)
           }
         }
       }
     }
   } catch (err) {
-    console.log('Individual recipe file not found')
+    console.log('Recipe index not found, falling back to manual discovery')
+    
+    // Fallback: try common recipe file patterns
+    const commonFiles = [
+      'Khua Kling Recipe - Thai Dry Meat Curry (วิธีทำคั่วกลิ้งหมู).json',
+      'Massaman Curry Meatballs Recipe - Hot Thai Kitchen!.json',
+      'Ricetta Spätzle di spinaci con speck e panna - La Ricetta di GialloZafferano.json',
+      'Varză a la Cluj rețetă veche, prezentată amănunțit _ Laura Laurențiu.json'
+    ]
+    
+    for (const fileName of commonFiles) {
+      try {
+        const response = await fetch(`/recipes/${fileName}`)
+        if (response.ok) {
+          const data = await response.json()
+          if (data && data.url && data.languages) {
+            loadedRecipes.push({
+              url: data.url,
+              languages: data.languages
+            })
+          }
+        }
+      } catch (err) {
+        console.log(`Failed to load ${fileName}:`, err)
+      }
+    }
   }
   
   // Find the recipe with matching URL

@@ -1,6 +1,6 @@
 # Recipe Collection Vue App
 
-A modern Vue 3 application with TypeScript that displays a multilingual recipe collection with pagination support. This app can load any JSON files from the root folder and display recipes in multiple languages.
+A modern Vue 3 application with TypeScript that displays a multilingual recipe collection with pagination support. This app can dynamically load any JSON recipe files and display them in multiple languages.
 
 ## Features
 
@@ -8,16 +8,62 @@ A modern Vue 3 application with TypeScript that displays a multilingual recipe c
 - **Pagination**: Navigate through recipes with easy-to-use pagination
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Recipe Details**: View detailed recipe information with step-by-step instructions and images
-- **Dynamic Loading**: Automatically loads any JSON files from the public folder
+- **Dynamic Loading**: Automatically discovers and loads all recipe JSON files
+- **Non-hardcoded File Discovery**: Uses an index-based system to find recipes dynamically
 
-## JSON Structure
+## Adding New Recipes
 
-The application expects JSON files with the following structure:
+1. Create a JSON file in the `public/recipes/` directory with the following structure:
 
 ```json
 {
-  "url": "the original URL",
+  "url": "https://example.com/recipe-url",
   "languages": {
+    "en": {
+      "title": "Recipe Title in English",
+      "ingredients": [
+        "Ingredient 1",
+        "Ingredient 2"
+      ],
+      "steps": [
+        {
+          "image": "optional-image-url.jpg",
+          "content": "Step description"
+        }
+      ]
+    },
+    "de": {
+      "title": "Recipe Title in German",
+      "ingredients": ["German ingredients..."],
+      "steps": [{"content": "German instructions..."}]
+    }
+  }
+}
+```
+
+2. Run the index generation command to update the recipe list:
+
+```bash
+npm run generate-index
+```
+
+This will automatically scan the `public/recipes/` directory and create an index file that the application uses to discover available recipes.
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Generate recipe index (run this after adding new recipes)
+npm run generate-index
+
+# Build for production
+npm run build
+```
     "en": {
       "title": "Recipe name",
       "ingredients": ["10g of ingredient X"],
