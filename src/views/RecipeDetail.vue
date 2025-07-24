@@ -260,7 +260,8 @@ onMounted(() => {
 }
 
 .header-content {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -300,7 +301,8 @@ onMounted(() => {
 }
 
 .main-content {
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 32px 24px;
 }

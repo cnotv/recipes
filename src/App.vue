@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app-container">
     <router-view />
   </div>
 </template>
@@ -22,7 +22,9 @@ body {
   line-height: 1.6;
 }
 
-#app {
+#app,
+.app-container {
   min-height: 100vh;
+  width: 100%;
 }
 </style>

@@ -83,7 +83,7 @@ const recipes = ref<Recipe[]>([])
 const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
-const recipesPerPage = 6
+const recipesPerPage = 12
 
 // Computed properties
 const filteredRecipes = computed(() => {
@@ -281,9 +281,8 @@ onMounted(() => {
 }
 
 .main-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px;
+  width: 100%;
+  padding: 24px;
 }
 
 .language-detection-banner {
@@ -342,7 +341,7 @@ onMounted(() => {
 
 .recipes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   margin-bottom: 24px;
 }
@@ -366,8 +365,21 @@ onMounted(() => {
   }
   
   .recipes-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 16px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (min-width: 1025px) {
+  .recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
   }
 }
 </style>
