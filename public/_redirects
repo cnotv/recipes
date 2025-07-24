@@ -1,0 +1,9 @@
+# Netlify redirects file for Vue.js SPA
+# This ensures that all routes are handled by Vue Router
+# instead of trying to find physical files on the server
+
+# Redirect all non-file requests to index.html
+/*    /index.html   200
+
+# Optional: Redirect common API endpoints or static assets
+# /api/*  https://your-api-domain.com/api/:splat  200
