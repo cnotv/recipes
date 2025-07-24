@@ -1,19 +1,19 @@
 <template>
   <div v-if="recipeData" class="recipe-card">
     <div class="recipe-image">
-      <img :src="recipeData.steps[0]?.image || 'https://via.placeholder.com/300x200/E5E7EB/9CA3AF?text=No+Image'" :alt="recipeData.title" />
-      <div class="language-badge">
-        {{ currentLanguage.toUpperCase() }}
+      <img :src="recipeData?.steps[0]?.image || 'https://via.placeholder.com/300x200/E5E7EB/9CA3AF?text=No+Image'" :alt="recipeData?.title" />
+      <div class="cuisine-badge" :style="{ backgroundColor: getCuisineColor(recipe.cuisine) }">
+        {{ recipe.cuisine }}
       </div>
     </div>
     <div class="recipe-content">
-      <h3 class="recipe-title">{{ recipeData.title }}</h3>
+      <h3 class="recipe-title">{{ recipeData?.title }}</h3>
       <div class="ingredients-preview">
-        <strong>Ingredients ({{ recipeData.ingredients.length }}):</strong>
+        <strong>Ingredients ({{ recipeData?.ingredients.length || 0 }}):</strong>
         <p class="ingredients-text">{{ ingredientsPreview }}</p>
       </div>
       <div class="steps-info">
-        <span class="steps-count">{{ recipeData.steps.length }} steps</span>
+        <span class="steps-count">{{ recipeData?.steps.length || 0 }} steps</span>
       </div>
       <button class="view-recipe-btn" @click="$emit('view-recipe', recipe, currentLanguage)">
         View Recipe
@@ -40,6 +40,21 @@ defineEmits<{
 const recipeData = computed(() => {
   return props.recipe.languages[props.currentLanguage] || props.recipe.languages.en || Object.values(props.recipe.languages)[0]
 })
+
+const getCuisineColor = (cuisine: string): string => {
+  const cuisineColors: Record<string, string> = {
+    'Italian': '#2563eb', // Blue
+    'Japanese': '#dc2626', // Red
+    'Thai': '#16a34a', // Green
+    'Indian': '#ea580c', // Orange
+    'Chinese': '#7c2d12', // Brown
+    'Korean': '#9333ea', // Purple
+    'French': '#be123c', // Rose
+    'German': '#374151', // Gray
+    'Romanian': '#0891b2', // Cyan
+  }
+  return cuisineColors[cuisine] || '#6b7280' // Default gray
+}
 
 const ingredientsPreview = computed(() => {
   const ingredients = recipeData.value?.ingredients || []
@@ -79,7 +94,7 @@ const ingredientsPreview = computed(() => {
   object-fit: cover;
 }
 
-.language-badge {
+.cuisine-badge {
   position: absolute;
   top: 12px;
   right: 12px;
@@ -87,10 +102,10 @@ const ingredientsPreview = computed(() => {
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  background: #3b82f6;
   color: white;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .recipe-content {

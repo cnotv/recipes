@@ -11,6 +11,7 @@ export interface RecipeLanguage {
 
 export interface Recipe {
   url: string;
+  cuisine: string;
   languages: {
     en?: RecipeLanguage;
     de?: RecipeLanguage;

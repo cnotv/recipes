@@ -12,6 +12,19 @@
             <option value="th">ไทย</option>
           </select>
         </div>
+        <div class="cuisine-selector">
+          <label for="cuisine">Cuisine:</label>
+          <select id="cuisine" v-model="selectedCuisine" @change="resetToFirstPage">
+            <option value="">All Cuisines ({{ recipes.length }})</option>
+            <option 
+              v-for="cuisine in availableCuisines" 
+              :key="cuisine.name" 
+              :value="cuisine.name"
+            >
+              {{ cuisine.name }} ({{ cuisine.count }})
+            </option>
+          </select>
+        </div>
         <div class="recipes-info">
           {{ filteredRecipes.length }} recipes found
         </div>
@@ -83,13 +96,34 @@ const recipes = ref<Recipe[]>([])
 const loading = ref(true)
 const error = ref('')
 const currentPage = ref(1)
+const selectedCuisine = ref('')
 const recipesPerPage = 12
 
 // Computed properties
+const availableCuisines = computed(() => {
+  const cuisineMap = new Map<string, number>()
+  
+  recipes.value.forEach(recipe => {
+    const cuisine = recipe.cuisine || 'Unknown'
+    cuisineMap.set(cuisine, (cuisineMap.get(cuisine) || 0) + 1)
+  })
+  
+  return Array.from(cuisineMap.entries())
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+})
+
 const filteredRecipes = computed(() => {
-  return recipes.value.filter(recipe => 
-    recipe.languages[currentLanguage.value] !== undefined
-  )
+  return recipes.value.filter(recipe => {
+    // Filter by language availability
+    const hasLanguage = recipe.languages[currentLanguage.value] !== undefined
+    
+    // Filter by cuisine if selected
+    const matchesCuisine = selectedCuisine.value === '' || 
+      (recipe.cuisine && recipe.cuisine === selectedCuisine.value)
+    
+    return hasLanguage && matchesCuisine
+  })
 })
 
 const totalPages = computed(() => {
@@ -138,6 +172,7 @@ const loadRecipes = async () => {
                 if (data && data.url && data.languages) {
                   loadedRecipes.push({
                     url: data.url,
+                    cuisine: data.cuisine || 'Unknown',
                     languages: data.languages
                   })
                 }
@@ -167,6 +202,7 @@ const loadRecipes = async () => {
             if (data && data.url && data.languages) {
               loadedRecipes.push({
                 url: data.url,
+                cuisine: data.cuisine || 'Unknown',
                 languages: data.languages
               })
             }
@@ -251,7 +287,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 20px;
 }
 
 .language-selector {
@@ -266,6 +302,26 @@ onMounted(() => {
 }
 
 .language-selector select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.cuisine-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cuisine-selector label {
+  font-weight: 500;
+  color: #374151;
+}
+
+.cuisine-selector select {
   padding: 8px 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;

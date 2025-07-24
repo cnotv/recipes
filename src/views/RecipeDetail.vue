@@ -169,6 +169,7 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
               if (data && data.url && data.languages) {
                 loadedRecipes.push({
                   url: data.url,
+                  cuisine: data.cuisine || 'Unknown',
                   languages: data.languages
                 })
               }
@@ -198,6 +199,7 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
           if (data && data.url && data.languages) {
             loadedRecipes.push({
               url: data.url,
+              cuisine: data.cuisine || 'Unknown',
               languages: data.languages
             })
           }
