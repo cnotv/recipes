@@ -132,37 +132,13 @@ const ingredientsPreview = computed(() => {
   display: flex;
   flex-direction: column;
   border: 2px solid var(--theme-primary, #4a90e2);
-  position: relative;
   animation: gentleFloat 4s ease-in-out infinite;
-}
-
-.recipe-card::before {
-  content: var(--theme-primary-icon, '⚡');
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  background: var(--theme-surface, #fff);
-  color: var(--theme-primary, #4a90e2);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  border: 2px solid var(--theme-primary, #4a90e2);
-  z-index: 2;
-  animation: pulse 2s ease-in-out infinite;
 }
 
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(74, 144, 226, 0.3);
   border-color: #3478d4;
-}
-
-.recipe-card:hover::before {
-  animation: heartbeat 0.6s ease-in-out;
 }
 
 @keyframes heartbeat {
@@ -218,18 +194,7 @@ const ingredientsPreview = computed(() => {
   font-weight: 700;
   color: var(--theme-text, #2d3748);
   line-height: 1.3;
-  position: relative;
   font-family: 'Inter', sans-serif;
-}
-
-.recipe-title::after {
-  content: var(--theme-secondary-icon, '(◕‿◕)ゞ');
-  position: absolute;
-  right: 0;
-  top: -8px;
-  font-size: 0.6em;
-  color: var(--theme-primary, #4a90e2);
-  opacity: 0.7;
 }
 
 .ingredients-preview {
