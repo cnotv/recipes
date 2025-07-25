@@ -101,7 +101,7 @@ export function useLanguagePreference() {
   
   const getLanguageName = (key: SupportedLanguage): string => {
     const languageNames: Record<SupportedLanguage, string> = {
-      en: '�� English',
+      en: '🇺🇸 English',
       de: '🇩🇪 Deutsch',
       jp: '🇯🇵 日本語',
       th: '🇹🇭 ไทย'

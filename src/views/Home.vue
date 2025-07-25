@@ -3,40 +3,26 @@
     <header class="app-header">
       <h1>{{ $t('recipeCollection') }}</h1>
       <div class="header-controls">
-        <div class="language-selector">
-          <label for="language">{{ $t('language') }}</label>
-          <select id="language" v-model="currentLanguage">
-            <option value="en">{{ $t('english') }}</option>
-            <option value="de">{{ $t('german') }}</option>
-            <option value="jp">{{ $t('japanese') }}</option>
-            <option value="th">{{ $t('thai') }}</option>
-          </select>
-        </div>
-        <div class="cuisine-selector">
-          <label for="cuisine">{{ $t('cuisine') }}</label>
-          <select id="cuisine" v-model="selectedCuisine">
-            <option value="">{{ $t('allCuisines') }} ({{ recipes.length }})</option>
-            <option 
-              v-for="cuisine in availableCuisines" 
-              :key="cuisine.name" 
-              :value="cuisine.name"
-            >
-              {{ cuisine.name }} ({{ cuisine.count }})
-            </option>
-          </select>
-        </div>
-        <div class="theme-selector">
-          <label for="theme">{{ $t('theme') }}</label>
-          <select id="theme" v-model="currentTheme" @change="setTheme(currentTheme)">
-            <option 
-              v-for="themeKey in availableThemes" 
-              :key="themeKey" 
-              :value="themeKey"
-            >
-              {{ $t(themes[themeKey].name) }}
-            </option>
-          </select>
-        </div>
+        <KawaiiSelector
+          v-model="currentLanguage"
+          :options="languageOptions"
+          :label="$t('language')"
+        />
+        
+        <KawaiiSelector
+          v-model="selectedCuisine"
+          :options="cuisineOptions"
+          :label="$t('cuisine')"
+          full-width
+        />
+        
+        <KawaiiSelector
+          v-model="currentTheme"
+          :options="themeOptions"
+          :label="$t('theme')"
+          @update:model-value="setTheme(currentTheme)"
+        />
+        
         <div class="recipes-info">
           {{ filteredRecipes.length }} {{ $t('recipesFound') }}
         </div>
@@ -106,15 +92,18 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
 import RecipeSkeleton from '../components/RecipeSkeleton.vue'
+import KawaiiSelector from '../components/KawaiiSelector.vue'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { useTheme } from '../composables/useTheme'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
+import { useI18n } from 'vue-i18n'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const router = useRouter()
+const { t } = useI18n()
 const { currentLanguage, getLanguageName, wasLanguageAutoDetected } = useLanguagePreference()
-const { currentTheme, setTheme, availableThemes, themes } = useTheme()
+const { currentTheme, setTheme, availableThemes } = useTheme()
 const { selectedCuisine } = useCuisinePreference()
 
 // Show a subtle notification when language was auto-detected
@@ -176,6 +165,32 @@ const filteredRecipes = computed(() => {
 const displayedRecipes = computed(() => {
   return filteredRecipes.value.slice(0, currentDisplayCount.value)
 })
+
+// Options for KawaiiSelector components
+const languageOptions = computed(() => [
+  { value: 'en', label: getLanguageName('en') },
+  { value: 'de', label: getLanguageName('de') },
+  { value: 'jp', label: getLanguageName('jp') },
+  { value: 'th', label: getLanguageName('th') }
+])
+
+const cuisineOptions = computed(() => [
+  { value: '', label: `${t('allCuisines')} (${recipes.value.length})` },
+  ...availableCuisines.value.map(cuisine => ({
+    value: cuisine.name,
+    label: `${cuisine.name} (${cuisine.count})`
+  }))
+])
+
+const themeOptions = computed(() => 
+  availableThemes.map(themeKey => ({
+    value: themeKey,
+    label: themeKey === 'masculine-kawaii' ? 'Blue Kawaii' :
+           themeKey === 'pink-kawaii' ? 'Pink Kawaii' :
+           themeKey === 'dark-mode' ? 'Dark Mode' :
+           themeKey === 'nature' ? 'Nature' : themeKey
+  }))
+)
 
 // Infinite scroll setup
 const loadMoreRecipes = () => {
@@ -403,188 +418,6 @@ onMounted(() => {
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
-}
-
-.language-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--theme-surface, #fff);
-  padding: 12px 18px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--theme-primary, #4a90e2);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.language-selector::before {
-  content: '🌍';
-  position: absolute;
-  left: -8px;
-  top: -8px;
-  font-size: 16px;
-  background: var(--theme-surface, #fff);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.4);
-}
-
-.language-selector:hover {
-  background: var(--theme-surface, #fff);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
-}
-
-.language-selector label {
-  font-weight: 600;
-  color: var(--theme-text, #2d3748);
-  font-size: 14px;
-}
-
-.language-selector select {
-  padding: 8px 14px;
-  border: 2px solid var(--theme-primary, #4a90e2);
-  border-radius: 20px;
-  font-size: 14px;
-  background: var(--theme-surface, #fff);
-  color: var(--theme-text, #2d3748);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.language-selector select:hover {
-  background: var(--theme-background, #f8fafc);
-  transform: scale(1.05);
-}
-
-.cuisine-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--theme-surface, #fff);
-  padding: 12px 18px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--theme-secondary, #6c757d);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.cuisine-selector::before {
-  content: '🍽️';
-  position: absolute;
-  left: -8px;
-  top: -8px;
-  font-size: 16px;
-  background: var(--theme-surface, #fff);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(108, 117, 125, 0.4);
-}
-
-.cuisine-selector:hover {
-  background: var(--theme-surface, #fff);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
-}
-
-.cuisine-selector label {
-  font-weight: 600;
-  color: var(--theme-text, #2d3748);
-  font-size: 14px;
-}
-
-.cuisine-selector select {
-  padding: 8px 14px;
-  border: 2px solid var(--theme-secondary, #6c757d);
-  border-radius: 20px;
-  font-size: 14px;
-  background: var(--theme-surface, #fff);
-  color: var(--theme-text, #2d3748);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cuisine-selector select:hover {
-  background: var(--theme-background, #f8fafc);
-  transform: scale(1.05);
-}
-
-.theme-selector {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--theme-surface, #fff);
-  padding: 12px 18px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--theme-accent, #3478d4);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.theme-selector::before {
-  content: '🎨';
-  position: absolute;
-  left: -8px;
-  top: -8px;
-  font-size: 16px;
-  background: var(--theme-surface, #fff);
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(52, 120, 212, 0.4);
-}
-
-.theme-selector:hover {
-  background: var(--theme-surface, #fff);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(52, 120, 212, 0.4);
-}
-
-.theme-selector label {
-  font-weight: 600;
-  color: var(--theme-text, #2d3748);
-  font-size: 14px;
-}
-
-.theme-selector select {
-  padding: 8px 14px;
-  border: 2px solid var(--theme-accent, #3478d4);
-  border-radius: 20px;
-  font-size: 14px;
-  background: var(--theme-surface, #fff);
-  color: var(--theme-text, #2d3748);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.theme-selector select:hover {
-  background: var(--theme-background, #f8fafc);
-  transform: scale(1.05);
-}
-
-.language-selector select option,
-.cuisine-selector select option,
-.theme-selector select option {
-  background: var(--theme-surface, #fff);
-  color: var(--theme-text, #2d3748);
-  padding: 8px;
 }
 
 .recipes-info {

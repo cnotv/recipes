@@ -46,6 +46,8 @@ export interface UITranslations {
   instructions: string
   steps: string
   backToHome: string
+  viewOriginalRecipe: string
+  step: string
 }
 
 const messages = {
@@ -94,7 +96,9 @@ const messages = {
     ingredients: 'Ingredients',
     instructions: 'Instructions',
     steps: 'Steps',
-    backToHome: 'Back to Home'
+    backToHome: 'Back to Home',
+    viewOriginalRecipe: 'View Original Recipe',
+    step: 'Step'
   } satisfies UITranslations,
   
   de: {
@@ -142,7 +146,9 @@ const messages = {
     ingredients: 'Zutaten',
     instructions: 'Anweisungen',
     steps: 'Schritte',
-    backToHome: 'Zurück zu Rezepten'
+    backToHome: 'Zurück zu Rezepten',
+    viewOriginalRecipe: 'Originalrezept ansehen',
+    step: 'Schritt'
   } satisfies UITranslations,
   
   jp: {
@@ -190,7 +196,9 @@ const messages = {
     ingredients: '材料',
     instructions: '手順',
     steps: 'ステップ',
-    backToHome: 'レシピ一覧に戻る'
+    backToHome: 'レシピ一覧に戻る',
+    viewOriginalRecipe: '元のレシピを見る',
+    step: 'ステップ'
   } satisfies UITranslations,
   
   th: {
@@ -238,7 +246,9 @@ const messages = {
     ingredients: 'ส่วนผสม',
     instructions: 'วิธีทำ',
     steps: 'ขั้นตอน',
-    backToHome: 'กลับสู่หน้าหลัก'
+    backToHome: 'กลับสู่หน้าหลัก',
+    viewOriginalRecipe: 'ดูสูตรอาหารต้นฉบับ',
+    step: 'ขั้นตอนที่'
   } satisfies UITranslations
 }
 
