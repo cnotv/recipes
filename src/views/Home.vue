@@ -409,7 +409,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--theme-surface, #fff);
   padding: 12px 18px;
   border-radius: 30px;
   backdrop-filter: blur(10px);
@@ -435,7 +435,7 @@ onMounted(() => {
 }
 
 .language-selector:hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--theme-surface, #fff);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
@@ -451,7 +451,7 @@ onMounted(() => {
   border: 2px solid var(--theme-primary, #4a90e2);
   border-radius: 20px;
   font-size: 14px;
-  background: linear-gradient(135deg, #e6f3ff, #cce7ff);
+  background: var(--theme-surface, #fff);
   color: var(--theme-text, #2d3748);
   font-weight: 600;
   cursor: pointer;
@@ -459,7 +459,7 @@ onMounted(() => {
 }
 
 .language-selector select:hover {
-  background: linear-gradient(135deg, #cce7ff, #b3d9ff);
+  background: var(--theme-background, #f8fafc);
   transform: scale(1.05);
 }
 
@@ -467,7 +467,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--theme-surface, #fff);
   padding: 12px 18px;
   border-radius: 30px;
   backdrop-filter: blur(10px);
@@ -493,7 +493,7 @@ onMounted(() => {
 }
 
 .cuisine-selector:hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--theme-surface, #fff);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
 }
@@ -509,7 +509,7 @@ onMounted(() => {
   border: 2px solid var(--theme-secondary, #6c757d);
   border-radius: 20px;
   font-size: 14px;
-  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  background: var(--theme-surface, #fff);
   color: var(--theme-text, #2d3748);
   font-weight: 600;
   cursor: pointer;
@@ -517,7 +517,7 @@ onMounted(() => {
 }
 
 .cuisine-selector select:hover {
-  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  background: var(--theme-background, #f8fafc);
   transform: scale(1.05);
 }
 
@@ -525,7 +525,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--theme-surface, #fff);
   padding: 12px 18px;
   border-radius: 30px;
   backdrop-filter: blur(10px);
@@ -551,7 +551,7 @@ onMounted(() => {
 }
 
 .theme-selector:hover {
-  background: rgba(255, 255, 255, 1);
+  background: var(--theme-surface, #fff);
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(52, 120, 212, 0.4);
 }
@@ -567,7 +567,7 @@ onMounted(() => {
   border: 2px solid var(--theme-accent, #3478d4);
   border-radius: 20px;
   font-size: 14px;
-  background: var(--theme-card-gradient, linear-gradient(135deg, #f0f4f8, #e2e8f0));
+  background: var(--theme-surface, #fff);
   color: var(--theme-text, #2d3748);
   font-weight: 600;
   cursor: pointer;
@@ -575,8 +575,16 @@ onMounted(() => {
 }
 
 .theme-selector select:hover {
-  background: linear-gradient(135deg, #e2e8f0, #cbd5e0);
+  background: var(--theme-background, #f8fafc);
   transform: scale(1.05);
+}
+
+.language-selector select option,
+.cuisine-selector select option,
+.theme-selector select option {
+  background: var(--theme-surface, #fff);
+  color: var(--theme-text, #2d3748);
+  padding: 8px;
 }
 
 .recipes-info {
@@ -732,7 +740,7 @@ onMounted(() => {
   gap: 25px;
   margin-bottom: 24px;
   padding: 25px;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--theme-surface, rgba(255, 255, 255, 0.8));
   border-radius: 30px;
   backdrop-filter: blur(10px);
   border: 2px solid var(--theme-border, rgba(74, 144, 226, 0.3));

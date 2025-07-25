@@ -61,16 +61,16 @@ const getCuisineColor = (cuisine: string): string => {
       'Unknown': 'linear-gradient(135deg, #4a90e2, #5ca7f2)'
     },
     'pink-kawaii': {
-      'Italian': 'linear-gradient(135deg, #ffb3d9, #ff9ec7)',
-      'Japanese': 'linear-gradient(135deg, #ffc0cb, #ffb6c1)',
-      'Thai': 'linear-gradient(135deg, #ff69b4, #ff1493)',
-      'Indian': 'linear-gradient(135deg, #ffd1dc, #ffb6c1)',
-      'Chinese': 'linear-gradient(135deg, #ff69b4, #ff1493)',
-      'Korean': 'linear-gradient(135deg, #dda0dd, #da70d6)',
-      'French': 'linear-gradient(135deg, #f0c0d0, #e6b3cc)',
-      'German': 'linear-gradient(135deg, #ff69b4, #ff1493)',
-      'Romanian': 'linear-gradient(135deg, #dda0dd, #da70d6)',
-      'Unknown': 'linear-gradient(135deg, #ffb3d9, #ff9ec7)'
+      'Italian': 'linear-gradient(135deg, #e91e63, #c2185b)',
+      'Japanese': 'linear-gradient(135deg, #ad1457, #880e4f)',
+      'Thai': 'linear-gradient(135deg, #d81b60, #ad1457)',
+      'Indian': 'linear-gradient(135deg, #c2185b, #880e4f)',
+      'Chinese': 'linear-gradient(135deg, #e91e63, #ad1457)',
+      'Korean': 'linear-gradient(135deg, #8e24aa, #6a1b9a)',
+      'French': 'linear-gradient(135deg, #c2185b, #ad1457)',
+      'German': 'linear-gradient(135deg, #d81b60, #c2185b)',
+      'Romanian': 'linear-gradient(135deg, #8e24aa, #7b1fa2)',
+      'Unknown': 'linear-gradient(135deg, #e91e63, #c2185b)'
     },
     'dark-mode': {
       'Italian': 'linear-gradient(135deg, #bb86fc, #9965f4)',
@@ -209,49 +209,46 @@ const ingredientsPreview = computed(() => {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  background: var(--theme-card-gradient, linear-gradient(135deg, #fff 0%, #f8fafc 100%));
 }
 
 .recipe-title {
   margin: 0 0 16px 0;
   font-size: 1.3rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #2d3748, #4a5568);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--theme-text, #2d3748);
   line-height: 1.3;
   position: relative;
   font-family: 'Inter', sans-serif;
 }
 
 .recipe-title::after {
-  content: '(◕‿◕)ゞ';
+  content: var(--theme-secondary-icon, '(◕‿◕)ゞ');
   position: absolute;
   right: 0;
   top: -8px;
   font-size: 0.6em;
-  color: #4a90e2;
+  color: var(--theme-primary, #4a90e2);
   opacity: 0.7;
 }
 
 .ingredients-preview {
   margin-bottom: 18px;
   flex: 1;
-  background: rgba(248, 250, 252, 0.8);
+  background: var(--theme-background, rgba(248, 250, 252, 0.8));
   padding: 15px;
   border-radius: 20px;
-  border: 2px solid rgba(74, 144, 226, 0.2);
+  border: 2px solid var(--theme-border, rgba(74, 144, 226, 0.2));
   position: relative;
 }
 
 .ingredients-preview::before {
-  content: '⚡';
+  content: var(--theme-primary-icon, '⚡');
   position: absolute;
   top: -8px;
   left: 15px;
-  background: #fff;
-  color: #4a90e2;
+  background: var(--theme-surface, #fff);
+  color: var(--theme-primary, #4a90e2);
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -259,15 +256,12 @@ const ingredientsPreview = computed(() => {
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  border: 2px solid #4a90e2;
+  border: 2px solid var(--theme-primary, #4a90e2);
 }
 
 .ingredients-preview strong {
   display: block;
-  background: linear-gradient(135deg, #4a90e2, #3478d4);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--theme-primary, #4a90e2);
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 8px;
@@ -276,7 +270,7 @@ const ingredientsPreview = computed(() => {
 
 .ingredients-text {
   margin: 0;
-  color: #2d3748;
+  color: var(--theme-text, #2d3748);
   font-size: 12px;
   line-height: 1.5;
   font-weight: 500;
@@ -288,7 +282,7 @@ const ingredientsPreview = computed(() => {
 }
 
 .steps-count {
-  background: linear-gradient(135deg, #4a90e2, #3478d4);
+  background: var(--theme-button-gradient, linear-gradient(135deg, #4a90e2, #3478d4));
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
@@ -301,7 +295,7 @@ const ingredientsPreview = computed(() => {
 }
 
 .view-recipe-btn {
-  background: linear-gradient(135deg, #4a90e2, #3478d4);
+  background: var(--theme-button-gradient, linear-gradient(135deg, #4a90e2, #3478d4));
   color: white;
   border: none;
   padding: 12px 18px;
@@ -331,7 +325,7 @@ const ingredientsPreview = computed(() => {
 }
 
 .view-recipe-btn:hover {
-  background: linear-gradient(135deg, #3478d4, #2d69c4);
+  background: var(--theme-accent, linear-gradient(135deg, #3478d4, #2d69c4));
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
@@ -341,7 +335,7 @@ const ingredientsPreview = computed(() => {
 }
 
 .view-recipe-btn::after {
-  content: ' (◕‿◕)ゞ';
+  content: var(--theme-secondary-icon, ' (◕‿◕)ゞ');
   opacity: 0;
   transition: opacity 0.3s ease;
 }

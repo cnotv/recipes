@@ -59,19 +59,19 @@ const themes: Record<Theme, ThemeConfig> = {
   'pink-kawaii': {
     name: 'pinkKawaii',
     colors: {
-      primary: '#ffb3d9',
-      secondary: '#ff9ec7',
-      accent: '#e91e63',
-      background: '#fff5f5',
+      primary: '#e91e63',
+      secondary: '#ff69b4',
+      accent: '#c2185b',
+      background: '#fce4ec',
       surface: '#fff',
-      text: '#8b5a8c',
-      border: '#ffccf0'
+      text: '#4a2c46',
+      border: '#f48fb1'
     },
     gradients: {
-      background: 'linear-gradient(135deg, #ffeef8 0%, #fff0f5 25%, #fff5f5 50%, #fdf2f8 75%, #fff 100%)',
-      header: 'linear-gradient(135deg, #ffb3d9, #ff9ec7, #ffccf0, #fde2e7)',
-      card: 'linear-gradient(135deg, #fff 0%, #fff5f5 100%)',
-      button: 'linear-gradient(135deg, #ffb3d9, #ff9ec7)'
+      background: 'linear-gradient(135deg, #fce4ec 0%, #f8bbd9 25%, #f48fb1 50%, #f06292 75%, #ec407a 100%)',
+      header: 'linear-gradient(135deg, #e91e63, #ad1457, #880e4f, #4a148c)',
+      card: 'linear-gradient(135deg, #fff 0%, #fce4ec 100%)',
+      button: 'linear-gradient(135deg, #e91e63, #c2185b)'
     },
     fonts: {
       primary: "'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -88,15 +88,15 @@ const themes: Record<Theme, ThemeConfig> = {
       primary: '#bb86fc',
       secondary: '#03dac6',
       accent: '#cf6679',
-      background: '#121212',
-      surface: '#1e1e1e',
-      text: '#e0e0e0',
-      border: '#333'
+      background: '#0d1117',
+      surface: '#161b22',
+      text: '#f0f6fc',
+      border: '#30363d'
     },
     gradients: {
-      background: 'linear-gradient(135deg, #0a0a0a 0%, #121212 25%, #1a1a1a 50%, #1e1e1e 75%, #242424 100%)',
-      header: 'linear-gradient(135deg, #1a1a2e, #16213e, #0f3460, #533483)',
-      card: 'linear-gradient(135deg, #1e1e1e 0%, #252525 100%)',
+      background: 'linear-gradient(135deg, #0d1117 0%, #161b22 25%, #1c2128 50%, #21262d 75%, #30363d 100%)',
+      header: 'linear-gradient(135deg, #161b22, #21262d, #30363d, #484f58)',
+      card: 'linear-gradient(135deg, #161b22 0%, #1c2128 100%)',
       button: 'linear-gradient(135deg, #bb86fc, #9965f4)'
     },
     fonts: {

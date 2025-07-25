@@ -75,7 +75,7 @@
 .skeleton-image {
   position: relative;
   height: 200px;
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  background: var(--theme-background, linear-gradient(135deg, #f8fafc, #e2e8f0));
 }
 
 .skeleton-badge {
@@ -84,7 +84,7 @@
   right: 15px;
   width: 70px;
   height: 25px;
-  background: linear-gradient(135deg, #4a90e2, #3478d4);
+  background: var(--theme-button-gradient, linear-gradient(135deg, #4a90e2, #3478d4));
   border-radius: 25px;
   opacity: 0.7;
   animation: shimmer 2s ease-in-out infinite;
@@ -101,7 +101,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  background: var(--theme-card-gradient, linear-gradient(135deg, #fff 0%, #f8fafc 100%));
 }
 
 .skeleton-title {
@@ -113,20 +113,20 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: rgba(248, 250, 252, 0.8);
+  background: var(--theme-background, rgba(248, 250, 252, 0.8));
   padding: 15px;
   border-radius: 20px;
-  border: 2px solid rgba(74, 144, 226, 0.2);
+  border: 2px solid var(--theme-border, rgba(74, 144, 226, 0.2));
   position: relative;
 }
 
 .skeleton-ingredients::before {
-  content: '⚡';
+  content: var(--theme-primary-icon, '⚡');
   position: absolute;
   top: -8px;
   left: 15px;
-  background: #fff;
-  color: #4a90e2;
+  background: var(--theme-surface, #fff);
+  color: var(--theme-primary, #4a90e2);
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -134,7 +134,7 @@
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  border: 2px solid #4a90e2;
+  border: 2px solid var(--theme-primary, #4a90e2);
 }
 
 .skeleton-steps {
@@ -153,17 +153,17 @@
 }
 
 .skeleton-placeholder {
-  background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  background: var(--theme-background, linear-gradient(135deg, #f8fafc, #e2e8f0));
 }
 
 .skeleton-shimmer {
   background: linear-gradient(
     90deg,
-    rgba(74, 144, 226, 0.1) 0%,
-    rgba(52, 120, 212, 0.3) 25%,
-    rgba(116, 185, 255, 0.3) 50%,
-    rgba(74, 144, 226, 0.3) 75%,
-    rgba(74, 144, 226, 0.1) 100%
+    var(--theme-primary, rgba(74, 144, 226, 0.1)) 0%,
+    var(--theme-accent, rgba(52, 120, 212, 0.3)) 25%,
+    var(--theme-secondary, rgba(116, 185, 255, 0.3)) 50%,
+    var(--theme-primary, rgba(74, 144, 226, 0.3)) 75%,
+    var(--theme-primary, rgba(74, 144, 226, 0.1)) 100%
   );
   background-size: 300% 100%;
   animation: kawaiShimmer 2.5s infinite;
