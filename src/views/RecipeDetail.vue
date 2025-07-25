@@ -83,10 +83,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, ref, watch } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from '../composables/useTheme'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
+import { createRecipeMeta, updateMetaTags } from '../composables/useMeta'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
@@ -99,6 +100,8 @@ const { currentTheme, setTheme, availableThemes } = useTheme()
 const recipe = ref<Recipe | null>(null)
 const loading = ref(true)
 const error = ref('')
+
+// Meta management - will be updated when recipe loads
 
 // Options for KawaiiSelector components
 const themeOptions = computed(() => 
@@ -131,6 +134,23 @@ const recipeData = computed(() => {
          recipe.value.languages.en || 
          Object.values(recipe.value.languages)[0]
 })
+
+// Watch for recipe data changes to update meta tags
+watch(recipeData, (newRecipeData) => {
+  if (newRecipeData && recipe.value) {
+    const recipeMeta = createRecipeMeta({
+      title: newRecipeData.title,
+      description: newRecipeData.steps?.[0]?.content || `Delicious ${recipe.value.cuisine || ''} recipe with step-by-step instructions.`,
+      image: (recipe.value as any).cover || undefined,
+      cuisine: recipe.value.cuisine,
+      ingredients: newRecipeData.ingredients,
+      steps: newRecipeData.steps,
+      url: recipe.value.url,
+      fileName: route.params.url as string
+    })
+    updateMetaTags(recipeMeta)
+  }
+}, { immediate: true })
 
 // Methods
 const loadRecipe = async () => {

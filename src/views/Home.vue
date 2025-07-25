@@ -98,7 +98,11 @@ import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { useTheme } from '../composables/useTheme'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
 import { useI18n } from 'vue-i18n'
+import { useMeta, createHomeMeta } from '../composables/useMeta'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
+
+// Setup SEO meta tags for home page
+useMeta(createHomeMeta())
 
 const router = useRouter()
 const { t } = useI18n()
