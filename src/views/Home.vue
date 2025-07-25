@@ -90,6 +90,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
 import RecipeSkeleton from '../components/RecipeSkeleton.vue'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
@@ -98,15 +99,40 @@ import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { useTheme } from '../composables/useTheme'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
 import { useI18n } from 'vue-i18n'
-import { useMeta, createHomeMeta } from '../composables/useMeta'
+import { useMeta, createHomeMeta, updateMetaTags } from '../composables/useMeta'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 // Setup SEO meta tags for home page
 useMeta(createHomeMeta())
 
 const router = useRouter()
+const route = useRoute()
 const { t } = useI18n()
-const { currentLanguage, getLanguageName, wasLanguageAutoDetected } = useLanguagePreference()
+const { currentLanguage, getLanguageName, wasLanguageAutoDetected, setLanguage } = useLanguagePreference()
+
+// Watch for language changes to update meta tags
+watch(currentLanguage, (newLanguage) => {
+  const homeMeta = createHomeMeta(newLanguage)
+  updateMetaTags(homeMeta)
+}, { flush: 'post' })
+
+// Check for language parameter in URL on mount
+onMounted(() => {
+  const urlLanguage = route.query.lang as SupportedLanguage
+  if (urlLanguage && ['en', 'de', 'jp', 'th'].includes(urlLanguage)) {
+    setLanguage(urlLanguage)
+  }
+  
+  loadRecipes()
+  
+  // Show language detection info if language was auto-detected
+  if (wasLanguageAutoDetected.value) {
+    showLanguageDetectionInfo.value = true
+    setTimeout(() => {
+      showLanguageDetectionInfo.value = false
+    }, 8000)
+  }
+})
 const { currentTheme, setTheme, availableThemes } = useTheme()
 const { selectedCuisine } = useCuisinePreference()
 
@@ -321,19 +347,13 @@ watch([currentLanguage, selectedCuisine], () => {
   resetDisplayedRecipes()
 })
 
-// Lifecycle
-onMounted(() => {
-  loadRecipes()
-  
-  // Show language detection info if language was auto-detected
-  if (wasLanguageAutoDetected.value) {
-    showLanguageDetectionInfo.value = true
-    // Auto hide after 5 seconds
-    setTimeout(() => {
-      showLanguageDetectionInfo.value = false
-    }, 5000)
-  }
-})
+// Update URL when language changes
+watch(currentLanguage, (newLanguage) => {
+  router.replace({
+    ...route,
+    query: { ...route.query, lang: newLanguage }
+  })
+}, { flush: 'post' })
 </script>
 
 <style scoped>

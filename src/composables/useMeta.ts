@@ -141,12 +141,18 @@ export function createRecipeMeta(recipe: {
   prepTime?: string
   totalTime?: string
   servings?: string
-}) {
+}, language?: string) {
   const recipeTitle = recipe.title || 'Recipe'
   const recipeDescription = recipe.description || `Delicious ${recipe.cuisine || ''} recipe with step-by-step instructions.`
-  const recipeUrl = recipe.fileName 
+  
+  // Include language parameter in URL if provided
+  let recipeUrl = recipe.fileName 
     ? `${BASE_URL}/recipe/${encodeURIComponent(recipe.fileName.replace('.json', ''))}`
     : BASE_URL
+  
+  if (language && language !== 'en') {
+    recipeUrl += `?lang=${language}`
+  }
   
   // Create structured data for recipe
   const structuredData: any = {
@@ -206,13 +212,18 @@ export function createRecipeMeta(recipe: {
 }
 
 // Helper function for home page meta
-export function createHomeMeta() {
+export function createHomeMeta(language?: string) {
+  let homeUrl = BASE_URL
+  if (language && language !== 'en') {
+    homeUrl += `?lang=${language}`
+  }
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": SITE_NAME,
     "description": "Curated collection of international recipes with step-by-step instructions",
-    "url": BASE_URL,
+    "url": homeUrl,
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${BASE_URL}/?search={search_term_string}`,
@@ -227,11 +238,11 @@ export function createHomeMeta() {
     ogTitle: SITE_NAME,
     ogDescription: 'Explore our curated collection of international recipes including Japanese, Italian, Indian, Thai, Chinese cuisine and more.',
     ogImage: `${BASE_URL}/og-image.jpg`,
-    ogUrl: BASE_URL,
+    ogUrl: homeUrl,
     twitterTitle: SITE_NAME,
     twitterDescription: 'Explore our curated collection of international recipes including Japanese, Italian, Indian, Thai, Chinese cuisine and more.',
     twitterImage: `${BASE_URL}/og-image.jpg`,
-    canonical: BASE_URL,
+    canonical: homeUrl,
     structuredData
   }
 }

@@ -2,7 +2,7 @@
   <div class="recipe-detail-page">
     <header class="page-header">
       <div class="header-content">
-        <button class="back-btn" @click="$router.go(-1)">
+        <button class="back-btn" @click="goBackToHome">
           ← {{ $t('backToHome') }}
         </button>
         
@@ -147,7 +147,7 @@ watch(recipeData, (newRecipeData) => {
       steps: newRecipeData.steps,
       url: recipe.value.url,
       fileName: route.params.url as string
-    })
+    }, currentLanguage.value)
     updateMetaTags(recipeMeta)
   }
 }, { immediate: true })
@@ -276,6 +276,14 @@ const updateLanguage = () => {
   router.replace({ 
     ...route, 
     query: { ...route.query, lang: currentLanguage.value } 
+  })
+}
+
+const goBackToHome = () => {
+  // Navigate to home with current language parameter
+  router.push({
+    name: 'home',
+    query: { lang: currentLanguage.value }
   })
 }
 
