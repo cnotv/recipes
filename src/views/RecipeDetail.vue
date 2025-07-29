@@ -29,7 +29,8 @@
 
     <main class="main-content">
       <div v-if="loading" class="loading">
-        {{ $t('loading') }}
+        <div class="loading-spinner"></div>
+        <span>{{ $t('loading') }}...</span>
       </div>
 
       <div v-else-if="error" class="error">
@@ -139,10 +140,15 @@ const recipeData = computed(() => {
 // Watch for recipe data changes to update meta tags
 watch(recipeData, (newRecipeData) => {
   if (newRecipeData && recipe.value) {
+    // Determine the best image to use: cover image or first step image
+    const metaImage = recipe.value.cover || 
+                     (newRecipeData.steps?.[0]?.image) || 
+                     undefined
+    
     const recipeMeta = createRecipeMeta({
       title: newRecipeData.title,
       description: newRecipeData.steps?.[0]?.content || `Delicious ${recipe.value.cuisine || ''} recipe with step-by-step instructions.`,
-      image: (recipe.value as any).cover || undefined,
+      image: metaImage,
       cuisine: recipe.value.cuisine,
       ingredients: newRecipeData.ingredients,
       steps: newRecipeData.steps,
@@ -152,6 +158,49 @@ watch(recipeData, (newRecipeData) => {
     updateMetaTags(recipeMeta)
   }
 }, { immediate: true })
+
+// Watch for language changes to update meta tags
+watch(currentLanguage, () => {
+  // Trigger meta update when language changes
+  if (recipeData.value && recipe.value) {
+    const metaImage = recipe.value.cover || 
+                     (recipeData.value.steps?.[0]?.image) || 
+                     undefined
+    
+    const recipeMeta = createRecipeMeta({
+      title: recipeData.value.title,
+      description: recipeData.value.steps?.[0]?.content || `Delicious ${recipe.value.cuisine || ''} recipe with step-by-step instructions.`,
+      image: metaImage,
+      cuisine: recipe.value.cuisine,
+      ingredients: recipeData.value.ingredients,
+      steps: recipeData.value.steps,
+      url: recipe.value.url,
+      fileName: route.params.url as string
+    }, currentLanguage.value)
+    updateMetaTags(recipeMeta)
+  }
+})
+
+// Helper function to update recipe meta tags
+const updateRecipeMetaTags = () => {
+  if (recipeData.value && recipe.value) {
+    const metaImage = recipe.value.cover || 
+                     (recipeData.value.steps?.[0]?.image) || 
+                     undefined
+    
+    const recipeMeta = createRecipeMeta({
+      title: recipeData.value.title,
+      description: recipeData.value.steps?.[0]?.content || `Delicious ${recipe.value.cuisine || ''} recipe with step-by-step instructions.`,
+      image: metaImage,
+      cuisine: recipe.value.cuisine,
+      ingredients: recipeData.value.ingredients,
+      steps: recipeData.value.steps,
+      url: recipe.value.url,
+      fileName: route.params.url as string
+    }, currentLanguage.value)
+    updateMetaTags(recipeMeta)
+  }
+}
 
 // Methods
 const loadRecipe = async () => {
@@ -175,6 +224,8 @@ const loadRecipe = async () => {
         if (langParam && recipe.value && recipe.value.languages[langParam]) {
           currentLanguage.value = langParam
         }
+        // Ensure meta tags are updated immediately
+        updateRecipeMetaTags()
         return
       } catch (err) {
         console.log('Failed to parse stored recipe data')
@@ -209,6 +260,8 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
               if (data && data.url === targetUrl) {
                 // Found it! Load the complete recipe data and stop
                 recipe.value = data
+                // Update meta tags immediately
+                updateRecipeMetaTags()
                 return
               }
             }
@@ -244,6 +297,8 @@ const loadRecipeFromFiles = async (targetUrl: string) => {
           const data = await response.json()
           if (data && data.url === targetUrl) {
             recipe.value = data
+            // Update meta tags immediately
+            updateRecipeMetaTags()
             return
           }
         }
@@ -368,21 +423,38 @@ onMounted(() => {
 }
 
 .loading, .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 48px 24px;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--theme-text, #6b7280);
   background: var(--theme-card-gradient, linear-gradient(135deg, #fff 0%, #f8fafc 100%));
   border-radius: 25px;
   border: 2px solid var(--theme-border, #e5e7eb);
-  animation: pulse 2s ease-in-out infinite;
+  gap: 12px;
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(74, 144, 226, 0.3);
+  border-radius: 50%;
+  border-top-color: #4a90e2;
+  border-right-color: #3478d4;
+  animation: gentleSpin 1.5s ease-in-out infinite;
+}
+
+@keyframes gentleSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .loading::before {
-  content: '⏳';
-  display: block;
-  font-size: 48px;
-  margin-bottom: 16px;
+  display: none;
 }
 
 @keyframes pulse {

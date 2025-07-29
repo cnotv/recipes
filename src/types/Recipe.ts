@@ -12,6 +12,7 @@ export interface RecipeLanguage {
 export interface Recipe {
   url: string;
   cuisine: string;
+  cover?: string;  // Optional cover image URL
   languages: {
     en?: RecipeLanguage;
     de?: RecipeLanguage;
