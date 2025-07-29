@@ -512,41 +512,32 @@ onMounted(() => {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .ingredient-item {
   display: flex;
   align-items: center;
-  padding: 16px 20px;
+  padding: 8px 12px;
   background: var(--theme-surface, #fff);
-  border-radius: 20px;
-  border: 2px solid var(--theme-border, #e5e7eb);
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+  border-radius: 12px;
+  border: 1px solid var(--theme-border, #e5e7eb);
+  transition: all 0.2s ease;
+  font-size: 14px;
 }
 
 .ingredient-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.2);
+  background: var(--theme-hover, #f1f5f9);
   border-color: var(--theme-primary, #4a90e2);
 }
 
 .ingredient-item::before {
-  content: '🥄';
+  content: '•';
   color: var(--theme-primary, #4a90e2);
   font-weight: bold;
-  font-size: 16px;
-  margin-right: 12px;
+  font-size: 12px;
+  margin-right: 8px;
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--theme-background, #f8fafc);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--theme-primary, #4a90e2);
 }
 
 .ingredient-text {
@@ -695,12 +686,17 @@ onMounted(() => {
   
   .ingredients-section,
   .instructions-section {
-    padding: 24px 20px;
+    padding: 16px 12px;
   }
   
   .ingredients-section {
     border-right: none;
     border-bottom: 2px solid var(--theme-border, #e5e7eb);
+  }
+  
+  .ingredient-item {
+    padding: 6px 10px;
+    font-size: 13px;
   }
 }
 </style>
