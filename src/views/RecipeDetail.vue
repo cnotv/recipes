@@ -3,7 +3,8 @@
     <header class="page-header">
       <div class="header-content">
         <button class="back-btn" @click="goBackToHome">
-          ← {{ $t('backToHome') }}
+          <span class="back-arrow">←</span>
+          <span class="back-text">{{ $t('backToHome') }}</span>
         </button>
         
         <div class="center-controls">
@@ -662,13 +663,31 @@ onMounted(() => {
   }
   
   .header-content {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
     text-align: center;
   }
   
   .back-btn {
+    justify-self: start;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+  
+  .back-btn .back-text {
+    display: none;
+  }
+  
+  .back-btn .back-arrow {
+    font-size: 16px;
+  }
+  
+  .center-controls {
     justify-self: center;
+  }
+  
+  .header-controls {
+    justify-self: end;
   }
   
   .main-content {

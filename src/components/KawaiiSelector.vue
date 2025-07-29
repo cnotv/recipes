@@ -95,6 +95,10 @@ defineEmits<{
     gap: 6px;
   }
   
+  .kawaii-selector label {
+    display: none;
+  }
+  
   .kawaii-selector select {
     min-width: 80px;
     font-size: 12px;
