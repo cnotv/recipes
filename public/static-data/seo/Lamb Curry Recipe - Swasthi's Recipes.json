@@ -1,0 +1,131 @@
+{
+  "title": "Lamb Curry Recipe - Recipe Collection",
+  "description": "Learn how to make Lamb Curry Recipe. This recipe includes 22 ingredients and 10 detailed steps.",
+  "keywords": "indian, lamb, curry, recipe, bone-in, (shoulder, leg,, boneless,, pieces), plain, yogurt, kashmiri, chilli, powder, turmeric",
+  "canonical": "/recipe/lamb-curry-recipe",
+  "openGraph": {
+    "title": "Lamb Curry Recipe",
+    "description": "Learn how to make Lamb Curry Recipe. This recipe includes 22 ingredients and 10 detailed steps.",
+    "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-001.webp",
+    "type": "article",
+    "url": "/recipe/lamb-curry-recipe"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Lamb Curry Recipe",
+    "description": "Learn how to make Lamb Curry Recipe. This recipe includes 22 ingredients and 10 detailed steps.",
+    "image": [
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-001.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-005.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-007.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-008.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-010.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-012.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-015.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-018.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-021.webp",
+      "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-019.webp"
+    ],
+    "recipeCategory": "Indian",
+    "recipeCuisine": "Indian",
+    "totalTime": "PT354M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1 kg bone-in lamb (shoulder or leg, bone-in or boneless, cut to 3.5 cm pieces)",
+      "60 ml plain yogurt",
+      "10 to 15 ml Kashmiri red chilli powder",
+      "2.5 ml turmeric",
+      "10 to 15 ml garam masala",
+      "3.75 to 5 ml cumin powder",
+      "15 ml coriander powder",
+      "10 ml salt (more to adjust)",
+      "90 ml oil or ghee (divided, more if preferred)",
+      "1 bay leaf",
+      "6 green cardamoms",
+      "7.5 cm cinnamon piece",
+      "2 black cardamoms (optional)",
+      "1 to 2 star anises (optional)",
+      "480 ml finely chopped onions",
+      "360 ml (300 g) tomatoes (fresh chopped or pureed, or 240 ml bottled passata)",
+      "1 to 2 green chillies, slit (deseeded, optional)",
+      "30 ml ginger garlic paste",
+      "60 ml finely chopped mint leaves",
+      "960 ml to 1.2 litres hot water",
+      "7.5 ml kasuri methi (dried fenugreek leaves, optional)",
+      "60 ml finely chopped coriander leaves (optional)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-001.webp",
+          "content": "Add all ground spices to a small bowl and mix."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-005.webp",
+          "content": "Marinate lamb with half of the spice mix, half of the ginger garlic, salt, kasuri methi, and yogurt. Cover and refrigerate for 2 hours to overnight."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-007.webp",
+          "content": "Heat 1 to 2 tablespoons of oil/ghee in a heavy-bottomed pan. Add whole spices until fragrant."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-008.webp",
+          "content": "Add mint leaves, then the marinated lamb. Braise on medium heat for 10 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-010.webp",
+          "content": "Pour 480 ml of hot water. Bring to a boil, then cover and simmer on low-medium heat for 1 hour, stirring every 15 minutes. Add more hot water as needed (up to 720 ml)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-012.webp",
+          "content": "In a separate pan, heat the remaining oil/ghee. Sauté onions and green chillies on medium heat until deep golden (15-20 minutes). Add remaining ginger garlic paste and sauté for 1-2 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-015.webp",
+          "content": "Turn off heat, stir in remaining ground spices, and immediately add tomato puree. Cook on medium heat until raw tomato flavor is gone."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-018.webp",
+          "content": "Transfer onion-tomato masala to the lamb. Cook covered on low heat for another 50 minutes or until lamb is fork-tender, stirring frequently. Add more hot water if needed."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-021.webp",
+          "content": "Taste and adjust salt, garam masala, or kasuri methi. Garnish with coriander leaves. Serve with roti, naan, or rice."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/04/lamb-curry-recipe-019.webp",
+          "content": "Lamb curry tastes best after resting for a few hours or overnight. Reheat and adjust seasoning before serving."
+        }
+      }
+    ]
+  }
+}

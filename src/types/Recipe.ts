@@ -13,6 +13,7 @@ export interface Recipe {
   url: string;
   cuisine: string;
   cover?: string;  // Optional cover image URL
+  _totalIngredientCount?: number; // For preview mode with limited ingredient data
   languages: {
     en?: RecipeLanguage;
     de?: RecipeLanguage;

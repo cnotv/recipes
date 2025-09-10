@@ -1,0 +1,98 @@
+{
+  "title": "Spinach Spätzle with Speck and Cream - Recipe Collection",
+  "description": "Learn how to make Spinach Spätzle with Speck and Cream. This recipe includes 13 ingredients and 7 detailed steps.",
+  "keywords": "german, spinach, spätzle, with, speck, cream, all-purpose, flour, small, eggs, water, nutmeg, taste, fine, salt",
+  "canonical": "/recipe/spinach-sptzle-with-speck-and-cream",
+  "openGraph": {
+    "title": "Spinach Spätzle with Speck and Cream",
+    "description": "Learn how to make Spinach Spätzle with Speck and Cream. This recipe includes 13 ingredients and 7 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_1-3.jpg",
+    "type": "article",
+    "url": "/recipe/spinach-sptzle-with-speck-and-cream"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Spinach Spätzle with Speck and Cream",
+    "description": "Learn how to make Spinach Spätzle with Speck and Cream. This recipe includes 13 ingredients and 7 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_1-3.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_4-6.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_7-9.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_10-12.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_13-15.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_16-18.jpg",
+      "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_19-21.jpg"
+    ],
+    "recipeCategory": "German",
+    "recipeCuisine": "German",
+    "totalTime": "PT64M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "250 g spinach",
+      "250 g all-purpose flour",
+      "3 small eggs",
+      "100 g water",
+      "Nutmeg to taste",
+      "Fine salt to taste",
+      "100 g speck",
+      "250 g fresh liquid cream",
+      "30 g butter",
+      "Black pepper to taste",
+      "Fine salt to taste",
+      "3 g chives",
+      "Extra virgin olive oil to taste"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_1-3.jpg",
+          "content": "Wash spinach leaves and cook them in a covered pan over moderate heat until wilted."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_4-6.jpg",
+          "content": "Transfer spinach to a beaker and blend with an immersion blender until creamy. Add whole eggs and a pinch of salt. Mix, then add water and nutmeg."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_7-9.jpg",
+          "content": "Gradually add flour and mix with a spoon to incorporate, avoiding lumps. Set the spätzle dough aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_10-12.jpg",
+          "content": "For the sauce: finely chop chives and cut speck into strips. In a pan, heat butter and oil."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_13-15.jpg",
+          "content": "Add speck and sauté for 2-3 minutes until crispy. Pour in cream, chives, season with salt and pepper, and let it thicken over moderate heat until creamy."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_16-18.jpg",
+          "content": "To cook spätzle: bring a pot of salted water to a boil. Place a Spätzlehobel over the pot and pour the mixture through the holes, moving the tool back and forth. The spätzle will cook quickly and float to the surface."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/221/22170/18348_spatzle_di_spinaci_panna_e_speck_strip_19-21.jpg",
+          "content": "Drain spätzle with a slotted spoon directly into the cream and speck sauce. Toss gently for a few moments, season with pepper, and serve hot."
+        }
+      }
+    ]
+  }
+}

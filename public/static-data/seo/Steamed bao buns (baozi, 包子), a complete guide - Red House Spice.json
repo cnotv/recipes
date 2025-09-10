@@ -1,0 +1,86 @@
+{
+  "title": "Steamed Bao Buns - Recipe Collection",
+  "description": "Learn how to make Steamed Bao Buns. This recipe includes 17 ingredients and 5 detailed steps.",
+  "keywords": "chinese, steamed, buns, dough:, all-purpose, flour, teaspoon, dried, yeast, sugar, tablespoon, cooking, lukewarm, water, filling:",
+  "canonical": "/recipe/steamed-bao-buns",
+  "openGraph": {
+    "title": "Steamed Bao Buns",
+    "description": "Learn how to make Steamed Bao Buns. This recipe includes 17 ingredients and 5 detailed steps.",
+    "image": "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-5.jpg",
+    "type": "article",
+    "url": "/recipe/steamed-bao-buns"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Steamed Bao Buns",
+    "description": "Learn how to make Steamed Bao Buns. This recipe includes 17 ingredients and 5 detailed steps.",
+    "image": [
+      "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-5.jpg",
+      "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-4.jpg",
+      "https://redhousespice.com/wp-content/uploads/2020/01/Steamed-bao-buns-foodgawker.jpg",
+      "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-9.jpg",
+      "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-8.jpg"
+    ],
+    "recipeCategory": "Chinese",
+    "recipeCuisine": "Chinese",
+    "totalTime": "PT140M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "For the dough:",
+      "300 g all-purpose flour",
+      "1 teaspoon dried yeast",
+      "1 teaspoon sugar",
+      "1 tablespoon cooking oil",
+      "140 ml lukewarm water",
+      "For the filling:",
+      "150 g minced pork",
+      "1 teaspoon light soy sauce",
+      "1 teaspoon oyster sauce",
+      "1 pinch ground Sichuan pepper",
+      "¼ teaspoon salt",
+      "4 tablespoon water",
+      "1 tablespoon cooking oil",
+      "150 g grated carrot",
+      "1 small finely chopped onion",
+      "2 tablespoon finely chopped coriander"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-5.jpg",
+          "content": "Mix flour, yeast, sugar, and oil in a bowl. Gradually add 140ml lukewarm water, kneading until a very smooth dough forms. Cover with a damp tea towel and let it rise in a warm place until doubled in size (40 minutes to 1.5 hours)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-4.jpg",
+          "content": "In a bowl, combine minced pork, light soy sauce, oyster sauce, salt, and Sichuan pepper. Swirl constantly while gradually adding 4 tablespoons of water until absorbed. Briefly stir-fry grated carrot and finely chopped onion in 1 tablespoon of oil until softened. Add to the pork mixture along with finely chopped coriander."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://redhousespice.com/wp-content/uploads/2020/01/Steamed-bao-buns-foodgawker.jpg",
+          "content": "Knead the risen dough until it returns to its original size. Divide into 12 equal portions. Roll each portion into a disk-like wrapper. Place some filling in the middle of a wrapper, then fold it into a bao shape. Let all assembled buns rest for another 15 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-9.jpg",
+          "content": "Place the buns with parchment paper underneath in a steamer basket, leaving 2cm space between them and the steamer side. Start cooking with cold water over high heat. Once the water boils, reduce heat to medium-low and cook for 15-18 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://redhousespice.com/wp-content/uploads/2019/02/Steamed-bao-buns-8.jpg",
+          "content": "Serve the steamed buns warm. Cooked buns can be frozen; defrost in the fridge and steam for 8 minutes, or steam directly from frozen for 15 minutes."
+        }
+      }
+    ]
+  }
+}

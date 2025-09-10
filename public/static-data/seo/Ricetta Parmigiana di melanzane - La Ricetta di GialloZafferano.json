@@ -1,0 +1,102 @@
+{
+  "title": "Eggplant Parmigiana - Recipe Collection",
+  "description": "Learn how to make Eggplant Parmigiana. This recipe includes 9 ingredients and 8 detailed steps.",
+  "keywords": "italian, eggplant, parmigiana, oval, eggplants, tomato, passata, mozzarella, grated, parmigiano, reggiano, golden, onion, basil,, taste",
+  "canonical": "/recipe/eggplant-parmigiana",
+  "openGraph": {
+    "title": "Eggplant Parmigiana",
+    "description": "Learn how to make Eggplant Parmigiana. This recipe includes 9 ingredients and 8 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_1.jpg",
+    "type": "article",
+    "url": "/recipe/eggplant-parmigiana"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Eggplant Parmigiana",
+    "description": "Learn how to make Eggplant Parmigiana. This recipe includes 9 ingredients and 8 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_1.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_4.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_7.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_10.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_13.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_16.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_19.jpg",
+      "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_22.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT138M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1.7 kg oval eggplants",
+      "1 kg tomato passata",
+      "500 g mozzarella",
+      "150 g grated Parmigiano Reggiano DOP",
+      "1 golden onion",
+      "Basil, to taste",
+      "Extra virgin olive oil, to taste",
+      "Fine salt, to taste",
+      "Peanut oil, to taste (for frying)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_1.jpg",
+          "content": "Start with the sauce. Clean and chop the onion, then sauté it in a pot with hot olive oil. Cook for a couple of minutes, stirring, then add the tomato passata."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_4.jpg",
+          "content": "Season with salt and add basil leaves. Rinse the container with a little water and add it to the pot. Simmer for 45-50 minutes. Meanwhile, dice the mozzarella."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_7.jpg",
+          "content": "Prepare the eggplants: wash and trim them. Slice them lengthwise into 4-5 mm thick pieces. Dry thoroughly with paper towels. Fry the eggplant slices in hot oil at 170°C, a few at a time."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_10.jpg",
+          "content": "Once lightly golden, drain on a tray lined with absorbent paper. Add more paper as needed and place the fried eggplants on top."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_13.jpg",
+          "content": "Assemble the parmigiana: pour some sauce into a 20x30 cm baking dish. Arrange the eggplant slices for the first layer, then cover with tomato sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_16.jpg",
+          "content": "Sprinkle with mozzarella cubes, grated Parmigiano, and basil leaves."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_19.jpg",
+          "content": "Repeat the layers with tomato sauce, eggplant, cheeses, and basil leaves. Continue until you reach the final eggplant layer."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/234/23446/parmigiana-di-melanzane_22.jpg",
+          "content": "Finish with the remaining mozzarella cubes and grated Parmigiano Reggiano. Bake in a preheated static oven at 200°C for about 30 minutes. Let it rest for 15-20 minutes before serving."
+        }
+      }
+    ]
+  }
+}

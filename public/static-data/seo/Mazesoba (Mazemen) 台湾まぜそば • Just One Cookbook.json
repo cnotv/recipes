@@ -1,0 +1,210 @@
+{
+  "title": "Mazesoba (Brothless Japanese Ramen) - Recipe Collection",
+  "description": "Learn how to make Mazesoba (Brothless Japanese Ramen). This recipe includes 21 ingredients and 20 detailed steps.",
+  "keywords": "japanese, mazesoba, (brothless, ramen), toasted, sesame, ground, pork, garlic, clove, grated, ginger, sake, doubanjiang, (spicy",
+  "canonical": "/recipe/mazesoba-brothless-japanese-ramen",
+  "openGraph": {
+    "title": "Mazesoba (Brothless Japanese Ramen)",
+    "description": "Learn how to make Mazesoba (Brothless Japanese Ramen). This recipe includes 21 ingredients and 20 detailed steps.",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-Ingredients.jpg",
+    "type": "article",
+    "url": "/recipe/mazesoba-brothless-japanese-ramen"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Mazesoba (Brothless Japanese Ramen)",
+    "description": "Learn how to make Mazesoba (Brothless Japanese Ramen). This recipe includes 21 ingredients and 20 detailed steps.",
+    "image": [
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-Ingredients.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-2.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-3.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-4.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-5.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-6.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-7.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-8.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-9.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-10.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-11.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-12.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-13.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-14.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-15.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-16.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-17.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-18.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-0069-I.jpg"
+    ],
+    "recipeCategory": "Japanese",
+    "recipeCuisine": "Japanese",
+    "totalTime": "PT147M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "15 ml toasted sesame oil",
+      "227 g ground pork",
+      "1 garlic clove",
+      "2.5 ml grated ginger",
+      "15 ml sake",
+      "15 ml doubanjiang (spicy chili bean paste)",
+      "15 ml soy sauce",
+      "10 ml oyster sauce",
+      "5 ml sugar",
+      "45 ml chicken stock",
+      "1.25 ml kosher salt",
+      "2 green onions",
+      "30 g garlic chives",
+      "6 g katsuobushi (dried bonito flakes)",
+      "1 sheet nori (dried laver seaweed)",
+      "2 garlic cloves",
+      "2 servings fresh ramen noodles",
+      "1.25 ml kosher salt for noodles",
+      "5 ml toasted sesame oil for noodles",
+      "30 ml tenkasu (tempura scraps)",
+      "2 large egg yolks"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-Ingredients.jpg",
+          "content": "Gather ingredients. Boil a large pot of water, then turn off heat and cover. Prepare toppings and pork while waiting."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-1.jpg",
+          "content": "Thinly slice 2 green onions. Cut 30 g garlic chives into 3 mm pieces. Set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-2.jpg",
+          "content": "Grind 6 g katsuobushi in a mortar until powdered."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-3.jpg",
+          "content": "Cut 1 sheet nori into 6 mm squares."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-4.jpg",
+          "content": "Peel and grate ginger, measuring 2.5 ml."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-5.jpg",
+          "content": "Mince 1 garlic clove for cooking, and 2 garlic cloves for serving. Set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-6.jpg",
+          "content": "Separate 2 large egg yolks."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-7.jpg",
+          "content": "Heat a frying pan. Add 15 ml toasted sesame oil and 227 g ground pork."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-8.jpg",
+          "content": "Cook pork until no longer pink. Add grated ginger and minced garlic. Stir for 1-2 minutes until fragrant."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-9.jpg",
+          "content": "Add 15 ml sake and mix well."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-10.jpg",
+          "content": "Add 15 ml doubanjiang and stir."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-11.jpg",
+          "content": "Add 15 ml soy sauce and 10 ml oyster sauce. Mix well."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-12.jpg",
+          "content": "Add 5 ml sugar and 45 ml chicken stock. Simmer for 2-3 minutes, ensuring some liquid remains."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-13.jpg",
+          "content": "Add 1.25 ml kosher salt if needed. Turn off heat."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-14.jpg",
+          "content": "Reheat water to boil. Loosen 2 servings fresh ramen noodles and cook according to package directions. Stir occasionally."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-15.jpg",
+          "content": "Drain noodles in a sieve, shaking off excess water."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-16.jpg",
+          "content": "Transfer noodles to bowls. Mix 5 ml toasted sesame oil and 1.25 ml kosher salt for seasoning."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-17.jpg",
+          "content": "Drizzle sesame oil mixture over noodles. Use chopsticks to coat well."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-18.jpg",
+          "content": "Place seasoned pork in the center of noodles, creating an indentation. Arrange green onions, garlic chives, katsuobushi, nori, crushed garlic, and 30 ml tenkasu around the pork. Place 1 egg yolk in the indentation per serving. Serve warm. Mix well and enjoy."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/09/Mazesoba-0069-I.jpg",
+          "content": "Store leftovers in an airtight container in the refrigerator for up to 3 days. Seasoned pork can be frozen for up to a month."
+        }
+      }
+    ]
+  }
+}

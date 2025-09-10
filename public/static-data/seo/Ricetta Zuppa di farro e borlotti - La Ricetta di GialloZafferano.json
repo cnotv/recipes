@@ -1,0 +1,63 @@
+{
+  "title": "Spelt and Borlotti Bean Soup - Recipe Collection",
+  "description": "Learn how to make Spelt and Borlotti Bean Soup. This recipe includes 10 ingredients and 3 detailed steps.",
+  "keywords": "italian, spelt, borlotti, bean, soup, fresh, beans, cloves, garlic, carrot, stalk, celery, onion, extra, virgin",
+  "canonical": "/recipe/spelt-and-borlotti-bean-soup",
+  "openGraph": {
+    "title": "Spelt and Borlotti Bean Soup",
+    "description": "Learn how to make Spelt and Borlotti Bean Soup. This recipe includes 10 ingredients and 3 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq1.jpg",
+    "type": "article",
+    "url": "/recipe/spelt-and-borlotti-bean-soup"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Spelt and Borlotti Bean Soup",
+    "description": "Learn how to make Spelt and Borlotti Bean Soup. This recipe includes 10 ingredients and 3 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq1.jpg",
+      "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq2.jpg",
+      "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq3.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT73M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "200 g fresh borlotti beans",
+      "250 g spelt",
+      "3 cloves garlic",
+      "1 carrot",
+      "1 stalk celery",
+      "1 red onion",
+      "75 ml extra virgin olive oil",
+      "sage to taste",
+      "1 liter water",
+      "fine salt to taste"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq1.jpg",
+          "content": "Peel and finely dice the carrot, chop the onion, and finely dice the celery. Place them in a pressure cooker with 2 cloves of garlic and 45 ml of olive oil. Cook for about 5 minutes until the onion softens. Add the fresh borlotti beans and toast for another 5 minutes. Add sage leaves to taste and season with salt."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq2.jpg",
+          "content": "Add 1 liter of water, bring to a boil, then close the pressure cooker with its lid. From the pressure whistle, cook for 30 minutes over minimum heat. After this time, open the pot, making sure the pressure has released, and check if the beans are tender. Take about one-third of the borlotti beans into a bowl and strain the rest through a colander. Keep the cooking broth aside for the spelt. Pour the borlotti beans and vegetables into a mixer and blend until pureed. Keep the puree warm."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/11/1115/zuppafarrook_seq3.jpg",
+          "content": "Now, prepare the spelt by toasting it for about 3 minutes in a saucepan with the remaining garlic and olive oil over low heat. Add three ladles of the vegetable cooking broth and cook, adding one ladle of broth at a time, for the time indicated on the package (about 15-18 minutes). At the end of cooking, add the borlotti and vegetable puree and mix well, adding a little more broth if it becomes too thick. Finally, add the whole beans you set aside earlier. Serve with a drizzle of extra virgin olive oil to taste."
+        }
+      }
+    ]
+  }
+}

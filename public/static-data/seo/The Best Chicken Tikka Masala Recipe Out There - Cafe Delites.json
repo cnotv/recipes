@@ -1,0 +1,103 @@
+{
+  "title": "Chicken Tikka Masala - Recipe Collection",
+  "description": "Learn how to make Chicken Tikka Masala. This recipe includes 26 ingredients and 6 detailed steps.",
+  "keywords": "indian, chicken, tikka, masala, boneless, thighs, (skinless,, into, bite-sized, pieces), plain, yogurt, minced, garlic, fresh,",
+  "canonical": "/recipe/chicken-tikka-masala",
+  "openGraph": {
+    "title": "Chicken Tikka Masala",
+    "description": "Learn how to make Chicken Tikka Masala. This recipe includes 26 ingredients and 6 detailed steps.",
+    "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-1-Marinate-the-Chicken.jpg",
+    "type": "article",
+    "url": "/recipe/chicken-tikka-masala"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Chicken Tikka Masala",
+    "description": "Learn how to make Chicken Tikka Masala. This recipe includes 26 ingredients and 6 detailed steps.",
+    "image": [
+      "https://cafedelites.com/wp-content/uploads/2018/04/Step-1-Marinate-the-Chicken.jpg",
+      "https://cafedelites.com/wp-content/uploads/2018/04/Step-2-Sear-the-Chicken.jpg",
+      "https://cafedelites.com/wp-content/uploads/2018/04/Step-3-Make-the-Tikka-Masala-Sauce.jpg",
+      "https://cafedelites.com/wp-content/uploads/2018/04/Step-4-Combine-the-Sauce-Ingredient.jpg",
+      "https://cafedelites.com/wp-content/uploads/2018/04/Step-5-Add-Cream-and-Chicken.jpg",
+      "https://cafedelites.com/wp-content/uploads/2018/04/Srtep-6-Final-Touches-and-Serving.jpg"
+    ],
+    "recipeCategory": "Indian",
+    "recipeCuisine": "Indian",
+    "totalTime": "PT123M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "800 g boneless chicken thighs (skinless, cut into bite-sized pieces)",
+      "250 ml plain yogurt",
+      "16 g minced garlic",
+      "10 g fresh, crushed or minced ginger",
+      "5 g garam masala",
+      "2 g turmeric",
+      "2 g ground cumin",
+      "5 g Kashmiri chili (or 2.5 g ground red chili powder)",
+      "6 g salt",
+      "40 ml vegetable oil (or canola oil)",
+      "40 g butter",
+      "2 small onions (or 1 large onion, finely diced)",
+      "16 g finely grated garlic",
+      "10 g finely grated ginger",
+      "4 g garam masala",
+      "3 g ground cumin",
+      "2 g turmeric powder",
+      "2 g ground coriander",
+      "400 g tomato puree (tomato sauce/Passata)",
+      "5 g Kashmiri chili (optional for color and flavor)",
+      "2 g red chili powder (adjust to your taste preference)",
+      "6 g salt",
+      "315 ml heavy or thickened cream (use evaporated milk for lower calories)",
+      "4 g brown sugar",
+      "65 ml water (if needed)",
+      "2 g fresh coriander (to garnish)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-1-Marinate-the-Chicken.jpg",
+          "content": "Combine chicken with all marinade ingredients in a bowl. Marinate for 10 minutes to an hour (or overnight)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-2-Sear-the-Chicken.jpg",
+          "content": "Heat oil in a large skillet over medium-high heat. Sear chicken in batches for 3 minutes per side until browned. Set aside and keep warm."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-3-Make-the-Tikka-Masala-Sauce.jpg",
+          "content": "Melt butter in the same pan. Sauté onions until soft (about 3 minutes), scraping up browned bits. Add garlic, ginger, and spices; fry for 20 seconds."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-4-Combine-the-Sauce-Ingredient.jpg",
+          "content": "Pour in tomato puree, chili powders, and salt. Simmer for 10-15 minutes, stirring occasionally, until the sauce thickens and deepens in color."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Step-5-Add-Cream-and-Chicken.jpg",
+          "content": "Stir cream and sugar into the sauce. Add chicken and its juices back to the pan. Cook for 8-10 minutes until chicken is cooked through and sauce is thick. Add water if needed to thin."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://cafedelites.com/wp-content/uploads/2018/04/Srtep-6-Final-Touches-and-Serving.jpg",
+          "content": "Garnish with fresh coriander. Serve hot with garlic butter rice and homemade Naan bread."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "title": "Marijuana Cookies - Recipe Collection",
+  "description": "Learn how to make Marijuana Cookies. This recipe includes 6 ingredients and 6 detailed steps.",
+  "keywords": "italiana, marijuana, cookies, grams, butter, pastry, flour, sugar, eggs, pinch, salt, finely, ground, decarboxylated, recipe",
+  "canonical": "/recipe/marijuana-cookies",
+  "openGraph": {
+    "title": "Marijuana Cookies",
+    "description": "Learn how to make Marijuana Cookies. This recipe includes 6 ingredients and 6 detailed steps.",
+    "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-01.jpg",
+    "type": "article",
+    "url": "/recipe/marijuana-cookies"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Marijuana Cookies",
+    "description": "Learn how to make Marijuana Cookies. This recipe includes 6 ingredients and 6 detailed steps.",
+    "image": [
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-01.jpg",
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-02.jpg",
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-03.jpg",
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-04.jpg",
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-05.jpg",
+      "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-06.jpg"
+    ],
+    "recipeCategory": "Italiana",
+    "recipeCuisine": "Italiana",
+    "totalTime": "PT57M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "130 grams of butter",
+      "250 grams of pastry flour",
+      "120 grams of sugar",
+      "2 eggs",
+      "1 pinch of salt",
+      "5 grams of finely ground and decarboxylated marijuana"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-01.jpg",
+          "content": "Melt 130 grams of butter over low heat. Add 5 grams of finely ground and decarboxylated marijuana."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-02.jpg",
+          "content": "Filter the infused butter into a bowl."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-03.jpg",
+          "content": "Add 120 grams of sugar and 2 eggs to the filtered butter, beat well. Incorporate 250 grams of flour and 1 pinch of salt, mix until a compact dough is obtained."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-04.jpg",
+          "content": "Cover the dough with cling film and refrigerate. Preheat the oven to 140 degrees Celsius."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-05.jpg",
+          "content": "Form balls with the cold dough and flatten them on a baking tray lined with parchment paper."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://pevgrow.com/blog/wp-content/uploads/2017/10/prep-normal-paso-06.jpg",
+          "content": "Bake in the preheated oven for about 15 minutes, or until the edges are golden."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "title": "Chickpea Curry - Recipe Collection",
+  "description": "Learn how to make Chickpea Curry. This recipe includes 27 ingredients and 5 detailed steps.",
+  "keywords": "indian, chickpea, curry, avocado, neutral-flavored, coriander, seeds, heaping, cumin, fresh, dried, leaves, large, yellow, onion,",
+  "canonical": "/recipe/chickpea-curry",
+  "openGraph": {
+    "title": "Chickpea Curry",
+    "description": "Learn how to make Chickpea Curry. This recipe includes 27 ingredients and 5 detailed steps.",
+    "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc-1.png",
+    "type": "article",
+    "url": "/recipe/chickpea-curry"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Chickpea Curry",
+    "description": "Learn how to make Chickpea Curry. This recipe includes 27 ingredients and 5 detailed steps.",
+    "image": [
+      "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc-1.png",
+      "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc5.png",
+      "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc9.png",
+      "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc11.png",
+      "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc13.png"
+    ],
+    "recipeCategory": "Indian",
+    "recipeCuisine": "Indian",
+    "totalTime": "PT125M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "30 mL avocado oil or neutral-flavored oil",
+      "10 mL coriander seeds",
+      "5 mL heaping cumin seeds",
+      "15 to 20 fresh or 30 dried curry leaves",
+      "1 large yellow or red onion, finely diced",
+      "6 garlic cloves, minced",
+      "5 cm piece fresh ginger, minced or grated",
+      "1 to 3 serrano peppers, diced",
+      "30 mL tomato paste",
+      "227 g Roma tomatoes, diced",
+      "10 mL Diamond Crystal kosher salt (adjust if using other salts)",
+      "400 mL can full-fat coconut milk",
+      "120 mL water",
+      "850 g (2 cans) chickpeas, drained and rinsed",
+      "45 mL tahini, well-stirred",
+      "2.5 mL organic cane sugar, brown sugar, or coconut sugar",
+      "200-230 g (1 small head) Swiss chard or lacinato kale, ribs removed and thinly sliced",
+      "10 mL garam masala",
+      "7.5 to 15 mL freshly squeezed lemon or lime juice, to taste",
+      "1 large handful of chopped cilantro leaves and tender stems",
+      "1 large handful of chopped fresh mint leaves",
+      "Ground Spices: 7.5 mL curry powder",
+      "5 mL ground coriander",
+      "2.5 mL ground cinnamon",
+      "2.5 mL freshly grated nutmeg",
+      "1.25 mL ground turmeric",
+      "Freshly ground black pepper"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc-1.png",
+          "content": "Heat 30 mL oil in a large pan over medium-high heat. Add coriander and cumin seeds, toast for 1 minute until fragrant. Add curry leaves, cover briefly. Add diced onion with a pinch of salt and cook for 5 minutes. Add garlic, ginger, and serrano peppers, cook for 1-2 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc5.png",
+          "content": "Stir in ground spices and tomato paste for 90 seconds. Add diced tomatoes and 10 mL salt, cook for 5 minutes until soft and oil releases."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc9.png",
+          "content": "Pour in chickpeas, coconut milk, water, tahini, and sugar. Stir well, bring to a simmer, then cover and cook for 15-20 minutes, stirring occasionally."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc11.png",
+          "content": "Add the thinly sliced Swiss chard or kale to the simmering curry. Cook for 4-5 minutes until tender. Stir in garam masala."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://rainbowplantlife.com/wp-content/uploads/2023/02/cc13.png",
+          "content": "Remove from heat. Stir in lemon or lime juice, chopped cilantro, and mint. Season with additional salt to taste. Let rest for 5-15 minutes before serving with rice or flatbread."
+        }
+      }
+    ]
+  }
+}

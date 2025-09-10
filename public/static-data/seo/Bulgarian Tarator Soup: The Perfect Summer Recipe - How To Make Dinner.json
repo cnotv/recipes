@@ -1,0 +1,68 @@
+{
+  "title": "Bulgarian Tarator Soup - Recipe Collection",
+  "description": "Learn how to make Bulgarian Tarator Soup. This recipe includes 7 ingredients and 4 detailed steps.",
+  "keywords": "bulgarian, tarator, soup, millilitres, full, plain, yogurt, cold, water, medium, cucumbers, (peeled, finely, diced), cloves",
+  "canonical": "/recipe/bulgarian-tarator-soup",
+  "openGraph": {
+    "title": "Bulgarian Tarator Soup",
+    "description": "Learn how to make Bulgarian Tarator Soup. This recipe includes 7 ingredients and 4 detailed steps.",
+    "image": "https://howtomakedinner.com/wp-content/uploads/2023/07/BB3348AE-974B-446C-A84E-582C93232B4F-819x1024.jpeg",
+    "type": "article",
+    "url": "/recipe/bulgarian-tarator-soup"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Bulgarian Tarator Soup",
+    "description": "Learn how to make Bulgarian Tarator Soup. This recipe includes 7 ingredients and 4 detailed steps.",
+    "image": [
+      "https://howtomakedinner.com/wp-content/uploads/2023/07/BB3348AE-974B-446C-A84E-582C93232B4F-819x1024.jpeg",
+      "https://howtomakedinner.com/wp-content/uploads/2023/07/tarator-1-820x1024.jpeg",
+      "https://howtomakedinner.com/wp-content/uploads/2023/07/20B1D662-252A-4DA9-AA66-22EE77737F95-768x1024.jpeg",
+      "https://howtomakedinner.com/wp-content/uploads/2023/07/2E0A93CB-7FF3-4EDA-B397-C33BB6B5F97D-576x1024.jpeg"
+    ],
+    "recipeCategory": "Bulgarian",
+    "recipeCuisine": "Bulgarian",
+    "totalTime": "PT34M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "625 millilitres full fat plain yogurt",
+      "625 millilitres cold water",
+      "2 medium cucumbers (peeled and finely diced)",
+      "2 cloves garlic (minced)",
+      "30 grams fresh dill (roughly chopped)",
+      "75 grams walnuts (roughly chopped)",
+      "1 teaspoon salt (adjust to your own taste)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://howtomakedinner.com/wp-content/uploads/2023/07/BB3348AE-974B-446C-A84E-582C93232B4F-819x1024.jpeg",
+          "content": "Add the chopped cucumbers, dill, walnuts, garlic, and yogurt to a large bowl or juice jug."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://howtomakedinner.com/wp-content/uploads/2023/07/tarator-1-820x1024.jpeg",
+          "content": "Add the cold water a little bit at a time and stir to combine and smooth out any yogurt clumps."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://howtomakedinner.com/wp-content/uploads/2023/07/20B1D662-252A-4DA9-AA66-22EE77737F95-768x1024.jpeg",
+          "content": "Season the soup with salt to taste."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://howtomakedinner.com/wp-content/uploads/2023/07/2E0A93CB-7FF3-4EDA-B397-C33BB6B5F97D-576x1024.jpeg",
+          "content": "Serve the soup chilled, and top with more dill and walnuts if you’d like."
+        }
+      }
+    ]
+  }
+}

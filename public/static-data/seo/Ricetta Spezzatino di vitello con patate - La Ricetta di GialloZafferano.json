@@ -1,0 +1,91 @@
+{
+  "title": "Veal Stew with Potatoes - Recipe Collection",
+  "description": "Learn how to make Veal Stew with Potatoes. This recipe includes 14 ingredients and 6 detailed steps.",
+  "keywords": "italian, veal, stew, with, potatoes, carrot, celery, stalk, white, onion, extra, virgin, olive, meat, broth",
+  "canonical": "/recipe/veal-stew-with-potatoes",
+  "openGraph": {
+    "title": "Veal Stew with Potatoes",
+    "description": "Learn how to make Veal Stew with Potatoes. This recipe includes 14 ingredients and 6 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_1.jpg",
+    "type": "article",
+    "url": "/recipe/veal-stew-with-potatoes"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Veal Stew with Potatoes",
+    "description": "Learn how to make Veal Stew with Potatoes. This recipe includes 14 ingredients and 6 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_1.jpg",
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_4.jpg",
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_7.jpg",
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_10.jpg",
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_13.jpg",
+      "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_16.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT183M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1 kg Veal",
+      "1 kg Potatoes",
+      "1 Carrot",
+      "1 Celery stalk",
+      "1 White onion",
+      "20 g Extra virgin olive oil",
+      "750 g Meat broth",
+      "Salt as needed",
+      "Black pepper as needed",
+      "20 g All-purpose flour",
+      "50 g White wine",
+      "1 sprig Sage",
+      "1 sprig Rosemary",
+      "1 sprig Thyme"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_1.jpg",
+          "content": "To prepare the veal stew with potatoes, first make the meat broth with our recipe and keep it warm. Peel and cut the carrot, celery, and onion into small cubes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_4.jpg",
+          "content": "Clean the meat, removing any connective tissue, which are the tougher white parts that would be too hard once cooked. Then cut the meat into slices and then into bite-sized pieces. In a pot, preferably cast iron as it's suitable for long cooking, heat a drizzle of oil and add the chopped carrots, celery, and onion. Sauté over medium heat for 5 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_7.jpg",
+          "content": "Add the veal pieces, season with salt and pepper, and stirring continuously, brown the meat on all sides. Add the previously sieved flour, sprinkled, to avoid the formation of lumps in the cooking liquid."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_10.jpg",
+          "content": "Once the flour is absorbed by the meat, deglaze with white wine and let all the alcohol evaporate. Cover with meat broth and add an aromatic herb bundle: sage, thyme, and rosemary tied together with kitchen twine."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_13.jpg",
+          "content": "Cover with a lid and cook over low heat for 1 hour, stirring occasionally. Meanwhile, peel the potatoes and cut them into cubes of the same size as the meat pieces."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/22/2203/spezzatino-di-vitello-con-patate_16.jpg",
+          "content": "Remove the herb bundle and add the potatoes. Cover with a lid and cook, stirring occasionally, over medium heat for 1 hour, or until the potatoes and meat are very tender. Plate and garnish with chopped rosemary. Your veal stew with potatoes is ready to be served hot!"
+        }
+      }
+    ]
+  }
+}

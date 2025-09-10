@@ -1,0 +1,24 @@
+{
+  "title": "Unknown Recipe - Recipe Collection",
+  "description": "Learn how to make Recipe. This recipe includes 0 ingredients and 0 detailed steps.",
+  "keywords": "recipe, cooking, food",
+  "canonical": "/recipe/recipe",
+  "openGraph": {
+    "title": "Unknown Recipe",
+    "description": "Learn how to make Recipe. This recipe includes 0 ingredients and 0 detailed steps.",
+    "image": null,
+    "type": "article",
+    "url": "/recipe/recipe"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Unknown Recipe",
+    "description": "Learn how to make Recipe. This recipe includes 0 ingredients and 0 detailed steps.",
+    "image": [],
+    "totalTime": "PT15M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [],
+    "recipeInstructions": []
+  }
+}

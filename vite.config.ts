@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
+import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +13,7 @@ export default defineConfig({
       manifest: {
         name: 'Recipe Collection',
         short_name: 'Recipes',
-        description: 'A multilingual recipe collection with cuisine filtering and infinite scroll',
+        description: 'A multilingual recipe collection with SSR, PWA support, and daily voting',
         theme_color: '#3b82f6',
         background_color: '#f8fafc',
         display: 'standalone',
@@ -83,9 +84,30 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
               }
             }
+          },
+          {
+            urlPattern: /\/static-data\/.*\.json$/,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'static-data-cache',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 1 // 1 day
+              }
+            }
           }
         ]
       }
     })
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      }
+    }
+  },
+  ssr: {
+    noExternal: ['vue-i18n']
+  }
 })

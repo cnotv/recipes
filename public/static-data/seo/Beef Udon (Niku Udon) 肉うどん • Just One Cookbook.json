@@ -1,0 +1,180 @@
+{
+  "title": "Beef Udon (Niku Udon) - Recipe Collection",
+  "description": "Learn how to make Beef Udon (Niku Udon). This recipe includes 16 ingredients and 17 detailed steps.",
+  "keywords": "japanese, beef, udon, (niku, udon), dashi, (japanese, soup, stock), 22.5, sauce, (for, broth), mirin, sugar",
+  "canonical": "/recipe/beef-udon-niku-udon",
+  "openGraph": {
+    "title": "Beef Udon (Niku Udon)",
+    "description": "Learn how to make Beef Udon (Niku Udon). This recipe includes 16 ingredients and 17 detailed steps.",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-Ingredients.jpg",
+    "type": "article",
+    "url": "/recipe/beef-udon-niku-udon"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Beef Udon (Niku Udon)",
+    "description": "Learn how to make Beef Udon (Niku Udon). This recipe includes 16 ingredients and 17 detailed steps.",
+    "image": [
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-Ingredients.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-2.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-3.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-5.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-6.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-7.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-8.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-9.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-10.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-11.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-12.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-13.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-14.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-15.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/01/Udon-Noodle-Soup-with-Mochi-1.jpg"
+    ],
+    "recipeCategory": "Japanese",
+    "recipeCuisine": "Japanese",
+    "totalTime": "PT121M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "600 ml Dashi (Japanese soup stock)",
+      "22.5 ml Soy sauce (for broth)",
+      "15 ml Mirin (for broth)",
+      "5 ml Sugar (for broth)",
+      "0.6 ml Diamond Crystal kosher salt",
+      "0.5 Tokyo negi (white part only, or 2 green onions)",
+      "1 green onion/scallion (for topping)",
+      "4 sprigs Mitsuba (Japanese parsley, optional)",
+      "170-227 g thinly sliced beef (such as ribeye)",
+      "4 slices Narutomaki (fish cakes, optional)",
+      "15 ml Neutral oil",
+      "10 ml Sugar (for beef)",
+      "15 ml Soy sauce (for beef)",
+      "2 servings Udon noodles (500 g frozen/parboiled or 180 g dry)",
+      "Shichimi togarashi (Japanese seven spice, optional)",
+      "(Optional quick broth): 80 ml Mentsuyu (concentrated noodle soup base), 560 ml water, 15 ml mirin"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-Ingredients.jpg",
+          "content": "Gather ingredients. Boil water for udon noodles, then keep covered on low heat."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-1.jpg",
+          "content": "Prepare 600 ml dashi. For quick dashi, boil 600 ml water with 1 dashi packet."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-2.jpg",
+          "content": "Simmer dashi for 2-3 minutes. Squeeze and discard the dashi packet."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-3.jpg",
+          "content": "Season dashi with 22.5 ml soy sauce, 15 ml mirin, 5 ml sugar, and 0.6 ml kosher salt. Cover and set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-5.jpg",
+          "content": "Slice 0.5 Tokyo negi (white part) diagonally into 1.3 cm pieces."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-6.jpg",
+          "content": "Thinly slice 4 sprigs mitsuba (optional)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-7.jpg",
+          "content": "Slice 1 green onion. Place with mitsuba for topping."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-8.jpg",
+          "content": "Diagonally slice 4 narutomaki (optional). Cut 170-227 g beef into 3.8-5 cm pieces."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-9.jpg",
+          "content": "Heat frying pan to medium. Add 15 ml neutral oil and Tokyo negi."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-10.jpg",
+          "content": "Sauté negi until golden. Add beef; cook until no longer pink."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-11.jpg",
+          "content": "Add 10 ml sugar and 15 ml soy sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-12.jpg",
+          "content": "Stir-fry until meat is coated. Remove from heat."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-13.jpg",
+          "content": "Cook 2 servings udon noodles as per package. For frozen, boil 1 minute. Drain and rinse."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-14.jpg",
+          "content": "Divide noodles into bowls, cover with hot broth."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2021/11/Beef-Udon-15.jpg",
+          "content": "Top with beef, narutomaki, green onions, mitsuba. Add shichimi togarashi for spice."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "",
+          "content": "Store cooked beef, udon, and broth separately in airtight containers in the refrigerator for up to 3 days."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/01/Udon-Noodle-Soup-with-Mochi-1.jpg",
+          "content": "(Optional Mentsuyu Broth): Combine 80 ml mentsuyu, 560 ml water, and 15 ml mirin. Simmer, then cover and remove from heat."
+        }
+      }
+    ]
+  }
+}

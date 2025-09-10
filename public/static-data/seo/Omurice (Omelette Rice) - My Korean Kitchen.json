@@ -1,0 +1,154 @@
+{
+  "title": "Omurice (Omelette Rice) - Recipe Collection",
+  "description": "Learn how to make Omurice (Omelette Rice). This recipe includes 21 ingredients and 13 detailed steps.",
+  "keywords": "korean, omurice, (omelette, rice), 22.5, cooking, plain, flour, ketchup, regular, sauce, tonkatsu, honey, brown, sugar",
+  "canonical": "/recipe/omurice-omelette-rice",
+  "openGraph": {
+    "title": "Omurice (Omelette Rice)",
+    "description": "Learn how to make Omurice (Omelette Rice). This recipe includes 21 ingredients and 13 detailed steps.",
+    "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.1.-Omurice-Sauce-Ingredients.jpg",
+    "type": "article",
+    "url": "/recipe/omurice-omelette-rice"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Omurice (Omelette Rice)",
+    "description": "Learn how to make Omurice (Omelette Rice). This recipe includes 21 ingredients and 13 detailed steps.",
+    "image": [
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.1.-Omurice-Sauce-Ingredients.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.2.-Omurice-Sauce-Roux.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.3.-How-To-Make-Omurice-Sauce.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.1.-Omurice-Rice-Ingredients.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.2.-How-To-Cook-Rice-Omurice.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.3.-Fried-Rice-Omurice.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.4.-Serving-Fried-Rice.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.1.-How-To-Make-Omurice-Egg.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.2.-Korean-Omelette.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.2.-Korean-Omelette.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.3.-Tornado-Omelette.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.4.-Egg-Swirl.jpg",
+      "https://mykoreankitchen.com/wp-content/uploads/2007/04/2.-Tornado-Omurice.jpg"
+    ],
+    "recipeCategory": "Korean",
+    "recipeCuisine": "Korean",
+    "totalTime": "PT126M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "22.5 ml cooking oil",
+      "15 ml plain flour",
+      "75 ml ketchup",
+      "15 ml regular soy sauce",
+      "15 ml Tonkatsu sauce or regular soy sauce",
+      "15 ml honey or brown sugar",
+      "187.5 ml water",
+      "62.5 ml milk",
+      "Some cooking oil",
+      "60 g carrot, finely chopped",
+      "80 g onion, finely chopped",
+      "45 g green bell peppers, finely chopped",
+      "80 g smoked ham (or minced beef, pork, or chicken), finely diced",
+      "500 ml cooked rice, cooled",
+      "15 ml ketchup (or more if not serving with demi-glace sauce)",
+      "15 ml Worcestershire sauce",
+      "15 ml regular soy sauce",
+      "15 ml rice wine (mirin)",
+      "Some cooking oil",
+      "6-9 eggs (3 eggs per serving)",
+      "A pinch salt"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.1.-Omurice-Sauce-Ingredients.jpg",
+          "content": "Combine ketchup, soy sauce, Tonkatsu sauce, honey, water, and milk in a bowl. Set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.2.-Omurice-Sauce-Roux.jpg",
+          "content": "Preheat a frying pan with cooking oil and flour. Cook over medium to medium-high heat for 5-7 minutes until dark brown, stirring occasionally. Reduce heat to low."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/6.3.-How-To-Make-Omurice-Sauce.jpg",
+          "content": "Pour in the combined sauce and stir well. Increase heat to medium-low/medium and cook for 8-10 minutes until thickened, stirring often. Set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.1.-Omurice-Rice-Ingredients.jpg",
+          "content": "Preheat a skillet with cooking oil. Stir-fry finely chopped carrot, onion, green bell pepper, and smoked ham until cooked."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.2.-How-To-Cook-Rice-Omurice.jpg",
+          "content": "Add cooked rice and rice seasonings (ketchup, Worcestershire sauce, soy sauce, rice wine). Mix well for 1-2 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.3.-Fried-Rice-Omurice.jpg",
+          "content": "Turn off heat and cover to keep rice warm."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/7.4.-Serving-Fried-Rice.jpg",
+          "content": "Shape the rice in a small bowl, then invert onto a serving plate."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.1.-How-To-Make-Omurice-Egg.jpg",
+          "content": "Beat eggs with a pinch of salt. Sieve for a smooth texture."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.2.-Korean-Omelette.jpg",
+          "content": "Preheat a non-stick frying pan over medium-high heat with cooking oil."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.2.-Korean-Omelette.jpg",
+          "content": "Pour beaten egg into the pan. Cook until edges are set and large bubbles form in the middle."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.3.-Tornado-Omelette.jpg",
+          "content": "Hold two chopsticks diagonally, push the egg from the edge towards the center (4-5 cm gap), and twirl to form a tornado shape. Cook until 95% done."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/8.4.-Egg-Swirl.jpg",
+          "content": "Slowly slide the omelette from the pan onto the shaped rice."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://mykoreankitchen.com/wp-content/uploads/2007/04/2.-Tornado-Omurice.jpg",
+          "content": "Pour demi-glace sauce (or ketchup) over the omurice and serve."
+        }
+      }
+    ]
+  }
+}

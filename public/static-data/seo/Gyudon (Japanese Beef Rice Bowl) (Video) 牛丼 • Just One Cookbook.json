@@ -1,0 +1,127 @@
+{
+  "title": "Gyudon (Japanese Beef Rice Bowl) - Recipe Collection",
+  "description": "Learn how to make Gyudon (Japanese Beef Rice Bowl). This recipe includes 10 ingredients and 11 detailed steps.",
+  "keywords": "japanese, gyudon, (japanese, beef, rice, bowl), onion, green, thinly, sliced, (e.g.,, ribeye), dashi, soup, stock)",
+  "canonical": "/recipe/gyudon-japanese-beef-rice-bowl",
+  "openGraph": {
+    "title": "Gyudon (Japanese Beef Rice Bowl)",
+    "description": "Learn how to make Gyudon (Japanese Beef Rice Bowl). This recipe includes 10 ingredients and 11 detailed steps.",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Gyudon-step-by-step-6.jpg",
+    "type": "article",
+    "url": "/recipe/gyudon-japanese-beef-rice-bowl"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Gyudon (Japanese Beef Rice Bowl)",
+    "description": "Learn how to make Gyudon (Japanese Beef Rice Bowl). This recipe includes 10 ingredients and 11 detailed steps.",
+    "image": [
+      "https://www.justonecookbook.com/wp-content/uploads/2024/11/Gyudon-step-by-step-6.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-2.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-3.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-4.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-5.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-6.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-7.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-8.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-9.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-10.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-11.jpg"
+    ],
+    "recipeCategory": "Japanese",
+    "recipeCuisine": "Japanese",
+    "totalTime": "PT79M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "113 g onion",
+      "1 green onion",
+      "227 g thinly sliced beef (e.g., ribeye)",
+      "120 ml dashi (Japanese soup stock)",
+      "30 ml sake",
+      "30 ml mirin",
+      "45 ml soy sauce",
+      "15 g sugar",
+      "2 servings cooked Japanese short-grain rice (approx. 250 g per serving)",
+      "Pickled red ginger (beni shoga or kizami beni shoga)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/11/Gyudon-step-by-step-6.jpg",
+          "content": "Thinly slice the onion (113g)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-2.jpg",
+          "content": "Diagonally slice the green onion (1 piece)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-3.jpg",
+          "content": "Cut the semi-frozen beef (227g) into 7.6 cm wide pieces."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-4.jpg",
+          "content": "In a large frying pan, combine 120 ml dashi, 30 ml sake, 30 ml mirin, 45 ml soy sauce, and 15 g sugar."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-5.jpg",
+          "content": "Spread onion slices evenly in the pan."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-6.jpg",
+          "content": "Place beef slices over the onions, separating them."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-7.jpg",
+          "content": "Cover and simmer on medium heat for 3-4 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-8.jpg",
+          "content": "Skim off any scum or fat from the broth."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-9.jpg",
+          "content": "Sprinkle with green onions and cook for 1 more minute."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-10.jpg",
+          "content": "Place cooked Japanese short-grain rice (approx. 250 g per serving) in bowls and drizzle with sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2022/04/Gyudon-11.jpg",
+          "content": "Add beef and onions over rice, then garnish with pickled red ginger."
+        }
+      }
+    ]
+  }
+}

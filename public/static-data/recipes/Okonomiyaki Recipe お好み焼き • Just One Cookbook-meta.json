@@ -1,0 +1,152 @@
+{
+  "id": "Okonomiyaki Recipe お好み焼き • Just One Cookbook",
+  "slug": "okonomiyaki",
+  "filename": "Okonomiyaki Recipe お好み焼き • Just One Cookbook.json",
+  "url": "https://www.justonecookbook.com/okonomiyaki/",
+  "cuisine": "Japanese",
+  "languages": [
+    "en",
+    "de",
+    "jp",
+    "th"
+  ],
+  "title": "Okonomiyaki",
+  "description": "Learn how to make Okonomiyaki. This recipe includes 14 ingredients and 25 detailed steps.",
+  "keywords": "japanese, okonomiyaki, grams, all-purpose, flour, 1.25, diamond, crystal, kosher, salt, gram, sugar, baking, powder, nagaimo/yamaimo",
+  "stepCount": 25,
+  "ingredientCount": 14,
+  "estimatedTime": 180,
+  "difficulty": "Hard",
+  "ingredientPreview": [
+    "120 grams all-purpose flour",
+    "1.25 grams Diamond Crystal kosher salt",
+    "1 gram sugar"
+  ],
+  "images": [
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-Ingredients.jpg",
+      "alt": "Step 1",
+      "step": 1
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-5.jpg",
+      "alt": "Step 2",
+      "step": 2
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-3.jpg",
+      "alt": "Step 3",
+      "step": 3
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-6.jpg",
+      "alt": "Step 4",
+      "step": 4
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-7.jpg",
+      "alt": "Step 5",
+      "step": 5
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-1.jpg",
+      "alt": "Step 6",
+      "step": 6
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-2.jpg",
+      "alt": "Step 7",
+      "step": 7
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-4.jpg",
+      "alt": "Step 8",
+      "step": 8
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-8.jpg",
+      "alt": "Step 9",
+      "step": 9
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-9.jpg",
+      "alt": "Step 10",
+      "step": 10
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-10.jpg",
+      "alt": "Step 11",
+      "step": 11
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-11.jpg",
+      "alt": "Step 12",
+      "step": 12
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-12.jpg",
+      "alt": "Step 13",
+      "step": 13
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-13.jpg",
+      "alt": "Step 14",
+      "step": 14
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-14.jpg",
+      "alt": "Step 15",
+      "step": 15
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-15.jpg",
+      "alt": "Step 16",
+      "step": 16
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-16.jpg",
+      "alt": "Step 17",
+      "step": 17
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-17.jpg",
+      "alt": "Step 18",
+      "step": 18
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2016/07/Okonomi-Sauce-Step.jpg",
+      "alt": "Step 19",
+      "step": 19
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-18.jpg",
+      "alt": "Step 20",
+      "step": 20
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-19.jpg",
+      "alt": "Step 21",
+      "step": 21
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-20.jpg",
+      "alt": "Step 22",
+      "step": 22
+    },
+    {
+      "url": "https://www.justonecookbook.com/wp-content/uploads/2016/12/Zojirushi-Electric-Griddle.jpg",
+      "alt": "Step 25",
+      "step": 25
+    }
+  ],
+  "featuredImage": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-Ingredients.jpg",
+  "dateAdded": "2025-09-10T21:44:25.816Z",
+  "lastModified": "2025-09-10T21:44:25.816Z",
+  "searchText": "okonomiyaki 120 grams all-purpose flour 1.25 grams diamond crystal kosher salt 1 gram sugar 1 gram baking powder 160 grams nagaimo/yamaimo (mountain yam) 180 milliliters dashi (japanese soup stock) 640 grams green cabbage 40 grams pickled red ginger (beni shoga or kizami beni shoga) 227 grams sliced pork belly 4 large eggs (200 grams) 25 grams tenkasu/agedama (tempura scraps) neutral oil okonomiyaki sauce toppings of your choice (japanese kewpie mayonnaise, katsuobushi (dried bonito flakes), aonori (dried green laver seaweed), pickled red ginger (beni shoga or kizami beni shoga), chopped green onions/scallions) let the batter rest for at least one hour (and up to overnight) for a fluffier okonomiyaki. gather all ingredients. in a large bowl, combine 120 grams all-purpose flour, 1.25 grams diamond crystal kosher salt, 1 gram sugar, and 1 gram baking powder. mix well. peel and grate 160 grams nagaimo/yamaimo (mountain yam) in a small bowl. be careful, as it may irritate skin. add the grated nagaimo and 180 milliliters dashi (japanese soup stock) to the bowl. mix until combined and set aside. cover and refrigerate for at least one hour for fluffier okonomiyaki. discard the core of 640 grams green cabbage and cut into 1.3 cm slices. mince the cabbage strips. wash and drain well to remove excess moisture. chop 40 grams pickled red ginger. cut 227 grams sliced pork belly into 10 cm pieces and set aside. if rested, take the base batter from the refrigerator. add 4 large eggs (200 grams), 25 grams tenkasu/agedama, and two-thirds of the pickled red ginger. mix until combined. add the minced cabbage to the batter, one-third at a time. mix well after each addition. check the consistency. ensure cabbage is well coated. do not use all cabbage if batter is overpowered. heat neutral oil in a large griddle or two frying pans with lids on medium heat (200°c). add one portion of batter to each pan. using spatulas, shape the batter into a 15 cm diameter circle (final thickness 2 cm). make smaller/thinner if new to flipping. place 3 slices of pork belly on top of each okonomiyaki. cook, covered, on medium-low heat for 5 minutes. once the bottom is browned, flip them over. gently press to fix shape. cook, covered, for another 5 minutes. flip one last time, fix shape. cook, uncovered, for 2 minutes. transfer to plates. continue cooking remaining okonomiyaki. combine 3 tablespoons sugar, 60 milliliters oyster sauce, 120 milliliters ketchup, and 105 milliliters worcestershire sauce. mix until sugar dissolves. customize with toppings. spread okonomiyaki sauce with a brush or spoon. drizzle japanese kewpie mayonnaise in a zigzag. drag a chopstick tip through mayo every 1.3 cm for iconic look. sprinkle with katsuobushi, aonori, and chopped green onions/scallions. garnish with remaining pickled red ginger. wrap each okonomiyaki (without sauce or toppings) in aluminum foil and freeze bag. refrigerate for up to 3 days, freeze for a month. reheat refrigerated okonomiyaki in a toaster oven/oven at 180°c for 10-15 minutes. reheat frozen okonomiyaki in oven for 25-30 minutes. use a japanese griddle with a lid (hot plate) for multiple okonomiyaki. otherwise, cook one at a time in a frying pan. okonomiyaki 120 gramm allzweckmehl 1.25 gramm diamantkristall-kosher-salz 1 gramm zucker 1 gramm backpulver 160 gramm nagaimo/yamaimo (berg yam) 180 milliliter dashi (japanische brühe) 640 gramm grüner kohl 40 gramm eingelegter roter ingwer (beni shoga oder kizami beni shoga) 227 gramm geschnittener schweinebauch 4 große eier (200 gramm) 25 gramm tenkasu/agedama (tempura-reste) neutrales öl okonomiyaki-soße toppings nach wahl (japanische kewpie mayonnaise, katsuobushi (getrocknete bonitoflocken), aonori (getrockneter grüner seetang), eingelegter roter ingwer (beni shoga oder kizami beni shoga), gehackte frühlingszwiebeln) den teig für mindestens eine stunde (oder über nacht) ruhen lassen, um ein fluffigeres okonomiyaki zu erhalten. alle zutaten bereitlegen. in einer großen schüssel 120 gramm allzweckmehl, 1.25 gramm diamantkristall-kosher-salz, 1 gramm zucker und 1 gramm backpulver vermischen. gut verrühren. 160 gramm nagaimo/yamaimo (berg yam) schälen und in einer kleinen schüssel reiben. vorsicht, es kann hautreizungen verursachen. den geriebenen nagaimo und 180 milliliter dashi (japanische brühe) in die schüssel geben. alles vermischen und beiseite stellen. abgedeckt für mindestens eine stunde im kühlschrank ruhen lassen. den strunk von 640 gramm grünem kohl entfernen und in 1.3 cm dicke scheiben schneiden. die kohlstreifen hacken. gut waschen und abtropfen lassen, um überschüssige feuchtigkeit zu entfernen. 40 gramm eingelegten roten ingwer hacken. 227 gramm geschnittenen schweinebauch in 10 cm lange stücke schneiden und beiseite stellen. falls geruht, den basisteig aus dem kühlschrank nehmen. 4 große eier (200 gramm), 25 gramm tenkasu/agedama und zwei drittel des eingelegten roten ingwers hinzufügen. gut vermischen. den gehackten kohl nach und nach, ein drittel auf einmal, zum teig geben. nach jeder zugabe gut vermischen. die konsistenz des okonomiyaki-teigs prüfen. sicherstellen, dass der kohl gut mit dem teig überzogen ist. nicht den gesamten kohl verwenden, wenn er den teig überwältigt. neutrales öl in einer großen grillplatte oder zwei pfannen mit deckel bei mittlerer hitze (200°c) erhitzen. eine portion teig in jede pfanne geben. mit spateln den teig zu einem kreis von etwa 15 cm durchmesser formen (enddicke 2 cm). kleiner/dünner machen, wenn sie neu im wenden sind. 3 scheiben schweinebauch auf jedes okonomiyaki legen. zugedeckt bei mittlerer bis niedriger hitze 5 minuten kochen. sobald die unterseite schön braun ist, umdrehen. vorsichtig andrücken, um die form zu fixieren. zugedeckt weitere 5 minuten kochen. ein letztes mal wenden und die form fixieren. dann unbedeckt 2 minuten kochen. das gekochte okonomiyaki auf einzelne teller geben. den rest des okonomiyaki weiterkochen. 3 esslöffel zucker, 60 milliliter austernsoße, 120 milliliter ketchup und 105 milliliter worcestershire-soße in einer kleinen schüssel vermischen. rühren, bis sich der zucker vollständig aufgelöst hat. mit toppings anpassen. okonomiyaki-soße mit einem pinsel oder löffel darauf verteilen. japanische kewpie mayonnaise im zickzackmuster darüber träufeln. mit der spitze eines essstäbchens alle 1.3 cm durch die mayonnaise ziehen, um den ikonischen look zu erzeugen. mit katsuobushi, aonori und gehackten frühlingszwiebeln bestreuen. mit dem restlichen eingelegten roten ingwer garnieren. jedes okonomiyaki (ohne soße oder toppings) in alufolie wickeln und in einen gefrierbeutel geben. im kühlschrank bis zu 3 tage und im gefrierschrank einen monat lagern. gekühltes okonomiyaki in einem toaster oder ofen bei 180°c für 10-15 minuten aufwärmen. gefrorenes okonomiyaki im ofen für 25-30 minuten aufwärmen. eine japanische grillplatte mit deckel (hot plate) für mehrere okonomiyaki verwenden. andernfalls einzeln in einer pfanne kochen. お好み焼き (okonomiyaki) 薄力粉 120グラム ダイヤモンドクリスタルコーシャ塩 1.25グラム 砂糖 1グラム ベーキングパウダー 1グラム 長芋 160グラム 出汁 180ミリリットル キャベツ 640グラム 刻み紅しょうが 40グラム 豚バラ肉薄切り 227グラム 卵 4個 (200グラム) 天かす 25グラム サラダ油 お好み焼きソース お好みのトッピング（キユーピーマヨネーズ、かつお節、青のり、刻み紅しょうが、青ねぎ） よりふわふわのお好み焼きにするため、生地を少なくとも1時間（または一晩）休ませる。すべての材料を揃える。 大きなボウルに薄力粉120グラム、ダイヤモンドクリスタルコーシャ塩1.25グラム、砂糖1グラム、ベーキングパウダー1グラムを入れ、よく混ぜる。 長芋160グラムを剥いて小さなボウルで擦りおろす。肌がかゆくなることがあるので注意する。 擦りおろした長芋と出汁180ミリリットルをボウルに加える。 全体が混ざるまで混ぜて脇に置く。ラップをして冷蔵庫で少なくとも1時間休ませると、よりふわふわになる。 キャベツ640グラムの芯を取り除き、1.3cm幅に切る。 キャベツの細切りをみじん切りにする。余分な水分を取り除くため、よく洗って水気を切る。 刻み紅しょうが40グラムを刻む。豚バラ肉薄切り227グラムを10cmの長さに切り、脇に置く。 休ませた生地を冷蔵庫から出す。卵4個（200グラム）、天かす25グラム、刻み紅しょうがの3分の2をボウルに加える。全体が混ざるまで混ぜる。 みじん切りにしたキャベツを3分の1ずつ生地に加える。加えるたびによく混ぜる。 お好み焼き生地の濃度を確認する。キャベツが生地によく絡んでいることを確認する。キャベツが多すぎる場合は、すべて使う必要はない。 大きな鉄板または蓋付きのフライパン2つにサラダ油を中火で熱する（200°c）。熱くなったら、生地を各フライパンに1人前ずつ入れる。 ヘラを使って生地を直径約15cmの円形に整える（最終的な厚さは2cm）。ひっくり返すのが初めてなら、小さく薄く作るとよい。 お好み焼きの上に豚バラ肉を3枚ずつ乗せる。蓋をして中弱火で5分焼く。 底がきつね色になったらひっくり返す。 優しく押して形を整える。蓋をしてさらに5分焼く。 最後にもう一度ひっくり返し、形を整える。蓋をせずに2分焼く。 焼き上がったお好み焼きをそれぞれの皿に移す。残りのお好み焼きも同様に焼く。 砂糖大さじ3、オイスターソース60ミリリットル、ケチャップ120ミリリットル、ウスターソース105ミリリットルを小さなボウルで混ぜる。砂糖が完全に溶けるまで混ぜる。 お好みのトッピングでカスタマイズする。お好み焼きソースを刷毛またはスプーンで塗る。 キユーピーマヨネーズをジグザグにかけ、箸の先で1.3cmごとにマヨネーズをなぞって特徴的な模様を作る。 かつお節、青のり、刻んだ青ねぎを振りかける。最後に残りの刻み紅しょうがを飾る。 各お好み焼き（ソースやトッピングなし）をアルミホイルで包み、フリーザーバッグに入れる。冷蔵庫で3日まで、冷凍庫で1ヶ月保存可能。 冷蔵庫から出したお好み焼きは、トースターオーブンまたはオーブンで180°cで10〜15分温める。冷凍したお好み焼きは、冷蔵庫で一晩解凍するか、オーブンで25〜30分温める。 蓋付きの日本の鉄板（ホットプレート）があれば、複数のお好み焼きを同時に焼くことができる。そうでなければ、フライパンで一度に1枚ずつ焼くことを推奨する。 โอโคโนมิยากิ แป้งอเนกประสงค์ 120 กรัม เกลือโคเชอร์ไดมอนด์คริสตัล 1.25 กรัม น้ำตาล 1 กรัม ผงฟู 1 กรัม มันเทศญี่ปุ่น (nagaimo/yamaimo) 160 กรัม น้ำซุปปลาแห้ง (dashi) 180 มิลลิลิตร กะหล่ำปลีเขียว 640 กรัม ขิงดองแดง (beni shoga หรือ kizami beni shoga) 40 กรัม หมูสามชั้นหั่นบาง 227 กรัม ไข่ไก่ขนาดใหญ่ 4 ฟอง (200 กรัม) เศษเทมปุระ (tenkasu/agedama) 25 กรัม น้ำมันพืช ซอสโอโคโนมิยากิ เครื่องเคียงตามชอบ (มายองเนสญี่ปุ่นคิวพี, คัตสึโอบูชิ (ปลาโอแห้งขูด), อาโอโนริ (สาหร่ายทะเลสีเขียวแห้ง), ขิงดองแดง (beni shoga หรือ kizami beni shoga), ต้นหอมซอย) พักแป้งอย่างน้อยหนึ่งชั่วโมง (หรือค้างคืน) เพื่อให้โอโคโนมิยากิฟูนุ่ม. เตรียมส่วนผสมทั้งหมด. ในชามใหญ่ ผสมแป้งอเนกประสงค์ 120 กรัม, เกลือโคเชอร์ไดมอนด์คริสตัล 1.25 กรัม, น้ำตาล 1 กรัม, และผงฟู 1 กรัม. ผสมให้เข้ากัน. ปอกเปลือกและขูดมันเทศญี่ปุ่น (nagaimo/yamaimo) 160 กรัมในชามเล็ก. ระวังเพราะอาจระคายเคืองผิว. เติมมันเทศขูดและน้ำซุปปลาแห้ง (dashi) 180 มิลลิลิตรลงในชาม. ผสมให้เข้ากันแล้วพักไว้. ปิดฝาและแช่เย็นอย่างน้อยหนึ่งชั่วโมงเพื่อให้โอโคโนมิยากิฟูนุ่มขึ้น. ทิ้งแกนกลางของกะหล่ำปลีเขียว 640 กรัม และหั่นเป็นชิ้นหนา 1.3 ซม. สับกะหล่ำปลี. ล้างและสะเด็ดน้ำให้แห้งเพื่อขจัดความชื้นส่วนเกิน. สับขิงดองแดง 40 กรัม. หั่นหมูสามชั้นหั่นบาง 227 กรัมเป็นชิ้นยาว 10 ซม. แล้วพักไว้. ถ้านำแป้งออกจากตู้เย็นแล้ว ให้เติมไข่ไก่ขนาดใหญ่ 4 ฟอง (200 กรัม), เศษเทมปุระ (tenkasu/agedama) 25 กรัม และขิงดองแดงสองในสามส่วน. ผสมให้เข้ากัน. เติมกะหล่ำปลีสับลงในแป้งทีละหนึ่งในสามส่วน. ผสมให้เข้ากันก่อนเติมแต่ละครั้ง. ตรวจสอบความข้นของแป้งโอโคโนมิยากิ. ตรวจสอบให้แน่ใจว่ากะหล่ำปลีเคลือบด้วยแป้งดีแล้ว. ไม่จำเป็นต้องใช้กะหล่ำปลีทั้งหมดหากมันมากเกินไป. อุ่นน้ำมันพืชบนกระทะร้อนขนาดใหญ่หรือกระทะสองใบพร้อมฝาปิดบนไฟกลาง (200°c). ตักแป้งหนึ่งส่วนใส่ในแต่ละกระทะ. ใช้ไม้พายเกลี่ยแป้งให้เป็นวงกลมเส้นผ่านศูนย์กลางประมาณ 15 ซม. (ความหนาสุดท้าย 2 ซม.). ทำให้เล็ก/บางลงหากเพิ่งเริ่มทำ. วางหมูสามชั้น 3 ชิ้นบนโอโคโนมิยากิแต่ละชิ้น. ปรุงโดยปิดฝาบนไฟกลางถึงต่ำเป็นเวลา 5 นาที. เมื่อด้านล่างเป็นสีน้ำตาลสวย ให้กลับด้าน. กดเบาๆ เพื่อจัดรูปทรง. ปรุงโดยปิดฝาอีก 5 นาที. กลับด้านอีกครั้ง จัดรูปทรง. จากนั้นปรุงโดยไม่ปิดฝาเป็นเวลา 2 นาที. ย้ายโอโคโนมิยากิที่ปรุงแล้วไปที่จานแต่ละใบ. ปรุงโอโคโนมิยากิที่เหลือต่อไป. ผสมน้ำตาล 3 ช้อนโต๊ะ, ซอสหอยนางรม 60 มิลลิลิตร, ซอสมะเขือเทศ 120 มิลลิลิตร, และซอสวูสเตอร์เชียร์ 105 มิลลิลิตรในชามเล็ก. ผสมจนน้ำตาลละลายหมด. ปรับแต่งด้วยเครื่องเคียง. ทาซอสโอโคโนมิยากิด้วยแปรงหรือช้อน. ราดมายองเนสญี่ปุ่นคิวพีเป็นเส้นซิกแซก. ลากปลายตะเกียบผ่านมายองเนสทุก 1.3 ซม. เพื่อสร้างลวดลายที่เป็นเอกลักษณ์. โรยหน้าด้วยคัตสึโอบูชิ, อาโอโนริ และต้นหอมซอย. ตกแต่งด้วยขิงดองแดงที่เหลือ. ห่อโอโคโนมิยากิแต่ละชิ้น (ไม่มีซอสหรือเครื่องเคียง) ด้วยอลูมิเนียมฟอยล์แล้วใส่ในถุงแช่แข็ง. เก็บในตู้เย็นได้นานถึง 3 วัน และในช่องแช่แข็งได้นานหนึ่งเดือน. อุ่นโอโคโนมิยากิที่แช่เย็นในเตาอบหรือเตาอบที่ 180°c เป็นเวลา 10-15 นาที. อุ่นโอโคโนมิยากิแช่แข็งในเตาอบเป็นเวลา 25-30 นาที. ใช้กระทะญี่ปุ่นที่มีฝาปิด (กระทะร้อน) สำหรับทำโอโคโนมิยากิหลายชิ้น. มิฉะนั้น ให้ปรุงทีละชิ้นในกระทะ. japanese",
+  "tags": [
+    "Japanese",
+    "Slow Cook",
+    "Vegetarian",
+    "Hard"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "title": "Beef Chow Mein - Recipe Collection",
+  "description": "Learn how to make Beef Chow Mein. This recipe includes 17 ingredients and 5 detailed steps.",
+  "keywords": "chinese, beef, chow, mein, 200g, noodles, 22.5, canola, garlic, cloves,, finely, minced, mince, green, onion",
+  "canonical": "/recipe/beef-chow-mein",
+  "openGraph": {
+    "title": "Beef Chow Mein",
+    "description": "Learn how to make Beef Chow Mein. This recipe includes 17 ingredients and 5 detailed steps.",
+    "image": "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-1-Sauce.jpg",
+    "type": "article",
+    "url": "/recipe/beef-chow-mein"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Beef Chow Mein",
+    "description": "Learn how to make Beef Chow Mein. This recipe includes 17 ingredients and 5 detailed steps.",
+    "image": [
+      "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-1-Sauce.jpg",
+      "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-1.jpg",
+      "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-1.jpg",
+      "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-2.jpg",
+      "https://www.recipetineats.com/tachyon/2023/07/Beef-chow-mein_2.jpg"
+    ],
+    "recipeCategory": "Chinese",
+    "recipeCuisine": "Chinese",
+    "totalTime": "PT63M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "200g chow mein noodles",
+      "22.5 ml canola oil",
+      "2 garlic cloves, finely minced",
+      "200g beef mince",
+      "3 green onion stems, cut into 5 cm lengths (white and green parts separated)",
+      "1 egg",
+      "150g green cabbage, finely sliced",
+      "1 carrot, peeled, cut into thin batons",
+      "75g bean sprouts",
+      "22.5 ml light soy sauce",
+      "7.5 ml dark soy sauce",
+      "22.5 ml oyster sauce",
+      "22.5 ml Chinese cooking wine (Shaoxing)",
+      "7.5 ml white sugar",
+      "Pinch white pepper",
+      "7.5 ml cornflour",
+      "45 ml water"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-1-Sauce.jpg",
+          "content": "Prepare Sauce and Thickener: Mix light soy sauce, dark soy sauce, oyster sauce, Chinese cooking wine, sugar, and white pepper in one bowl. In another bowl, mix cornflour and water."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-1.jpg",
+          "content": "Cook Noodles: Prepare chow mein noodles according to package directions, then drain."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-1.jpg",
+          "content": "Cook Beef and Aromatics: Heat 22.5 ml canola oil in a large pan over high heat. Cook finely minced garlic for 10 seconds. Add 200g beef mince and cook until no longer pink. Stir in 1.5 tablespoons of the prepared sauce and the white parts of green onions. Cook for 2 minutes until beef is caramelized."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.recipetineats.com/tachyon/2023/07/How-to-make-Beef-Chow-Mein-2-2.jpg",
+          "content": "Add Egg and Vegetables: Mix the cornflour and water slurry into the remaining sauce. Add the egg to the beef in the pan and scramble it through. Once the egg is mostly cooked, add 1 carrot (cut into thin batons) and 150g green cabbage (finely sliced). Cook for 1 minute until cabbage starts to wilt."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.recipetineats.com/tachyon/2023/07/Beef-chow-mein_2.jpg",
+          "content": "Combine and Serve: Add 75g bean sprouts, cooked noodles, and the remaining sauce mixture to the pan. Toss well for 1 minute until the sauce is dispersed. Add the green parts of green onions and toss for another minute. Divide into bowls and serve immediately."
+        }
+      }
+    ]
+  }
+}

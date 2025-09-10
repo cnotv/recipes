@@ -1,0 +1,122 @@
+{
+  "title": "Kitsune Udon - Recipe Collection",
+  "description": "Learn how to make Kitsune Udon. This recipe includes 13 ingredients and 10 detailed steps.",
+  "keywords": "japanese, kitsune, udon, piece, kombu, (dried, kelp), piece), water, katsuobushi, bonito, flakes), (skip, vegetarian/vegan), dashi",
+  "canonical": "/recipe/kitsune-udon",
+  "openGraph": {
+    "title": "Kitsune Udon",
+    "description": "Learn how to make Kitsune Udon. This recipe includes 13 ingredients and 10 detailed steps.",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-Ingredients.jpg",
+    "type": "article",
+    "url": "/recipe/kitsune-udon"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Kitsune Udon",
+    "description": "Learn how to make Kitsune Udon. This recipe includes 13 ingredients and 10 detailed steps.",
+    "image": [
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-Ingredients.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-1-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-2-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-3-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-4-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-2.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-5.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-3.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-4.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-6.jpg"
+    ],
+    "recipeCategory": "Japanese",
+    "recipeCuisine": "Japanese",
+    "totalTime": "PT122M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1 piece kombu (dried kelp) (5 x 12 cm per piece)",
+      "600 ml water",
+      "15 g katsuobushi (dried bonito flakes) (skip for vegetarian/vegan)",
+      "540 ml dashi (Japanese soup stock)",
+      "1 tablespoon mirin",
+      "1 teaspoon sugar",
+      "1 tablespoon usukuchi (light-colored) soy sauce (can substitute regular soy sauce)",
+      "½ teaspoon Diamond Crystal kosher salt",
+      "4 Inari age (seasoned fried tofu pouch)",
+      "1 green onion",
+      "4 slices narutomaki (fish cakes) (optional; skip for vegetarian/vegan)",
+      "2 servings udon noodles (500 g frozen or 180 g dry udon noodles)",
+      "Shichimi Togarashi (Japanese seven spice) (optional)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-Ingredients.jpg",
+          "content": "Gather all ingredients. For best flavor, make dashi from scratch."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-1-1.jpg",
+          "content": "Soak 1 piece of kombu in 600 ml water for at least 30 minutes (skip if no time)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-2-1.jpg",
+          "content": "Transfer kombu and water to a saucepan and slowly bring to a boil over medium-low heat."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-3-1.jpg",
+          "content": "Remove kombu just before boiling. For non-vegetarian/vegan, add 15 g katsuobushi and bring to a boil again."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-4-1.jpg",
+          "content": "Once boiling, simmer for 15 seconds, turn off heat. Let katsuobushi sink for 10-15 minutes, then strain."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-2.jpg",
+          "content": "In a saucepan, combine 540 ml dashi, 1 tablespoon mirin, 1 teaspoon sugar, 1 tablespoon usukuchi soy sauce, and ½ teaspoon kosher salt. Bring to a boil, then turn off heat or simmer low."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-5.jpg",
+          "content": "Squeeze liquid from 4 Inari age. Thinly slice 1 green onion and 4 narutomaki slices (3 mm thick)."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-3.jpg",
+          "content": "Boil water for 2 servings (500 g frozen or 180 g dry) udon noodles. Reheat frozen udon for 1 minute; cook dry noodles as per package."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-4.jpg",
+          "content": "Drain noodles, shaking off excess water."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2017/11/Kitsune-Udon-6.jpg",
+          "content": "Divide noodles into bowls. Pour hot broth over. Top with Inari age, narutomaki, and green onions. Sprinkle shichimi togarashi (optional)."
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "title": "Lemon Scallopini - Recipe Collection",
+  "description": "Learn how to make Lemon Scallopini. This recipe includes 6 ingredients and 3 detailed steps.",
+  "keywords": "italian, lemon, scallopini, veal, cutlets, (approx., juice, fine, salt, taste, black, pepper, \"00\", flour, needed",
+  "canonical": "/recipe/lemon-scallopini",
+  "openGraph": {
+    "title": "Lemon Scallopini",
+    "description": "Learn how to make Lemon Scallopini. This recipe includes 6 ingredients and 3 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_1.jpg",
+    "type": "article",
+    "url": "/recipe/lemon-scallopini"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Lemon Scallopini",
+    "description": "Learn how to make Lemon Scallopini. This recipe includes 6 ingredients and 3 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_1.jpg",
+      "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_4.jpg",
+      "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_7.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT27M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "8 veal cutlets (approx. 430 g)",
+      "50 ml lemon juice",
+      "Fine salt to taste",
+      "Black pepper to taste",
+      "\"00\" flour as needed",
+      "40 g butter"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_1.jpg",
+          "content": "Pound veal cutlets between parchment paper. Lightly flour them, removing excess."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_4.jpg",
+          "content": "Melt 40 g butter in a large pan over low heat. Add cutlets, increase heat slightly, and brown for a couple of minutes on each side. Season with fine salt and black pepper."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/244/24445/draft-scaloppine-al-limone_7.jpg",
+          "content": "Lower heat, add 50 ml lemon juice. Cook gently for a couple of minutes until the sauce thickens. Turn off heat and serve immediately."
+        }
+      }
+    ]
+  }
+}

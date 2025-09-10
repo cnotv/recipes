@@ -1,0 +1,76 @@
+{
+  "title": "Zucchini Carpaccio - Recipe Collection",
+  "description": "Learn how to make Zucchini Carpaccio. This recipe includes 7 ingredients and 5 detailed steps.",
+  "keywords": "italian, zucchini, carpaccio, zucchinis, extra, virgin, olive, lemon, needed, basil, chopped, pistachios, salt, pepper, recipe",
+  "canonical": "/recipe/zucchini-carpaccio",
+  "openGraph": {
+    "title": "Zucchini Carpaccio",
+    "description": "Learn how to make Zucchini Carpaccio. This recipe includes 7 ingredients and 5 detailed steps.",
+    "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_affettare_zucchine_1.jpg",
+    "type": "article",
+    "url": "/recipe/zucchini-carpaccio"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Zucchini Carpaccio",
+    "description": "Learn how to make Zucchini Carpaccio. This recipe includes 7 ingredients and 5 detailed steps.",
+    "image": [
+      "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_affettare_zucchine_1.jpg",
+      "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_3.jpg",
+      "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_5.jpg",
+      "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_8.jpg",
+      "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT99M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "3 zucchinis",
+      "70 ml extra virgin olive oil",
+      "0.5 lemon",
+      "As needed basil",
+      "As needed chopped pistachios",
+      "As needed salt",
+      "As needed pepper"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_affettare_zucchine_1.jpg",
+          "content": "Wash, dry, and trim 3 zucchinis. Slice them thinly (1-2 mm thick) lengthwise using a peeler or mandoline."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_3.jpg",
+          "content": "In a small bowl, prepare an emulsion by mixing 70 ml of extra virgin olive oil, a pinch of salt, pepper, and the filtered juice of half a lemon."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_5.jpg",
+          "content": "Place the sliced zucchinis in a bowl. Pour the prepared emulsion over them and gently mix to coat without breaking."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine_condire_8.jpg",
+          "content": "Transfer the seasoned zucchinis to a serving dish. Garnish with fresh basil leaves and chopped pistachios."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://staticcookist.akamaized.net/wp-content/uploads/sites/21/2024/06/Carpaccio-di-zucchine.jpg",
+          "content": "Cover with plastic wrap and marinate in the fridge for about 1 hour. Serve chilled."
+        }
+      }
+    ]
+  }
+}

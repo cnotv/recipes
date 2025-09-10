@@ -1,0 +1,148 @@
+{
+  "title": "Massaman Curry Meatballs - Recipe Collection",
+  "description": "Learn how to make Massaman Curry Meatballs. This recipe includes 23 ingredients and 12 detailed steps.",
+  "keywords": "thai, massaman, curry, meatballs, coconut, milk,, divided, recipe, semi-homemade, paste, (recipe, below), store-bought, lean, ground",
+  "canonical": "/recipe/massaman-curry-meatballs",
+  "openGraph": {
+    "title": "Massaman Curry Meatballs",
+    "description": "Learn how to make Massaman Curry Meatballs. This recipe includes 23 ingredients and 12 detailed steps.",
+    "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+    "type": "article",
+    "url": "/recipe/massaman-curry-meatballs"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Massaman Curry Meatballs",
+    "description": "Learn how to make Massaman Curry Meatballs. This recipe includes 23 ingredients and 12 detailed steps.",
+    "image": [
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+      "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg"
+    ],
+    "recipeCategory": "Thai",
+    "recipeCuisine": "Thai",
+    "totalTime": "PT138M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "180 ml coconut milk, divided",
+      "1 recipe semi-homemade massaman curry paste (recipe below) or 50 g store-bought massaman curry paste",
+      "450 g lean ground beef",
+      "240 ml minced onion, about half a large onion",
+      "120 ml dry bread crumbs",
+      "1 beaten egg",
+      "30 ml light brown sugar, packed",
+      "22.5 ml fish sauce",
+      "30 ml cooking tamarind or 15 ml Worcestershire sauce or a squeeze of lime",
+      "Diced red bell pepper for garnish (optional)",
+      "For serving: jasmine rice or mashed/roast potato",
+      "240 ml coconut milk (for sauce)",
+      "10 ml palm sugar or light brown sugar, packed (for sauce)",
+      "10 ml cooking tamarind (for sauce)",
+      "5-15 ml fish sauce, as needed (for sauce)",
+      "60 ml roasted peanuts, unsalted, roughly chopped (for sauce)",
+      "50 g Thai red curry paste (for semi-homemade massaman curry paste)",
+      "5 ml ground coriander (for semi-homemade massaman curry paste)",
+      "5 ml ground cumin (for semi-homemade massaman curry paste)",
+      "5 ml ground cinnamon (for semi-homemade massaman curry paste)",
+      "1.25 ml ground cloves (for semi-homemade massaman curry paste)",
+      "0.625 ml ground nutmeg (for semi-homemade massaman curry paste)",
+      "1.25 ml ground cardamom (for semi-homemade massaman curry paste)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Preheat the oven to 230°C."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "In a medium saute pan, bring 120 ml coconut milk to a boil over medium high heat. Add curry paste and stir to mix, then keep cooking and stirring until it’s very thick and pasty. Remove half of this mixture and set it aside—this will be used for the sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "With the other half of curry paste in the pan, add onion and cook for a few minutes over medium heat until the onions are translucent. Remove from heat and let cool slightly."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "In a large mixing bowl, add beef, bread crumbs, egg, 60 ml coconut milk, brown sugar, fish sauce, tamarind, and the curry paste and onion mixture; knead just until well combined."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Line a baking sheet with parchment or greased aluminum foil."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Form meatballs using 60 ml of the meat mixture per meatball, and place them on the baking sheet."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Bake for 25-30 minutes, rotating the pan halfway through for even browning."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "While the meatball bakes, make the sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Put the curry paste you have saved back in the pan and add 240 ml of coconut milk, light brown sugar and tamarind. Mix well and bring to a boil, and simmer for about 2 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Stir in the peanuts. Taste and add fish sauce to adjust saltiness as needed."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Pour the sauce into a serving dish and place cooked meatballs on the sauce."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://hot-thai-kitchen.com/wp-content/uploads/2020/03/Massaman-meatballs-web.jpg",
+          "content": "Garnish with red bell peppers and serve with rice or potato side dish."
+        }
+      }
+    ]
+  }
+}

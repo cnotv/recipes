@@ -1,0 +1,241 @@
+{
+  "title": "Okonomiyaki - Recipe Collection",
+  "description": "Learn how to make Okonomiyaki. This recipe includes 14 ingredients and 25 detailed steps.",
+  "keywords": "japanese, okonomiyaki, grams, all-purpose, flour, 1.25, diamond, crystal, kosher, salt, gram, sugar, baking, powder, nagaimo/yamaimo",
+  "canonical": "/recipe/okonomiyaki",
+  "openGraph": {
+    "title": "Okonomiyaki",
+    "description": "Learn how to make Okonomiyaki. This recipe includes 14 ingredients and 25 detailed steps.",
+    "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-Ingredients.jpg",
+    "type": "article",
+    "url": "/recipe/okonomiyaki"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Okonomiyaki",
+    "description": "Learn how to make Okonomiyaki. This recipe includes 14 ingredients and 25 detailed steps.",
+    "image": [
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-Ingredients.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-5.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-3.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-6.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-7.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-1.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-2.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-4.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-8.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-9.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-10.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-11.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-12.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-13.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-14.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-15.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-16.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-17.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2016/07/Okonomi-Sauce-Step.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-18.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-19.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-20.jpg",
+      "https://www.justonecookbook.com/wp-content/uploads/2016/12/Zojirushi-Electric-Griddle.jpg"
+    ],
+    "recipeCategory": "Japanese",
+    "recipeCuisine": "Japanese",
+    "totalTime": "PT180M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "120 grams all-purpose flour",
+      "1.25 grams Diamond Crystal kosher salt",
+      "1 gram sugar",
+      "1 gram baking powder",
+      "160 grams nagaimo/yamaimo (mountain yam)",
+      "180 milliliters dashi (Japanese soup stock)",
+      "640 grams green cabbage",
+      "40 grams pickled red ginger (beni shoga or kizami beni shoga)",
+      "227 grams sliced pork belly",
+      "4 large eggs (200 grams)",
+      "25 grams tenkasu/agedama (tempura scraps)",
+      "neutral oil",
+      "okonomiyaki sauce",
+      "toppings of your choice (Japanese Kewpie mayonnaise, katsuobushi (dried bonito flakes), aonori (dried green laver seaweed), pickled red ginger (beni shoga or kizami beni shoga), chopped green onions/scallions)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-Ingredients.jpg",
+          "content": "Let the batter rest for at least one hour (and up to overnight) for a fluffier okonomiyaki. Gather all ingredients."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-5.jpg",
+          "content": "In a large bowl, combine 120 grams all-purpose flour, 1.25 grams Diamond Crystal kosher salt, 1 gram sugar, and 1 gram baking powder. Mix well."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-3.jpg",
+          "content": "Peel and grate 160 grams nagaimo/yamaimo (mountain yam) in a small bowl. Be careful, as it may irritate skin."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-6.jpg",
+          "content": "Add the grated nagaimo and 180 milliliters dashi (Japanese soup stock) to the bowl."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-7.jpg",
+          "content": "Mix until combined and set aside. Cover and refrigerate for at least one hour for fluffier okonomiyaki."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-1.jpg",
+          "content": "Discard the core of 640 grams green cabbage and cut into 1.3 cm slices."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-2.jpg",
+          "content": "Mince the cabbage strips. Wash and drain well to remove excess moisture."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-4.jpg",
+          "content": "Chop 40 grams pickled red ginger. Cut 227 grams sliced pork belly into 10 cm pieces and set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-8.jpg",
+          "content": "If rested, take the base batter from the refrigerator. Add 4 large eggs (200 grams), 25 grams tenkasu/agedama, and two-thirds of the pickled red ginger. Mix until combined."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-9.jpg",
+          "content": "Add the minced cabbage to the batter, one-third at a time. Mix well after each addition."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-10.jpg",
+          "content": "Check the consistency. Ensure cabbage is well coated. Do not use all cabbage if batter is overpowered."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-11.jpg",
+          "content": "Heat neutral oil in a large griddle or two frying pans with lids on medium heat (200°C). Add one portion of batter to each pan."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-12.jpg",
+          "content": "Using spatulas, shape the batter into a 15 cm diameter circle (final thickness 2 cm). Make smaller/thinner if new to flipping."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-13.jpg",
+          "content": "Place 3 slices of pork belly on top of each okonomiyaki. Cook, covered, on medium-low heat for 5 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-14.jpg",
+          "content": "Once the bottom is browned, flip them over."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-15.jpg",
+          "content": "Gently press to fix shape. Cook, covered, for another 5 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-16.jpg",
+          "content": "Flip one last time, fix shape. Cook, uncovered, for 2 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-17.jpg",
+          "content": "Transfer to plates. Continue cooking remaining okonomiyaki."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2016/07/Okonomi-Sauce-Step.jpg",
+          "content": "Combine 3 tablespoons sugar, 60 milliliters oyster sauce, 120 milliliters ketchup, and 105 milliliters Worcestershire sauce. Mix until sugar dissolves."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-18.jpg",
+          "content": "Customize with toppings. Spread okonomiyaki sauce with a brush or spoon."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-19.jpg",
+          "content": "Drizzle Japanese Kewpie mayonnaise in a zigzag. Drag a chopstick tip through mayo every 1.3 cm for iconic look."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2024/02/Okonomiyaki-20.jpg",
+          "content": "Sprinkle with katsuobushi, aonori, and chopped green onions/scallions. Garnish with remaining pickled red ginger."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "",
+          "content": "Wrap each okonomiyaki (without sauce or toppings) in aluminum foil and freeze bag. Refrigerate for up to 3 days, freeze for a month."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "",
+          "content": "Reheat refrigerated okonomiyaki in a toaster oven/oven at 180°C for 10-15 minutes. Reheat frozen okonomiyaki in oven for 25-30 minutes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.justonecookbook.com/wp-content/uploads/2016/12/Zojirushi-Electric-Griddle.jpg",
+          "content": "Use a Japanese griddle with a lid (hot plate) for multiple okonomiyaki. Otherwise, cook one at a time in a frying pan."
+        }
+      }
+    ]
+  }
+}

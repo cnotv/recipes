@@ -1,0 +1,113 @@
+{
+  "title": "Quiche Lorraine - Recipe Collection",
+  "description": "Learn how to make Quiche Lorraine. This recipe includes 12 ingredients and 9 detailed steps.",
+  "keywords": "french, quiche, lorraine, butter, flour, (approximately, medium), coarse, salt, fresh, liquid, cream, sweet, stretched, pancetta",
+  "canonical": "/recipe/quiche-lorraine",
+  "openGraph": {
+    "title": "Quiche Lorraine",
+    "description": "Learn how to make Quiche Lorraine. This recipe includes 12 ingredients and 9 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_1-3.jpg",
+    "type": "article",
+    "url": "/recipe/quiche-lorraine"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Quiche Lorraine",
+    "description": "Learn how to make Quiche Lorraine. This recipe includes 12 ingredients and 9 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_1-3.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_4-6.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_7-9.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_10-12.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_13-15.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_16-18.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_19-21.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_22-24.jpg",
+      "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_25-27.jpg"
+    ],
+    "recipeCategory": "French",
+    "recipeCuisine": "French",
+    "totalTime": "PT189M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "125 g butter",
+      "250 g 00 flour",
+      "52 g egg (approximately 1 medium)",
+      "5 g coarse salt",
+      "450 g fresh liquid cream",
+      "200 g sweet stretched pancetta",
+      "150 g Gruyère cheese",
+      "165 g eggs (approximately 3 medium)",
+      "18 g egg yolk (approximately 1 medium)",
+      "Fine salt to taste",
+      "Black pepper to taste",
+      "Nutmeg to taste"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_1-3.jpg",
+          "content": "To prepare the Quiche Lorraine, start with the base crust, the savory shortcrust pastry. In a mixer, combine the flour, cold butter in pieces, coarse salt, and the egg. Process until crumbs form."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_4-6.jpg",
+          "content": "Transfer the mixture to a work surface, knead quickly to form a ball. Wrap it in cling film and let it rest in the refrigerator for at least 1 hour."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_7-9.jpg",
+          "content": "Meanwhile, prepare the pancetta. Remove the rind, slice it, then cut into strips and finally into 1 cm thick pieces. Blanch them for 50 seconds in boiling water."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_10-12.jpg",
+          "content": "Drain and let cool. Then remove the crust from the cheese and grate it with a large-hole grater."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_13-15.jpg",
+          "content": "Pour the cream into a bowl, add the eggs, the egg yolk, salt, pepper, and grate a pinch of nutmeg. Whisk briefly with a fork and set aside."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_16-18.jpg",
+          "content": "Grease a 26 cm fluted ceramic baking dish and preheat the oven. On a lightly floured surface, briefly beat the savory pastry with a rolling pin, then roll it out to 3-4 mm thick. Dust with a little more flour, then roll it around the rolling pin, and finally unroll it into the mold."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_19-21.jpg",
+          "content": "Press to make the dough adhere well, then trim the excess with a small knife. Prick the base with a fork."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_22-24.jpg",
+          "content": "Pour ¾ of the grated cheese. Then add the pancetta, and the cream mixture."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/203/20393/20393_quiche_lorraine_strip_25-27.jpg",
+          "content": "Sprinkle with the remaining cheese. Bake the Quiche Lorraine in a static oven at 180°C for approximately 50-60 minutes. All that's left is to wait a few minutes before serving!"
+        }
+      }
+    ]
+  }
+}

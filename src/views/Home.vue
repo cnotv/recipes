@@ -66,18 +66,17 @@
           <div class="recipes-grid">
             <!-- Display loaded recipes -->
             <RecipeCard
-              v-for="recipe in displayedRecipes"
-              :key="recipe.url"
-              :recipe="recipe"
+              v-for="(recipeCard, index) in displayedRecipesForCard"
+              :key="displayedRecipes[index].url"
+              :recipe="recipeCard"
               :current-language="currentLanguage"
-              @view-recipe="viewRecipe"
+              @view-recipe="(_recipe, lang) => viewRecipe(displayedRecipes[index], lang)"
             />
             
-            <!-- Display skeletons for recipes still loading -->
-            <RecipeSkeleton
-              v-for="n in skeletonCount"
-              :key="`skeleton-${n}`"
-            />
+            <!-- Loading more indicator -->
+            <div v-if="isLoadingMore" class="loading-more">
+              {{ $t('loadingMore') }}
+            </div>
           </div>
 
           <!-- Infinite scroll loading indicator -->
@@ -101,15 +100,16 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useRoute } from 'vue-router'
 import RecipeCard from '../components/RecipeCard.vue'
-import RecipeSkeleton from '../components/RecipeSkeleton.vue'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { useTheme } from '../composables/useTheme'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
+import { useStaticRecipes } from '../composables/useStaticRecipes'
 import { useI18n } from 'vue-i18n'
 import { useMeta, createHomeMeta, updateMetaTags } from '../composables/useMeta'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
+import type { RecipeMetadata } from '../composables/useStaticRecipes'
 
 // Setup SEO meta tags for home page
 useMeta(createHomeMeta())
@@ -118,6 +118,28 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const { currentLanguage, getLanguageName, wasLanguageAutoDetected, setLanguage } = useLanguagePreference()
+const { currentTheme, setTheme, availableThemes } = useTheme()
+const { selectedCuisine } = useCuisinePreference()
+const { 
+  loadRecipeIndex
+} = useStaticRecipes()
+
+// Show a subtle notification when language was auto-detected
+const showLanguageDetectionInfo = ref(false)
+
+// Reactive state
+const recipeMetadata = ref<RecipeMetadata[]>([])
+const recipes = ref<Recipe[]>([])
+const loading = ref(true)
+const error = ref('')
+const recipesPerPage = 12
+const currentDisplayCount = ref(recipesPerPage)
+
+// Progressive loading state
+const totalRecipeCount = ref(0)
+
+// Infinite scroll state
+const isLoadingMore = ref(false)
 
 // Watch for language changes to update meta tags
 watch(currentLanguage, (newLanguage) => {
@@ -126,13 +148,13 @@ watch(currentLanguage, (newLanguage) => {
 }, { flush: 'post' })
 
 // Check for language parameter in URL on mount
-onMounted(() => {
+onMounted(async () => {
   const urlLanguage = route.query.lang as SupportedLanguage
   if (urlLanguage && ['en', 'de', 'jp', 'th'].includes(urlLanguage)) {
     setLanguage(urlLanguage)
   }
   
-  loadRecipes()
+  await loadStaticData()
   
   // Show language detection info if language was auto-detected
   if (wasLanguageAutoDetected.value) {
@@ -142,43 +164,15 @@ onMounted(() => {
     }, 8000)
   }
 })
-const { currentTheme, setTheme, availableThemes } = useTheme()
-const { selectedCuisine } = useCuisinePreference()
 
-// Show a subtle notification when language was auto-detected
-const showLanguageDetectionInfo = ref(false)
-
-// Reactive state
-const recipes = ref<Recipe[]>([])
-const loading = ref(true)
-const error = ref('')
-const recipesPerPage = 12
-const currentDisplayCount = ref(recipesPerPage)
-
-// Progressive loading state
-const totalRecipeCount = ref(0)
-const allRecipeFiles = ref<string[]>([])
-const loadingRecipeIndex = ref(0)
-
-// Infinite scroll state
-const isLoadingMore = ref(false)
 const hasMoreRecipes = computed(() => {
   return currentDisplayCount.value < filteredRecipes.value.length
 })
 
-// Skeleton state
-const skeletonCount = computed(() => {
-  // Show skeletons for recipes that are still loading
-  const remainingToLoad = totalRecipeCount.value - recipes.value.length
-  const remainingToDisplay = Math.max(0, currentDisplayCount.value - recipes.value.length)
-  return Math.min(remainingToLoad, remainingToDisplay)
-})
-
-// Computed properties
 const availableCuisines = computed(() => {
   const cuisineMap = new Map<string, number>()
   
-  recipes.value.forEach(recipe => {
+  recipeMetadata.value.forEach(recipe => {
     const cuisine = recipe.cuisine || 'Unknown'
     cuisineMap.set(cuisine, (cuisineMap.get(cuisine) || 0) + 1)
   })
@@ -189,9 +183,9 @@ const availableCuisines = computed(() => {
 })
 
 const filteredRecipes = computed(() => {
-  return recipes.value.filter(recipe => {
+  return recipeMetadata.value.filter(recipe => {
     // Filter by language availability
-    const hasLanguage = recipe.languages[currentLanguage.value] !== undefined
+    const hasLanguage = recipe.languages.includes(currentLanguage.value)
     
     // Filter by cuisine if selected
     const matchesCuisine = selectedCuisine.value === '' || 
@@ -199,6 +193,27 @@ const filteredRecipes = computed(() => {
     
     return hasLanguage && matchesCuisine
   })
+})
+
+// Computed recipes in the expected format for RecipeCard
+const displayedRecipesForCard = computed(() => {
+  return displayedRecipes.value.map(metadata => ({
+    url: metadata.url,
+    cuisine: metadata.cuisine,
+    languages: {
+      en: { 
+        title: metadata.title, 
+        // Use actual ingredient preview data
+        ingredients: metadata.ingredientPreview || [],
+        steps: Array(metadata.stepCount).fill(null).map((_, index) => ({
+          image: index === 0 ? (metadata.featuredImage || metadata.images[0]?.url || '') : '',
+          content: index === 0 ? metadata.description : ''
+        }))
+      }
+    },
+    // Pass metadata for correct counts
+    _totalIngredientCount: metadata.ingredientCount
+  }))
 })
 
 const displayedRecipes = computed(() => {
@@ -214,7 +229,7 @@ const languageOptions = computed(() => [
 ])
 
 const cuisineOptions = computed(() => [
-  { value: '', label: `${t('allCuisines')} (${recipes.value.length})` },
+  { value: '', label: `${t('allCuisines')} (${recipeMetadata.value.length})` },
   ...availableCuisines.value.map(cuisine => ({
     value: cuisine.name,
     label: `${cuisine.name} (${cuisine.count})`
@@ -255,101 +270,78 @@ const resetDisplayedRecipes = () => {
   resetInfiniteScroll()
 }
 
-// Methods
-// Progressive loading methods
-const loadRecipeIndex = async (): Promise<void> => {
-  try {
-    const indexResponse = await fetch('/recipes/index.json')
-    if (indexResponse.ok) {
-      const recipeFiles = await indexResponse.json()
-      if (Array.isArray(recipeFiles)) {
-        allRecipeFiles.value = recipeFiles
-        totalRecipeCount.value = recipeFiles.length
-        console.log(`Found ${recipeFiles.length} recipe files`)
-      }
-    }
-  } catch (err) {
-    console.log('Recipe index not found')
-    error.value = 'Recipe index not found. Please check your recipe files.'
-  }
-}
-
-const loadSingleRecipe = async (fileName: string): Promise<Recipe | null> => {
-  try {
-    const response = await fetch(`/recipes/${fileName}`)
-    if (response.ok) {
-      const data = await response.json()
-      if (data && data.url && data.languages) {
-        return {
-          url: data.url,
-          cuisine: data.cuisine || 'Unknown',
-          languages: data.languages
-        }
-      }
-    }
-  } catch (err) {
-    console.log(`Failed to load ${fileName}:`, err)
-  }
-  return null
-}
-
-const loadNextRecipe = async (): Promise<void> => {
-  if (loadingRecipeIndex.value >= allRecipeFiles.value.length) {
-    return
-  }
-  
-  const fileName = allRecipeFiles.value[loadingRecipeIndex.value]
-  const recipe = await loadSingleRecipe(fileName)
-  
-  if (recipe) {
-    recipes.value.push(recipe)
-  }
-  
-  loadingRecipeIndex.value++
-  
-  // Continue loading next recipe with a small delay to prevent blocking
-  if (loadingRecipeIndex.value < allRecipeFiles.value.length) {
-    setTimeout(() => {
-      loadNextRecipe()
-    }, 50) // 50ms delay between recipe loads
-  }
-}
-
-const loadRecipes = async () => {
+// Load static data generated at build time
+const loadStaticData = async () => {
   try {
     loading.value = true
     error.value = ''
     
-    // First load the recipe index to know how many recipes we have
-    await loadRecipeIndex()
+    const staticData = await loadRecipeIndex()
+    recipeMetadata.value = staticData.recipes
+    totalRecipeCount.value = staticData.totalCount
     
     if (totalRecipeCount.value === 0) {
-      error.value = 'No recipes found. Please add JSON files to the public/recipes/ directory.'
+      error.value = 'No recipes found. Please rebuild the project to generate recipe data.'
       return
     }
     
-    // Start loading recipes progressively
-    loadNextRecipe()
+    // Load individual recipe data for the displayed recipes
+    await loadDisplayedRecipeData()
     
   } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Failed to load recipes'
-    console.error('Error loading recipes:', err)
+    error.value = err instanceof Error ? err.message : 'Failed to load recipe data'
+    console.error('Error loading static data:', err)
   } finally {
     loading.value = false
     resetDisplayedRecipes()
   }
 }
 
-const viewRecipe = (recipe: Recipe, language: SupportedLanguage) => {
-  const encodedUrl = encodeURIComponent(recipe.url)
-  // Store recipe data in sessionStorage for the detail page
-  sessionStorage.setItem('currentRecipe', JSON.stringify(recipe))
+// Load full recipe data for currently displayed recipes
+const loadDisplayedRecipeData = async () => {
+  const recipesToLoad = displayedRecipes.value.slice(0, currentDisplayCount.value)
+  const loadedRecipes: Recipe[] = []
+  
+  for (const metadata of recipesToLoad) {
+    try {
+      const response = await fetch(`/recipes/${metadata.filename}`)
+      if (response.ok) {
+        const recipe = await response.json()
+        loadedRecipes.push(recipe)
+      }
+    } catch (err) {
+      console.warn(`Failed to load recipe ${metadata.filename}:`, err)
+    }
+  }
+  
+  recipes.value = loadedRecipes
+}
+
+const viewRecipe = (recipeMetadata: RecipeMetadata, language: SupportedLanguage) => {
+  const encodedUrl = encodeURIComponent(recipeMetadata.url)
+  // Store recipe metadata for the detail page
+  sessionStorage.setItem('currentRecipeMetadata', JSON.stringify(recipeMetadata))
   router.push({
     name: 'recipe-detail',
     params: { url: encodedUrl },
     query: { lang: language }
   })
 }
+
+// Watch for filter changes to reset display
+watch([currentLanguage, selectedCuisine], () => {
+  resetDisplayedRecipes()
+  // Reload recipe data when filters change
+  loadDisplayedRecipeData()
+})
+
+// Update URL when language changes
+watch(currentLanguage, (newLanguage) => {
+  router.replace({
+    ...route,
+    query: { ...route.query, lang: newLanguage }
+  })
+}, { flush: 'post' })
 
 // Watch for filter changes to reset display
 watch([currentLanguage, selectedCuisine], () => {

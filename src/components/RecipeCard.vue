@@ -9,7 +9,7 @@
     <div class="recipe-content">
       <h3 class="recipe-title">{{ recipeData?.title }}</h3>
       <div class="ingredients-preview">
-        <strong>{{ $t('ingredients') }} ({{ recipeData?.ingredients.length || 0 }}):</strong>
+        <strong>{{ $t('ingredients') }} ({{ totalIngredientCount }}):</strong>
         <p class="ingredients-text">{{ ingredientsPreview }}</p>
       </div>
       <div class="steps-info">
@@ -102,12 +102,26 @@ const getCuisineColor = (cuisine: string): string => {
   return colors[cuisine] || colors['Unknown']
 }
 
+const totalIngredientCount = computed(() => {
+  // Use the total count if provided (for preview mode), otherwise use actual ingredient array length
+  return props.recipe._totalIngredientCount || recipeData.value?.ingredients.length || 0
+})
+
 const ingredientsPreview = computed(() => {
   const ingredients = recipeData.value?.ingredients || []
-  if (ingredients.length <= 3) {
+  const totalCount = totalIngredientCount.value
+  
+  if (ingredients.length === 0) return ''
+  
+  // If we have the full ingredient list or less than 3 ingredients total
+  if (ingredients.length >= totalCount || totalCount <= 3) {
     return ingredients.join(', ')
   }
-  return ingredients.slice(0, 3).join(', ') + `... +${ingredients.length - 3} ${t('more')}`
+  
+  // If we have a preview (less ingredients than total), show with +X more
+  const displayedIngredients = ingredients.slice(0, 3)
+  const remainingCount = totalCount - displayedIngredients.length
+  return displayedIngredients.join(', ') + `... +${remainingCount} ${t('more')}`
 })
 </script>
 

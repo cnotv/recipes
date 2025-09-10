@@ -1,0 +1,92 @@
+{
+  "title": "Vegetable Caponata - Recipe Collection",
+  "description": "Learn how to make Vegetable Caponata. This recipe includes 15 ingredients and 6 detailed steps.",
+  "keywords": "italian, vegetable, caponata, eggplant, carrot, zucchini, bell, pepper, celery, stalk, cherry, tomatoes, onion, capers, vinegar",
+  "canonical": "/recipe/vegetable-caponata",
+  "openGraph": {
+    "title": "Vegetable Caponata",
+    "description": "Learn how to make Vegetable Caponata. This recipe includes 15 ingredients and 6 detailed steps.",
+    "image": "https://www.misya.info/wp-content/uploads/2016/06/1-melanzane-in-padella.jpg",
+    "type": "article",
+    "url": "/recipe/vegetable-caponata"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Vegetable Caponata",
+    "description": "Learn how to make Vegetable Caponata. This recipe includes 15 ingredients and 6 detailed steps.",
+    "image": [
+      "https://www.misya.info/wp-content/uploads/2016/06/1-melanzane-in-padella.jpg",
+      "https://www.misya.info/wp-content/uploads/2016/06/2-aggiungere-zucchine-melanzane.jpg",
+      "https://www.misya.info/wp-content/uploads/2016/06/3-aggiungere-pomodorini.jpg",
+      "https://www.misya.info/wp-content/uploads/2016/06/verdure-in-padella.jpg",
+      "https://www.misya.info/wp-content/uploads/2016/06/aggiungere-aceto.jpg",
+      "https://www.misya.info/wp-content/uploads/2016/06/caponata-di-verdure.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT60M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "1 eggplant",
+      "1 carrot",
+      "1 zucchini",
+      "0.5 bell pepper",
+      "1 celery stalk",
+      "5 cherry tomatoes",
+      "1 onion",
+      "15 g of capers",
+      "50 ml of vinegar",
+      "15 g of sugar",
+      "10 black olives",
+      "1 chili pepper",
+      "Olive oil (as needed)",
+      "Salt (to taste)",
+      "Fresh basil (for garnish)"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/1-melanzane-in-padella.jpg",
+          "content": "Wash, peel, and dice all vegetables. Heat ample olive oil in a large pan and fry the eggplant until softened and golden."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/2-aggiungere-zucchine-melanzane.jpg",
+          "content": "Add carrots, zucchini, and bell pepper. Season with salt, stir, and cook until half-done. Remove vegetables with a slotted spoon, leaving the oil in the pan."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/3-aggiungere-pomodorini.jpg",
+          "content": "In the same pan, add diced onion, celery, and halved cherry tomatoes. Sauté until softened, then add basil, chili pepper, olives, and capers. Stir to combine the flavors."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/verdure-in-padella.jpg",
+          "content": "Return the fried vegetables to the pan. Adjust salt and cook for a few minutes to meld the flavors."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/aggiungere-aceto.jpg",
+          "content": "Add the sugar and immediately deglaze with vinegar."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.misya.info/wp-content/uploads/2016/06/caponata-di-verdure.jpg",
+          "content": "Let the vegetable caponata cool. Transfer to a serving dish, garnish with fresh basil, and serve."
+        }
+      }
+    ]
+  }
+}

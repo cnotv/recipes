@@ -1,0 +1,86 @@
+{
+  "title": "Saltimbocca alla Romana - Recipe Collection",
+  "description": "Learn how to make Saltimbocca alla Romana. This recipe includes 9 ingredients and 6 detailed steps.",
+  "keywords": "italian, saltimbocca, alla, romana, veal, cutlets, (from, sirloin), thin, slices, prosciutto, crudo, sage, leaves, butter",
+  "canonical": "/recipe/saltimbocca-alla-romana",
+  "openGraph": {
+    "title": "Saltimbocca alla Romana",
+    "description": "Learn how to make Saltimbocca alla Romana. This recipe includes 9 ingredients and 6 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_1-3.jpg",
+    "type": "article",
+    "url": "/recipe/saltimbocca-alla-romana"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Saltimbocca alla Romana",
+    "description": "Learn how to make Saltimbocca alla Romana. This recipe includes 9 ingredients and 6 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_1-3.jpg",
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_4-6.jpg",
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_7-9.jpg",
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_10-12.jpg",
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_13-15.jpg",
+      "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_16-18.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT49M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "300 g veal cutlets (from the sirloin)",
+      "4 thin slices Prosciutto crudo",
+      "4 sage leaves",
+      "50 g butter",
+      "100 ml white wine",
+      "Black pepper to taste",
+      "50 g \"00\" flour",
+      "20 g extra virgin olive oil",
+      "20 ml water"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_1-3.jpg",
+          "content": "Slice and pound the veal cutlets until thin. Place a slice of prosciutto crudo and a sage leaf on each cutlet."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_4-6.jpg",
+          "content": "Secure with a toothpick. Melt 40 g of butter and 20 g of oil in a pan over medium-high heat."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_7-9.jpg",
+          "content": "Lightly flour the veal slices on one side only. Place them in the hot pan and increase temperature to brown the saltimbocca. Pepper to taste, do not add salt."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_10-12.jpg",
+          "content": "Once browned, deglaze with white wine and let the alcohol evaporate. Cover and cook for 1 minute. Transfer the saltimbocca to a plate and keep warm."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_13-15.jpg",
+          "content": "In the same pan, add 10 g of butter and 20 ml of water to the cooking liquid. Reduce until a slightly thick sauce forms."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/204/20401/20401_saltimbocca_alla_romana_strip_16-18.jpg",
+          "content": "Pour the sauce onto a serving plate and arrange the veal cutlets on top. Serve the saltimbocca hot."
+        }
+      }
+    ]
+  }
+}

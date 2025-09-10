@@ -1,0 +1,129 @@
+{
+  "title": "Tiella barese (rice, potatoes, and mussels) - Recipe Collection",
+  "description": "Learn how to make Tiella barese (rice, potatoes, and mussels). This recipe includes 12 ingredients and 11 detailed steps.",
+  "keywords": "italian, tiella, barese, (rice,, potatoes,, mussels), arborio, rice, mussels, clean), potatoes, grated, pecorino, romano, cherry",
+  "canonical": "/recipe/tiella-barese-rice-potatoes-and-mussels",
+  "openGraph": {
+    "title": "Tiella barese (rice, potatoes, and mussels)",
+    "description": "Learn how to make Tiella barese (rice, potatoes, and mussels). This recipe includes 12 ingredients and 11 detailed steps.",
+    "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_3.jpg",
+    "type": "article",
+    "url": "/recipe/tiella-barese-rice-potatoes-and-mussels"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "name": "Tiella barese (rice, potatoes, and mussels)",
+    "description": "Learn how to make Tiella barese (rice, potatoes, and mussels). This recipe includes 12 ingredients and 11 detailed steps.",
+    "image": [
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_3.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_6.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_9.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_12.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_15.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_18.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_21.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_24.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_27.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_30.jpg",
+      "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_33.jpg"
+    ],
+    "recipeCategory": "Italian",
+    "recipeCuisine": "Italian",
+    "totalTime": "PT129M",
+    "recipeYield": "4 servings",
+    "recipeIngredient": [
+      "300 g Arborio rice",
+      "500 g Mussels (to clean)",
+      "400 g Potatoes",
+      "150 g Grated Pecorino Romano DOP",
+      "100 g Cherry tomatoes",
+      "70 g White onions",
+      "2 sprigs Parsley",
+      "1 clove Garlic",
+      "300 ml Water",
+      "Extra virgin olive oil, as needed",
+      "Fine salt, as needed",
+      "Black pepper, as needed"
+    ],
+    "recipeInstructions": [
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_3.jpg",
+          "content": "Peel and slice potatoes (5 mm thick). Wash and quarter cherry tomatoes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_6.jpg",
+          "content": "Thinly slice onion and garlic. Chop parsley."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_9.jpg",
+          "content": "Clean mussels, remove byssus, open them raw, keeping one shell with the mollusk. Collect and filter the mussel water."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_12.jpg",
+          "content": "Grease a 28 cm baking dish. Layer half the sliced onion, garlic, half the potatoes, and some cherry tomatoes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_15.jpg",
+          "content": "Sprinkle with grated Pecorino, parsley, salt, and pepper."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_18.jpg",
+          "content": "Drizzle with olive oil. Arrange mussels (shell-side down) as the next layer. Sprinkle with more Pecorino."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_21.jpg",
+          "content": "Add more parsley, salt, and pepper. Rinse rice thoroughly and spread evenly over the mussels."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_24.jpg",
+          "content": "Season with salt, pepper. Add remaining onion, cherry tomatoes, olive oil, and parsley."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_27.jpg",
+          "content": "Sprinkle with more Pecorino. Arrange the remaining potatoes on top. Add remaining cherry tomatoes and parsley."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_30.jpg",
+          "content": "Cover with abundant Pecorino, then salt and pepper. Pour filtered mussel water along the edges until it almost reaches the top layer of potatoes."
+        }
+      },
+      {
+        "@type": "HowToStep",
+        "text": {
+          "image": "https://www.giallozafferano.it/images/ricette/10/1054/tiella-barese_33.jpg",
+          "content": "Bake in a static oven at 220°C for about 50 minutes. If not golden, grill for 5 more minutes. Let rest before serving warm."
+        }
+      }
+    ]
+  }
+}
