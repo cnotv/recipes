@@ -107,10 +107,23 @@
               <div class="recipe-header">
                 <label>{{ $t('dailyVote.selectRecipes') }}</label>
                 <div class="selection-controls">
+                  <select 
+                    v-model="selectedCuisineFilter"
+                    class="cuisine-filter"
+                  >
+                    <option value="">All Cuisines</option>
+                    <option 
+                      v-for="cuisine in availableCuisines" 
+                      :key="cuisine"
+                      :value="cuisine"
+                    >
+                      {{ cuisine }}
+                    </option>
+                  </select>
                   <button 
                     class="select-all-btn"
                     @click="selectAllRecipes"
-                    :disabled="selectedRecipes.length === availableRecipes.length"
+                    :disabled="selectedRecipes.length === filteredRecipes.length"
                   >
                     Select All
                   </button>
@@ -122,13 +135,13 @@
                     Clear All
                   </button>
                   <span class="selection-count">
-                    {{ selectedRecipes.length }} / {{ availableRecipes.length }} selected
+                    {{ selectedRecipes.length }} / {{ filteredRecipes.length }} selected
                   </span>
                 </div>
               </div>
               <div class="recipe-selection">
                 <div 
-                  v-for="recipe in availableRecipes" 
+                  v-for="recipe in filteredRecipes" 
                   :key="recipe.url"
                   class="recipe-option"
                   :class="{ selected: selectedRecipes.includes(recipe.url) }"
@@ -259,6 +272,7 @@ const newSessionName = ref('')
 const selectedRecipes = ref<string[]>([])
 const joinCode = ref('')
 const availableRecipes = ref<Recipe[]>([])
+const selectedCuisineFilter = ref('')
 
 // Theme and language options
 const themeOptions = computed(() => 
@@ -305,6 +319,18 @@ const timeRemaining = computed(() => {
   } else {
     return `${minutes}m remaining`
   }
+})
+
+const availableCuisines = computed(() => {
+  const cuisines = availableRecipes.value.map(recipe => recipe.cuisine).filter(Boolean)
+  return [...new Set(cuisines)].sort()
+})
+
+const filteredRecipes = computed(() => {
+  if (!selectedCuisineFilter.value) {
+    return availableRecipes.value
+  }
+  return availableRecipes.value.filter(recipe => recipe.cuisine === selectedCuisineFilter.value)
 })
 
 // Methods
@@ -377,7 +403,10 @@ const toggleRecipeSelection = (recipeUrl: string) => {
 }
 
 const selectAllRecipes = () => {
-  selectedRecipes.value = availableRecipes.value.map(recipe => recipe.url)
+  const filteredUrls = filteredRecipes.value.map(recipe => recipe.url)
+  // Add filtered recipes to existing selection without duplicates
+  const newSelection = [...new Set([...selectedRecipes.value, ...filteredUrls])]
+  selectedRecipes.value = newSelection
 }
 
 const clearAllRecipes = () => {
@@ -661,6 +690,27 @@ onMounted(() => {
   padding: 6px 8px;
   background: var(--theme-background, #f8fafc);
   border-radius: 12px;
+}
+
+.cuisine-filter {
+  padding: 6px 12px;
+  border: 2px solid var(--theme-border, #e2e8f0);
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--theme-text, #2d3748);
+  background: var(--theme-surface, #fff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cuisine-filter:focus {
+  outline: none;
+  border-color: var(--theme-primary, #4a90e2);
+}
+
+.cuisine-filter:hover {
+  border-color: var(--theme-primary, #4a90e2);
 }
 
 .session-input, .join-input {
