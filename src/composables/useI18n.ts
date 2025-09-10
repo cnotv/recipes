@@ -48,6 +48,31 @@ export interface UITranslations {
   backToHome: string
   viewOriginalRecipe: string
   step: string
+  
+  // Daily voting system
+  dailyVote: {
+    title: string
+    subtitle: string
+    totalVotes: string
+    sessionCode: string
+    copyCode: string
+    createSession: string
+    createSessionDesc: string
+    sessionName: string
+    sessionNamePlaceholder: string
+    selectRecipes: string
+    createSessionBtn: string
+    joinSession: string
+    joinSessionDesc: string
+    enterCode: string
+    joinBtn: string
+    leaveSession: string
+    votes: string
+    connectedUsers: string
+    anonymousUser: string
+    voted: string
+    notVoted: string
+  }
 }
 
 const messages = {
@@ -98,7 +123,32 @@ const messages = {
     steps: 'Steps',
     backToHome: 'Back to Home',
     viewOriginalRecipe: 'View Original Recipe',
-    step: 'Step'
+    step: 'Step',
+    
+    // Daily voting system
+    dailyVote: {
+      title: 'Daily Recipe Vote',
+      subtitle: 'Vote together to decide what to cook today!',
+      totalVotes: 'total votes',
+      sessionCode: 'Session Code',
+      copyCode: 'Copy code',
+      createSession: 'Create New Session',
+      createSessionDesc: 'Start a new voting session with friends and family',
+      sessionName: 'Session Name',
+      sessionNamePlaceholder: 'Enter a name for your voting session',
+      selectRecipes: 'Select Recipes (minimum 2)',
+      createSessionBtn: 'Create Session',
+      joinSession: 'Join Existing Session',
+      joinSessionDesc: 'Join a voting session using a session code',
+      enterCode: 'Enter session code',
+      joinBtn: 'Join Session',
+      leaveSession: 'Leave Session',
+      votes: 'votes',
+      connectedUsers: 'Connected Users',
+      anonymousUser: 'Anonymous User',
+      voted: 'Voted',
+      notVoted: 'Not voted yet'
+    }
   } satisfies UITranslations,
   
   de: {
@@ -148,7 +198,32 @@ const messages = {
     steps: 'Schritte',
     backToHome: 'Zurück zu Rezepten',
     viewOriginalRecipe: 'Originalrezept ansehen',
-    step: 'Schritt'
+    step: 'Schritt',
+    
+    // Daily voting system
+    dailyVote: {
+      title: 'Tägliche Rezept-Abstimmung',
+      subtitle: 'Stimmt gemeinsam ab, was heute gekocht wird!',
+      totalVotes: 'Stimmen insgesamt',
+      sessionCode: 'Sitzungscode',
+      copyCode: 'Code kopieren',
+      createSession: 'Neue Sitzung erstellen',
+      createSessionDesc: 'Starte eine neue Abstimmungssitzung mit Freunden und Familie',
+      sessionName: 'Sitzungsname',
+      sessionNamePlaceholder: 'Namen für deine Abstimmungssitzung eingeben',
+      selectRecipes: 'Rezepte auswählen (mindestens 2)',
+      createSessionBtn: 'Sitzung erstellen',
+      joinSession: 'Bestehende Sitzung beitreten',
+      joinSessionDesc: 'Tritt einer Abstimmungssitzung mit einem Sitzungscode bei',
+      enterCode: 'Sitzungscode eingeben',
+      joinBtn: 'Sitzung beitreten',
+      leaveSession: 'Sitzung verlassen',
+      votes: 'Stimmen',
+      connectedUsers: 'Verbundene Benutzer',
+      anonymousUser: 'Anonymer Benutzer',
+      voted: 'Abgestimmt',
+      notVoted: 'Noch nicht abgestimmt'
+    }
   } satisfies UITranslations,
   
   jp: {
@@ -198,7 +273,32 @@ const messages = {
     steps: 'ステップ',
     backToHome: 'レシピ一覧に戻る',
     viewOriginalRecipe: '元のレシピを見る',
-    step: 'ステップ'
+    step: 'ステップ',
+    
+    // Daily voting system
+    dailyVote: {
+      title: '今日のレシピ投票',
+      subtitle: '今日何を作るか一緒に決めましょう！',
+      totalVotes: '総投票数',
+      sessionCode: 'セッションコード',
+      copyCode: 'コードをコピー',
+      createSession: '新しいセッションを作成',
+      createSessionDesc: '友達や家族と新しい投票セッションを開始',
+      sessionName: 'セッション名',
+      sessionNamePlaceholder: '投票セッションの名前を入力',
+      selectRecipes: 'レシピを選択（最低2つ）',
+      createSessionBtn: 'セッション作成',
+      joinSession: '既存セッションに参加',
+      joinSessionDesc: 'セッションコードを使って投票セッションに参加',
+      enterCode: 'セッションコードを入力',
+      joinBtn: 'セッションに参加',
+      leaveSession: 'セッションを退出',
+      votes: '票',
+      connectedUsers: '接続中のユーザー',
+      anonymousUser: '匿名ユーザー',
+      voted: '投票済み',
+      notVoted: 'まだ投票していません'
+    }
   } satisfies UITranslations,
   
   th: {
@@ -248,7 +348,32 @@ const messages = {
     steps: 'ขั้นตอน',
     backToHome: 'กลับสู่หน้าหลัก',
     viewOriginalRecipe: 'ดูสูตรอาหารต้นฉบับ',
-    step: 'ขั้นตอนที่'
+    step: 'ขั้นตอนที่',
+    
+    // Daily voting system
+    dailyVote: {
+      title: 'โหวตสูตรอาหารประจำวัน',
+      subtitle: 'โหวตร่วมกันเพื่อตัดสินใจว่าจะทำอาหารอะไรวันนี้!',
+      totalVotes: 'คะแนนโหวตทั้งหมด',
+      sessionCode: 'รหัสเซสชัน',
+      copyCode: 'คัดลอกรหัส',
+      createSession: 'สร้างเซสชันใหม่',
+      createSessionDesc: 'เริ่มเซสชันโหวตใหม่กับเพื่อนและครอบครัว',
+      sessionName: 'ชื่อเซสชัน',
+      sessionNamePlaceholder: 'ใส่ชื่อสำหรับเซสชันโหวตของคุณ',
+      selectRecipes: 'เลือกสูตรอาหาร (อย่างน้อย 2 สูตร)',
+      createSessionBtn: 'สร้างเซสชัน',
+      joinSession: 'เข้าร่วมเซสชันที่มีอยู่',
+      joinSessionDesc: 'เข้าร่วมเซสชันโหวตโดยใช้รหัสเซสชัน',
+      enterCode: 'ใส่รหัสเซสชัน',
+      joinBtn: 'เข้าร่วมเซสชัน',
+      leaveSession: 'ออกจากเซสชัน',
+      votes: 'คะแนนโหวต',
+      connectedUsers: 'ผู้ใช้ที่เชื่อมต่อ',
+      anonymousUser: 'ผู้ใช้ไม่ระบุชื่อ',
+      voted: 'โหวตแล้ว',
+      notVoted: 'ยังไม่ได้โหวต'
+    }
   } satisfies UITranslations
 }
 

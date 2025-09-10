@@ -1,7 +1,16 @@
 <template>
   <div class="home-page">
     <header class="app-header">
-      <h1>{{ $t('recipeCollection') }}</h1>
+      <div class="header-top">
+        <h1>{{ $t('recipeCollection') }}</h1>
+        
+        <nav class="header-nav">
+          <router-link to="/daily-vote" class="nav-link">
+            🗳️ {{ $t('dailyVote.title') }}
+          </router-link>
+        </nav>
+      </div>
+      
       <div class="header-controls">
         <KawaiiSelector
           v-model="currentLanguage"
@@ -399,7 +408,44 @@ watch(currentLanguage, (newLanguage) => {
   right: 20px;
   font-size: 12px;
   opacity: 0.7;
-  animation: sparkle 3s ease-in-out infinite;
+  color: white;
+  animation: sparkleFloat 3s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
 }
 
 @keyframes softGradient {
