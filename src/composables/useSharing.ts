@@ -40,15 +40,7 @@ function saveSessions(sessions: VotingSessions): void {
 // Clean up expired sessions
 function cleanupExpiredSessions(sessions: VotingSessions): VotingSessions {
   const now = Date.now()
-  const validSessions: VotingSessions = {}
-  
-  for (const [sessionId, session] of Object.entries(sessions)) {
-    if (session.expiresAt > now) {
-      validSessions[sessionId] = session
-    }
-  }
-  
-  return validSessions
+  return Object.fromEntries(Object.entries(sessions).filter(([, session]) => session.expiresAt > now))
 }
 
 // Generate a unique session ID
@@ -91,7 +83,7 @@ export function useSharing() {
 
     // Check if session has expired
     if (session.expiresAt <= Date.now()) {
-      delete sessions.value[sessionId]
+      sessions.value = Object.fromEntries(Object.entries(sessions.value).filter(([id]) => id !== sessionId))
       saveSessions(sessions.value)
       return null
     }
@@ -129,7 +121,7 @@ export function useSharing() {
     try {
       await navigator.clipboard.writeText(url)
       return true
-    } catch (error) {
+    } catch {
       // Fallback for older browsers
       try {
         const textArea = document.createElement('textarea')

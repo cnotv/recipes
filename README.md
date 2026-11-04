@@ -44,7 +44,7 @@ A modern Vue 3 application with TypeScript that displays a multilingual recipe c
 2. Run the index generation command to update the recipe list:
 
 ```bash
-npm run generate-index
+pnpm generate-index
 ```
 
 This will automatically scan the `public/recipes/` directory and create an index file that the application uses to discover available recipes.
@@ -53,16 +53,16 @@ This will automatically scan the `public/recipes/` directory and create an index
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm dev
 
 # Generate recipe index (run this after adding new recipes)
-npm run generate-index
+pnpm generate-index
 
 # Build for production
-npm run build
+pnpm build
 ```
     "en": {
       "title": "Recipe name",
@@ -94,21 +94,21 @@ npm run build
 ### Prerequisites
 
 - Node.js (version 20.19.0 or higher recommended)
-- npm
+- pnpm 10 (`corepack enable` picks the version from `package.json`)
 
 ### Installation
 
 1. Clone the repository
 2. Install dependencies:
    ```bash
-   npm install
+   pnpm install
    ```
 
 ### Development
 
 Start the development server:
 ```bash
-npm run dev
+pnpm dev
 ```
 
 The application will be available at `http://localhost:5173`
@@ -116,13 +116,25 @@ The application will be available at `http://localhost:5173`
 ### Building for Production
 
 ```bash
-npm run build
+pnpm build
 ```
+
+### Checks
+
+```bash
+pnpm lint --max-warnings 0
+pnpm typecheck
+pnpm test
+```
+
+CI runs the same three on every pull request and on pushes to `main`. Agent rules live in
+`AGENTS.md`. `generate-index` and `build:recipes` are TypeScript scripts in `scripts/`, run
+with `tsx`.
 
 ### Preview Production Build
 
 ```bash
-npm run preview
+pnpm preview
 ```
 
 ## Project Structure
@@ -167,16 +179,7 @@ Place your JSON files in the `public/` directory using this structure:
 ]
 ```
 
-### Option 2: Convert Existing Files
-If you have files in the format with an `output` wrapper (like your current JSON file), use the conversion script:
-
-```bash
-node convert-recipe.js "public/recipes/Your Recipe File.json"
-```
-
-This will create a converted file that the app can load automatically.
-
-### Option 3: Update App Loading
+### Option 2: Update App Loading
 The app automatically tries to load:
 1. `/recipes.json` (main recipe file)
 2. Individual files from `/recipes/` directory

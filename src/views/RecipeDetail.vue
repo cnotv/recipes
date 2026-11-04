@@ -90,6 +90,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from '../composables/useTheme'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { createRecipeMeta, updateMetaTags } from '../composables/useMeta'
+import { findFirstAsync } from '../composables/findFirstAsync'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
@@ -227,7 +228,7 @@ const loadRecipe = async () => {
         // Ensure meta tags are updated immediately
         updateRecipeMetaTags()
         return
-      } catch (err) {
+      } catch {
         console.log('Failed to parse stored recipe data')
       }
     }
@@ -242,73 +243,51 @@ const loadRecipe = async () => {
   }
 }
 
+// Fetches one recipe file and returns it only when it is the recipe being looked for
+const fetchRecipeIfMatching = async (fileName: string, targetUrl: string): Promise<Recipe | undefined> => {
+  try {
+    const response = await fetch(`/recipes/${fileName}`)
+    if (!response.ok) return undefined
+    const data = await response.json()
+    return data && data.url === targetUrl ? data : undefined
+  } catch (err) {
+    console.log(`Failed to load ${fileName}:`, err)
+    return undefined
+  }
+}
+
+const showRecipe = (found: Recipe) => {
+  recipe.value = found
+  // Update meta tags immediately
+  updateRecipeMetaTags()
+}
+
 const loadRecipeFromFiles = async (targetUrl: string) => {
-  // Optimized approach: Only load the specific recipe file we need
-  // First, try to find the recipe by URL in the index without loading all files
+  // Search the index file by file and stop at the first match, to avoid loading every recipe
   try {
     const indexResponse = await fetch('/recipes/index.json')
-    if (indexResponse.ok) {
-      const recipeFiles = await indexResponse.json()
-      if (Array.isArray(recipeFiles)) {
-        // Search through files one by one, but stop when we find the right one
-        for (const fileName of recipeFiles) {
-          try {
-            const response = await fetch(`/recipes/${fileName}`)
-            if (response.ok) {
-              const data = await response.json()
-              // Check if this is the recipe we're looking for
-              if (data && data.url === targetUrl) {
-                // Found it! Load the complete recipe data and stop
-                recipe.value = data
-                // Update meta tags immediately
-                updateRecipeMetaTags()
-                return
-              }
-            }
-          } catch (err) {
-            console.log(`Failed to load ${fileName}:`, err)
-          }
-        }
-      }
-    }
-  } catch (err) {
+    const recipeFiles = indexResponse.ok ? await indexResponse.json() : []
+    const fromIndex = Array.isArray(recipeFiles)
+      ? await findFirstAsync<string, Recipe>(recipeFiles, (fileName) => fetchRecipeIfMatching(fileName, targetUrl))
+      : undefined
+    if (fromIndex) return showRecipe(fromIndex)
+  } catch {
     console.log('Recipe index not found')
   }
 
   // If not found in index, try to guess filename from URL
-  try {
-    // Extract potential filename patterns from the URL
-    const urlParts = targetUrl.split('/')
-    const lastPart = urlParts[urlParts.length - 1]
-    
-    // Try common filename patterns based on URL structure
-    const possibleFilenames = [
-      `${lastPart}.json`,
-      `${lastPart} • Just One Cookbook.json`,
-      `${lastPart} - Hot Thai Kitchen!.json`,
-      `${lastPart} - La Ricetta di GialloZafferano.json`,
-      `${lastPart} Recipe.json`
-    ]
-    
-    for (const filename of possibleFilenames) {
-      try {
-        const response = await fetch(`/recipes/${encodeURIComponent(filename)}`)
-        if (response.ok) {
-          const data = await response.json()
-          if (data && data.url === targetUrl) {
-            recipe.value = data
-            // Update meta tags immediately
-            updateRecipeMetaTags()
-            return
-          }
-        }
-      } catch (err) {
-        // Continue to next filename pattern
-      }
-    }
-  } catch (err) {
-    console.log('Direct filename guess failed')
-  }
+  const lastPart = targetUrl.split('/').pop() ?? ''
+  const possibleFilenames = [
+    `${lastPart}.json`,
+    `${lastPart} • Just One Cookbook.json`,
+    `${lastPart} - Hot Thai Kitchen!.json`,
+    `${lastPart} - La Ricetta di GialloZafferano.json`,
+    `${lastPart} Recipe.json`
+  ]
+  const guessed = await findFirstAsync<string, Recipe>(possibleFilenames, (filename) =>
+    fetchRecipeIfMatching(encodeURIComponent(filename), targetUrl)
+  )
+  if (guessed) return showRecipe(guessed)
 
   error.value = 'Recipe not found'
 }

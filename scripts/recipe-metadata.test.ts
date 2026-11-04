@@ -10,14 +10,16 @@ import type { RecipeFile } from './recipe-types.ts'
 
 const now = new Date('2026-01-02T03:04:05.000Z')
 
+const english = {
+  title: 'Tomato Soup: The Best!',
+  ingredients: ['4 tomatoes', 'salt'],
+  steps: [{ content: 'Chop.', image: 'a.jpg' }, 'Simmer for 2 hours.'],
+}
+
 const soup: RecipeFile = {
   cuisine: 'Italian',
   languages: {
-    en: {
-      title: 'Tomato Soup: The Best!',
-      ingredients: ['4 tomatoes', 'salt'],
-      steps: [{ content: 'Chop.', image: 'a.jpg' }, 'Simmer for 2 hours.'],
-    },
+    en: english,
   },
 }
 
@@ -27,7 +29,7 @@ describe('recipe metadata', () => {
   })
 
   it('adds time mentioned in a step to the base estimate', () => {
-    expect(estimateTime(soup.languages!.en!)).toBe(2 * 5 + 2 * 2 + 120)
+    expect(estimateTime(english)).toBe(2 * 5 + 2 * 2 + 120)
   })
 
   it('never estimates below fifteen minutes', () => {
@@ -35,7 +37,7 @@ describe('recipe metadata', () => {
   })
 
   it('rates a short recipe Easy and a long one Hard', () => {
-    expect(estimateDifficulty(soup.languages!.en!)).toBe('Easy')
+    expect(estimateDifficulty(english)).toBe('Easy')
     expect(estimateDifficulty({ steps: Array.from({ length: 9 }, () => 'x') })).toBe('Hard')
   })
 

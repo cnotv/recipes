@@ -249,6 +249,7 @@ import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useDailyVoting } from '../composables/useDailyVoting'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import type { Recipe } from '../types/Recipe'
+import type { VotingRecipe } from '../composables/useDailyVoting'
 
 const router = useRouter()
 const { currentLanguage, getLanguageName } = useLanguagePreference()
@@ -295,12 +296,12 @@ const languageOptions = computed(() => [
 // Computed properties
 const totalVotes = computed(() => {
   if (!currentSession.value?.recipes) return 0
-  return currentSession.value.recipes.reduce((total: number, recipe: any) => total + (recipe.votes || 0), 0)
+  return currentSession.value.recipes.reduce((total: number, recipe: VotingRecipe) => total + (recipe.votes || 0), 0)
 })
 
 const maxVotes = computed(() => {
   if (!currentSession.value?.recipes) return 0
-  return Math.max(...currentSession.value.recipes.map((recipe: any) => recipe.votes || 0))
+  return Math.max(...currentSession.value.recipes.map((recipe: VotingRecipe) => recipe.votes || 0))
 })
 
 const timeRemaining = computed(() => {
@@ -350,24 +351,20 @@ const loadAvailableRecipes = async () => {
     }
     
     // Load all recipes (limit to first 20 for performance in voting)
-    const recipes: Recipe[] = []
-    const maxRecipes = Math.min(recipeFiles.length, 20)
-    
-    for (let i = 0; i < maxRecipes; i++) {
-      try {
-        const response = await fetch(`/recipes/${recipeFiles[i]}`)
-        if (response.ok) {
-          const recipe = await response.json()
-          if (recipe && recipe.url) {
-            recipes.push(recipe)
-          }
+    const loaded = await Promise.all(
+      recipeFiles.slice(0, 20).map(async (file: string): Promise<Recipe[]> => {
+        try {
+          const response = await fetch(`/recipes/${file}`)
+          const recipe = response.ok ? await response.json() : null
+          return recipe && recipe.url ? [recipe] : []
+        } catch (err) {
+          console.log(`Failed to load ${file}:`, err)
+          return []
         }
-      } catch (err) {
-        console.log(`Failed to load ${recipeFiles[i]}:`, err)
-      }
-    }
-    
-    availableRecipes.value = recipes
+      })
+    )
+
+    availableRecipes.value = loaded.flat()
     
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load recipes'

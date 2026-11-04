@@ -387,7 +387,7 @@ export function useDailyVoting() {
     try {
       await navigator.clipboard.writeText(sessionCode.value)
       // You could add a toast notification here
-    } catch (err) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement('textarea')
       textArea.value = sessionCode.value

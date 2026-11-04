@@ -49,6 +49,9 @@ function saveVotes(votes: VoteData): void {
 const votes = ref<VoteData>(loadVotes())
 const currentUserId = generateUserId()
 
+const withoutKey = <T>(record: Record<string, T>, key: string): Record<string, T> =>
+  Object.fromEntries(Object.entries(record).filter(([entryKey]) => entryKey !== key))
+
 export function useVoting() {
   // Get votes for a specific recipe
   const getVotesForRecipe = (recipeUrl: string) => {
@@ -99,7 +102,7 @@ export function useVoting() {
       recipeVotes.userVotes[currentUserId] = voteType
     } else {
       // Remove vote if same as current (toggle off)
-      delete recipeVotes.userVotes[currentUserId]
+      recipeVotes.userVotes = withoutKey(recipeVotes.userVotes, currentUserId)
     }
 
     // Save to localStorage
@@ -119,7 +122,7 @@ export function useVoting() {
       recipeVotes.downvotes = Math.max(0, recipeVotes.downvotes - 1)
     }
 
-    delete recipeVotes.userVotes[currentUserId]
+    recipeVotes.userVotes = withoutKey(recipeVotes.userVotes, currentUserId)
     saveVotes(votes.value)
   }
 
