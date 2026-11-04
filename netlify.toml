@@ -1,12 +1,12 @@
 [build]
   # Build command
-  command = "npm run build"
+  command = "pnpm build"
   # Output directory
   publish = "dist"
 
 [build.environment]
   # Node version
-  NODE_VERSION = "20"
+  NODE_VERSION = "22"
 
 # SPA redirect rule - this handles client-side routing
 [[redirects]]
