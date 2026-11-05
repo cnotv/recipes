@@ -75,6 +75,17 @@ export const createApp = (
 
   app.all('/api/*', (context) => context.json({ error: 'Not found' }, 404))
 
+  // File names are hashes of the source link, so a stored file never changes and may be cached for good.
+  app.use(
+    '/media/*',
+    async (context, next) => {
+      await next()
+      if (context.res.ok) context.header('Cache-Control', 'public, max-age=31536000, immutable')
+    },
+    serveStatic({ root: config.mediaDirectory, rewriteRequestPath: (path) => path.replace(/^\/media/, '') }),
+  )
+  app.all('/media/*', (context) => context.text('Not found', 404))
+
   app.get('/sitemap.xml', (context) => {
     const now = new Date()
     const recipes = listAllPublishedRecipes(database).map((recipe) => toProcessedRecipe(recipe, now))

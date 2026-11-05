@@ -2,6 +2,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { openDatabase } from '../server/database.ts'
 import { listAllPublishedRecipes, listCuisines, toProcessedRecipe, toRecipeDetail, toRecipeSummary } from '../server/recipes.ts'
+import { localizePublishedRecipes } from '../server/media.ts'
+import { createImageFetcher } from '../server/safe-fetch.ts'
 import { seedRecipes } from '../server/seed.ts'
 import { buildSitemap } from './recipe-metadata.ts'
 
@@ -13,6 +15,8 @@ const apiDirectory = join(outputDirectory, 'static-api')
 
 const database = openDatabase(':memory:')
 seedRecipes(database, join(import.meta.dirname, '..', 'server', 'seed', 'recipes'))
+// The build copies every picture into dist/media, so the preview never reaches another site.
+await localizePublishedRecipes(database, { directory: join(outputDirectory, 'media'), fetchImage: createImageFetcher() })
 const recipes = listAllPublishedRecipes(database)
 const now = new Date()
 const writeJson = (path: string, data: unknown) => writeFile(path, JSON.stringify(data))

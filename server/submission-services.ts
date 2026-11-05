@@ -1,6 +1,6 @@
 import { lookup as dnsLookup } from 'node:dns/promises'
 import { createOpenRouterCall } from './openrouter.ts'
-import { createPageFetcher } from './safe-fetch.ts'
+import { createImageFetcher, createPageFetcher } from './safe-fetch.ts'
 import type { JobQueue, SubmissionServices } from './submission-types.ts'
 import type { ServerConfig } from './types.ts'
 
@@ -22,6 +22,7 @@ export const createDefaultServices = (config: ServerConfig): SubmissionServices 
   const lookup: SubmissionServices['lookup'] = (hostname) => dnsLookup(hostname, { all: true, verbatim: true })
   return {
     fetchPage: createPageFetcher({ lookup }),
+    media: { directory: config.mediaDirectory, fetchImage: createImageFetcher({ lookup }) },
     callModel:
       config.openRouterApiKey === undefined
         ? undefined

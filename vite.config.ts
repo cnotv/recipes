@@ -64,6 +64,7 @@ export default defineConfig({
     proxy: {
       '/api': apiTarget,
       '/sitemap.xml': apiTarget,
+      '/media': apiTarget,
       // Links from before slugs carry the encoded source URL; the server redirects them.
       '^/recipe/https?%3A': apiTarget,
     },

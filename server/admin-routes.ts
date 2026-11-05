@@ -85,12 +85,12 @@ export const registerAdminRoutes = (app: Hono, { database, services }: Submissio
     ),
   )
 
-  const decide = (decision: 'published' | 'rejected') => (context: Context) => {
+  const decide = (decision: 'published' | 'rejected') => async (context: Context) => {
     const id = z.string().uuid().safeParse(context.req.param('id'))
     const row = id.success ? findSubmission(database, id.data) : undefined
     if (row === undefined) return context.json({ error: 'Submission not found' }, 404)
     if (row.status !== 'pending') return context.json({ error: 'This submission is not waiting for a decision' }, 409)
-    decideSubmission({ database, services }, row, decision)
+    await decideSubmission({ database, services }, row, decision)
     return context.json({ id: row.id, status: decision })
   }
   app.post('/api/admin/submissions/:id/approve', decide('published'))

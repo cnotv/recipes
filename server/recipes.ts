@@ -1,5 +1,6 @@
 import type { DatabaseSync, SQLInputValue } from 'node:sqlite'
 import { z } from 'zod'
+import { withoutRemoteImages } from './image-links.ts'
 import { processRecipe } from '../scripts/recipe-metadata.ts'
 import type { ProcessedRecipe, RecipeFile } from '../scripts/recipe-types.ts'
 import type { CuisineCount, RecipeListQuery, RecipeStatus, RecipeSummary, StoredRecipe } from './types.ts'
@@ -162,13 +163,16 @@ export const listCuisines = (database: DatabaseSync): CuisineCount[] =>
     )
 
 /** The shape the metadata helpers in `scripts/` read. */
-export const toRecipeFile = (recipe: StoredRecipe): RecipeFile => ({
-  url: recipe.sourceUrl ?? undefined,
-  cuisine: recipe.cuisine ?? undefined,
-  cover: recipe.coverImage ?? undefined,
-  dateAdded: recipe.createdAt,
-  languages: recipe.languages,
-})
+export const toRecipeFile = (stored: StoredRecipe): RecipeFile => {
+  const recipe = withoutRemoteImages(stored)
+  return {
+    url: recipe.sourceUrl ?? undefined,
+    cuisine: recipe.cuisine ?? undefined,
+    cover: recipe.coverImage ?? undefined,
+    dateAdded: recipe.createdAt,
+    languages: recipe.languages,
+  }
+}
 
 /** Derived metadata keyed by the stored slug, which stays unique where a title-made slug may not. */
 export const toProcessedRecipe = (recipe: StoredRecipe, now: Date): ProcessedRecipe => {
@@ -201,14 +205,17 @@ export const toRecipeSummary = (recipe: StoredRecipe, now: Date): RecipeSummary 
 }
 
 /** The recipe in the shape the detail page reads: every translation, steps with image and text. */
-export const toRecipeDetail = (recipe: StoredRecipe) => ({
-  slug: recipe.slug,
-  url: recipe.sourceUrl ?? '',
-  cuisine: recipe.cuisine ?? '',
-  difficulty: recipe.difficulty,
-  ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
-  languages: recipe.languages,
-})
+export const toRecipeDetail = (stored: StoredRecipe) => {
+  const recipe = withoutRemoteImages(stored)
+  return {
+    slug: recipe.slug,
+    url: recipe.sourceUrl ?? '',
+    cuisine: recipe.cuisine ?? '',
+    difficulty: recipe.difficulty,
+    ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
+    languages: recipe.languages,
+  }
+}
 
 /** A recipe of any status by its row id, for the admin preview. */
 export const findRecipeById = (database: DatabaseSync, id: number): StoredRecipe | undefined => {
@@ -220,6 +227,17 @@ export const findRecipeById = (database: DatabaseSync, id: number): StoredRecipe
 export const insertRecipeReturningId = (database: DatabaseSync, recipe: StoredRecipe): number => {
   insertRecipe(database, recipe)
   return z.object({ id: z.number() }).parse(database.prepare('SELECT id FROM recipes WHERE slug = ?').get(recipe.slug)).id
+}
+
+/** Writes the cover and the step pictures of a recipe, after they were stored locally. */
+export const replaceRecipeImages = (database: DatabaseSync, recipe: StoredRecipe, slug: string): void => {
+  database.exec('BEGIN')
+  database.prepare('UPDATE recipes SET cover_image = ? WHERE slug = ?').run(recipe.coverImage, slug)
+  const update = database.prepare(
+    'UPDATE recipe_translations SET steps = ? WHERE language = ? AND recipe_id = (SELECT id FROM recipes WHERE slug = ?)',
+  )
+  Object.entries(recipe.languages).forEach(([language, translation]) => update.run(JSON.stringify(translation.steps), language, slug))
+  database.exec('COMMIT')
 }
 
 export const setRecipeStatus = (database: DatabaseSync, id: number, status: RecipeStatus): void => {

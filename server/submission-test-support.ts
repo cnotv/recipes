@@ -1,13 +1,19 @@
+import { mkdtempSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import type { DatabaseSync } from 'node:sqlite'
 import { z } from 'zod'
 import { createApp } from './app.ts'
 import { createJobQueue } from './submission-services.ts'
 import { createTestDatabase, testConfig } from './test-support.ts'
-import type { ModelCall, PageFetcher, SubmissionServices } from './submission-types.ts'
+import type { MediaStore, ModelCall, PageFetcher, SubmissionServices } from './submission-types.ts'
 import type { ServerConfig } from './types.ts'
 
 export const ADMIN_TOKEN = 'a-long-admin-token-for-tests'
 export const API_KEY = 'sk-or-test-secret-key-0001'
+
+/** A store in a fresh temporary directory whose source never has a picture. */
+export const testMedia = (): MediaStore => ({ directory: mkdtempSync(join(tmpdir(), 'recipes-media-')), fetchImage: async () => undefined })
 
 export const recipePage = (title = 'Tomato Soup', extra = ''): string =>
   `<html lang="en"><head><script type="application/ld+json">${JSON.stringify({
@@ -68,6 +74,7 @@ export const createSubmissionTestApp = (setup: Setup = {}) => {
   const queue = createJobQueue()
   const services: SubmissionServices = {
     fetchPage: pagesFetcher(setup.pages ?? {}),
+    media: testMedia(),
     callModel: setup.callModel,
     queue,
     now: setup.now ?? (() => new Date()),

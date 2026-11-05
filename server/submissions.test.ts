@@ -11,6 +11,7 @@ import {
   stubModel,
   submissionBodySchema,
   submit,
+  testMedia,
 } from './submission-test-support.ts'
 import { get, listSlugs } from './test-support.ts'
 
@@ -140,6 +141,7 @@ describe('importing a link', () => {
     const queue = createJobQueue()
     createApp(first.database, testConfig, {
       fetchPage: async (url) => ({ finalUrl: url, body: recipePage() }),
+      media: testMedia(),
       callModel: undefined,
       queue,
       now: () => new Date(),
@@ -186,6 +188,7 @@ describe('submission limits', () => {
     const { testConfig } = await import('./test-support.ts')
     const guarded = createApp(rebinding.database, testConfig, {
       fetchPage: async () => ({ finalUrl: '', body: '' }),
+      media: testMedia(),
       callModel: undefined,
       queue: rebinding.queue,
       now: () => new Date(),

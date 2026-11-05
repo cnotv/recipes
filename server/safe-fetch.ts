@@ -2,10 +2,11 @@ import { lookup as dnsLookup } from 'node:dns/promises'
 import http from 'node:http'
 import https from 'node:https'
 import { BlockList, isIP, type LookupFunction } from 'node:net'
-import type { ResolvedAddress, FetchedPage, HostLookup, PageFetcher, PageFetcherOptions } from './submission-types.ts'
+import type { ResolvedAddress, HostLookup, ImageFetcher, PageFetcher, PageFetcherOptions } from './submission-types.ts'
 import { userError } from './user-error.ts'
 
 const MAX_BYTES = 5 * 1024 * 1024
+const MAX_IMAGE_BYTES = 15 * 1024 * 1024
 const TIMEOUT_MS = 10_000
 const MAX_REDIRECTS = 5
 const WEB_PORTS = ['', '80', '443']
@@ -99,7 +100,15 @@ export const assertPublicUrl = async (
   return url
 }
 
-type Hop = { kind: 'page'; body: string } | { kind: 'redirect'; location: string }
+type Hop = { kind: 'body'; body: Buffer } | { kind: 'redirect'; location: string }
+
+/** What a fetch accepts and how large it may be; a page and an image differ only here. */
+type FetchSettings = Required<PageFetcherOptions> & { accept: string; contentType: RegExp; notAllowed: string }
+
+type StatusError = Error & { status: number }
+
+const statusError = (status: number): StatusError =>
+  Object.assign(userError(`The site answered with status ${status}`), { status })
 
 /** Resolves at connect time and refuses a private answer, so a name that changes its address between check and connect still fails. */
 const guardedLookup =
@@ -114,7 +123,7 @@ const guardedLookup =
     )
   }
 
-const requestOnce = (url: URL, settings: Required<PageFetcherOptions>, signal: AbortSignal): Promise<Hop> =>
+const requestOnce = (url: URL, settings: FetchSettings, signal: AbortSignal): Promise<Hop> =>
   new Promise<Hop>((resolve, reject) => {
     const client = url.protocol === 'https:' ? https : http
     const request = client.request(
@@ -124,7 +133,7 @@ const requestOnce = (url: URL, settings: Required<PageFetcherOptions>, signal: A
         lookup: guardedLookup(settings.lookup, settings.allowAddress),
         headers: {
           'user-agent': 'Mozilla/5.0 (compatible; RecipesImporter/1.0)',
-          accept: 'text/html,application/xhtml+xml',
+          accept: settings.accept,
           'accept-encoding': 'identity',
         },
       },
@@ -137,25 +146,25 @@ const requestOnce = (url: URL, settings: Required<PageFetcherOptions>, signal: A
         }
         if (status < 200 || status >= 300) {
           response.resume()
-          return reject(userError(`The site answered with status ${status}`))
+          return reject(statusError(status))
         }
-        if (!/html|xml|text\/plain/i.test(response.headers['content-type'] ?? '')) {
+        if (!settings.contentType.test(response.headers['content-type'] ?? '')) {
           response.resume()
-          return reject(userError('That link is not a web page'))
+          return reject(userError(settings.notAllowed))
         }
         if (Number(response.headers['content-length'] ?? 0) > settings.maxBytes) {
           response.destroy()
-          return reject(userError('That page is too large'))
+          return reject(userError('That file is too large'))
         }
         const chunks: Buffer[] = []
         response.on('data', (chunk: Buffer) => {
           chunks.push(chunk)
           if (chunks.reduce((total, part) => total + part.length, 0) > settings.maxBytes) {
             response.destroy()
-            reject(userError('That page is too large'))
+            reject(userError('That file is too large'))
           }
         })
-        response.on('end', () => resolve({ kind: 'page', body: Buffer.concat(chunks).toString('utf8') }))
+        response.on('end', () => resolve({ kind: 'body', body: Buffer.concat(chunks) }))
         response.on('error', reject)
       },
     )
@@ -165,31 +174,67 @@ const requestOnce = (url: URL, settings: Required<PageFetcherOptions>, signal: A
 
 const followRedirects = async (
   value: string,
-  settings: Required<PageFetcherOptions>,
+  settings: FetchSettings,
   signal: AbortSignal,
   redirectsLeft: number,
-): Promise<FetchedPage> => {
+): Promise<{ finalUrl: string; body: Buffer }> => {
   const url = await assertPublicUrl(value, settings.lookup, settings.allowAddress, settings.allowAnyPort)
   const hop = await requestOnce(url, settings, signal)
-  if (hop.kind === 'page') return { finalUrl: url.href, body: hop.body }
+  if (hop.kind === 'body') return { finalUrl: url.href, body: hop.body }
   if (redirectsLeft <= 0) throw userError('The link redirects too many times')
   return followRedirects(new URL(hop.location, url).href, settings, signal, redirectsLeft - 1)
 }
 
+const resolvedSettings = (options: PageFetcherOptions, defaults: Pick<FetchSettings, 'accept' | 'contentType' | 'notAllowed' | 'maxBytes'>): FetchSettings => ({
+  lookup: options.lookup ?? defaultLookup,
+  allowAddress: options.allowAddress ?? isPublicAddress,
+  allowAnyPort: options.allowAnyPort ?? false,
+  maxBytes: options.maxBytes ?? defaults.maxBytes,
+  timeoutMs: options.timeoutMs ?? TIMEOUT_MS,
+  maxRedirects: options.maxRedirects ?? MAX_REDIRECTS,
+  accept: defaults.accept,
+  contentType: defaults.contentType,
+  notAllowed: defaults.notAllowed,
+})
+
+const fetchWithin = async (value: string, settings: FetchSettings): Promise<{ finalUrl: string; body: Buffer }> => {
+  const signal = AbortSignal.timeout(settings.timeoutMs)
+  return followRedirects(value, settings, signal, settings.maxRedirects).catch((error: unknown) => {
+    throw signal.aborted ? userError('The page took too long to load') : error
+  })
+}
+
 /** Fetches a page over a validated connection: public addresses only, each redirect re-checked, capped size and time. */
 export const createPageFetcher = (options: PageFetcherOptions = {}): PageFetcher => {
-  const settings: Required<PageFetcherOptions> = {
-    lookup: options.lookup ?? defaultLookup,
-    allowAddress: options.allowAddress ?? isPublicAddress,
-    allowAnyPort: options.allowAnyPort ?? false,
-    maxBytes: options.maxBytes ?? MAX_BYTES,
-    timeoutMs: options.timeoutMs ?? TIMEOUT_MS,
-    maxRedirects: options.maxRedirects ?? MAX_REDIRECTS,
-  }
+  const settings = resolvedSettings(options, {
+    accept: 'text/html,application/xhtml+xml',
+    contentType: /html|xml|text\/plain/i,
+    notAllowed: 'That link is not a web page',
+    maxBytes: MAX_BYTES,
+  })
   return async (value) => {
-    const signal = AbortSignal.timeout(settings.timeoutMs)
-    return followRedirects(value, settings, signal, settings.maxRedirects).catch((error: unknown) => {
-      throw signal.aborted ? userError('The page took too long to load') : error
-    })
+    const { finalUrl, body } = await fetchWithin(value, settings)
+    return { finalUrl, body: body.toString('utf8') }
   }
+}
+
+/**
+ * Fetches a picture with the same guard as a page. Answers undefined when the source says it is gone
+ * (404 or 410), so the caller drops the link; any other failure throws and may be retried later.
+ */
+export const createImageFetcher = (options: PageFetcherOptions = {}): ImageFetcher => {
+  const settings = resolvedSettings(options, {
+    accept: 'image/avif,image/webp,image/jpeg,image/png,image/gif',
+    contentType: /^image\/(jpeg|png|webp|gif|avif)/i,
+    notAllowed: 'That link is not a picture',
+    maxBytes: MAX_IMAGE_BYTES,
+  })
+  return async (value) =>
+    fetchWithin(value, settings).then(
+      ({ body }) => body,
+      (error: unknown) => {
+        if (error instanceof Error && 'status' in error && (error.status === 404 || error.status === 410)) return undefined
+        throw error
+      },
+    )
 }
