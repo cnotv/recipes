@@ -10,6 +10,7 @@ const MAX_IMAGE_BYTES = 15 * 1024 * 1024
 const TIMEOUT_MS = 10_000
 const MAX_REDIRECTS = 5
 const WEB_PORTS = ['', '80', '443']
+const GONE_STATUSES = [403, 404, 410]
 const REDIRECT_STATUSES = [301, 302, 303, 307, 308]
 
 const blockedRanges: [string, number, 'ipv4' | 'ipv6'][] = [
@@ -185,6 +186,9 @@ const followRedirects = async (
   return followRedirects(new URL(hop.location, url).href, settings, signal, redirectsLeft - 1)
 }
 
+const isGone = (error: unknown): boolean =>
+  error instanceof Error && 'status' in error && typeof error.status === 'number' && GONE_STATUSES.includes(error.status)
+
 const resolvedSettings = (options: PageFetcherOptions, defaults: Pick<FetchSettings, 'accept' | 'contentType' | 'notAllowed' | 'maxBytes'>): FetchSettings => ({
   lookup: options.lookup ?? defaultLookup,
   allowAddress: options.allowAddress ?? isPublicAddress,
@@ -220,7 +224,7 @@ export const createPageFetcher = (options: PageFetcherOptions = {}): PageFetcher
 
 /**
  * Fetches a picture with the same guard as a page. Answers undefined when the source says it is gone
- * (404 or 410), so the caller drops the link; any other failure throws and may be retried later.
+ * (403, 404 or 410; a 403 is a site that refuses to share the picture), so the caller drops the link; any other failure throws and may be retried later.
  */
 export const createImageFetcher = (options: PageFetcherOptions = {}): ImageFetcher => {
   const settings = resolvedSettings(options, {
@@ -233,7 +237,7 @@ export const createImageFetcher = (options: PageFetcherOptions = {}): ImageFetch
     fetchWithin(value, settings).then(
       ({ body }) => body,
       (error: unknown) => {
-        if (error instanceof Error && 'status' in error && (error.status === 404 || error.status === 410)) return undefined
+        if (isGone(error)) return undefined
         throw error
       },
     )

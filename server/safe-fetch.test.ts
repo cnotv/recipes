@@ -1,7 +1,7 @@
 import { createServer, type Server } from 'node:http'
 import type { AddressInfo } from 'node:net'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
-import { assertPublicUrl, createPageFetcher, isPublicAddress } from './safe-fetch.ts'
+import { assertPublicUrl, createImageFetcher, createPageFetcher, isPublicAddress } from './safe-fetch.ts'
 import type { HostLookup } from './submission-types.ts'
 
 const lookupTo =
@@ -101,6 +101,8 @@ describe('createPageFetcher against a local server', () => {
     '/slow': { status: 200, headers: { 'content-type': 'text/html' }, body: 'late', delayMs: 400 },
     '/binary': { status: 200, headers: { 'content-type': 'image/png' }, body: 'png' },
     '/missing': { status: 404, body: 'no' },
+    '/forbidden': { status: 403, body: 'no' },
+    '/error': { status: 500, body: 'no' },
   }
   const state: { server?: Server; origin: string } = { origin: '' }
 
@@ -151,6 +153,47 @@ describe('createPageFetcher against a local server', () => {
   it('refuses content that is not a web page, and error statuses', async () => {
     await expect(fetcher()(`${state.origin}/binary`)).rejects.toThrow('not a web page')
     await expect(fetcher()(`${state.origin}/missing`)).rejects.toThrow('404')
+  })
+})
+
+describe('createImageFetcher', () => {
+  const state: { server?: Server; origin: string } = { origin: '' }
+  const answers: Record<string, { status: number; type: string }> = {
+    '/photo': { status: 200, type: 'image/png' },
+    '/page': { status: 200, type: 'text/html' },
+    '/gone': { status: 404, type: 'text/html' },
+    '/refused': { status: 403, type: 'text/html' },
+    '/broken': { status: 500, type: 'text/html' },
+  }
+  beforeAll(async () => {
+    state.server = createServer((request, response) => {
+      const answer = answers[request.url ?? ''] ?? { status: 404, type: 'text/plain' }
+      response.writeHead(answer.status, { 'content-type': answer.type })
+      response.end('bytes')
+    })
+    await new Promise<void>((resolve) => state.server?.listen(0, '127.0.0.1', resolve))
+    state.origin = `http://127.0.0.1:${(state.server.address() as AddressInfo).port}`
+  })
+  afterAll(() => state.server?.close())
+
+  const fetchImage = createImageFetcher({ allowAddress: (address) => address === '127.0.0.1', allowAnyPort: true })
+
+  it('returns the bytes of a picture', async () => {
+    expect((await fetchImage(`${state.origin}/photo`))?.toString()).toBe('bytes')
+  })
+
+  it('answers undefined when the source no longer has the picture or refuses to share it', async () => {
+    expect(await fetchImage(`${state.origin}/gone`)).toBeUndefined()
+    expect(await fetchImage(`${state.origin}/refused`)).toBeUndefined()
+  })
+
+  it('throws on a server error or a page, so the caller may retry or look again', async () => {
+    await expect(fetchImage(`${state.origin}/broken`)).rejects.toThrow('500')
+    await expect(fetchImage(`${state.origin}/page`)).rejects.toThrow('not a picture')
+  })
+
+  it('refuses private addresses by default', async () => {
+    await expect(createImageFetcher({ allowAnyPort: true })(`${state.origin}/photo`)).rejects.toThrow('not allowed')
   })
 })
 
