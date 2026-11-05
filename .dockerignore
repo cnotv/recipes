@@ -6,3 +6,4 @@ data
 .claude
 .worktrees
 *.md
+.env

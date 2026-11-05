@@ -107,12 +107,14 @@ hand is an MP4, never a GIF.
 - **Verify notes:** none
 - **Checks:** `pnpm lint --max-warnings 0`, `pnpm typecheck`, `pnpm test`
 - **Docs home:** `README.md`
-- **Preview deploys:** two, until the cloud deploy (#9). Netlify (`netlify.toml`, `pnpm build:static`) keeps serving the live site at cnotv-recipes.netlify.app and builds each pull request without a server: `VITE_DATA_SOURCE=static` makes `useRecipes` read JSON that `scripts/build-static-data.ts` writes from `server/seed/recipes/`. The `pr-preview` workflow builds the real app and starts the server on port 4330 to record each pull request. Delete the Netlify path (`netlify.toml`, `public/_redirects`, `scripts/build-static-data.ts`, `src/composables/staticRecipes.ts`) with #9
+- **Preview deploys:** two, until the Netlify path is removed after the first cloud deploy (#9). Netlify (`netlify.toml`, `pnpm build:static`) keeps serving the live site at cnotv-recipes.netlify.app and builds each pull request without a server: `VITE_DATA_SOURCE=static` makes `useRecipes` read JSON that `scripts/build-static-data.ts` writes from `server/seed/recipes/`. The `pr-preview` workflow builds the real app and starts the server on port 4330 to record each pull request. Delete the Netlify path (`netlify.toml`, `public/_redirects`, `scripts/build-static-data.ts`, `src/composables/staticRecipes.ts`) with #9
 - **Security:** none yet
 - **Scoped rules:** none yet
 - **Local skills:** none
 - **Auto-merge:** squash
-- **Deploy:** none yet, see #9
+- **Deploy:** Hetzner server behind the existing reverse proxy; `.github/workflows/deploy.yml` after CI on `main`, skipped
+  while `RECIPES_DOMAIN` is unset; `docker-compose.cloud.yml` (app port 4330, health `/api/health`, data `/data/recipes.db`,
+  nightly backup); `scripts/smoke-test.sh <url>`. Owner steps: README, "Deploy to the cloud"
 
 ### Done checklist
 
