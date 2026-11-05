@@ -186,6 +186,43 @@ The app automatically tries to load:
 
 Place any JSON files in the `public/recipes/` directory and the app will attempt to load them.
 
+## Design
+
+The design source is the Figma file [Recipes UI Kit](https://www.figma.com/design/EBtTaKaR1l2TwkdaOjplf8).
+It has three pages: **Foundations** (variables and design notes), **Components** (icons,
+Button, IconButton) and **Screens** (captured from the running code, see below).
+
+**Variable collections** (each variable carries a web code syntax such as
+`var(--color-bg-surface)`, so the Vue tokens can be exported from the file):
+
+| Collection | Names | Notes |
+| --- | --- | --- |
+| Primitives | `neutral/*`, `indigo/*`, `matcha/*`, `saffron/*`, `berry/*` | Raw colour scales, hidden from pickers |
+| Color | `color/bg/*`, `color/text/*`, `color/border/*` | Semantic, aliases to Primitives, one mode (Light) |
+| Spacing | `space/0` to `space/16` | 4px steps |
+| Radius | `radius/sm` to `radius/full` | 6, 10, 16, 24, 999 |
+| Size | `size/control-*`, `size/icon-*`, `size/avatar-*`, `size/border*` | Control, icon and stroke sizes |
+| Typography | `font/family/*`, `font/size/*`, `font/line/*` | Font families, sizes and line heights |
+
+**Text styles** (bound to the typography variables): `display/4xl`, `heading/3xl`,
+`heading/2xl`, `heading/xl`, `body/lg`, `body/md`, `body/sm`, `label/md`, `label/sm`,
+`caption/xs`. There is also one effect style, `shadow/raised`.
+
+**Direction.** Bricolage Grotesque for headings and Hanken Grotesk for body text (both are
+Google fonts and must be self-hosted, never loaded from Google). The palette is an indigo ink
+brand with matcha for success, saffron for highlights such as a vote winner, and berry for
+danger.
+
+**Decisions**
+- The kawaii theme switcher is dropped. Four gradient and emoji themes multiply the token
+  surface, make contrast hard to guarantee, and cannot be expressed as one coherent set of
+  semantic tokens. The site has one brand, in light and dark.
+- Dark mode is defined in code (issue 4), not in Figma, because the Figma Starter plan allows
+  one variable mode per collection.
+- The rest of the UI kit and all screens are built in Vue first and captured into the
+  Screens page with `generate_figma_design` (issue 4), because the Figma tool quota on the
+  Starter plan is spent.
+
 ## Technology Stack
 
 - **Vue 3**: Progressive JavaScript framework
