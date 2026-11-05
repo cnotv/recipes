@@ -14,6 +14,7 @@ import {
   toRecipeSummary,
 } from './recipes.ts'
 import { hostGuard, sameOriginJson } from './security.ts'
+import { registerVoteRoutes } from './vote-routes.ts'
 import type { RecipeListResponse, ServerConfig } from './types.ts'
 
 const MAX_PAGE_SIZE = 100
@@ -61,6 +62,8 @@ export const createApp = (database: DatabaseSync, config: ServerConfig): Hono =>
   })
 
   app.get('/api/cuisines', (context) => context.json(listCuisines(database)))
+
+  registerVoteRoutes(app, database, config)
 
   app.all('/api/*', (context) => context.json({ error: 'Not found' }, 404))
 
