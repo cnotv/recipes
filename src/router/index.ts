@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue'
 import RecipeDetail from '../views/RecipeDetail.vue'
-import DailyVote from '../views/DailyVote.vue'
+import VoteCreate from '../views/VoteCreateView.vue'
+import VoteSession from '../views/VoteSessionView.vue'
 import Offline from '../views/OfflineView.vue'
 
 const router = createRouter({
@@ -14,8 +15,18 @@ const router = createRouter({
     },
     {
       path: '/daily-vote',
-      name: 'daily-vote',
-      component: DailyVote
+      redirect: { name: 'vote-create' }
+    },
+    {
+      path: '/vote/new',
+      name: 'vote-create',
+      component: VoteCreate
+    },
+    {
+      path: '/vote/:id',
+      name: 'vote-session',
+      component: VoteSession,
+      props: true
     },
     {
       path: '/recipe/:slug',

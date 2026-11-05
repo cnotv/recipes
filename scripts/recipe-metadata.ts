@@ -162,7 +162,7 @@ export const buildSitemap = (recipes: ProcessedRecipe[], baseUrl: string, today:
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[
     sitemapEntry(baseUrl, today, 'weekly', '1.0'),
-    sitemapEntry(`${baseUrl}/daily-vote`, today, 'weekly', '0.8'),
+    sitemapEntry(`${baseUrl}/vote/new`, today, 'weekly', '0.8'),
     ...recipes.map(({ metadata }) =>
       sitemapEntry(`${baseUrl}/recipe/${metadata.slug}`, metadata.lastModified.split('T')[0], 'monthly', '0.7'),
     ),

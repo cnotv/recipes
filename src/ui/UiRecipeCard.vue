@@ -24,7 +24,7 @@ const emit = defineEmits<{ open: [] }>()
         <button class="ui-recipe-card__open" type="button" @click="emit('open')">{{ recipe.title }}</button>
       </h3>
       <div class="ui-recipe-card__meta">
-        <UiBadge tone="brand">{{ recipe.cuisine }}</UiBadge>
+        <UiBadge v-if="recipe.cuisine" tone="brand">{{ recipe.cuisine }}</UiBadge>
         <span class="ui-recipe-card__time"><UiIcon name="clock" :size="16" />{{ recipe.minutes }} {{ minutesLabel }}</span>
       </div>
     </div>
