@@ -10,6 +10,8 @@ export interface UITranslations {
   recipesFound: string
   
   home: string
+  navVote: string
+  navSubmit: string
   skipToContent: string
   light: string
   dark: string
@@ -84,6 +86,8 @@ const messages = {
     recipesFound: 'recipes found',
     
     home: 'Home',
+    navVote: 'Vote',
+    navSubmit: 'Submit a recipe',
     skipToContent: 'Skip to content',
     light: 'Light',
     dark: 'Dark',
@@ -157,6 +161,8 @@ const messages = {
     recipesFound: 'Rezepte gefunden',
     
     home: 'Start',
+    navVote: 'Abstimmen',
+    navSubmit: 'Rezept einreichen',
     skipToContent: 'Zum Inhalt springen',
     light: 'Hell',
     dark: 'Dunkel',
@@ -230,6 +236,8 @@ const messages = {
     recipesFound: 'レシピが見つかりました',
     
     home: 'ホーム',
+    navVote: '投票',
+    navSubmit: 'レシピを投稿',
     skipToContent: '本文へ移動',
     light: 'ライト',
     dark: 'ダーク',
@@ -303,6 +311,8 @@ const messages = {
     recipesFound: 'สูตรอาหารที่พบ',
     
     home: 'หน้าหลัก',
+    navVote: 'โหวต',
+    navSubmit: 'ส่งสูตรอาหาร',
     skipToContent: 'ข้ามไปยังเนื้อหา',
     light: 'สว่าง',
     dark: 'มืด',

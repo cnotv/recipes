@@ -14,7 +14,7 @@ describe('app shell', () => {
     await router.push('/daily-vote')
     const wrapper = mount(App, { global: { plugins: testPlugins(router) }, attachTo: document.body })
     await flushPromises()
-    expect(wrapper.find('header .app-nav-link').text()).toBe('Home')
+    expect(wrapper.findAll('header .app-nav-link').map((link) => link.attributes('href'))).toEqual(['/', '/vote/new', '/submit'])
     const labels = wrapper.findAll('header label').map((label) => label.text())
     expect(labels).toEqual(['Language', 'Theme'])
     expect(wrapper.find('footer').exists()).toBe(true)

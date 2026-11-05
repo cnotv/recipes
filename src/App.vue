@@ -30,6 +30,8 @@ const chooseTheme = (value: string | undefined) => {
     <a class="skip-link" href="#main">{{ t('skipToContent') }}</a>
     <UiHeader :brand="t('recipeCollection')">
       <router-link class="app-nav-link" to="/">{{ t('home') }}</router-link>
+      <router-link class="app-nav-link" to="/vote/new">{{ t('navVote') }}</router-link>
+      <router-link class="app-nav-link" to="/submit">{{ t('navSubmit') }}</router-link>
       <template #actions>
         <UiSelect
           :label="t('language')"
