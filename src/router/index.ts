@@ -24,6 +24,11 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/ui',
+      name: 'ui-kit',
+      component: () => import('../ui/UiKitPage.vue')
+    },
+    {
       path: '/offline',
       name: 'offline',
       component: Offline
