@@ -1,0 +1,93 @@
+@import '../ui/tokens.css';
+
+
+.vote-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.vote-page__title {
+  font: 700 var(--font-size-3xl) / var(--font-line-tight) var(--font-family-display);
+}
+
+.vote-page__intro,
+.vote-page__meta {
+  color: var(--color-text-secondary);
+  font: 400 var(--font-size-md) / var(--font-line-normal) var(--font-family-body);
+}
+
+.vote-page__heading {
+  font: 700 var(--font-size-xl) / var(--font-line-snug) var(--font-family-display);
+}
+
+.vote-page__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.vote-page__row > .ui-field {
+  flex: 1 1 14rem;
+}
+
+.vote-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.vote-picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-height: 24rem;
+  padding: var(--space-4);
+  overflow: auto;
+  border: var(--size-border) solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+}
+
+.vote-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-4);
+}
+
+.vote-option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vote-option__tally {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-text-secondary);
+  font: 600 var(--font-size-sm) / var(--font-line-snug) var(--font-family-body);
+}
+
+.vote-people {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vote-people__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.vote-people__name {
+  flex: 1;
+}

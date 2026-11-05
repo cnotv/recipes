@@ -8,6 +8,7 @@ A modern Vue 3 application with TypeScript that displays a multilingual recipe c
 - **Pagination**: Navigate through recipes with easy-to-use pagination
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Recipe Details**: View detailed recipe information with step-by-step instructions and images
+- **Shared Votes**: Start a vote at `/vote/new`, share the `/vote/<id>` link, and watch the tallies move live (Server-Sent Events); needs the server, so the static preview shows a notice instead
 - **SQLite Backed**: A small TypeScript server stores the recipes and serves them under `/api`
 
 ## Adding New Recipes

@@ -103,7 +103,7 @@ hand is an MP4, never a GIF.
   `RECIPES_STATIC_DIR` (`dist`), `RECIPES_SITE_URL` (for `sitemap.xml`)
 - **Data:** `server/seed/recipes/*.json` are imported once, when the database has no recipes; after that SQLite is the
   source and changes go through the server
-- **Routes:** Vue Router in `src/router/index.ts`; `src/views/HomeView.vue` is `/`, `src/views/DailyVote.vue` is `/daily-vote`, `src/views/RecipeDetail.vue` is `/recipe/<slug>`. API: `GET /api/health`, `/api/recipes`, `/api/recipes/:slug`, `/api/cuisines`; `GET /sitemap.xml`
+- **Routes:** Vue Router in `src/router/index.ts`; `src/views/HomeView.vue` is `/`, `src/views/VoteCreateView.vue` is `/vote/new` and `src/views/VoteSessionView.vue` is `/vote/<id>` (`/daily-vote` redirects to the create page), `src/views/RecipeDetail.vue` is `/recipe/<slug>`. API: `GET /api/health`, `/api/recipes`, `/api/recipes/:slug`, `/api/cuisines`; vote sessions under `/api/vote-sessions` (create, read, `join`, `vote`, `close`, and `events` as Server-Sent Events; ids and cookies are random, cookies are scoped to one session's path); `GET /vote/<id>` serves the app shell with share preview tags; `GET /sitemap.xml`
 - **Verify notes:** none
 - **Checks:** `pnpm lint --max-warnings 0`, `pnpm typecheck`, `pnpm test`
 - **Docs home:** `README.md`

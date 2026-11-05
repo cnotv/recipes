@@ -4,7 +4,7 @@ import './field.css'
 
 const props = defineProps<{
   label: string
-  type?: 'text' | 'email' | 'search' | 'password' | 'number'
+  type?: 'text' | 'email' | 'search' | 'password' | 'number' | 'datetime-local'
   placeholder?: string
   hint?: string
   error?: string
