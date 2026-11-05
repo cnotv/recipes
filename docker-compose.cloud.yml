@@ -1,0 +1,57 @@
+# The cloud deployment. HTTPS for RECIPES_DOMAIN comes from the reverse proxy already running on
+# the server, which forwards the domain to the port published here. Every setting comes from
+# .env, which the deploy workflow writes.
+# The project name fixes the data volume's name: Compose derives the volume from it, so a
+# renamed folder or project would start an empty database.
+name: recipes
+services:
+  app:
+    build: .
+    image: recipes:cloud
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    # A private address only: the proxy reaches it, the internet does not.
+    ports:
+      - "${RECIPES_PUBLISH_ADDRESS:-127.0.0.1}:${RECIPES_PUBLISH_PORT:?set RECIPES_PUBLISH_PORT in .env}:4330"
+    volumes:
+      - app-data:/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4330/api/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    restart: unless-stopped
+
+  # A nightly consistent copy at 03:00 UTC, kept 14 days. It exits when a copy fails its
+  # integrity check, so the restart policy and `docker compose ps` show the failure.
+  backup:
+    image: alpine:3.20
+    depends_on:
+      app:
+        condition: service_healthy
+    volumes:
+      # Read and write: SQLite in WAL mode needs to open the -shm file even to read.
+      - app-data:/data
+      - app-backups:/backups
+    restart: unless-stopped
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        set -eu
+        apk add --no-cache sqlite
+        while true; do
+          now=$$(( $$(date +%s) % 86400 ))
+          pause=$$(( (10800 - now + 86400) % 86400 ))
+          [ "$$pause" -eq 0 ] && pause=86400
+          sleep "$$pause"
+          file="/backups/recipes.db.$$(date +%F)"
+          sqlite3 "/data/recipes.db" ".backup '$$file'"
+          [ "$$(sqlite3 "$$file" 'PRAGMA integrity_check;')" = "ok" ] || { echo "backup failed its integrity check: $$file" >&2; rm -f "$$file"; exit 1; }
+          find /backups -name 'recipes.db.*' -mtime +14 -delete
+        done
+
+volumes:
+  app-data:
+  app-backups:

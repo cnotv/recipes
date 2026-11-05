@@ -1,0 +1,92 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A second push waits for the running deploy instead of cancelling it half way through.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    needs: checks
+    # Nothing to deploy to until the domain is set; see "Deploy to the cloud" in the README.
+    if: vars.RECIPES_DOMAIN != ''
+    runs-on: ubuntu-latest
+    env:
+      DEPLOY_DIRECTORY: ${{ vars.DEPLOY_DIRECTORY || 'recipes' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Written on the runner and copied with the sources, readable by the SSH user only. Every
+      # value comes from the repository settings.
+      - name: Write the server settings
+        env:
+          RECIPES_DOMAIN: ${{ vars.RECIPES_DOMAIN }}
+          RECIPES_PUBLISH_ADDRESS: ${{ vars.RECIPES_PUBLISH_ADDRESS || '127.0.0.1' }}
+          RECIPES_PUBLISH_PORT: ${{ vars.RECIPES_PUBLISH_PORT }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          RECIPES_ADMIN_TOKEN: ${{ secrets.RECIPES_ADMIN_TOKEN }}
+        run: |
+          umask 077
+          cat > .env <<EOF
+          RECIPES_DOMAIN=$RECIPES_DOMAIN
+          RECIPES_PUBLISH_ADDRESS=$RECIPES_PUBLISH_ADDRESS
+          RECIPES_PUBLISH_PORT=$RECIPES_PUBLISH_PORT
+          RECIPES_ALLOWED_HOSTS=$RECIPES_DOMAIN,localhost,127.0.0.1,[::1]
+          RECIPES_SITE_URL=https://$RECIPES_DOMAIN
+          OPENROUTER_MODEL=$OPENROUTER_MODEL
+          OPENROUTER_API_KEY=$OPENROUTER_API_KEY
+          RECIPES_ADMIN_TOKEN=$RECIPES_ADMIN_TOKEN
+          EOF
+
+      # Both SSH actions hold the server key, so they are pinned to the exact commit of a
+      # release rather than a tag that could be moved. The directory is cleared first (the
+      # action's rm option): copying on top of the previous copy leaves files deleted from the
+      # repository behind, and a stale source file breaks the image build. The data is in a
+      # named volume, not here.
+      - name: Copy the sources and settings to the server
+        uses: appleboy/scp-action@ff85246acaad7bdce478db94a363cd2bf7c90345 # v1.0.0
+        with:
+          rm: true
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USERNAME }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          port: ${{ secrets.HETZNER_PORT || '22' }}
+          source: .env,Dockerfile,.dockerignore,docker-compose.cloud.yml,package.json,pnpm-lock.yaml,index.html,vite.config.ts,tsconfig.json,tsconfig.app.json,tsconfig.node.json,eslint.config.ts,public,src,server,scripts
+          target: ${{ env.DEPLOY_DIRECTORY }}
+
+      # The server builds the image itself. --wait fails the deploy if the new version never
+      # becomes healthy.
+      - name: Start the new version
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USERNAME }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          port: ${{ secrets.HETZNER_PORT || '22' }}
+          envs: DEPLOY_DIRECTORY
+          script: |
+            set -eu
+            cd "$DEPLOY_DIRECTORY"
+            chmod 600 .env
+            docker compose --file docker-compose.cloud.yml up --detach --build --remove-orphans --wait --wait-timeout 120
+            docker image prune --force
+
+      # Through the domain, so DNS, the proxy and the certificate are proved too.
+      - name: Smoke test the app at its domain
+        env:
+          RECIPES_DOMAIN: ${{ vars.RECIPES_DOMAIN }}
+        run: scripts/smoke-test.sh "https://$RECIPES_DOMAIN"
