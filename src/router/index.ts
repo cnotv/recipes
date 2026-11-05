@@ -35,6 +35,16 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/submit',
+      name: 'submit',
+      component: () => import('../views/SubmitView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue')
+    },
+    {
       path: '/ui',
       name: 'ui-kit',
       component: () => import('../ui/UiKitPage.vue')
