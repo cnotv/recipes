@@ -89,7 +89,7 @@ jobs:
           RECIPES_SITE_URL=https://recipes.example.test
           OPENROUTER_MODEL=test-model
           OPENROUTER_API_KEY=test-key
-          RECIPES_ADMIN_TOKEN=test-token
+          RECIPES_ADMIN_TOKEN=test-admin-token-0123456789
           EOF
       - run: docker compose up --build --wait
       - run: scripts/smoke-test.sh http://127.0.0.1:4331

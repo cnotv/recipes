@@ -43,6 +43,13 @@ describe('loadConfig submission settings', () => {
     ).toMatchObject({ openRouterApiKey: 'k', openRouterModel: 'a/b:free', adminToken: 'x'.repeat(16), trustProxy: true })
   })
 
+  it('treats empty values as not set', () => {
+    const config = loadConfig({ OPENROUTER_API_KEY: '', OPENROUTER_MODEL: '', RECIPES_ADMIN_TOKEN: '' })
+    expect(config.openRouterApiKey).toBeUndefined()
+    expect(config.adminToken).toBeUndefined()
+    expect(config.openRouterModel).toMatch(/:free$/)
+  })
+
   it('refuses a short admin token', () => {
     expect(() => loadConfig({ RECIPES_ADMIN_TOKEN: 'short' })).toThrow()
   })

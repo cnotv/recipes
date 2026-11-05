@@ -7,6 +7,9 @@ const DEFAULT_PORT = 4330
 const DEFAULT_MODEL = 'google/gemma-4-31b-it:free'
 const MIN_ADMIN_TOKEN_LENGTH = 16
 
+// The deploy workflow writes every variable, empty when unset, so an empty string means "not set".
+const emptyAsUnset = (value: unknown): unknown => (value === '' ? undefined : value)
+
 const environmentSchema = z.object({
   RECIPES_HOST: z.string().min(1).default('127.0.0.1'),
   RECIPES_PORT: z.coerce.number().int().min(1).max(65535).default(DEFAULT_PORT),
@@ -14,9 +17,9 @@ const environmentSchema = z.object({
   RECIPES_ALLOWED_HOSTS: z.string().default(LOOPBACK_HOSTS),
   RECIPES_STATIC_DIR: z.string().min(1).default('dist'),
   RECIPES_SITE_URL: z.string().url().optional(),
-  OPENROUTER_API_KEY: z.string().trim().min(1).optional(),
-  OPENROUTER_MODEL: z.string().trim().min(1).default(DEFAULT_MODEL),
-  RECIPES_ADMIN_TOKEN: z.string().min(MIN_ADMIN_TOKEN_LENGTH).optional(),
+  OPENROUTER_API_KEY: z.preprocess(emptyAsUnset, z.string().trim().min(1).optional()),
+  OPENROUTER_MODEL: z.preprocess(emptyAsUnset, z.string().trim().min(1).default(DEFAULT_MODEL)),
+  RECIPES_ADMIN_TOKEN: z.preprocess(emptyAsUnset, z.string().min(MIN_ADMIN_TOKEN_LENGTH).optional()),
   RECIPES_TRUST_PROXY: z.enum(['true', 'false']).default('false'),
 })
 

@@ -11,6 +11,8 @@ services:
     env_file: .env
     environment:
       NODE_ENV: production
+      # The server sits behind the existing reverse proxy, which appends the client address.
+      RECIPES_TRUST_PROXY: "true"
     # A private address only: the proxy reaches it, the internet does not.
     ports:
       - "${RECIPES_PUBLISH_ADDRESS:-127.0.0.1}:${RECIPES_PUBLISH_PORT:?set RECIPES_PUBLISH_PORT in .env}:4330"
