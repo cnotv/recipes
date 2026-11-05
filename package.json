@@ -10,7 +10,8 @@
     "start": "node server/index.ts",
     "lint": "eslint .",
     "typecheck": "vue-tsc -b",
-    "test": "vitest run"
+    "test": "vitest run",
+    "build:static": "vue-tsc -b && VITE_DATA_SOURCE=static vite build && tsx scripts/build-static-data.ts dist"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.6",

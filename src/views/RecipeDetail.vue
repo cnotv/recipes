@@ -216,6 +216,8 @@ const loadRecipe = async () => {
       return
     }
     recipe.value = found
+    // An old link made of the source URL becomes the slug address.
+    if (found.slug && found.slug !== route.params.slug) router.replace({ name: 'recipe-detail', params: { slug: found.slug }, query: route.query })
     updateRecipeMetaTags()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load recipe'

@@ -199,3 +199,13 @@ export const toRecipeSummary = (recipe: StoredRecipe, now: Date): RecipeSummary 
     tags: metadata.tags,
   }
 }
+
+/** The recipe in the shape the detail page reads: every translation, steps with image and text. */
+export const toRecipeDetail = (recipe: StoredRecipe) => ({
+  slug: recipe.slug,
+  url: recipe.sourceUrl ?? '',
+  cuisine: recipe.cuisine ?? '',
+  difficulty: recipe.difficulty,
+  ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
+  languages: recipe.languages,
+})

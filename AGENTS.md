@@ -107,7 +107,7 @@ hand is an MP4, never a GIF.
 - **Verify notes:** none
 - **Checks:** `pnpm lint --max-warnings 0`, `pnpm typecheck`, `pnpm test`
 - **Docs home:** `README.md`
-- **Preview deploys:** none. Netlify cannot run the server, so `netlify.toml` is gone; the `pr-preview` workflow builds the app and starts the server on port 4330 to record each pull request
+- **Preview deploys:** two, until the cloud deploy (#9). Netlify (`netlify.toml`, `pnpm build:static`) keeps serving the live site at cnotv-recipes.netlify.app and builds each pull request without a server: `VITE_DATA_SOURCE=static` makes `useRecipes` read JSON that `scripts/build-static-data.ts` writes from `server/seed/recipes/`. The `pr-preview` workflow builds the real app and starts the server on port 4330 to record each pull request. Delete the Netlify path (`netlify.toml`, `public/_redirects`, `scripts/build-static-data.ts`, `src/composables/staticRecipes.ts`) with #9
 - **Security:** none yet
 - **Scoped rules:** none yet
 - **Local skills:** none

@@ -247,11 +247,13 @@ import { useRouter } from 'vue-router'
 import { useTheme } from '../composables/useTheme'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useDailyVoting } from '../composables/useDailyVoting'
+import { useRecipes } from '../composables/useRecipes'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import type { Recipe } from '../types/Recipe'
 import type { VotingRecipe } from '../composables/useDailyVoting'
 
 const router = useRouter()
+const { loadRecipeIndex, loadRecipe } = useRecipes()
 const { currentLanguage, getLanguageName } = useLanguagePreference()
 const { currentTheme, setTheme, availableThemes } = useTheme()
 const { 
@@ -340,12 +342,11 @@ const loadAvailableRecipes = async () => {
     loading.value = true
     
     // Limit to the first 20 recipes for performance in voting
-    const { items } = await (await fetch('/api/recipes?pageSize=20')).json()
+    const items = (await loadRecipeIndex()).slice(0, 20)
     const loaded = await Promise.all(
-      items.map(async ({ slug }: { slug: string }): Promise<Recipe[]> => {
+      items.map(async ({ slug }): Promise<Recipe[]> => {
         try {
-          const response = await fetch(`/api/recipes/${encodeURIComponent(slug)}`)
-          const recipe = response.ok ? await response.json() : null
+          const recipe = await loadRecipe(slug)
           return recipe && recipe.url ? [recipe] : []
         } catch (err) {
           console.log(`Failed to load ${slug}:`, err)

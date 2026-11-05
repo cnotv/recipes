@@ -10,10 +10,11 @@ import {
   listCuisines,
   listPublishedRecipes,
   toProcessedRecipe,
+  toRecipeDetail,
   toRecipeSummary,
 } from './recipes.ts'
 import { hostGuard, sameOriginJson } from './security.ts'
-import type { RecipeListResponse, ServerConfig, StoredRecipe } from './types.ts'
+import type { RecipeListResponse, ServerConfig } from './types.ts'
 
 const MAX_PAGE_SIZE = 100
 
@@ -27,16 +28,6 @@ const listQuerySchema = z.object({
 })
 
 const slugSchema = z.string().regex(/^[a-z0-9-]{1,200}$/)
-
-/** The recipe in the shape the detail page reads: every translation, steps with image and text. */
-const toRecipeDetail = (recipe: StoredRecipe) => ({
-  slug: recipe.slug,
-  url: recipe.sourceUrl ?? '',
-  cuisine: recipe.cuisine ?? '',
-  difficulty: recipe.difficulty,
-  ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
-  languages: recipe.languages,
-})
 
 export const createApp = (database: DatabaseSync, config: ServerConfig): Hono => {
   const app = new Hono()

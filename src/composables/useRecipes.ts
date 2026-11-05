@@ -1,4 +1,5 @@
 import type { Recipe } from '../types/Recipe'
+import { listStaticRecipes, loadStaticIndex, resolveStaticSlug } from './staticRecipes'
 
 /** One card of `GET /api/recipes`. */
 export interface RecipeMetadata {
@@ -36,8 +37,16 @@ const fetchJson = async <Body>(path: string): Promise<Body> => {
   return response.json()
 }
 
+// Chosen once at build time: the API, or the JSON files of the Netlify preview build.
+const useStaticSource = import.meta.env.VITE_DATA_SOURCE === 'static'
+
+const fetchRecipePage = async (page: number): Promise<RecipePage> =>
+  useStaticSource
+    ? listStaticRecipes(await loadStaticIndex(), { page, pageSize: PAGE_SIZE })
+    : fetchJson<RecipePage>(`/api/recipes?pageSize=${PAGE_SIZE}&page=${page}`)
+
 const fetchRecipePages = async (page: number): Promise<RecipeMetadata[]> => {
-  const { items, total } = await fetchJson<RecipePage>(`/api/recipes?pageSize=${PAGE_SIZE}&page=${page}`)
+  const { items, total } = await fetchRecipePage(page)
   return page * PAGE_SIZE >= total ? items : [...items, ...(await fetchRecipePages(page + 1))]
 }
 
@@ -48,7 +57,13 @@ export function useRecipes() {
 
   /** One recipe with all its translations, or undefined when the slug is unknown. */
   const loadRecipe = async (slug: string): Promise<Recipe | undefined> => {
-    const response = await fetch(`/api/recipes/${encodeURIComponent(slug)}`)
+    const index = useStaticSource ? await loadStaticIndex() : []
+    const resolved = resolveStaticSlug(index, slug)
+    // Netlify answers a missing file with the app shell, so unknown slugs are ruled out first.
+    if (useStaticSource && !index.some((recipe) => recipe.slug === resolved)) return undefined
+    const response = await fetch(
+      useStaticSource ? `/static-api/recipes/${encodeURIComponent(resolved)}.json` : `/api/recipes/${encodeURIComponent(resolved)}`,
+    )
     if (response.status === 404) return undefined
     if (!response.ok) throw new Error(`Failed to load recipe ${slug}`)
     return response.json()
