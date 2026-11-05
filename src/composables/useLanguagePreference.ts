@@ -10,6 +10,11 @@ import useI18n from './useI18n'
  * - Syncs with i18n for UI translations
  */
 
+export const supportedLanguages: SupportedLanguage[] = ['en', 'de', 'jp', 'th']
+
+export const isSupportedLanguage = (value: unknown): value is SupportedLanguage =>
+  supportedLanguages.some((language) => language === value)
+
 const LANGUAGE_STORAGE_KEY = 'recipe-app-language'
 
 // Function to detect user's region language
@@ -101,10 +106,10 @@ export function useLanguagePreference() {
   
   const getLanguageName = (key: SupportedLanguage): string => {
     const languageNames: Record<SupportedLanguage, string> = {
-      en: '🇺🇸 English',
-      de: '🇩🇪 Deutsch',
-      jp: '🇯🇵 日本語',
-      th: '🇹🇭 ไทย'
+      en: 'English',
+      de: 'Deutsch',
+      jp: '日本語',
+      th: 'ไทย'
     }
     return languageNames[key] || key
   }

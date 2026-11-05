@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import '@fontsource-variable/bricolage-grotesque'
+import '@fontsource-variable/hanken-grotesk'
 import './style.css'
 import App from './App.vue'
 import router from './router'
@@ -6,7 +8,7 @@ import { i18n } from './composables/useI18n'
 import { useTheme } from './composables/useTheme'
 import { useCuisinePreference } from './composables/useCuisinePreference'
 
-// Initialize theme and cuisine preferences
+// Apply the saved theme before the first paint, and load the cuisine preference
 useTheme()
 useCuisinePreference()
 

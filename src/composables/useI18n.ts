@@ -9,11 +9,31 @@ export interface UITranslations {
   allCuisines: string
   recipesFound: string
   
-  // Theme names
-  blueKawaii: string
-  pinkKawaii: string
-  darkMode: string
-  nature: string
+  home: string
+  navVote: string
+  navSubmit: string
+  skipToContent: string
+  light: string
+  dark: string
+  system: string
+  minutes: string
+  close: string
+  retry: string
+  footerNote: string
+  notFoundTitle: string
+  notFoundDescription: string
+  offlineTitle: string
+  offlineDescription: string
+  statusOnline: string
+  statusOffline: string
+  retryConnection: string
+  connected: string
+  offlineBanner: string
+  updateAvailable: string
+  update: string
+  installPrompt: string
+  install: string
+  recipeNotFound: string
   
   // Filters
   english: string
@@ -59,17 +79,37 @@ const messages = {
   en: {
     // Header
     recipeCollection: 'Recipe Collection',
-    language: 'Language:',
-    cuisine: 'Cuisine:',
-    theme: 'Theme:',
+    language: 'Language',
+    cuisine: 'Cuisine',
+    theme: 'Theme',
     allCuisines: 'All Cuisines',
     recipesFound: 'recipes found',
     
-    // Theme names
-    blueKawaii: 'Blue Kawaii',
-    pinkKawaii: 'Pink Kawaii',
-    darkMode: 'Dark Mode',
-    nature: 'Nature',
+    home: 'Home',
+    navVote: 'Vote',
+    navSubmit: 'Submit a recipe',
+    skipToContent: 'Skip to content',
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+    minutes: 'min',
+    close: 'Close',
+    retry: 'Try again',
+    footerNote: 'Recipes from around the world in English, German, Japanese and Thai.',
+    notFoundTitle: 'Page not found',
+    notFoundDescription: 'This page does not exist or has moved.',
+    offlineTitle: 'You\'re Offline',
+    offlineDescription: 'You can still browse recipes you opened before. New recipes arrive when you are back online.',
+    statusOnline: 'Online',
+    statusOffline: 'Offline',
+    retryConnection: 'Retry connection',
+    connected: 'Connected',
+    offlineBanner: 'You\'re offline, showing saved content',
+    updateAvailable: 'A new version is available',
+    update: 'Update',
+    installPrompt: 'Install Recipe Collection as an app',
+    install: 'Install',
+    recipeNotFound: 'Recipe not found',
     
     // Filters
     english: 'English',
@@ -114,17 +154,37 @@ const messages = {
   de: {
     // Header
     recipeCollection: 'Rezeptsammlung',
-    language: 'Sprache:',
-    cuisine: 'Küche:',
-    theme: 'Design:',
+    language: 'Sprache',
+    cuisine: 'Küche',
+    theme: 'Design',
     allCuisines: 'Alle Küchen',
     recipesFound: 'Rezepte gefunden',
     
-    // Theme names
-    blueKawaii: 'Blaues Kawaii',
-    pinkKawaii: 'Rosa Kawaii',
-    darkMode: 'Dunkler Modus',
-    nature: 'Natur',
+    home: 'Start',
+    navVote: 'Abstimmen',
+    navSubmit: 'Rezept einreichen',
+    skipToContent: 'Zum Inhalt springen',
+    light: 'Hell',
+    dark: 'Dunkel',
+    system: 'System',
+    minutes: 'Min.',
+    close: 'Schließen',
+    retry: 'Erneut versuchen',
+    footerNote: 'Rezepte aus aller Welt auf Englisch, Deutsch, Japanisch und Thai.',
+    notFoundTitle: 'Seite nicht gefunden',
+    notFoundDescription: 'Diese Seite gibt es nicht oder sie ist umgezogen.',
+    offlineTitle: 'Du bist offline',
+    offlineDescription: 'Bereits geöffnete Rezepte kannst du weiter ansehen. Neue Rezepte kommen, sobald du wieder online bist.',
+    statusOnline: 'Online',
+    statusOffline: 'Offline',
+    retryConnection: 'Verbindung erneut prüfen',
+    connected: 'Verbunden',
+    offlineBanner: 'Du bist offline, gespeicherte Inhalte werden gezeigt',
+    updateAvailable: 'Eine neue Version ist verfügbar',
+    update: 'Aktualisieren',
+    installPrompt: 'Rezeptsammlung als App installieren',
+    install: 'Installieren',
+    recipeNotFound: 'Rezept nicht gefunden',
     
     // Filters
     english: '🇬🇧 English',
@@ -169,17 +229,37 @@ const messages = {
   jp: {
     // Header
     recipeCollection: 'レシピコレクション',
-    language: '言語:',
-    cuisine: '料理:',
-    theme: 'テーマ:',
+    language: '言語',
+    cuisine: '料理',
+    theme: 'テーマ',
     allCuisines: 'すべての料理',
     recipesFound: 'レシピが見つかりました',
     
-    // Theme names
-    blueKawaii: 'ブルーかわいい',
-    pinkKawaii: 'ピンクかわいい',
-    darkMode: 'ダークモード',
-    nature: '自然',
+    home: 'ホーム',
+    navVote: '投票',
+    navSubmit: 'レシピを投稿',
+    skipToContent: '本文へ移動',
+    light: 'ライト',
+    dark: 'ダーク',
+    system: 'システム',
+    minutes: '分',
+    close: '閉じる',
+    retry: '再試行',
+    footerNote: '世界のレシピを英語、ドイツ語、日本語、タイ語で。',
+    notFoundTitle: 'ページが見つかりません',
+    notFoundDescription: 'このページは存在しないか、移動しました。',
+    offlineTitle: 'オフラインです',
+    offlineDescription: '以前に開いたレシピは引き続き見られます。新しいレシピはオンラインに戻ると届きます。',
+    statusOnline: 'オンライン',
+    statusOffline: 'オフライン',
+    retryConnection: '接続を再確認',
+    connected: '接続しました',
+    offlineBanner: 'オフラインです。保存済みの内容を表示しています',
+    updateAvailable: '新しいバージョンがあります',
+    update: '更新',
+    installPrompt: 'レシピ集をアプリとしてインストール',
+    install: 'インストール',
+    recipeNotFound: 'レシピが見つかりません',
     
     // Filters
     english: '🇬🇧 English',
@@ -224,17 +304,37 @@ const messages = {
   th: {
     // Header
     recipeCollection: 'คอลเลกชันสูตรอาหาร',
-    language: 'ภาษา:',
-    cuisine: 'ประเภทอาหาร:',
-    theme: 'ธีม:',
+    language: 'ภาษา',
+    cuisine: 'ประเภทอาหาร',
+    theme: 'ธีม',
     allCuisines: 'อาหารทุกประเภท',
     recipesFound: 'สูตรอาหารที่พบ',
     
-    // Theme names
-    blueKawaii: 'คาวาอิสีน้ำเงิน',
-    pinkKawaii: 'คาวาอิสีชมพู',
-    darkMode: 'โหมดมืด',
-    nature: 'ธรรมชาติ',
+    home: 'หน้าหลัก',
+    navVote: 'โหวต',
+    navSubmit: 'ส่งสูตรอาหาร',
+    skipToContent: 'ข้ามไปยังเนื้อหา',
+    light: 'สว่าง',
+    dark: 'มืด',
+    system: 'ตามระบบ',
+    minutes: 'นาที',
+    close: 'ปิด',
+    retry: 'ลองอีกครั้ง',
+    footerNote: 'สูตรอาหารจากทั่วโลก เป็นภาษาอังกฤษ เยอรมัน ญี่ปุ่น และไทย',
+    notFoundTitle: 'ไม่พบหน้านี้',
+    notFoundDescription: 'หน้านี้ไม่มีอยู่หรือถูกย้ายแล้ว',
+    offlineTitle: 'คุณออฟไลน์อยู่',
+    offlineDescription: 'ยังเปิดดูสูตรที่เคยเปิดไว้ได้ สูตรใหม่จะมาเมื่อกลับมาออนไลน์',
+    statusOnline: 'ออนไลน์',
+    statusOffline: 'ออฟไลน์',
+    retryConnection: 'ลองเชื่อมต่อใหม่',
+    connected: 'เชื่อมต่อแล้ว',
+    offlineBanner: 'คุณออฟไลน์อยู่ กำลังแสดงเนื้อหาที่บันทึกไว้',
+    updateAvailable: 'มีเวอร์ชันใหม่',
+    update: 'อัปเดต',
+    installPrompt: 'ติดตั้งคอลเลกชันสูตรอาหารเป็นแอป',
+    install: 'ติดตั้ง',
+    recipeNotFound: 'ไม่พบสูตรอาหาร',
     
     // Filters
     english: '🇬🇧 English',

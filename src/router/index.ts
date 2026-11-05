@@ -4,6 +4,7 @@ import RecipeDetail from '../views/RecipeDetail.vue'
 import VoteCreate from '../views/VoteCreateView.vue'
 import VoteSession from '../views/VoteSessionView.vue'
 import Offline from '../views/OfflineView.vue'
+import NotFound from '../views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,11 @@ const router = createRouter({
       path: '/offline',
       name: 'offline',
       component: Offline
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: NotFound
     }
   ]
 })
