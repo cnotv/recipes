@@ -149,57 +149,6 @@ export const processRecipe = (recipe: RecipeFile, filename: string, now: Date): 
   return { recipe, metadata }
 }
 
-/** Recipe ids grouped by cuisine, with "Other" for recipes without one. */
-export const groupByCuisine = (recipes: ProcessedRecipe[]): Record<string, string[]> =>
-  recipes.reduce<Record<string, string[]>>((groups, { recipe, metadata }) => {
-    const cuisine = recipe.cuisine ?? 'Other'
-    return { ...groups, [cuisine]: [...(groups[cuisine] ?? []), metadata.id] }
-  }, {})
-
-/** Recipe ids grouped by difficulty; every level is present. */
-export const groupByDifficulty = (recipes: ProcessedRecipe[]): Record<Difficulty, string[]> => {
-  const idsAt = (level: Difficulty): string[] =>
-    recipes.filter(({ metadata }) => metadata.difficulty === level).map(({ metadata }) => metadata.id)
-  return { Easy: idsAt('Easy'), Medium: idsAt('Medium'), Hard: idsAt('Hard') }
-}
-
-/** How many recipes offer each language, counting only the supported ones. */
-export const countLanguages = (recipes: ProcessedRecipe[], supported: string[]): Record<string, number> =>
-  Object.fromEntries(
-    supported.map((code) => [code, recipes.filter(({ metadata }) => metadata.languages.includes(code)).length]),
-  )
-
-/** The schema.org Recipe, Open Graph and title data for one recipe's page. */
-export const buildSeoData = ({ recipe, metadata }: ProcessedRecipe) => ({
-  title: `${metadata.title} - Recipe Collection`,
-  description: metadata.description,
-  keywords: metadata.keywords,
-  canonical: `/recipe/${metadata.slug}`,
-  openGraph: {
-    title: metadata.title,
-    description: metadata.description,
-    image: metadata.featuredImage,
-    type: 'article',
-    url: `/recipe/${metadata.slug}`,
-  },
-  jsonLd: {
-    '@context': 'https://schema.org',
-    '@type': 'Recipe',
-    name: metadata.title,
-    description: metadata.description,
-    image: metadata.images.map((image) => image.url),
-    recipeCategory: recipe.cuisine,
-    recipeCuisine: recipe.cuisine,
-    totalTime: `PT${metadata.estimatedTime}M`,
-    recipeYield: '4 servings',
-    recipeIngredient: recipe.languages?.en?.ingredients ?? [],
-    recipeInstructions: (recipe.languages?.en?.steps ?? []).map((step) => ({
-      '@type': 'HowToStep',
-      text: stepText(step),
-    })),
-  },
-})
-
 const sitemapEntry = (location: string, lastModified: string, frequency: string, priority: string): string => `
   <url>
     <loc>${location}</loc>

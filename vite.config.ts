@@ -3,6 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
 
+const apiTarget = `http://127.0.0.1:${process.env.RECIPES_PORT ?? 4330}`
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -40,6 +42,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
+        // The server answers these; the service worker must not hand out the app shell for them.
+        navigateFallbackDenylist: [/^\/api\//, /^\/sitemap\.xml$/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -73,33 +77,19 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
               }
             }
-          },
-          {
-            urlPattern: /\/recipes\/.*\.json$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'recipes-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
-              }
-            }
-          },
-          {
-            urlPattern: /\/static-data\/.*\.json$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'static-data-cache',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 1 // 1 day
-              }
-            }
           }
         ]
       }
     })
   ],
+  server: {
+    proxy: {
+      '/api': apiTarget,
+      '/sitemap.xml': apiTarget,
+      // Links from before slugs carry the encoded source URL; the server redirects them.
+      '^/recipe/https?%3A': apiTarget,
+    },
+  },
   build: {
     rollupOptions: {
       input: {

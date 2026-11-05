@@ -15,6 +15,7 @@ const languageSchema = z.object({
 export const recipeFileSchema = z.object({
   url: z.string().optional(),
   cuisine: z.string().optional(),
+  cover: z.string().optional(),
   dateAdded: z.string().optional(),
   languages: z.record(z.string(), languageSchema).optional(),
 })

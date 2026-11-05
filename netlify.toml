@@ -1,6 +1,6 @@
 [build]
   # Build command
-  command = "pnpm build"
+  command = "pnpm build:static"
   # Output directory
   publish = "dist"
 

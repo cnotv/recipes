@@ -10,6 +10,7 @@ export interface RecipeLanguage {
 }
 
 export interface Recipe {
+  slug?: string;
   url: string;
   cuisine: string;
   cover?: string;  // Optional cover image URL

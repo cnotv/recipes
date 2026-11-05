@@ -67,7 +67,7 @@
             <!-- Display loaded recipes -->
             <RecipeCard
               v-for="(recipeCard, index) in displayedRecipesForCard"
-              :key="displayedRecipes[index].url"
+              :key="displayedRecipes[index].slug"
               :recipe="recipeCard"
               :current-language="currentLanguage"
               @view-recipe="(_recipe, lang) => viewRecipe(displayedRecipes[index], lang)"
@@ -105,11 +105,11 @@ import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { useTheme } from '../composables/useTheme'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
-import { useStaticRecipes } from '../composables/useStaticRecipes'
+import { useRecipes } from '../composables/useRecipes'
 import { useI18n } from 'vue-i18n'
 import { useMeta, createHomeMeta, updateMetaTags } from '../composables/useMeta'
-import type { Recipe, SupportedLanguage } from '../types/Recipe'
-import type { RecipeMetadata } from '../composables/useStaticRecipes'
+import type { SupportedLanguage } from '../types/Recipe'
+import type { RecipeMetadata } from '../composables/useRecipes'
 
 // Setup SEO meta tags for home page
 useMeta(createHomeMeta())
@@ -120,16 +120,13 @@ const { t } = useI18n()
 const { currentLanguage, getLanguageName, wasLanguageAutoDetected, setLanguage } = useLanguagePreference()
 const { currentTheme, setTheme, availableThemes } = useTheme()
 const { selectedCuisine } = useCuisinePreference()
-const { 
-  loadRecipeIndex
-} = useStaticRecipes()
+const { loadRecipeIndex } = useRecipes()
 
 // Show a subtle notification when language was auto-detected
 const showLanguageDetectionInfo = ref(false)
 
 // Reactive state
 const recipeMetadata = ref<RecipeMetadata[]>([])
-const recipes = ref<Recipe[]>([])
 const loading = ref(true)
 const error = ref('')
 const recipesPerPage = 12
@@ -198,8 +195,8 @@ const filteredRecipes = computed(() => {
 // Computed recipes in the expected format for RecipeCard
 const displayedRecipesForCard = computed(() => {
   return displayedRecipes.value.map(metadata => ({
-    url: metadata.url,
-    cuisine: metadata.cuisine,
+    url: metadata.url ?? '',
+    cuisine: metadata.cuisine ?? '',
     languages: {
       en: { 
         title: metadata.title, 
@@ -270,58 +267,31 @@ const resetDisplayedRecipes = () => {
   resetInfiniteScroll()
 }
 
-// Load static data generated at build time
+// Load the recipe index from the API
 const loadStaticData = async () => {
   try {
     loading.value = true
     error.value = ''
     
-    const staticData = await loadRecipeIndex()
-    recipeMetadata.value = staticData.recipes
-    totalRecipeCount.value = staticData.totalCount
-    
+    recipeMetadata.value = await loadRecipeIndex()
+    totalRecipeCount.value = recipeMetadata.value.length
+
     if (totalRecipeCount.value === 0) {
-      error.value = 'No recipes found. Please rebuild the project to generate recipe data.'
-      return
+      error.value = 'No recipes found.'
     }
-    
-    // Load individual recipe data for the displayed recipes
-    await loadDisplayedRecipeData()
-    
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load recipe data'
-    console.error('Error loading static data:', err)
+    console.error('Error loading recipes:', err)
   } finally {
     loading.value = false
     resetDisplayedRecipes()
   }
 }
 
-// Load full recipe data for currently displayed recipes
-const loadDisplayedRecipeData = async () => {
-  const recipesToLoad = displayedRecipes.value.slice(0, currentDisplayCount.value)
-  const loadedRecipes = await Promise.all(
-    recipesToLoad.map(async (metadata): Promise<Recipe[]> => {
-      try {
-        const response = await fetch(`/recipes/${metadata.filename}`)
-        return response.ok ? [await response.json()] : []
-      } catch (err) {
-        console.warn(`Failed to load recipe ${metadata.filename}:`, err)
-        return []
-      }
-    })
-  )
-
-  recipes.value = loadedRecipes.flat()
-}
-
 const viewRecipe = (recipeMetadata: RecipeMetadata, language: SupportedLanguage) => {
-  const encodedUrl = encodeURIComponent(recipeMetadata.url)
-  // Store recipe metadata for the detail page
-  sessionStorage.setItem('currentRecipeMetadata', JSON.stringify(recipeMetadata))
   router.push({
     name: 'recipe-detail',
-    params: { url: encodedUrl },
+    params: { slug: recipeMetadata.slug },
     query: { lang: language }
   })
 }
@@ -329,8 +299,6 @@ const viewRecipe = (recipeMetadata: RecipeMetadata, language: SupportedLanguage)
 // Watch for filter changes to reset display
 watch([currentLanguage, selectedCuisine], () => {
   resetDisplayedRecipes()
-  // Reload recipe data when filters change
-  loadDisplayedRecipeData()
 })
 
 // Update URL when language changes
