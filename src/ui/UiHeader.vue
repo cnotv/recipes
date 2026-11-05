@@ -14,7 +14,8 @@ defineProps<{ brand: string }>()
 .ui-header {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
   min-height: var(--size-control-lg);
   padding: var(--space-2) var(--space-4);
   border-bottom: var(--size-border) solid var(--color-border-default);
@@ -37,5 +38,12 @@ defineProps<{ brand: string }>()
   display: flex;
   gap: var(--space-2);
   margin-left: auto;
+}
+
+@media (max-width: 40rem) {
+  .ui-header__nav {
+    order: 3;
+    flex-basis: 100%;
+  }
 }
 </style>
