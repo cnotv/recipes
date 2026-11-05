@@ -22,3 +22,35 @@ describe('loadConfig', () => {
     expect(() => loadConfig({ RECIPES_PORT: 'abc' })).toThrow()
   })
 })
+
+describe('loadConfig submission settings', () => {
+  it('has no key and no admin token by default, and a free default model', () => {
+    const config = loadConfig({})
+    expect(config.openRouterApiKey).toBeUndefined()
+    expect(config.adminToken).toBeUndefined()
+    expect(config.openRouterModel).toMatch(/:free$/)
+    expect(config.trustProxy).toBe(false)
+  })
+
+  it('reads the key, model, admin token and proxy trust', () => {
+    expect(
+      loadConfig({
+        OPENROUTER_API_KEY: 'k',
+        OPENROUTER_MODEL: 'a/b:free',
+        RECIPES_ADMIN_TOKEN: 'x'.repeat(16),
+        RECIPES_TRUST_PROXY: 'true',
+      }),
+    ).toMatchObject({ openRouterApiKey: 'k', openRouterModel: 'a/b:free', adminToken: 'x'.repeat(16), trustProxy: true })
+  })
+
+  it('treats empty values as not set', () => {
+    const config = loadConfig({ OPENROUTER_API_KEY: '', OPENROUTER_MODEL: '', RECIPES_ADMIN_TOKEN: '' })
+    expect(config.openRouterApiKey).toBeUndefined()
+    expect(config.adminToken).toBeUndefined()
+    expect(config.openRouterModel).toMatch(/:free$/)
+  })
+
+  it('refuses a short admin token', () => {
+    expect(() => loadConfig({ RECIPES_ADMIN_TOKEN: 'short' })).toThrow()
+  })
+})

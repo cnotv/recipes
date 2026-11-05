@@ -15,6 +15,9 @@ import {
 } from './recipes.ts'
 import { hostGuard, sameOriginJson } from './security.ts'
 import { registerVoteRoutes } from './vote-routes.ts'
+import { createDefaultServices } from './submission-services.ts'
+import { registerSubmissionRoutes } from './submission-routes.ts'
+import type { SubmissionServices } from './submission-types.ts'
 import type { RecipeListResponse, ServerConfig } from './types.ts'
 
 const MAX_PAGE_SIZE = 100
@@ -30,7 +33,11 @@ const listQuerySchema = z.object({
 
 const slugSchema = z.string().regex(/^[a-z0-9-]{1,200}$/)
 
-export const createApp = (database: DatabaseSync, config: ServerConfig): Hono => {
+export const createApp = (
+  database: DatabaseSync,
+  config: ServerConfig,
+  submissionServices: SubmissionServices = createDefaultServices(config),
+): Hono => {
   const app = new Hono()
 
   app.use('*', hostGuard(config.allowedHosts))
@@ -64,6 +71,7 @@ export const createApp = (database: DatabaseSync, config: ServerConfig): Hono =>
   app.get('/api/cuisines', (context) => context.json(listCuisines(database)))
 
   registerVoteRoutes(app, database, config)
+  registerSubmissionRoutes(app, database, config, submissionServices)
 
   app.all('/api/*', (context) => context.json({ error: 'Not found' }, 404))
 

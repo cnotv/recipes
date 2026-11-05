@@ -7,6 +7,10 @@ export type ServerConfig = {
   allowedHosts: string[]
   staticDirectory: string
   siteUrl: string
+  openRouterApiKey?: string
+  openRouterModel: string
+  adminToken?: string
+  trustProxy: boolean
 }
 
 export type RecipeStatus = 'published' | 'pending' | 'rejected'
