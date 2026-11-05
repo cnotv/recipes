@@ -20,6 +20,8 @@ import type { SupportedLanguage } from '../types/Recipe'
 const ALL_CUISINES = 'all'
 const recipesPerPage = 12
 
+const cuisineOf = (recipe: RecipeMetadata) => recipe.cuisine || 'Unknown'
+
 useMeta(createHomeMeta())
 
 const router = useRouter()
@@ -38,7 +40,7 @@ const isLoadingMore = ref(false)
 
 const availableCuisines = computed(() => {
   const counts = recipeMetadata.value.reduce(
-    (found, recipe) => found.set(recipe.cuisine || 'Unknown', (found.get(recipe.cuisine || 'Unknown') ?? 0) + 1),
+    (found, recipe) => found.set(cuisineOf(recipe), (found.get(cuisineOf(recipe)) ?? 0) + 1),
     new Map<string, number>(),
   )
   return [...counts.entries()].map(([name, count]) => ({ name, count })).sort((a, b) => a.name.localeCompare(b.name))
@@ -48,7 +50,7 @@ const filteredRecipes = computed(() =>
   recipeMetadata.value.filter(
     (recipe) =>
       recipe.languages.includes(currentLanguage.value) &&
-      (selectedCuisine.value === '' || recipe.cuisine === selectedCuisine.value),
+      (selectedCuisine.value === '' || cuisineOf(recipe) === selectedCuisine.value),
   ),
 )
 
@@ -125,7 +127,9 @@ watch(
     </div>
 
     <div class="filters">
+      <!-- Keyed by the count because the select keeps the label it first rendered for the chosen value. -->
       <UiSelect
+        :key="recipeMetadata.length"
         :label="t('cuisine')"
         :options="cuisineOptions"
         :model-value="cuisineChoice"
@@ -165,7 +169,7 @@ watch(
           :key="recipe.slug"
           :recipe="{
             title: recipe.title,
-            cuisine: recipe.cuisine ?? '',
+            cuisine: cuisineOf(recipe),
             minutes: recipe.estimatedTime,
             imageUrl: recipe.featuredImage ?? undefined,
           }"

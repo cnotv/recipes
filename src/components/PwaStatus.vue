@@ -44,15 +44,21 @@ const handleBeforeInstallPrompt = (event: Event) => {
   showInstallPrompt.value = true
 }
 
+// The first controllerchange is the service worker taking over a fresh install, not an update.
+const hadController = ref(false)
+
 const markRefreshNeeded = () => {
-  needRefresh.value = true
+  needRefresh.value = hadController.value
 }
 
 onMounted(() => {
   window.addEventListener('online', hideOffline)
   window.addEventListener('offline', showOffline)
   window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('controllerchange', markRefreshNeeded)
+  if ('serviceWorker' in navigator) {
+    hadController.value = Boolean(navigator.serviceWorker.controller)
+    navigator.serviceWorker.addEventListener('controllerchange', markRefreshNeeded)
+  }
 })
 
 onUnmounted(() => {
