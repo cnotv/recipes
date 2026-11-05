@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import UiBadge from '../ui/UiBadge.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiEmptyState from '../ui/UiEmptyState.vue'
@@ -13,6 +14,8 @@ import {
   signOutAdmin,
 } from '../lib/submissionApi'
 import type { PendingSubmission } from '../types/submission'
+
+const { t } = useI18n()
 
 type Phase = 'loading' | 'disabled' | 'signin' | 'list'
 
@@ -55,7 +58,7 @@ const signOut = async (): Promise<void> => {
 
 const decide = async (submission: PendingSubmission, decision: 'approve' | 'reject'): Promise<void> => {
   const failure = await decideSubmission(submission.id, decision)
-  notice.value = failure ?? `${titleOf(submission)} was ${decision === 'approve' ? 'approved and published' : 'rejected'}.`
+  notice.value = failure ?? t(decision === 'approve' ? 'adminApproved' : 'adminRejected', { title: titleOf(submission) })
   if (failure === undefined) submissions.value = submissions.value.filter((item) => item.id !== submission.id)
 }
 
@@ -68,50 +71,50 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="admin-view">
-    <h1 class="admin-view__title">Approve recipes</h1>
+  <div class="admin-view">
+    <h1 class="admin-view__title">{{ t('adminTitle') }}</h1>
 
-    <p v-if="phase === 'loading'" role="status">Loading</p>
+    <p v-if="phase === 'loading'" role="status">{{ t('adminLoading') }}</p>
 
     <UiEmptyState
       v-else-if="phase === 'disabled'"
       icon="info"
-      title="Admin is switched off"
-      description="Set RECIPES_ADMIN_TOKEN on the server to turn it on."
+      :title="t('adminOffTitle')"
+      :description="t('adminOffDescription')"
     />
 
     <form v-else-if="phase === 'signin'" class="admin-view__signin" novalidate @submit.prevent="signIn">
-      <UiInput v-model="token" type="password" label="Admin token" :error="signInError" />
-      <UiButton type="submit" :disabled="token === ''">Sign in</UiButton>
+      <UiInput v-model="token" type="password" :label="t('adminTokenLabel')" :error="signInError" />
+      <UiButton type="submit" :disabled="token === ''">{{ t('adminSignIn') }}</UiButton>
     </form>
 
     <template v-else>
       <div class="admin-view__bar">
         <p v-if="notice" role="status">{{ notice }}</p>
-        <UiButton variant="ghost" size="sm" @click="signOut">Sign out</UiButton>
+        <UiButton variant="ghost" size="sm" @click="signOut">{{ t('adminSignOut') }}</UiButton>
       </div>
 
-      <UiEmptyState v-if="submissions.length === 0" icon="check" title="Nothing is waiting for approval" />
+      <UiEmptyState v-if="submissions.length === 0" icon="check" :title="t('adminEmptyTitle')" />
 
       <article v-for="submission in submissions" :key="submission.id" class="admin-view__item">
         <header class="admin-view__header">
           <h2 class="admin-view__name">{{ titleOf(submission) }}</h2>
-          <UiBadge v-if="!submission.translated" tone="highlight">Not translated</UiBadge>
+          <UiBadge v-if="!submission.translated" tone="highlight">{{ t('adminNotTranslated') }}</UiBadge>
           <UiBadge>{{ submission.recipe.difficulty }}</UiBadge>
         </header>
         <p class="admin-view__source">
-          Source:
+          {{ t('adminSource') }}:
           <a :href="submission.url" target="_blank" rel="noopener noreferrer">{{ submission.url }}</a>
         </p>
 
         <UiTabs v-model="chosenLanguage[submission.id]" :items="tabsOf(submission)">
           <template v-for="language in languagesOf(submission)" :key="language" #[language]>
             <p v-if="submission.recipe.languages[language].description">{{ submission.recipe.languages[language].description }}</p>
-            <h3 class="admin-view__section">Ingredients</h3>
+            <h3 class="admin-view__section">{{ t('ingredients') }}</h3>
             <ul>
               <li v-for="(ingredient, index) in submission.recipe.languages[language].ingredients" :key="index">{{ ingredient }}</li>
             </ul>
-            <h3 class="admin-view__section">Steps</h3>
+            <h3 class="admin-view__section">{{ t('steps') }}</h3>
             <ol>
               <li v-for="(step, index) in submission.recipe.languages[language].steps" :key="index">{{ step.content }}</li>
             </ol>
@@ -119,12 +122,12 @@ onMounted(async () => {
         </UiTabs>
 
         <div class="admin-view__actions">
-          <UiButton @click="decide(submission, 'approve')">Approve</UiButton>
-          <UiButton variant="danger" @click="decide(submission, 'reject')">Reject</UiButton>
+          <UiButton @click="decide(submission, 'approve')">{{ t('adminApprove') }}</UiButton>
+          <UiButton variant="danger" @click="decide(submission, 'reject')">{{ t('adminReject') }}</UiButton>
         </div>
       </article>
     </template>
-  </main>
+  </div>
 </template>
 
 <style scoped>

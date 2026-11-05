@@ -69,6 +69,47 @@ export interface UITranslations {
   viewOriginalRecipe: string
   step: string
   
+  // Legal, source, submit and admin
+  footerImpressum: string
+  footerPrivacy: string
+  sourceHeading: string
+  sourceNote: string
+  sourceLink: string
+  submitTitle: string
+  submitIntro: string
+  submitPrivacyNote: string
+  submitPrivacyLink: string
+  submitPreviewTitle: string
+  submitPreviewDescription: string
+  submitLinkLabel: string
+  submitLinkPlaceholder: string
+  submitLinkHint: string
+  submitSend: string
+  submitWaiting: string
+  submitReading: string
+  submitTranslating: string
+  submitProgress: string
+  submitThanksTitle: string
+  submitThanksDescription: string
+  submitAnother: string
+  submitFailedTitle: string
+  submitFailedFallback: string
+  submitTryAnother: string
+  adminTitle: string
+  adminLoading: string
+  adminOffTitle: string
+  adminOffDescription: string
+  adminTokenLabel: string
+  adminSignIn: string
+  adminSignOut: string
+  adminEmptyTitle: string
+  adminNotTranslated: string
+  adminSource: string
+  adminApprove: string
+  adminReject: string
+  adminApproved: string
+  adminRejected: string
+  
   // Daily voting system
   dailyVote: {
     title: string
@@ -145,6 +186,47 @@ const messages = {
     viewOriginalRecipe: 'View Original Recipe',
     step: 'Step',
     
+    // Legal, source, submit and admin
+    footerImpressum: 'Legal notice',
+    footerPrivacy: 'Privacy policy',
+    sourceHeading: 'Source',
+    sourceNote: 'This recipe was first published on {site}. Its text and pictures come from there and belong to their authors.',
+    sourceLink: 'Read the original recipe on {site}',
+    submitTitle: 'Submit a recipe',
+    submitIntro: 'Paste the link to a recipe page. It is read, translated into English, German, Japanese and Thai, and published once it has been approved.',
+    submitPrivacyNote: 'To read and translate it, the text of the page is sent to a language model service (OpenRouter and the model providers behind it). Details are in the',
+    submitPrivacyLink: 'privacy policy',
+    submitPreviewTitle: 'Submitting is not available in this preview',
+    submitPreviewDescription: 'This copy of the site has no server behind it. Open the full site to submit a recipe link.',
+    submitLinkLabel: 'Recipe link',
+    submitLinkPlaceholder: 'https://example.com/my-favourite-recipe',
+    submitLinkHint: 'A public http or https page.',
+    submitSend: 'Import recipe',
+    submitWaiting: 'Waiting for its turn',
+    submitReading: 'Reading the page',
+    submitTranslating: 'Translating into English, German, Japanese and Thai',
+    submitProgress: 'Import progress',
+    submitThanksTitle: 'Thank you, your recipe is waiting for approval',
+    submitThanksDescription: 'It will appear on the site as soon as it has been looked at.',
+    submitAnother: 'Submit another link',
+    submitFailedTitle: 'This link could not be imported',
+    submitFailedFallback: 'The import did not finish.',
+    submitTryAnother: 'Try another link',
+    adminTitle: 'Approve recipes',
+    adminLoading: 'Loading',
+    adminOffTitle: 'Admin is switched off',
+    adminOffDescription: 'Set RECIPES_ADMIN_TOKEN on the server to turn it on.',
+    adminTokenLabel: 'Admin token',
+    adminSignIn: 'Sign in',
+    adminSignOut: 'Sign out',
+    adminEmptyTitle: 'Nothing is waiting for approval',
+    adminNotTranslated: 'Not translated',
+    adminSource: 'Source',
+    adminApprove: 'Approve',
+    adminReject: 'Reject',
+    adminApproved: '{title} was approved and published.',
+    adminRejected: '{title} was rejected.',
+    
     // Daily voting system
     dailyVote: {
       title: 'Daily Recipe Vote'
@@ -219,6 +301,47 @@ const messages = {
     backToHome: 'Zurück zu Rezepten',
     viewOriginalRecipe: 'Originalrezept ansehen',
     step: 'Schritt',
+    
+    // Legal, source, submit and admin
+    footerImpressum: 'Impressum',
+    footerPrivacy: 'Datenschutz',
+    sourceHeading: 'Quelle',
+    sourceNote: 'Dieses Rezept wurde zuerst auf {site} veröffentlicht. Text und Bilder stammen von dort und gehören ihren Urhebern.',
+    sourceLink: 'Originalrezept auf {site} lesen',
+    submitTitle: 'Rezept einreichen',
+    submitIntro: 'Füge den Link zu einer Rezeptseite ein. Sie wird gelesen, ins Englische, Deutsche, Japanische und Thailändische übersetzt und nach der Freigabe veröffentlicht.',
+    submitPrivacyNote: 'Zum Lesen und Übersetzen wird der Text der Seite an einen Sprachmodell-Dienst gesendet (OpenRouter und die dahinterstehenden Modellanbieter). Einzelheiten stehen in der',
+    submitPrivacyLink: 'Datenschutzerklärung',
+    submitPreviewTitle: 'Einreichen ist in dieser Vorschau nicht möglich',
+    submitPreviewDescription: 'Diese Kopie der Website hat keinen Server dahinter. Öffne die vollständige Website, um einen Rezeptlink einzureichen.',
+    submitLinkLabel: 'Rezeptlink',
+    submitLinkPlaceholder: 'https://example.com/mein-lieblingsrezept',
+    submitLinkHint: 'Eine öffentliche http- oder https-Seite.',
+    submitSend: 'Rezept importieren',
+    submitWaiting: 'Wartet auf die Bearbeitung',
+    submitReading: 'Seite wird gelesen',
+    submitTranslating: 'Übersetzung ins Englische, Deutsche, Japanische und Thailändische',
+    submitProgress: 'Fortschritt des Imports',
+    submitThanksTitle: 'Danke, dein Rezept wartet auf die Freigabe',
+    submitThanksDescription: 'Es erscheint auf der Website, sobald es geprüft wurde.',
+    submitAnother: 'Weiteren Link einreichen',
+    submitFailedTitle: 'Dieser Link konnte nicht importiert werden',
+    submitFailedFallback: 'Der Import wurde nicht abgeschlossen.',
+    submitTryAnother: 'Anderen Link versuchen',
+    adminTitle: 'Rezepte freigeben',
+    adminLoading: 'Wird geladen',
+    adminOffTitle: 'Admin ist abgeschaltet',
+    adminOffDescription: 'Setze RECIPES_ADMIN_TOKEN auf dem Server, um ihn einzuschalten.',
+    adminTokenLabel: 'Admin-Token',
+    adminSignIn: 'Anmelden',
+    adminSignOut: 'Abmelden',
+    adminEmptyTitle: 'Nichts wartet auf Freigabe',
+    adminNotTranslated: 'Nicht übersetzt',
+    adminSource: 'Quelle',
+    adminApprove: 'Freigeben',
+    adminReject: 'Ablehnen',
+    adminApproved: '{title} wurde freigegeben und veröffentlicht.',
+    adminRejected: '{title} wurde abgelehnt.',
     
     // Daily voting system
     dailyVote: {
@@ -295,6 +418,47 @@ const messages = {
     viewOriginalRecipe: '元のレシピを見る',
     step: 'ステップ',
     
+    // Legal, source, submit and admin
+    footerImpressum: '運営者情報 (Impressum)',
+    footerPrivacy: 'プライバシーポリシー',
+    sourceHeading: '出典',
+    sourceNote: 'このレシピは最初に{site}で公開されました。文章と画像はそちらのもので、著作者に帰属します。',
+    sourceLink: '{site}で元のレシピを読む',
+    submitTitle: 'レシピを投稿',
+    submitIntro: 'レシピページのリンクを貼ってください。内容を読み取り、英語、ドイツ語、日本語、タイ語に翻訳し、承認後に公開します。',
+    submitPrivacyNote: '読み取りと翻訳のため、ページの文章は言語モデルのサービス(OpenRouterとその先のモデル提供元)に送信されます。詳しくは',
+    submitPrivacyLink: 'プライバシーポリシー',
+    submitPreviewTitle: 'このプレビューでは投稿できません',
+    submitPreviewDescription: 'このサイトのコピーにはサーバーがありません。レシピのリンクを投稿するには本サイトを開いてください。',
+    submitLinkLabel: 'レシピのリンク',
+    submitLinkPlaceholder: 'https://example.com/my-favourite-recipe',
+    submitLinkHint: '公開されているhttpまたはhttpsのページ。',
+    submitSend: 'レシピを取り込む',
+    submitWaiting: '順番待ち',
+    submitReading: 'ページを読み取り中',
+    submitTranslating: '英語、ドイツ語、日本語、タイ語に翻訳中',
+    submitProgress: '取り込みの進行状況',
+    submitThanksTitle: 'ありがとうございます。レシピは承認待ちです',
+    submitThanksDescription: '確認でき次第、サイトに表示されます。',
+    submitAnother: '別のリンクを投稿',
+    submitFailedTitle: 'このリンクは取り込めませんでした',
+    submitFailedFallback: '取り込みが完了しませんでした。',
+    submitTryAnother: '別のリンクを試す',
+    adminTitle: 'レシピの承認',
+    adminLoading: '読み込み中',
+    adminOffTitle: '管理画面は無効です',
+    adminOffDescription: '有効にするには、サーバーでRECIPES_ADMIN_TOKENを設定してください。',
+    adminTokenLabel: '管理トークン',
+    adminSignIn: 'サインイン',
+    adminSignOut: 'サインアウト',
+    adminEmptyTitle: '承認待ちはありません',
+    adminNotTranslated: '未翻訳',
+    adminSource: '出典',
+    adminApprove: '承認',
+    adminReject: '却下',
+    adminApproved: '{title}を承認して公開しました。',
+    adminRejected: '{title}を却下しました。',
+    
     // Daily voting system
     dailyVote: {
       title: '今日のレシピ投票'
@@ -369,6 +533,47 @@ const messages = {
     backToHome: 'กลับสู่หน้าหลัก',
     viewOriginalRecipe: 'ดูสูตรอาหารต้นฉบับ',
     step: 'ขั้นตอนที่',
+    
+    // Legal, source, submit and admin
+    footerImpressum: 'ข้อมูลผู้ให้บริการ (Impressum)',
+    footerPrivacy: 'นโยบายความเป็นส่วนตัว',
+    sourceHeading: 'แหล่งที่มา',
+    sourceNote: 'สูตรอาหารนี้เผยแพร่ครั้งแรกที่ {site} ข้อความและรูปภาพมาจากที่นั่นและเป็นของเจ้าของผลงาน',
+    sourceLink: 'อ่านสูตรต้นฉบับที่ {site}',
+    submitTitle: 'ส่งสูตรอาหาร',
+    submitIntro: 'วางลิงก์หน้าสูตรอาหาร ระบบจะอ่าน แปลเป็นภาษาอังกฤษ เยอรมัน ญี่ปุ่น และไทย แล้วเผยแพร่หลังได้รับการอนุมัติ',
+    submitPrivacyNote: 'ข้อความของหน้าจะถูกส่งไปยังบริการโมเดลภาษา (OpenRouter และผู้ให้บริการโมเดลเบื้องหลัง) เพื่ออ่านและแปล ดูรายละเอียดใน',
+    submitPrivacyLink: 'นโยบายความเป็นส่วนตัว',
+    submitPreviewTitle: 'ส่งสูตรอาหารไม่ได้ในตัวอย่างนี้',
+    submitPreviewDescription: 'เว็บไซต์ฉบับนี้ไม่มีเซิร์ฟเวอร์ ให้เปิดเว็บไซต์จริงเพื่อส่งลิงก์สูตรอาหาร',
+    submitLinkLabel: 'ลิงก์สูตรอาหาร',
+    submitLinkPlaceholder: 'https://example.com/my-favourite-recipe',
+    submitLinkHint: 'หน้าเว็บสาธารณะแบบ http หรือ https',
+    submitSend: 'นำเข้าสูตรอาหาร',
+    submitWaiting: 'รอคิว',
+    submitReading: 'กำลังอ่านหน้าเว็บ',
+    submitTranslating: 'กำลังแปลเป็นภาษาอังกฤษ เยอรมัน ญี่ปุ่น และไทย',
+    submitProgress: 'ความคืบหน้าการนำเข้า',
+    submitThanksTitle: 'ขอบคุณ สูตรอาหารของคุณรอการอนุมัติ',
+    submitThanksDescription: 'จะแสดงบนเว็บไซต์เมื่อตรวจสอบแล้ว',
+    submitAnother: 'ส่งลิงก์อื่น',
+    submitFailedTitle: 'นำเข้าลิงก์นี้ไม่ได้',
+    submitFailedFallback: 'การนำเข้าไม่เสร็จสิ้น',
+    submitTryAnother: 'ลองลิงก์อื่น',
+    adminTitle: 'อนุมัติสูตรอาหาร',
+    adminLoading: 'กำลังโหลด',
+    adminOffTitle: 'ปิดการใช้งานผู้ดูแลอยู่',
+    adminOffDescription: 'ตั้งค่า RECIPES_ADMIN_TOKEN บนเซิร์ฟเวอร์เพื่อเปิดใช้งาน',
+    adminTokenLabel: 'โทเคนผู้ดูแล',
+    adminSignIn: 'เข้าสู่ระบบ',
+    adminSignOut: 'ออกจากระบบ',
+    adminEmptyTitle: 'ไม่มีรายการรออนุมัติ',
+    adminNotTranslated: 'ยังไม่ได้แปล',
+    adminSource: 'แหล่งที่มา',
+    adminApprove: 'อนุมัติ',
+    adminReject: 'ปฏิเสธ',
+    adminApproved: 'อนุมัติและเผยแพร่ {title} แล้ว',
+    adminRejected: 'ปฏิเสธ {title} แล้ว',
     
     // Daily voting system
     dailyVote: {
