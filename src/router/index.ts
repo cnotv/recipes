@@ -32,8 +32,7 @@ const router = createRouter({
     {
       path: '/recipe/:slug',
       name: 'recipe-detail',
-      component: RecipeDetail,
-      props: true
+      component: RecipeDetail
     },
     {
       path: '/submit',
@@ -44,6 +43,18 @@ const router = createRouter({
       path: '/admin',
       name: 'admin',
       component: () => import('../views/AdminView.vue')
+    },
+    {
+      path: '/impressum',
+      name: 'impressum',
+      component: () => import('../views/LegalView.vue'),
+      props: { page: 'impressum' }
+    },
+    {
+      path: '/datenschutz',
+      name: 'datenschutz',
+      component: () => import('../views/LegalView.vue'),
+      props: { page: 'datenschutz' }
     },
     {
       path: '/ui',

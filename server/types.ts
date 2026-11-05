@@ -4,6 +4,7 @@ export type ServerConfig = {
   host: string
   port: number
   databasePath: string
+  mediaDirectory: string
   allowedHosts: string[]
   staticDirectory: string
   siteUrl: string

@@ -1,8 +1,15 @@
 // @vitest-environment jsdom
 import { flushPromises, mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { createMemoryHistory, createRouter } from 'vue-router'
+import { i18n } from '../composables/useI18n'
 import AdminView from './AdminView.vue'
 import SubmitView from './SubmitView.vue'
+
+const plugins = () => [
+  i18n,
+  createRouter({ history: createMemoryHistory(), routes: [{ path: '/datenschutz', component: { template: '<div />' } }] }),
+]
 
 type Route = { method: string; path: string; status?: number; body: unknown }
 
@@ -42,7 +49,7 @@ describe('SubmitView', () => {
   it('shows the form, then progress, then the pending message', async () => {
     const id = '11111111-1111-4111-8111-111111111111'
     stubServer([{ method: 'POST', path: '/api/submissions', status: 202, body: { id, status: 'queued' } }])
-    const wrapper = mount(SubmitView)
+    const wrapper = mount(SubmitView, { global: { plugins: plugins() } })
     expect(wrapper.find('label').text()).toBe('Recipe link')
     await fill(wrapper, 'https://example.com/soup')
     expect(wrapper.text()).toContain('Waiting for its turn')
@@ -60,7 +67,7 @@ describe('SubmitView', () => {
   it('shows the reason when the import fails and lets the visitor start over', async () => {
     const id = '11111111-1111-4111-8111-111111111111'
     stubServer([{ method: 'POST', path: '/api/submissions', status: 202, body: { id, status: 'queued' } }])
-    const wrapper = mount(SubmitView)
+    const wrapper = mount(SubmitView, { global: { plugins: plugins() } })
     await fill(wrapper, 'https://example.com/soup')
     stubServer([{ method: 'GET', path: `/api/submissions/${id}`, body: { id, status: 'failed', reason: 'The page took too long to load' } }])
     await advance()
@@ -72,20 +79,20 @@ describe('SubmitView', () => {
 
   it('shows a refused link next to the field', async () => {
     stubServer([{ method: 'POST', path: '/api/submissions', status: 409, body: { error: 'This link was already submitted' } }])
-    const wrapper = mount(SubmitView)
+    const wrapper = mount(SubmitView, { global: { plugins: plugins() } })
     await fill(wrapper, 'https://example.com/soup')
     expect(wrapper.find('input').attributes('aria-invalid')).toBe('true')
     expect(wrapper.text()).toContain('This link was already submitted')
   })
 
   it('does not send an empty link', () => {
-    const wrapper = mount(SubmitView)
+    const wrapper = mount(SubmitView, { global: { plugins: plugins() } })
     expect(wrapper.find('button[type="submit"]').attributes('disabled')).toBeDefined()
   })
 
   it('shows a notice instead of the form in the static preview build', () => {
     vi.stubEnv('VITE_DATA_SOURCE', 'static')
-    const wrapper = mount(SubmitView)
+    const wrapper = mount(SubmitView, { global: { plugins: plugins() } })
     expect(wrapper.find('form').exists()).toBe(false)
     expect(wrapper.text()).toContain('not available in this preview')
   })
@@ -108,7 +115,7 @@ describe('AdminView', () => {
 
   it('says admin is off when the server has no token', async () => {
     stubServer([{ method: 'GET', path: '/api/admin/session', body: { enabled: false, signedIn: false } }])
-    const wrapper = mount(AdminView)
+    const wrapper = mount(AdminView, { global: { plugins: plugins() } })
     await flushPromises()
     expect(wrapper.text()).toContain('switched off')
   })
@@ -120,7 +127,7 @@ describe('AdminView', () => {
       { method: 'GET', path: '/api/admin/submissions', body: pending },
       { method: 'POST', path: `/api/admin/submissions/${pending[0].id}/approve`, body: { id: pending[0].id, status: 'published' } },
     ])
-    const wrapper = mount(AdminView)
+    const wrapper = mount(AdminView, { global: { plugins: plugins() } })
     await flushPromises()
     await wrapper.find('input').setValue('the-token')
     await wrapper.find('form').trigger('submit')
@@ -142,7 +149,7 @@ describe('AdminView', () => {
       { method: 'GET', path: '/api/admin/session', body: { enabled: true, signedIn: false } },
       { method: 'POST', path: '/api/admin/session', status: 401, body: { error: 'Wrong token' } },
     ])
-    const wrapper = mount(AdminView)
+    const wrapper = mount(AdminView, { global: { plugins: plugins() } })
     await flushPromises()
     await wrapper.find('input').setValue('nope')
     await wrapper.find('form').trigger('submit')

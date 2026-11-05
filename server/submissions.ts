@@ -3,7 +3,8 @@ import type { DatabaseSync } from 'node:sqlite'
 import { z } from 'zod'
 import { detectSourceLanguage, extractJsonLdRecipe, htmlToText } from './import-recipe.ts'
 import { extractRecipeWithModel, translateRecipe } from './model-recipe.ts'
-import { insertRecipeReturningId, recipeSlugExists, setRecipeStatus } from './recipes.ts'
+import { localizeStoredRecipe } from './media.ts'
+import { findRecipeById, insertRecipeReturningId, recipeSlugExists, setRecipeStatus } from './recipes.ts'
 import type { ImportedRecipe, SourceLanguage, SubmissionContext, SubmissionRow, SubmissionStatus } from './submission-types.ts'
 import type { StoredRecipe, StoredTranslation } from './types.ts'
 import { userError, userMessage } from './user-error.ts'
@@ -156,8 +157,15 @@ export const runSubmission = async (context: SubmissionContext, id: string): Pro
   )
 }
 
+/** Pictures are copied at approval, so a rejected link never costs a download; a failure is retried at the next start. */
+const localizeApprovedRecipe = async (context: SubmissionContext, recipeId: number): Promise<void> => {
+  const recipe = findRecipeById(context.database, recipeId)
+  if (recipe !== undefined) await localizeStoredRecipe(context.database, context.services.media, recipe).catch(() => undefined)
+}
+
 /** Approve publishes the recipe; reject keeps the rows so the same link is not imported again. */
-export const decideSubmission = (context: SubmissionContext, row: SubmissionRow, decision: 'published' | 'rejected'): void => {
+export const decideSubmission = async (context: SubmissionContext, row: SubmissionRow, decision: 'published' | 'rejected'): Promise<void> => {
   if (row.recipeId !== null) setRecipeStatus(context.database, row.recipeId, decision)
   updateSubmission(context, row.id, { status: decision })
+  if (decision === 'published' && row.recipeId !== null) await localizeApprovedRecipe(context, row.recipeId)
 }

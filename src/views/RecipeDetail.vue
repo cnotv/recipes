@@ -8,7 +8,8 @@ import UiEmptyState from '../ui/UiEmptyState.vue'
 import UiIcon from '../ui/UiIcon.vue'
 import UiSkeleton from '../ui/UiSkeleton.vue'
 import { isSupportedLanguage, useLanguagePreference } from '../composables/useLanguagePreference'
-import { createRecipeMeta, updateMetaTags } from '../composables/useMeta'
+import { applyHead, siteOrigin } from '../composables/useHead'
+import { recipeHead } from '../../scripts/seo.ts'
 import { useRecipes } from '../composables/useRecipes'
 import type { Recipe } from '../types/Recipe'
 
@@ -30,25 +31,15 @@ const recipeData = computed(() => {
   return found ? (found.languages[currentLanguage.value] ?? found.languages.en ?? Object.values(found.languages)[0]) : null
 })
 
-const refreshMetaTags = () => {
+const sourceHost = computed(() => {
+  const address = recipe.value?.url
+  return address && URL.canParse(address) ? new URL(address).hostname.replace(/^www\./, '') : ''
+})
+
+const refreshHead = () => {
   const found = recipe.value
-  const data = recipeData.value
-  if (!found || !data) return
-  updateMetaTags(
-    createRecipeMeta(
-      {
-        title: data.title,
-        description: data.steps[0]?.content || `Delicious ${found.cuisine || ''} recipe with step-by-step instructions.`,
-        image: found.cover || data.steps[0]?.image || undefined,
-        cuisine: found.cuisine,
-        ingredients: data.ingredients,
-        steps: data.steps,
-        url: found.url,
-        fileName: String(route.params.slug),
-      },
-      currentLanguage.value,
-    ),
-  )
+  if (!found || !recipeData.value) return
+  applyHead(recipeHead({ ...found, slug: found.slug ?? String(route.params.slug) }, currentLanguage.value, siteOrigin()))
 }
 
 const loadRecipe = async () => {
@@ -79,7 +70,7 @@ const hideBrokenImage = (event: Event) => {
   if (event.target instanceof HTMLElement) event.target.hidden = true
 }
 
-watch([recipeData, currentLanguage], refreshMetaTags, { immediate: true })
+watch([recipeData, currentLanguage], refreshHead, { immediate: true })
 
 watch(currentLanguage, (language) => router.replace({ ...route, query: { ...route.query, lang: language } }))
 
@@ -94,7 +85,7 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
       </UiButton>
     </div>
 
-    <div v-if="loading" class="page" aria-busy="true">
+    <div v-if="loading" class="page page--loading" aria-busy="true">
       <UiSkeleton width="60%" height="2.5rem" />
       <UiSkeleton height="12rem" />
     </div>
@@ -110,10 +101,13 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
           <UiBadge v-if="recipe?.cuisine" tone="brand">{{ recipe.cuisine }}</UiBadge>
           <UiBadge>{{ recipeData.ingredients.length }} {{ t('ingredients') }}</UiBadge>
           <UiBadge>{{ recipeData.steps.length }} {{ t('steps') }}</UiBadge>
-          <a v-if="recipe?.url" :href="recipe.url" target="_blank" rel="noopener noreferrer">
-            {{ t('viewOriginalRecipe') }}
-          </a>
         </div>
+        <!-- The text and pictures are copied from this page, so the credit comes before the recipe. -->
+        <aside v-if="recipe?.url && sourceHost" class="recipe-source">
+          <h2 class="recipe-source__title">{{ t('sourceHeading') }}</h2>
+          <p>{{ t('sourceNote', { site: sourceHost }) }}</p>
+          <a :href="recipe.url" target="_blank" rel="noopener noreferrer">{{ t('sourceLink', { site: sourceHost }) }}</a>
+        </aside>
       </div>
 
       <div class="recipe-sections">
@@ -138,6 +132,7 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
                 :src="step.image"
                 :alt="`${t('step')} ${index + 1}`"
                 loading="lazy"
+                decoding="async"
                 @error="hideBrokenImage"
               />
               <p>{{ step.content }}</p>

@@ -8,9 +8,12 @@ import {
   DialogRoot,
   DialogTitle,
 } from 'reka-ui'
+import { useId } from 'vue'
 import UiIconButton from './UiIconButton.vue'
 
 defineProps<{ title: string; description?: string; closeLabel: string }>()
+// Reka leaves the id of the content empty, which is invalid HTML; a generated one replaces it.
+const contentId = useId()
 const open = defineModel<boolean>('open', { default: false })
 </script>
 
@@ -18,7 +21,7 @@ const open = defineModel<boolean>('open', { default: false })
   <DialogRoot v-model:open="open">
     <DialogPortal>
       <DialogOverlay class="ui-dialog__overlay" />
-      <DialogContent class="ui-dialog__content">
+      <DialogContent :id="contentId" class="ui-dialog__content">
         <div class="ui-dialog__head">
           <DialogTitle class="ui-dialog__title">{{ title }}</DialogTitle>
           <DialogClose as-child><UiIconButton icon="close" :label="closeLabel" size="sm" /></DialogClose>

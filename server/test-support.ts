@@ -9,6 +9,7 @@ export const testConfig: ServerConfig = {
   host: '127.0.0.1',
   port: 4330,
   databasePath: ':memory:',
+  mediaDirectory: 'does-not-exist-media',
   allowedHosts: ['localhost', '127.0.0.1', '[::1]'],
   staticDirectory: 'does-not-exist',
   siteUrl: 'https://recipes.test',

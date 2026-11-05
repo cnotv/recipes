@@ -140,6 +140,30 @@ a:focus-visible {
   background: var(--color-bg-surface);
 }
 
+.page--loading {
+  /* Taller than the window, so the footer starts out of view and does not jump when the recipe arrives. */
+  min-height: 100svh;
+}
+
+.recipe-source {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: var(--size-border) solid var(--color-border-default);
+  border-left: var(--size-border-strong) solid var(--color-border-focus);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.recipe-source__title {
+  font: 700 var(--font-size-md) / var(--font-line-snug) var(--font-family-body);
+}
+
+.recipe-source a {
+  overflow-wrap: anywhere;
+}
+
 .section-title {
   font: 700 var(--font-size-2xl) / var(--font-line-snug) var(--font-family-display);
 }
@@ -168,6 +192,10 @@ a:focus-visible {
 .step-image {
   width: 100%;
   max-width: 32rem;
+  /* Reserves the space before the picture arrives, so the page does not jump. */
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: var(--color-bg-subtle);
   border-radius: var(--radius-md);
 }
 

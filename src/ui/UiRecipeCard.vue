@@ -8,15 +8,23 @@ withDefaults(defineProps<{
   headingLevel?: 2 | 3
   /** Marks the card as the vote winner, with this text on a saffron badge. */
   highlight?: string
+  /** Loads the picture at once and first; set it for the cards that are in view when the page opens. */
+  eager?: boolean
   minutesLabel: string
-}>(), { headingLevel: 3, highlight: undefined })
+}>(), { headingLevel: 3, highlight: undefined, eager: false })
 const emit = defineEmits<{ open: [] }>()
 </script>
 
 <template>
   <article class="ui-recipe-card">
     <div class="ui-recipe-card__media">
-      <img v-if="recipe.imageUrl" :src="recipe.imageUrl" alt="" loading="lazy" />
+      <img
+        v-if="recipe.imageUrl"
+        :src="recipe.imageUrl"
+        alt=""
+        :loading="eager ? 'eager' : 'lazy'"
+        :fetchpriority="eager ? 'high' : 'auto'"
+      />
       <UiIcon v-else name="star" :size="32" />
       <UiBadge v-if="highlight" tone="highlight" class="ui-recipe-card__flag">{{ highlight }}</UiBadge>
     </div>

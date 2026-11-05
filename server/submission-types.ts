@@ -10,6 +10,11 @@ export type FetchedPage = { finalUrl: string; body: string }
 
 export type PageFetcher = (url: string) => Promise<FetchedPage>
 
+/** The bytes of a picture, or undefined when the source no longer has it. */
+export type ImageFetcher = (url: string) => Promise<Buffer | undefined>
+
+export type MediaStore = { directory: string; fetchImage: ImageFetcher }
+
 export type PageFetcherOptions = {
   lookup?: HostLookup
   allowAddress?: (address: string) => boolean
@@ -58,6 +63,8 @@ export type JobQueue = {
 /** Everything the submission routes reach outside the process for, so tests can stub it. */
 export type SubmissionServices = {
   fetchPage: PageFetcher
+  /** Where recipe pictures are stored and how they are fetched. */
+  media: MediaStore
   /** Undefined when no OpenRouter key is configured. */
   callModel: ModelCall | undefined
   queue: JobQueue

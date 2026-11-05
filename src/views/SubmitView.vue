@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import UiBadge from '../ui/UiBadge.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiEmptyState from '../ui/UiEmptyState.vue'
@@ -14,11 +15,14 @@ const POLL_INTERVAL_MS = 1500
 // The Netlify preview build has no server behind it, so there is nothing to submit to.
 const isStaticPreview = import.meta.env.VITE_DATA_SOURCE === 'static'
 
-const WAITING = { label: 'Waiting for its turn', value: 15 }
-const progressByStatus: Partial<Record<SubmissionStatus, { label: string; value: number }>> = {
+const { t } = useI18n()
+
+type Progress = { labelKey: 'submitWaiting' | 'submitReading' | 'submitTranslating'; value: number }
+const WAITING: Progress = { labelKey: 'submitWaiting', value: 15 }
+const progressByStatus: Partial<Record<SubmissionStatus, Progress>> = {
   queued: WAITING,
-  importing: { label: 'Reading the page', value: 45 },
-  translating: { label: 'Translating into English, German, Japanese and Thai', value: 75 },
+  importing: { labelKey: 'submitReading', value: 45 },
+  translating: { labelKey: 'submitTranslating', value: 75 },
 }
 
 const link = ref('')
@@ -29,7 +33,7 @@ const sending = ref(false)
 const pollTimer = ref<ReturnType<typeof setTimeout> | undefined>()
 
 const progress = computed(() => progressByStatus[current.value?.status ?? 'queued'] ?? WAITING)
-const failureReason = computed(() => current.value?.reason ?? 'The import did not finish.')
+const failureReason = computed(() => current.value?.reason ?? t('submitFailedFallback'))
 
 const stopPolling = (): void => clearTimeout(pollTimer.value)
 
@@ -70,48 +74,49 @@ onBeforeUnmount(stopPolling)
 </script>
 
 <template>
-  <main class="submit-view">
-    <h1 class="submit-view__title">Submit a recipe</h1>
+  <div class="submit-view">
+    <h1 class="submit-view__title">{{ t('submitTitle') }}</h1>
+    <p class="submit-view__intro">{{ t('submitIntro') }}</p>
     <p class="submit-view__intro">
-      Paste the link to a recipe page. It is read, translated into English, German, Japanese and Thai, and published once it has been approved.
+      {{ t('submitPrivacyNote') }} <router-link to="/datenschutz">{{ t('submitPrivacyLink') }}</router-link>.
     </p>
 
     <UiEmptyState
       v-if="isStaticPreview"
       icon="info"
-      title="Submitting is not available in this preview"
-      description="This copy of the site has no server behind it. Open the full site to submit a recipe link."
+      :title="t('submitPreviewTitle')"
+      :description="t('submitPreviewDescription')"
     />
 
     <form v-else-if="phase === 'form'" class="submit-view__form" novalidate @submit.prevent="send">
       <UiInput
         v-model="link"
-        label="Recipe link"
-        placeholder="https://example.com/my-favourite-recipe"
-        hint="A public http or https page."
+        :label="t('submitLinkLabel')"
+        :placeholder="t('submitLinkPlaceholder')"
+        :hint="t('submitLinkHint')"
         :error="formError"
       />
-      <UiButton type="submit" :disabled="sending || link.trim() === ''">Import recipe</UiButton>
+      <UiButton type="submit" :disabled="sending || link.trim() === ''">{{ t('submitSend') }}</UiButton>
     </form>
 
     <section v-else-if="phase === 'working'" class="submit-view__progress" aria-live="polite">
-      <UiBadge tone="brand">{{ progress.label }}</UiBadge>
-      <UiProgressBar :value="progress.value" label="Import progress" />
+      <UiBadge tone="brand">{{ t(progress.labelKey) }}</UiBadge>
+      <UiProgressBar :value="progress.value" :label="t('submitProgress')" />
     </section>
 
     <UiEmptyState
       v-else-if="phase === 'pending'"
       icon="check"
-      title="Thank you, your recipe is waiting for approval"
-      description="It will appear on the site as soon as it has been looked at."
+      :title="t('submitThanksTitle')"
+      :description="t('submitThanksDescription')"
     >
-      <UiButton variant="secondary" @click="startOver">Submit another link</UiButton>
+      <UiButton variant="secondary" @click="startOver">{{ t('submitAnother') }}</UiButton>
     </UiEmptyState>
 
-    <UiEmptyState v-else icon="alert" title="This link could not be imported" :description="failureReason">
-      <UiButton variant="secondary" @click="startOver">Try another link</UiButton>
+    <UiEmptyState v-else icon="alert" :title="t('submitFailedTitle')" :description="failureReason">
+      <UiButton variant="secondary" @click="startOver">{{ t('submitTryAnother') }}</UiButton>
     </UiEmptyState>
-  </main>
+  </div>
 </template>
 
 <style scoped>

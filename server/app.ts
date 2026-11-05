@@ -1,6 +1,7 @@
 import type { DatabaseSync } from 'node:sqlite'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
+import { compress } from 'hono/compress'
 import { z } from 'zod'
 import { buildSitemap } from '../scripts/recipe-metadata.ts'
 import {
@@ -13,6 +14,8 @@ import {
   toRecipeDetail,
   toRecipeSummary,
 } from './recipes.ts'
+import { buildRobots } from '../scripts/seo.ts'
+import { createShellHandler } from './shell.ts'
 import { hostGuard, sameOriginJson } from './security.ts'
 import { registerVoteRoutes } from './vote-routes.ts'
 import { createDefaultServices } from './submission-services.ts'
@@ -41,6 +44,7 @@ export const createApp = (
   const app = new Hono()
 
   app.use('*', hostGuard(config.allowedHosts))
+  app.use('*', compress())
   app.use('/api/*', sameOriginJson)
 
   app.get('/api/health', (context) => {
@@ -75,6 +79,17 @@ export const createApp = (
 
   app.all('/api/*', (context) => context.json({ error: 'Not found' }, 404))
 
+  // File names are hashes of the source link, so a stored file never changes and may be cached for good.
+  app.use(
+    '/media/*',
+    async (context, next) => {
+      await next()
+      if (context.res.ok) context.header('Cache-Control', 'public, max-age=31536000, immutable')
+    },
+    serveStatic({ root: config.mediaDirectory, rewriteRequestPath: (path) => path.replace(/^\/media/, '') }),
+  )
+  app.all('/media/*', (context) => context.text('Not found', 404))
+
   app.get('/sitemap.xml', (context) => {
     const now = new Date()
     const recipes = listAllPublishedRecipes(database).map((recipe) => toProcessedRecipe(recipe, now))
@@ -91,9 +106,18 @@ export const createApp = (
     return context.redirect(`/recipe/${moved.slug}${new URL(context.req.url).search}`, 301)
   })
 
+  app.get('/robots.txt', (context) => context.text(buildRobots(config.siteUrl)))
+
+  // "/" is answered here before the static handler, which would serve index.html without a page specific head.
+  const shell = createShellHandler(database, config)
+  app.get('/', shell)
+  // Vite puts a content hash in every file name under /assets, so these never change.
+  app.use('/assets/*', async (context, next) => {
+    await next()
+    if (context.res.ok) context.header('Cache-Control', 'public, max-age=31536000, immutable')
+  })
   app.use('*', serveStatic({ root: config.staticDirectory }))
-  // Any other path is a client side route of the single page app.
-  app.get('*', serveStatic({ root: config.staticDirectory, path: 'index.html' }))
+  app.get('*', shell)
 
   app.notFound((context) => context.json({ error: 'Not found' }, 404))
   app.onError((error, context) => {

@@ -52,6 +52,13 @@ approval or rejection (a rejected link is never imported twice).
 Limits: 5 submissions per address per hour, 10 admin sign in attempts per 15 minutes, pages up to 5 MB and 10 seconds, public
 addresses only. The Netlify preview has no server, so `/submit` shows a notice there.
 
+## Legal pages and pictures
+
+`/impressum` and `/datenschutz` print the data in `src/legal/operator.ts`. Every value there is a bracketed placeholder until the
+owner fills it in; a bracket on the live site is a gap. Recipe pictures are copied to `RECIPES_MEDIA_DIR` (default `media`
+next to the database, so inside the data volume) and served from `/media`; no page loads anything from another site, and
+there is no consent banner because only strictly necessary storage is used.
+
 ## Development
 
 ```bash
