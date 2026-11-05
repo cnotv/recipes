@@ -2,7 +2,7 @@ import type { DatabaseSync, SQLInputValue } from 'node:sqlite'
 import { z } from 'zod'
 import { processRecipe } from '../scripts/recipe-metadata.ts'
 import type { ProcessedRecipe, RecipeFile } from '../scripts/recipe-types.ts'
-import type { CuisineCount, RecipeListQuery, RecipeSummary, StoredRecipe } from './types.ts'
+import type { CuisineCount, RecipeListQuery, RecipeStatus, RecipeSummary, StoredRecipe } from './types.ts'
 
 const parsedJson = <Schema extends z.ZodType>(schema: Schema) => z.string().transform((text) => JSON.parse(text) as unknown).pipe(schema)
 
@@ -209,3 +209,29 @@ export const toRecipeDetail = (recipe: StoredRecipe) => ({
   ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
   languages: recipe.languages,
 })
+
+/** A recipe of any status by its row id, for the admin preview. */
+export const findRecipeById = (database: DatabaseSync, id: number): StoredRecipe | undefined => {
+  const row = database.prepare('SELECT * FROM recipes WHERE id = ?').get(id)
+  return row === undefined ? undefined : withTranslations(database, [recipeRowSchema.parse(row)])[0]
+}
+
+/** Stores a recipe and returns its row id, so a submission can point at it. */
+export const insertRecipeReturningId = (database: DatabaseSync, recipe: StoredRecipe): number => {
+  insertRecipe(database, recipe)
+  return z.object({ id: z.number() }).parse(database.prepare('SELECT id FROM recipes WHERE slug = ?').get(recipe.slug)).id
+}
+
+export const setRecipeStatus = (database: DatabaseSync, id: number, status: RecipeStatus): void => {
+  database.prepare('UPDATE recipes SET status = ? WHERE id = ?').run(status, id)
+}
+
+export const recipeSlugExists = (database: DatabaseSync, slug: string): boolean =>
+  database.prepare('SELECT 1 FROM recipes WHERE slug = ?').get(slug) !== undefined
+
+/** Every source link in the collection, whatever the recipe's status, for the duplicate check. */
+export const listSourceUrls = (database: DatabaseSync): string[] =>
+  z
+    .array(z.object({ source_url: z.string() }))
+    .parse(database.prepare('SELECT source_url FROM recipes WHERE source_url IS NOT NULL').all())
+    .map((row) => row.source_url)

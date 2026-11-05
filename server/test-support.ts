@@ -12,6 +12,8 @@ export const testConfig: ServerConfig = {
   allowedHosts: ['localhost', '127.0.0.1', '[::1]'],
   staticDirectory: 'does-not-exist',
   siteUrl: 'https://recipes.test',
+  openRouterModel: 'test/model:free',
+  trustProxy: true,
 }
 
 export const soup: StoredRecipe = {
