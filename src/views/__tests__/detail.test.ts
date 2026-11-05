@@ -50,8 +50,7 @@ describe('recipe detail view', () => {
     await router.push('/recipe/nothing')
     const wrapper = mount(RecipeDetail, { props: { slug: 'nothing' }, global: { plugins: testPlugins(router) } })
     await flushPromises()
-    expect(wrapper.find('h1').exists()).toBe(false)
-    expect(wrapper.text()).toContain('Recipe not found')
+    expect(wrapper.find('h1').text()).toBe('Recipe not found')
   })
 
   it('goes back home keeping the language', async () => {

@@ -2,13 +2,16 @@
 import UiIcon from './UiIcon.vue'
 import type { IconName } from './types'
 
-defineProps<{ icon: IconName; title: string; description?: string }>()
+withDefaults(
+  defineProps<{ icon: IconName; title: string; description?: string; headingLevel?: 1 | 2 | 3 }>(),
+  { description: undefined, headingLevel: 3 },
+)
 </script>
 
 <template>
   <div class="ui-empty">
     <span class="ui-empty__icon"><UiIcon :name="icon" :size="32" /></span>
-    <h3 class="ui-empty__title">{{ title }}</h3>
+    <component :is="`h${headingLevel}`" class="ui-empty__title">{{ title }}</component>
     <p v-if="description" class="ui-empty__description">{{ description }}</p>
     <div v-if="$slots.default" class="ui-empty__action"><slot /></div>
   </div>

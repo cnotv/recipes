@@ -13,6 +13,7 @@ export const createTestRouter = () =>
       { path: '/', name: 'home', component: HomeView },
       { path: '/recipe/:slug', name: 'recipe-detail', component: RecipeDetail, props: true },
       { path: '/daily-vote', name: 'daily-vote', component: placeholderRoute },
+      { path: '/:pathMatch(.*)*', name: 'not-found', component: placeholderRoute },
     ],
   })
 
