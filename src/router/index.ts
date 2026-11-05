@@ -32,8 +32,7 @@ const router = createRouter({
     {
       path: '/recipe/:slug',
       name: 'recipe-detail',
-      component: RecipeDetail,
-      props: true
+      component: RecipeDetail
     },
     {
       path: '/submit',

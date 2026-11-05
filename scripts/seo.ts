@@ -110,9 +110,13 @@ export const recipeHead = (recipe: RecipeSeoInput, requested: SeoLanguage, siteU
   const text = recipe.languages[language]
   const base = `${siteUrl}/recipe/${recipe.slug}`
   const canonicalUrl = withLanguage(base, language)
-  const images = [recipe.cover, ...(text?.steps ?? []).map((step) => step.image)]
-    .filter((image): image is string => Boolean(image))
-    .map((image) => absolute(siteUrl, image))
+  const images = [
+    ...new Set(
+      [recipe.cover, ...(text?.steps ?? []).map((step) => step.image)]
+        .filter((image): image is string => Boolean(image))
+        .map((image) => absolute(siteUrl, image)),
+    ),
+  ]
   const intro = text?.description || text?.steps[0]?.content || ''
   const description = shorten(intro || `${recipe.cuisine} ${DEFAULT_DESCRIPTION[language]}`.trim())
   return {
