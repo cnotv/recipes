@@ -4,7 +4,7 @@ import { join } from 'node:path'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
 import { createApp } from './app.ts'
-import { withoutRemoteImages } from './image-links.ts'
+import { thumbnailPath, withoutRemoteImages } from './image-links.ts'
 import { localImagePath, localizePublishedRecipes, localizeRecipeImages } from './media.ts'
 import { findPublishedRecipeBySlug } from './recipes.ts'
 import { createTestDatabase, curry, get, testConfig } from './test-support.ts'
@@ -42,7 +42,8 @@ describe('localizeRecipeImages', () => {
     expect(result.languages.en.steps[1].image).toBe('')
     const file = join(store.directory, result.coverImage?.replace('/media/', '') ?? '')
     expect(existsSync(file)).toBe(true)
-    expect((await sharp(file).metadata()).width).toBe(1000)
+    expect((await sharp(file).metadata()).width).toBe(640)
+    expect((await sharp(thumbnailPath(file)).metadata()).width).toBe(400)
   })
 
   it('drops a picture the source no longer has or that is not an image, and keeps one that failed to download', async () => {

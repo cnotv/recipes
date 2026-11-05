@@ -1,7 +1,24 @@
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
+
+// Both fonts are used on every page, and the browser only finds them after the stylesheet; preloading
+// them lets the text paint once, in its final font, instead of painting again when the font arrives.
+const preloadFonts = (): Plugin => ({
+  name: 'preload-fonts',
+  transformIndexHtml: {
+    order: 'post',
+    handler: (_html, context) =>
+      Object.keys(context.bundle ?? {})
+        .filter((file) => /latin-wght-normal.*\.woff2$/.test(file))
+        .map((file) => ({
+          tag: 'link',
+          attrs: { rel: 'preload', as: 'font', type: 'font/woff2', crossorigin: '', href: `/${file}` },
+          injectTo: 'head' as const,
+        })),
+  },
+})
 
 const apiTarget = `http://127.0.0.1:${process.env.RECIPES_PORT ?? 4330}`
 
@@ -9,6 +26,7 @@ const apiTarget = `http://127.0.0.1:${process.env.RECIPES_PORT ?? 4330}`
 export default defineConfig({
   plugins: [
     vue(),
+    preloadFonts(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'og-image.png'],

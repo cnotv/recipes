@@ -1,6 +1,6 @@
 import type { DatabaseSync, SQLInputValue } from 'node:sqlite'
 import { z } from 'zod'
-import { withoutRemoteImages } from './image-links.ts'
+import { thumbnailPath, withoutRemoteImages } from './image-links.ts'
 import { processRecipe } from '../scripts/recipe-metadata.ts'
 import type { ProcessedRecipe, RecipeFile } from '../scripts/recipe-types.ts'
 import type { CuisineCount, RecipeListQuery, RecipeStatus, RecipeSummary, StoredRecipe } from './types.ts'
@@ -197,7 +197,7 @@ export const toRecipeSummary = (recipe: StoredRecipe, now: Date): RecipeSummary 
     difficulty: metadata.difficulty,
     ingredientPreview: metadata.ingredientPreview,
     images: metadata.images,
-    featuredImage: metadata.featuredImage,
+    featuredImage: metadata.featuredImage?.startsWith('/media/') ? thumbnailPath(metadata.featuredImage) : metadata.featuredImage,
     dateAdded: metadata.dateAdded,
     lastModified: metadata.lastModified,
     tags: metadata.tags,

@@ -5,13 +5,14 @@ import { join } from 'node:path'
 import sharp from 'sharp'
 import type { DatabaseSync } from 'node:sqlite'
 import { listAllPublishedRecipes, replaceRecipeImages } from './recipes.ts'
-import { isRemoteImage } from './image-links.ts'
+import { isRemoteImage, thumbnailPath } from './image-links.ts'
 import type { MediaStore } from './submission-types.ts'
 import type { StoredRecipe } from './types.ts'
 
 const MEDIA_PREFIX = '/media/'
-const MAX_WIDTH = 1000
-const WEBP_QUALITY = 78
+const MAX_WIDTH = 640
+const THUMBNAIL_WIDTH = 400
+const WEBP_QUALITY = 70
 const PARALLEL_DOWNLOADS = 6
 // A decompression bomb is a small file that decodes to a huge bitmap.
 const MAX_PIXELS = 40_000_000
@@ -20,10 +21,10 @@ const MAX_PIXELS = 40_000_000
 export const localImagePath = (sourceUrl: string): string =>
   `${MEDIA_PREFIX}${createHash('sha256').update(sourceUrl).digest('hex').slice(0, 32)}.webp`
 
-const toWebp = (bytes: Buffer): Promise<Buffer> =>
+const toWebp = (bytes: Buffer, width: number): Promise<Buffer> =>
   sharp(bytes, { limitInputPixels: MAX_PIXELS })
     .rotate()
-    .resize({ width: MAX_WIDTH, withoutEnlargement: true })
+    .resize({ width, withoutEnlargement: true })
     .webp({ quality: WEBP_QUALITY })
     .toBuffer()
 
@@ -33,13 +34,14 @@ const toWebp = (bytes: Buffer): Promise<Buffer> =>
  */
 const storeImage = async (store: MediaStore, sourceUrl: string): Promise<string> => {
   const path = localImagePath(sourceUrl)
-  if (existsSync(join(store.directory, path.slice(MEDIA_PREFIX.length)))) return path
+  const fileOf = (mediaPath: string): string => join(store.directory, mediaPath.slice(MEDIA_PREFIX.length))
+  if (existsSync(fileOf(path)) && existsSync(fileOf(thumbnailPath(path)))) return path
   const bytes = await store.fetchImage(sourceUrl)
   if (bytes === undefined) return ''
-  const converted = await toWebp(bytes).catch(() => undefined)
+  const converted = await Promise.all([toWebp(bytes, MAX_WIDTH), toWebp(bytes, THUMBNAIL_WIDTH)]).catch(() => undefined)
   if (converted === undefined) return ''
   await mkdir(store.directory, { recursive: true })
-  await writeFile(join(store.directory, path.slice(MEDIA_PREFIX.length)), converted)
+  await Promise.all([writeFile(fileOf(path), converted[0]), writeFile(fileOf(thumbnailPath(path)), converted[1])])
   return path
 }
 

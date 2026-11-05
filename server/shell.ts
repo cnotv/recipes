@@ -15,16 +15,19 @@ export const readShell = (staticDirectory: string): string | undefined => {
   }
 }
 
-type Page = { head: HeadModel; status: 200 | 404 }
+type Page = { head: HeadModel; status: 200 | 404; preloads: string[] }
+
+// The exact address the home page requests first (see useRecipes), or the preload would be wasted.
+const HOME_LIST_REQUEST = '/api/recipes?pageSize=100&page=1'
 
 const pageFor = (database: DatabaseSync, config: ServerConfig, pathname: string, requested: string | undefined): Page => {
   const language = isSeoLanguage(requested) ? requested : 'en'
   const fixed = headForPath(pathname, language, config.siteUrl)
-  if (fixed !== undefined) return fixed
+  if (fixed !== undefined) return { ...fixed, preloads: pathname === '/' ? [HOME_LIST_REQUEST] : [] }
   const recipe = findPublishedRecipeBySlug(database, pathname.slice('/recipe/'.length).replace(/\/$/, ''))
   return recipe
-    ? { head: recipeHead(toRecipeDetail(recipe), language, config.siteUrl), status: 200 }
-    : { head: privatePageHead('Recipe not found | Recipe Collection', config.siteUrl, undefined), status: 404 }
+    ? { head: recipeHead(toRecipeDetail(recipe), language, config.siteUrl), status: 200, preloads: [`/api/recipes/${recipe.slug}`] }
+    : { head: privatePageHead('Recipe not found | Recipe Collection', config.siteUrl, undefined), status: 404, preloads: [] }
 }
 
 /**
@@ -37,6 +40,6 @@ export const createShellHandler =
   (context) => {
     const shell = readShell(config.staticDirectory)
     if (shell === undefined) return context.json({ error: 'Not found' }, 404)
-    const { head, status } = pageFor(database, config, new URL(context.req.url).pathname, context.req.query('lang'))
-    return context.html(renderShell(shell, head), status)
+    const { head, status, preloads } = pageFor(database, config, new URL(context.req.url).pathname, context.req.query('lang'))
+    return context.html(renderShell(shell, head, preloads), status)
   }

@@ -157,9 +157,13 @@ export const renderHeadTags = (head: HeadModel): string =>
     ...head.jsonLd.map((data) => `<script type="application/ld+json" data-head>${jsonForScript(data)}</script>`),
   ].join('\n    ')
 
-/** Puts one page's head and language into the app shell. */
-export const renderShell = (shell: string, head: HeadModel): string =>
-  shell.replace(HEAD_MARKER, () => renderHeadTags(head)).replace(/<html lang="[^"]*"/, () => `<html lang="${htmlLang(head.lang)}"`)
+/** `<link rel="preload">` tags for data the page fetches first, so the request starts while the script still loads. */
+const renderPreloads = (addresses: string[]): string =>
+  addresses.map((href) => `<link rel="preload" as="fetch" crossorigin="anonymous" href="${escapeHtml(href)}">`).join('\n    ')
+
+/** Puts one page's head and language into the app shell; `preloads` are the API addresses the page asks for first. */
+export const renderShell = (shell: string, head: HeadModel, preloads: string[] = []): string =>
+  shell.replace(HEAD_MARKER, () => [renderHeadTags(head), renderPreloads(preloads)].filter(Boolean).join('\n    ')).replace(/<html lang="[^"]*"/, () => `<html lang="${htmlLang(head.lang)}"`)
 
 const VOTE_SESSION = /^\/vote\/[^/]+$/
 const PRIVATE_PATHS = ['/admin', '/offline', '/ui']

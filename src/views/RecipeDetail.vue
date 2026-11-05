@@ -85,7 +85,7 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
       </UiButton>
     </div>
 
-    <div v-if="loading" class="page" aria-busy="true">
+    <div v-if="loading" class="page page--loading" aria-busy="true">
       <UiSkeleton width="60%" height="2.5rem" />
       <UiSkeleton height="12rem" />
     </div>
@@ -132,6 +132,7 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
                 :src="step.image"
                 :alt="`${t('step')} ${index + 1}`"
                 loading="lazy"
+                decoding="async"
                 @error="hideBrokenImage"
               />
               <p>{{ step.content }}</p>

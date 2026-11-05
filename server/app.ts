@@ -1,6 +1,7 @@
 import type { DatabaseSync } from 'node:sqlite'
 import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
+import { compress } from 'hono/compress'
 import { z } from 'zod'
 import { buildSitemap } from '../scripts/recipe-metadata.ts'
 import {
@@ -43,6 +44,7 @@ export const createApp = (
   const app = new Hono()
 
   app.use('*', hostGuard(config.allowedHosts))
+  app.use('*', compress())
   app.use('/api/*', sameOriginJson)
 
   app.get('/api/health', (context) => {
@@ -109,6 +111,11 @@ export const createApp = (
   // "/" is answered here before the static handler, which would serve index.html without a page specific head.
   const shell = createShellHandler(database, config)
   app.get('/', shell)
+  // Vite puts a content hash in every file name under /assets, so these never change.
+  app.use('/assets/*', async (context, next) => {
+    await next()
+    if (context.res.ok) context.header('Cache-Control', 'public, max-age=31536000, immutable')
+  })
   app.use('*', serveStatic({ root: config.staticDirectory }))
   app.get('*', shell)
 

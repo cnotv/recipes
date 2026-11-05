@@ -156,7 +156,7 @@ watch(currentLanguage, (language) => router.replace({ ...route, query: { ...rout
     <template v-else>
       <div class="recipes-grid">
         <UiRecipeCard
-          v-for="recipe in displayedRecipes"
+          v-for="(recipe, position) in displayedRecipes"
           :key="recipe.slug"
           :recipe="{
             title: recipe.title,
@@ -165,6 +165,7 @@ watch(currentLanguage, (language) => router.replace({ ...route, query: { ...rout
             imageUrl: recipe.featuredImage ?? undefined,
           }"
           :heading-level="2"
+          :eager="position < 2"
           :minutes-label="t('minutes')"
           @open="viewRecipe(recipe, currentLanguage)"
         />
