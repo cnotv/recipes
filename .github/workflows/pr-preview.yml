@@ -1,0 +1,22 @@
+# Records one screenshot and one video of the app for every pull request, through the shared
+# recorder in agent-base. The route comes from a "Preview route:" line in the body.
+name: PR preview
+
+# The recorder reads the body from the event, so a body edited while the pull request was a
+# draft only reaches the recording when it is marked ready for review.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  pr-preview:
+    uses: cnotv/agent-base/.github/workflows/pr-preview.yml@72749afe6eaf4bcacb5e82c10cd2a26431c93938 # main
+    with:
+      start-command: pnpm exec vite --port 5173 --strictPort
+      port: 5173
+      default-route: /
+      settle-ms: 3000
+      node-version: '22'

@@ -79,8 +79,9 @@ export function useStaticRecipes() {
       const response = await fetch('/static-data/recipes-index.json')
       if (!response.ok) throw new Error('Failed to load recipe index')
       
-      staticDataCache = await response.json()
-      return staticDataCache!
+      const loaded = await response.json()
+      staticDataCache = loaded
+      return loaded
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Failed to load recipes'
       throw err
@@ -97,8 +98,9 @@ export function useStaticRecipes() {
       const response = await fetch('/static-data/recipes-by-cuisine.json')
       if (!response.ok) throw new Error('Failed to load recipes by cuisine')
       
-      recipesByCuisineCache = await response.json()
-      return recipesByCuisineCache!
+      const loaded = await response.json()
+      recipesByCuisineCache = loaded
+      return loaded
     } catch (err) {
       console.error('Error loading recipes by cuisine:', err)
       return {}
@@ -113,8 +115,9 @@ export function useStaticRecipes() {
       const response = await fetch('/static-data/recipes-by-difficulty.json')
       if (!response.ok) throw new Error('Failed to load recipes by difficulty')
       
-      recipesByDifficultyCache = await response.json()
-      return recipesByDifficultyCache!
+      const loaded = await response.json()
+      recipesByDifficultyCache = loaded
+      return loaded
     } catch (err) {
       console.error('Error loading recipes by difficulty:', err)
       return { Easy: [], Medium: [], Hard: [] }
@@ -129,8 +132,9 @@ export function useStaticRecipes() {
       const response = await fetch('/static-data/language-stats.json')
       if (!response.ok) throw new Error('Failed to load language stats')
       
-      languageStatsCache = await response.json()
-      return languageStatsCache!
+      const loaded = await response.json()
+      languageStatsCache = loaded
+      return loaded
     } catch (err) {
       console.error('Error loading language stats:', err)
       return { en: 0, de: 0, jp: 0, th: 0 }
@@ -145,8 +149,9 @@ export function useStaticRecipes() {
       const response = await fetch('/static-data/search-index.json')
       if (!response.ok) throw new Error('Failed to load search index')
       
-      searchIndexCache = await response.json()
-      return searchIndexCache!
+      const loaded = await response.json()
+      searchIndexCache = loaded
+      return loaded
     } catch (err) {
       console.error('Error loading search index:', err)
       return []

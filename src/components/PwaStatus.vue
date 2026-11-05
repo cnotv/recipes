@@ -27,7 +27,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const isOnline = ref(navigator.onLine)
 const needRefresh = ref(false)
 const showInstallPrompt = ref(false)
-let deferredPrompt: any = null
+interface InstallPromptEvent extends Event {
+  prompt: () => Promise<void>
+  userChoice: Promise<{ outcome: string }>
+}
+
+const isInstallPromptEvent = (e: Event): e is InstallPromptEvent => 'prompt' in e && 'userChoice' in e
+
+let deferredPrompt: InstallPromptEvent | null = null
 
 const updateOnlineStatus = () => {
   isOnline.value = navigator.onLine
@@ -58,7 +65,7 @@ const dismissInstall = () => {
 
 const handleBeforeInstallPrompt = (e: Event) => {
   e.preventDefault()
-  deferredPrompt = e
+  if (isInstallPromptEvent(e)) deferredPrompt = e
   showInstallPrompt.value = true
 }
 

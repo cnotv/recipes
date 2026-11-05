@@ -300,21 +300,19 @@ const loadStaticData = async () => {
 // Load full recipe data for currently displayed recipes
 const loadDisplayedRecipeData = async () => {
   const recipesToLoad = displayedRecipes.value.slice(0, currentDisplayCount.value)
-  const loadedRecipes: Recipe[] = []
-  
-  for (const metadata of recipesToLoad) {
-    try {
-      const response = await fetch(`/recipes/${metadata.filename}`)
-      if (response.ok) {
-        const recipe = await response.json()
-        loadedRecipes.push(recipe)
+  const loadedRecipes = await Promise.all(
+    recipesToLoad.map(async (metadata): Promise<Recipe[]> => {
+      try {
+        const response = await fetch(`/recipes/${metadata.filename}`)
+        return response.ok ? [await response.json()] : []
+      } catch (err) {
+        console.warn(`Failed to load recipe ${metadata.filename}:`, err)
+        return []
       }
-    } catch (err) {
-      console.warn(`Failed to load recipe ${metadata.filename}:`, err)
-    }
-  }
-  
-  recipes.value = loadedRecipes
+    })
+  )
+
+  recipes.value = loadedRecipes.flat()
 }
 
 const viewRecipe = (recipeMetadata: RecipeMetadata, language: SupportedLanguage) => {

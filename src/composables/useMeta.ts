@@ -12,7 +12,7 @@ export interface MetaData {
   twitterDescription?: string
   twitterImage?: string
   canonical?: string
-  structuredData?: any
+  structuredData?: Record<string, unknown>
 }
 
 const BASE_URL = 'https://cnotv-recipes.netlify.app'
@@ -56,7 +56,7 @@ export function updateMetaTags(meta: MetaData) {
   }
 
   // Update structured data
-  const updateStructuredData = (data: any, id = 'structured-data') => {
+  const updateStructuredData = (data: Record<string, unknown>, id = 'structured-data') => {
     // Remove existing structured data
     const existing = document.getElementById(id)
     if (existing) {
@@ -155,7 +155,7 @@ export function createRecipeMeta(recipe: {
   }
   
   // Create structured data for recipe
-  const structuredData: any = {
+  const structuredData: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Recipe",
     "name": recipeTitle,
