@@ -31,6 +31,11 @@ const recipeData = computed(() => {
   return found ? (found.languages[currentLanguage.value] ?? found.languages.en ?? Object.values(found.languages)[0]) : null
 })
 
+const sourceHost = computed(() => {
+  const address = recipe.value?.url
+  return address && URL.canParse(address) ? new URL(address).hostname.replace(/^www\./, '') : ''
+})
+
 const refreshHead = () => {
   const found = recipe.value
   if (!found || !recipeData.value) return
@@ -96,10 +101,13 @@ watch(() => route.params.slug, (slug) => slug && loadRecipe(), { immediate: true
           <UiBadge v-if="recipe?.cuisine" tone="brand">{{ recipe.cuisine }}</UiBadge>
           <UiBadge>{{ recipeData.ingredients.length }} {{ t('ingredients') }}</UiBadge>
           <UiBadge>{{ recipeData.steps.length }} {{ t('steps') }}</UiBadge>
-          <a v-if="recipe?.url" :href="recipe.url" target="_blank" rel="noopener noreferrer">
-            {{ t('viewOriginalRecipe') }}
-          </a>
         </div>
+        <!-- The text and pictures are copied from this page, so the credit comes before the recipe. -->
+        <aside v-if="recipe?.url && sourceHost" class="recipe-source">
+          <h2 class="recipe-source__title">{{ t('sourceHeading') }}</h2>
+          <p>{{ t('sourceNote', { site: sourceHost }) }}</p>
+          <a :href="recipe.url" target="_blank" rel="noopener noreferrer">{{ t('sourceLink', { site: sourceHost }) }}</a>
+        </aside>
       </div>
 
       <div class="recipe-sections">

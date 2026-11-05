@@ -47,6 +47,8 @@ const chooseTheme = (value: string | undefined) => {
     <PwaStatus />
     <main id="main" class="app-main"><router-view /></main>
     <UiFooter>
+      <router-link to="/impressum">{{ t('footerImpressum') }}</router-link>
+      <router-link to="/datenschutz">{{ t('footerPrivacy') }}</router-link>
       <template #note>{{ t('footerNote') }}</template>
     </UiFooter>
   </div>

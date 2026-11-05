@@ -20,7 +20,7 @@ export const isSeoLanguage = (value: unknown): value is SeoLanguage => LANGUAGES
 /** The value of the `lang` attribute: the app says `jp` where HTML says `ja`. */
 export const htmlLang = (language: SeoLanguage): string => (language === 'jp' ? 'ja' : language)
 
-export const legalLanguage = (language: SeoLanguage): SeoLanguage => (language === 'de' ? 'de' : 'en')
+export const legalLanguage = (language: SeoLanguage): 'en' | 'de' => (language === 'de' ? 'de' : 'en')
 
 export const escapeHtml = (text: string): string => text.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`)
 

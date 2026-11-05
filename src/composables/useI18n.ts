@@ -66,7 +66,6 @@ export interface UITranslations {
   instructions: string
   steps: string
   backToHome: string
-  viewOriginalRecipe: string
   step: string
   
   // Legal, source, submit and admin
@@ -183,7 +182,6 @@ const messages = {
     instructions: 'Instructions',
     steps: 'Steps',
     backToHome: 'Back to Home',
-    viewOriginalRecipe: 'View Original Recipe',
     step: 'Step',
     
     // Legal, source, submit and admin
@@ -299,7 +297,6 @@ const messages = {
     instructions: 'Anweisungen',
     steps: 'Schritte',
     backToHome: 'Zurück zu Rezepten',
-    viewOriginalRecipe: 'Originalrezept ansehen',
     step: 'Schritt',
     
     // Legal, source, submit and admin
@@ -415,7 +412,6 @@ const messages = {
     instructions: '手順',
     steps: 'ステップ',
     backToHome: 'レシピ一覧に戻る',
-    viewOriginalRecipe: '元のレシピを見る',
     step: 'ステップ',
     
     // Legal, source, submit and admin
@@ -531,7 +527,6 @@ const messages = {
     instructions: 'วิธีทำ',
     steps: 'ขั้นตอน',
     backToHome: 'กลับสู่หน้าหลัก',
-    viewOriginalRecipe: 'ดูสูตรอาหารต้นฉบับ',
     step: 'ขั้นตอนที่',
     
     // Legal, source, submit and admin

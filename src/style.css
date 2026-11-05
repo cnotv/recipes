@@ -140,6 +140,25 @@ a:focus-visible {
   background: var(--color-bg-surface);
 }
 
+.recipe-source {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: var(--size-border) solid var(--color-border-default);
+  border-left: var(--size-border-strong) solid var(--color-border-focus);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.recipe-source__title {
+  font: 700 var(--font-size-md) / var(--font-line-snug) var(--font-family-body);
+}
+
+.recipe-source a {
+  overflow-wrap: anywhere;
+}
+
 .section-title {
   font: 700 var(--font-size-2xl) / var(--font-line-snug) var(--font-family-display);
 }
