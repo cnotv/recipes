@@ -212,6 +212,7 @@ export const toRecipeDetail = (stored: StoredRecipe) => {
     url: recipe.sourceUrl ?? '',
     cuisine: recipe.cuisine ?? '',
     difficulty: recipe.difficulty,
+    createdAt: recipe.createdAt,
     ...(recipe.coverImage === null ? {} : { cover: recipe.coverImage }),
     languages: recipe.languages,
   }

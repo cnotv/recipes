@@ -11,7 +11,6 @@ import UiToast from '../ui/UiToast.vue'
 import { useCuisinePreference } from '../composables/useCuisinePreference'
 import { useInfiniteScroll } from '../composables/useInfiniteScroll'
 import { isSupportedLanguage, useLanguagePreference } from '../composables/useLanguagePreference'
-import { createHomeMeta, updateMetaTags, useMeta } from '../composables/useMeta'
 import { useRecipes } from '../composables/useRecipes'
 import type { RecipeMetadata } from '../composables/useRecipes'
 import type { SupportedLanguage } from '../types/Recipe'
@@ -21,8 +20,6 @@ const ALL_CUISINES = 'all'
 const recipesPerPage = 12
 
 const cuisineOf = (recipe: RecipeMetadata) => recipe.cuisine || 'Unknown'
-
-useMeta(createHomeMeta())
 
 const router = useRouter()
 const route = useRoute()
@@ -109,14 +106,7 @@ onMounted(async () => {
 
 watch([currentLanguage, selectedCuisine], resetDisplayedRecipes)
 
-watch(
-  currentLanguage,
-  (language) => {
-    updateMetaTags(createHomeMeta(language))
-    router.replace({ ...route, query: { ...route.query, lang: language } })
-  },
-  { flush: 'post' },
-)
+watch(currentLanguage, (language) => router.replace({ ...route, query: { ...route.query, lang: language } }), { flush: 'post' })
 </script>
 
 <template>

@@ -157,12 +157,15 @@ const sitemapEntry = (location: string, lastModified: string, frequency: string,
     <priority>${priority}</priority>
   </url>`
 
-/** The sitemap XML for the home page, the vote page and every recipe. */
+/** The sitemap XML for the home page, the vote and submit pages, the legal pages and every recipe. */
 export const buildSitemap = (recipes: ProcessedRecipe[], baseUrl: string, today: string): string =>
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[
     sitemapEntry(baseUrl, today, 'weekly', '1.0'),
     sitemapEntry(`${baseUrl}/vote/new`, today, 'weekly', '0.8'),
+    sitemapEntry(`${baseUrl}/submit`, today, 'monthly', '0.5'),
+    sitemapEntry(`${baseUrl}/impressum`, today, 'yearly', '0.2'),
+    sitemapEntry(`${baseUrl}/datenschutz`, today, 'yearly', '0.2'),
     ...recipes.map(({ metadata }) =>
       sitemapEntry(`${baseUrl}/recipe/${metadata.slug}`, metadata.lastModified.split('T')[0], 'monthly', '0.7'),
     ),

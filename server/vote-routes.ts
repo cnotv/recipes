@@ -1,10 +1,10 @@
-import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
 import type { DatabaseSync } from 'node:sqlite'
 import type { Context, Hono } from 'hono'
 import { getCookie, setCookie } from 'hono/cookie'
 import { streamSSE } from 'hono/streaming'
 import { z } from 'zod'
+import { privatePageHead, renderShell } from '../scripts/seo.ts'
+import { readShell } from './shell.ts'
 import {
   addParticipant,
   buildViewer,
@@ -50,24 +50,12 @@ const setSessionCookie = (context: Context, sessionId: string, name: 'creator' |
     maxAge: COOKIE_MAX_AGE_SECONDS,
   })
 
-const escapeHtml = (text: string): string =>
-  text.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`)
-
-const withMetaContent = (html: string, property: string, value: string): string =>
-  html.replace(new RegExp(`(<meta property="${property}" content=")[^"]*(")`), (_match, start: string, end: string) => `${start}${escapeHtml(value)}${end}`)
-
 /** The single page app shell with this session's name in the title and the share preview tags. */
-const renderSharePage = (html: string, session: VoteSessionRow, pageUrl: string): string => {
-  const title = `${session.name} | Recipe vote`
-  const description = 'Join this recipe vote and pick what to cook.'
-  return [
-    (page: string) => page.replace(/<title>[^<]*<\/title>/, () => `<title>${escapeHtml(title)}</title>`),
-    (page: string) => withMetaContent(page, 'og:title', title),
-    (page: string) => withMetaContent(page, 'og:description', description),
-    (page: string) => withMetaContent(page, 'og:url', pageUrl),
-    (page: string) => page.replace(/(<link rel="canonical" href=")[^"]*(")/, (_match, start: string, end: string) => `${start}${escapeHtml(pageUrl)}${end}`),
-  ].reduce((page, step) => step(page), html)
-}
+const renderSharePage = (html: string, session: VoteSessionRow, siteUrl: string): string =>
+  renderShell(
+    html,
+    privatePageHead(`${session.name} | Recipe vote`, siteUrl, `/vote/${session.id}`, 'Join this recipe vote and pick what to cook.'),
+  )
 
 /** Registers the vote session API and the share page; mutations are already behind the same origin JSON guard. */
 export const registerVoteRoutes = (app: Hono, database: DatabaseSync, config: ServerConfig, clock: () => Date = () => new Date()): void => {
@@ -172,14 +160,6 @@ export const registerVoteRoutes = (app: Hono, database: DatabaseSync, config: Se
     const session = withSession(context)
     const html = session === undefined ? undefined : readShell(config.staticDirectory)
     if (session === undefined || html === undefined) return next()
-    return context.html(renderSharePage(html, session, `${config.siteUrl}/vote/${session.id}`))
+    return context.html(renderSharePage(html, session, config.siteUrl))
   })
-}
-
-const readShell = (staticDirectory: string): string | undefined => {
-  try {
-    return readFileSync(join(staticDirectory, 'index.html'), 'utf8')
-  } catch {
-    return undefined
-  }
 }

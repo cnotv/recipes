@@ -8,7 +8,8 @@ import UiEmptyState from '../ui/UiEmptyState.vue'
 import UiIcon from '../ui/UiIcon.vue'
 import UiSkeleton from '../ui/UiSkeleton.vue'
 import { isSupportedLanguage, useLanguagePreference } from '../composables/useLanguagePreference'
-import { createRecipeMeta, updateMetaTags } from '../composables/useMeta'
+import { applyHead, siteOrigin } from '../composables/useHead'
+import { recipeHead } from '../../scripts/seo.ts'
 import { useRecipes } from '../composables/useRecipes'
 import type { Recipe } from '../types/Recipe'
 
@@ -30,25 +31,10 @@ const recipeData = computed(() => {
   return found ? (found.languages[currentLanguage.value] ?? found.languages.en ?? Object.values(found.languages)[0]) : null
 })
 
-const refreshMetaTags = () => {
+const refreshHead = () => {
   const found = recipe.value
-  const data = recipeData.value
-  if (!found || !data) return
-  updateMetaTags(
-    createRecipeMeta(
-      {
-        title: data.title,
-        description: data.steps[0]?.content || `Delicious ${found.cuisine || ''} recipe with step-by-step instructions.`,
-        image: found.cover || data.steps[0]?.image || undefined,
-        cuisine: found.cuisine,
-        ingredients: data.ingredients,
-        steps: data.steps,
-        url: found.url,
-        fileName: String(route.params.slug),
-      },
-      currentLanguage.value,
-    ),
-  )
+  if (!found || !recipeData.value) return
+  applyHead(recipeHead({ ...found, slug: found.slug ?? String(route.params.slug) }, currentLanguage.value, siteOrigin()))
 }
 
 const loadRecipe = async () => {
@@ -79,7 +65,7 @@ const hideBrokenImage = (event: Event) => {
   if (event.target instanceof HTMLElement) event.target.hidden = true
 }
 
-watch([recipeData, currentLanguage], refreshMetaTags, { immediate: true })
+watch([recipeData, currentLanguage], refreshHead, { immediate: true })
 
 watch(currentLanguage, (language) => router.replace({ ...route, query: { ...route.query, lang: language } }))
 

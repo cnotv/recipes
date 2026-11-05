@@ -5,6 +5,7 @@ export interface RecipeStep {
 
 export interface RecipeLanguage {
   title: string;
+  description?: string;
   ingredients: string[];
   steps: RecipeStep[];
 }
@@ -14,6 +15,7 @@ export interface Recipe {
   url: string;
   cuisine: string;
   cover?: string;  // Optional cover image URL
+  createdAt?: string;
   _totalIngredientCount?: number; // For preview mode with limited ingredient data
   languages: {
     en?: RecipeLanguage;

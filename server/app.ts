@@ -13,6 +13,8 @@ import {
   toRecipeDetail,
   toRecipeSummary,
 } from './recipes.ts'
+import { buildRobots } from '../scripts/seo.ts'
+import { createShellHandler } from './shell.ts'
 import { hostGuard, sameOriginJson } from './security.ts'
 import { registerVoteRoutes } from './vote-routes.ts'
 import { createDefaultServices } from './submission-services.ts'
@@ -102,9 +104,13 @@ export const createApp = (
     return context.redirect(`/recipe/${moved.slug}${new URL(context.req.url).search}`, 301)
   })
 
+  app.get('/robots.txt', (context) => context.text(buildRobots(config.siteUrl)))
+
+  // "/" is answered here before the static handler, which would serve index.html without a page specific head.
+  const shell = createShellHandler(database, config)
+  app.get('/', shell)
   app.use('*', serveStatic({ root: config.staticDirectory }))
-  // Any other path is a client side route of the single page app.
-  app.get('*', serveStatic({ root: config.staticDirectory, path: 'index.html' }))
+  app.get('*', shell)
 
   app.notFound((context) => context.json({ error: 'Not found' }, 404))
   app.onError((error, context) => {

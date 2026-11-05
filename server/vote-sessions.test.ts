@@ -298,14 +298,15 @@ describe('the share page', () => {
     const directory = mkdtempSync(join(tmpdir(), 'vote-shell-'))
     writeFileSync(
       join(directory, 'index.html'),
-      '<html><head><title>Recipes</title><meta property="og:title" content="Recipes" /><meta property="og:description" content="d" /><meta property="og:url" content="u" /><link rel="canonical" href="u" /></head><body></body></html>',
+      '<html lang="en"><head><!--head--></head><body></body></html>',
     )
     const database = createTestDatabase()
     const app = createApp(database, { ...testConfig, staticDirectory: directory })
     const { id } = await createSession(app, { name: 'Tom & <Jerry>' })
     const html = await (await app.request(`http://localhost/vote/${id}`, { headers: { host: 'localhost:4330' } })).text()
-    expect(html).toContain('<title>Tom &#38; &#60;Jerry&#62; | Recipe vote</title>')
+    expect(html).toContain('<title data-head>Tom &#38; &#60;Jerry&#62; | Recipe vote</title>')
     expect(html).toContain('og:title" content="Tom &#38; &#60;Jerry&#62; | Recipe vote"')
+    expect(html).toContain('content="noindex, nofollow"')
     expect(html).toContain(`og:url" content="https://recipes.test/vote/${id}"`)
     expect(html).toContain(`rel="canonical" href="https://recipes.test/vote/${id}"`)
   })

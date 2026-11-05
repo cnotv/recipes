@@ -6,11 +6,13 @@ import UiFooter from './ui/UiFooter.vue'
 import UiHeader from './ui/UiHeader.vue'
 import UiSelect from './ui/UiSelect.vue'
 import { isSupportedLanguage, supportedLanguages, useLanguagePreference } from './composables/useLanguagePreference'
+import { useRouteHead } from './composables/useHead'
 import { themeModes, useTheme } from './composables/useTheme'
 
 const { t } = useI18n()
 const { currentLanguage, getLanguageName, setLanguage } = useLanguagePreference()
 const { mode, setMode } = useTheme()
+useRouteHead()
 
 const languageOptions = computed(() => supportedLanguages.map((value) => ({ value, label: getLanguageName(value) })))
 const themeOptions = computed(() => themeModes.map((value) => ({ value, label: t(value) })))
