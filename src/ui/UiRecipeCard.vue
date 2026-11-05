@@ -3,12 +3,13 @@ import UiBadge from './UiBadge.vue'
 import UiIcon from './UiIcon.vue'
 import type { RecipeCardData } from './types'
 
-defineProps<{
+withDefaults(defineProps<{
   recipe: RecipeCardData
+  headingLevel?: 2 | 3
   /** Marks the card as the vote winner, with this text on a saffron badge. */
   highlight?: string
   minutesLabel: string
-}>()
+}>(), { headingLevel: 3, highlight: undefined })
 const emit = defineEmits<{ open: [] }>()
 </script>
 
@@ -20,9 +21,9 @@ const emit = defineEmits<{ open: [] }>()
       <UiBadge v-if="highlight" tone="highlight" class="ui-recipe-card__flag">{{ highlight }}</UiBadge>
     </div>
     <div class="ui-recipe-card__body">
-      <h3 class="ui-recipe-card__title">
+      <component :is="`h${headingLevel}`" class="ui-recipe-card__title">
         <button class="ui-recipe-card__open" type="button" @click="emit('open')">{{ recipe.title }}</button>
-      </h3>
+      </component>
       <div class="ui-recipe-card__meta">
         <UiBadge v-if="recipe.cuisine" tone="brand">{{ recipe.cuisine }}</UiBadge>
         <span class="ui-recipe-card__time"><UiIcon name="clock" :size="16" />{{ recipe.minutes }} {{ minutesLabel }}</span>

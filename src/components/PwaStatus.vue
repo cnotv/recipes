@@ -70,7 +70,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <UiToast v-model:open="showOfflineNotice" tone="info" :title="t('offlineBanner')" :close-label="t('close')" :duration="600000" />
+  <UiToast v-if="showOfflineNotice" v-model:open="showOfflineNotice" tone="info" :title="t('offlineBanner')" :close-label="t('close')" :duration="600000" />
 
   <UiDialog v-model:open="needRefresh" :title="t('updateAvailable')" :close-label="t('close')">
     <template #footer>

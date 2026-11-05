@@ -138,6 +138,7 @@ watch(
     </div>
 
     <UiToast
+      v-if="showLanguageDetectionInfo"
       v-model:open="showLanguageDetectionInfo"
       tone="info"
       :title="t('languageAutoSet', { language: getLanguageName(currentLanguage) })"
@@ -173,6 +174,7 @@ watch(
             minutes: recipe.estimatedTime,
             imageUrl: recipe.featuredImage ?? undefined,
           }"
+          :heading-level="2"
           :minutes-label="t('minutes')"
           @open="viewRecipe(recipe, currentLanguage)"
         />
