@@ -1,0 +1,15 @@
+# Local run: `docker compose up --build --wait`, then http://localhost:4330.
+services:
+  recipes:
+    build: .
+    ports:
+      # Loopback only: the server is not meant to be reachable from the network without a proxy.
+      - "127.0.0.1:4330:4330"
+    environment:
+      RECIPES_ALLOWED_HOSTS: localhost,127.0.0.1,[::1]
+    volumes:
+      - recipes-data:/data
+    restart: unless-stopped
+
+volumes:
+  recipes-data:

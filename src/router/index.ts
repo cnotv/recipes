@@ -18,7 +18,7 @@ const router = createRouter({
       component: DailyVote
     },
     {
-      path: '/recipe/:url',
+      path: '/recipe/:slug',
       name: 'recipe-detail',
       component: RecipeDetail,
       props: true

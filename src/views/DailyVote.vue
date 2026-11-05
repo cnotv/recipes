@@ -339,26 +339,16 @@ const loadAvailableRecipes = async () => {
   try {
     loading.value = true
     
-    // Load the recipe index first
-    const indexResponse = await fetch('/recipes/index.json')
-    if (!indexResponse.ok) {
-      throw new Error('Failed to load recipe index')
-    }
-    
-    const recipeFiles = await indexResponse.json()
-    if (!Array.isArray(recipeFiles)) {
-      throw new Error('Invalid recipe index format')
-    }
-    
-    // Load all recipes (limit to first 20 for performance in voting)
+    // Limit to the first 20 recipes for performance in voting
+    const { items } = await (await fetch('/api/recipes?pageSize=20')).json()
     const loaded = await Promise.all(
-      recipeFiles.slice(0, 20).map(async (file: string): Promise<Recipe[]> => {
+      items.map(async ({ slug }: { slug: string }): Promise<Recipe[]> => {
         try {
-          const response = await fetch(`/recipes/${file}`)
+          const response = await fetch(`/api/recipes/${encodeURIComponent(slug)}`)
           const recipe = response.ok ? await response.json() : null
           return recipe && recipe.url ? [recipe] : []
         } catch (err) {
-          console.log(`Failed to load ${file}:`, err)
+          console.log(`Failed to load ${slug}:`, err)
           return []
         }
       })

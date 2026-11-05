@@ -50,3 +50,22 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: docker compose up --build --wait
+      - name: Health, app shell and every seeded recipe
+        run: |
+          curl --fail --silent http://127.0.0.1:4330/api/health
+          curl --fail --silent http://127.0.0.1:4330/ | grep --quiet '<div id="app">'
+          curl --fail --silent 'http://127.0.0.1:4330/api/recipes?pageSize=1' | tee list.json | jq --exit-status '.total == 27'
+          slug=$(jq --raw-output '.items[0].slug' list.json)
+          curl --fail --silent "http://127.0.0.1:4330/api/recipes/${slug}" | jq --exit-status '.languages.en.title'
+      - if: failure()
+        run: docker compose logs
+      - if: always()
+        run: docker compose down --volumes

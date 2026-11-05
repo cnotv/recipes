@@ -90,12 +90,13 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTheme } from '../composables/useTheme'
 import { useLanguagePreference } from '../composables/useLanguagePreference'
 import { createRecipeMeta, updateMetaTags } from '../composables/useMeta'
-import { findFirstAsync } from '../composables/findFirstAsync'
+import { useRecipes } from '../composables/useRecipes'
 import KawaiiSelector from '../components/KawaiiSelector.vue'
 import type { Recipe, SupportedLanguage } from '../types/Recipe'
 
 const route = useRoute()
 const router = useRouter()
+const { loadRecipe: fetchRecipe } = useRecipes()
 const { currentLanguage, getLanguageName } = useLanguagePreference()
 const { currentTheme, setTheme, availableThemes } = useTheme()
 
@@ -154,7 +155,7 @@ watch(recipeData, (newRecipeData) => {
       ingredients: newRecipeData.ingredients,
       steps: newRecipeData.steps,
       url: recipe.value.url,
-      fileName: route.params.url as string
+      fileName: route.params.slug as string
     }, currentLanguage.value)
     updateMetaTags(recipeMeta)
   }
@@ -176,7 +177,7 @@ watch(currentLanguage, () => {
       ingredients: recipeData.value.ingredients,
       steps: recipeData.value.steps,
       url: recipe.value.url,
-      fileName: route.params.url as string
+      fileName: route.params.slug as string
     }, currentLanguage.value)
     updateMetaTags(recipeMeta)
   }
@@ -197,7 +198,7 @@ const updateRecipeMetaTags = () => {
       ingredients: recipeData.value.ingredients,
       steps: recipeData.value.steps,
       url: recipe.value.url,
-      fileName: route.params.url as string
+      fileName: route.params.slug as string
     }, currentLanguage.value)
     updateMetaTags(recipeMeta)
   }
@@ -208,88 +209,20 @@ const loadRecipe = async () => {
   try {
     loading.value = true
     error.value = ''
-    
-    const recipeUrl = route.params.url as string
-    if (!recipeUrl) {
-      error.value = 'Recipe URL not provided'
+
+    const found = await fetchRecipe(route.params.slug as string)
+    if (!found) {
+      error.value = 'Recipe not found'
       return
     }
-
-    // Try to get recipe from sessionStorage first
-    const storedRecipe = sessionStorage.getItem('currentRecipe')
-    if (storedRecipe) {
-      try {
-        recipe.value = JSON.parse(storedRecipe)
-        // Set language from query params if available
-        const langParam = route.query.lang as SupportedLanguage
-        if (langParam && recipe.value && recipe.value.languages[langParam]) {
-          currentLanguage.value = langParam
-        }
-        // Ensure meta tags are updated immediately
-        updateRecipeMetaTags()
-        return
-      } catch {
-        console.log('Failed to parse stored recipe data')
-      }
-    }
-
-    // Fallback: try to load recipe from JSON files
-    await loadRecipeFromFiles(decodeURIComponent(recipeUrl))
+    recipe.value = found
+    updateRecipeMetaTags()
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Failed to load recipe'
     console.error('Error loading recipe:', err)
   } finally {
     loading.value = false
   }
-}
-
-// Fetches one recipe file and returns it only when it is the recipe being looked for
-const fetchRecipeIfMatching = async (fileName: string, targetUrl: string): Promise<Recipe | undefined> => {
-  try {
-    const response = await fetch(`/recipes/${fileName}`)
-    if (!response.ok) return undefined
-    const data = await response.json()
-    return data && data.url === targetUrl ? data : undefined
-  } catch (err) {
-    console.log(`Failed to load ${fileName}:`, err)
-    return undefined
-  }
-}
-
-const showRecipe = (found: Recipe) => {
-  recipe.value = found
-  // Update meta tags immediately
-  updateRecipeMetaTags()
-}
-
-const loadRecipeFromFiles = async (targetUrl: string) => {
-  // Search the index file by file and stop at the first match, to avoid loading every recipe
-  try {
-    const indexResponse = await fetch('/recipes/index.json')
-    const recipeFiles = indexResponse.ok ? await indexResponse.json() : []
-    const fromIndex = Array.isArray(recipeFiles)
-      ? await findFirstAsync<string, Recipe>(recipeFiles, (fileName) => fetchRecipeIfMatching(fileName, targetUrl))
-      : undefined
-    if (fromIndex) return showRecipe(fromIndex)
-  } catch {
-    console.log('Recipe index not found')
-  }
-
-  // If not found in index, try to guess filename from URL
-  const lastPart = targetUrl.split('/').pop() ?? ''
-  const possibleFilenames = [
-    `${lastPart}.json`,
-    `${lastPart} • Just One Cookbook.json`,
-    `${lastPart} - Hot Thai Kitchen!.json`,
-    `${lastPart} - La Ricetta di GialloZafferano.json`,
-    `${lastPart} Recipe.json`
-  ]
-  const guessed = await findFirstAsync<string, Recipe>(possibleFilenames, (filename) =>
-    fetchRecipeIfMatching(encodeURIComponent(filename), targetUrl)
-  )
-  if (guessed) return showRecipe(guessed)
-
-  error.value = 'Recipe not found'
 }
 
 const updateLanguage = () => {
@@ -314,8 +247,8 @@ const handleImageError = (event: Event) => {
 }
 
 // Watch for route changes
-watch(() => route.params.url, () => {
-  if (route.params.url) {
+watch(() => route.params.slug, () => {
+  if (route.params.slug) {
     loadRecipe()
   }
 }, { immediate: true })

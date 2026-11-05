@@ -3,7 +3,6 @@ import {
   estimateDifficulty,
   estimateTime,
   generateSlug,
-  groupByCuisine,
   processRecipe,
 } from './recipe-metadata.ts'
 import type { RecipeFile } from './recipe-types.ts'
@@ -51,10 +50,5 @@ describe('recipe metadata', () => {
       dateAdded: now.toISOString(),
     })
     expect(metadata.tags).toContain('Vegetarian')
-  })
-
-  it('groups recipes without a cuisine under Other', () => {
-    const recipes = [processRecipe(soup, 'soup.json', now), processRecipe({}, 'none.json', now)]
-    expect(groupByCuisine(recipes)).toEqual({ Italian: ['soup'], Other: ['none'] })
   })
 })

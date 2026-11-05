@@ -1,0 +1,19 @@
+import { join } from 'node:path'
+import { serve } from '@hono/node-server'
+import { createApp } from './app.ts'
+import { loadConfig } from './config.ts'
+import { openDatabase } from './database.ts'
+import { seedRecipes } from './seed.ts'
+
+const config = loadConfig(process.env)
+const database = openDatabase(config.databasePath)
+const seeded = seedRecipes(database, join(import.meta.dirname, 'seed', 'recipes'))
+if (seeded > 0) console.log(`Seeded ${seeded} recipes`)
+
+const server = serve({ fetch: createApp(database, config).fetch, port: config.port, hostname: config.host }, ({ port }) =>
+  console.log(`Recipes server listening on port ${port}`),
+)
+
+const shutdown = () => server.close(() => database.close())
+process.on('SIGTERM', shutdown)
+process.on('SIGINT', shutdown)

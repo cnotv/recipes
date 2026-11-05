@@ -5,25 +5,27 @@
   "type": "module",
   "packageManager": "pnpm@10.29.3",
   "scripts": {
-    "dev": "pnpm build:recipes && vite",
-    "build": "pnpm generate-index && vue-tsc -b && vite build && pnpm build:recipes",
-    "build:recipes": "tsx scripts/build-recipes.ts",
-    "generate-index": "tsx scripts/generate-index.ts",
-    "preview": "vite preview",
+    "dev": "concurrently --kill-others --names api,web \"node --watch server/index.ts\" \"vite\"",
+    "build": "vue-tsc -b && vite build",
+    "start": "node server/index.ts",
     "lint": "eslint .",
     "typecheck": "vue-tsc -b",
     "test": "vitest run"
   },
   "dependencies": {
+    "@hono/node-server": "^2.1.6",
+    "hono": "^4.13.16",
     "vue": "^3.5.17",
     "vue-i18n": "^9.14.5",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
     "@types/node": "^22.0.0",
     "@vitejs/plugin-vue": "^6.0.0",
     "@vue/tsconfig": "^0.7.0",
+    "concurrently": "^10.0.6",
     "eslint": "^9.39.0",
     "eslint-plugin-functional": "^9.0.0",
     "eslint-plugin-vue": "^10.0.0",
@@ -36,7 +38,9 @@
     "vite-plugin-pwa": "^1.0.1",
     "vitest": "^3.2.0",
     "vue-tsc": "^2.2.12",
-    "workbox-window": "^7.3.0",
-    "zod": "^4.6.7"
+    "workbox-window": "^7.3.0"
+  },
+  "engines": {
+    "node": ">=22.13"
   }
 }

@@ -15,8 +15,8 @@ jobs:
   pr-preview:
     uses: cnotv/agent-base/.github/workflows/pr-preview.yml@72749afe6eaf4bcacb5e82c10cd2a26431c93938 # main
     with:
-      start-command: pnpm exec vite --port 5173 --strictPort
-      port: 5173
+      start-command: pnpm build && RECIPES_PORT=4330 RECIPES_DB_PATH=/tmp/recipes-preview.db pnpm start
+      port: 4330
       default-route: /
       settle-ms: 3000
       node-version: '22'

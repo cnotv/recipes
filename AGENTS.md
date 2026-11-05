@@ -92,12 +92,22 @@ hand is an MP4, never a GIF.
 ## Project facts
 
 - **Install:** `pnpm install`
-- **Dev server:** `pnpm dev --port <port> --strictPort`, served at `http://localhost:<port>`
-- **Routes:** Vue Router in `src/router/index.ts`; `src/views/Home.vue` is `/`, `src/views/DailyVote.vue` is `/daily-vote`, `src/views/RecipeDetail.vue` is `/recipe/<slug>`
+- **Node:** 22.13 or newer (the server uses the built in `node:sqlite`)
+- **Dev server:** `pnpm dev` runs the API (`node --watch server/index.ts`) on `http://localhost:4330` and Vite on
+  `http://localhost:5173`, which proxies `/api`, `/sitemap.xml` and old `/recipe/<encoded url>` links to the API.
+  Another port: `RECIPES_PORT=<port> pnpm dev` for the API and `pnpm exec vite --port <port> --strictPort` for the UI.
+- **Production:** `pnpm build && pnpm start` (one process on port 4330 serving the UI and `/api`), or
+  `docker compose up --build --wait`, published on `127.0.0.1:4330` only with the database in the `recipes-data` volume
+- **Server settings:** `RECIPES_PORT` (4330), `RECIPES_HOST` (127.0.0.1; the image sets 0.0.0.0), `RECIPES_DB_PATH`
+  (`data/recipes.db`), `RECIPES_ALLOWED_HOSTS` (loopback names; add the public host name behind a proxy),
+  `RECIPES_STATIC_DIR` (`dist`), `RECIPES_SITE_URL` (for `sitemap.xml`)
+- **Data:** `server/seed/recipes/*.json` are imported once, when the database has no recipes; after that SQLite is the
+  source and changes go through the server
+- **Routes:** Vue Router in `src/router/index.ts`; `src/views/HomeView.vue` is `/`, `src/views/DailyVote.vue` is `/daily-vote`, `src/views/RecipeDetail.vue` is `/recipe/<slug>`. API: `GET /api/health`, `/api/recipes`, `/api/recipes/:slug`, `/api/cuisines`; `GET /sitemap.xml`
 - **Verify notes:** none
 - **Checks:** `pnpm lint --max-warnings 0`, `pnpm typecheck`, `pnpm test`
 - **Docs home:** `README.md`
-- **Preview deploys:** Netlify builds a preview for every pull request (`netlify.toml`) until the cloud deploy lands (#9)
+- **Preview deploys:** none. Netlify cannot run the server, so `netlify.toml` is gone; the `pr-preview` workflow builds the app and starts the server on port 4330 to record each pull request
 - **Security:** none yet
 - **Scoped rules:** none yet
 - **Local skills:** none
@@ -106,4 +116,7 @@ hand is an MP4, never a GIF.
 
 ### Done checklist
 
-- [ ] A new recipe file in `public/recipes/` is followed by `pnpm generate-index` and `pnpm build:recipes`, and the generated files are committed
+- [ ] A new route is under `/api`, parses its query and body with zod, has a test in `server/app.test.ts`, and a mutation
+      relies on the same origin JSON check
+- [ ] A new SQL change is a new numbered file in `server/migrations/`, never an edit of an applied one
+- [ ] A new setting is read in `server/config.ts` and listed under Server settings
