@@ -153,3 +153,13 @@ describe('createPageFetcher against a local server', () => {
     await expect(fetcher()(`${state.origin}/missing`)).rejects.toThrow('404')
   })
 })
+
+describe('connect time check', () => {
+  it('refuses a name that answers with a public address for the check and a private one for the connection', async () => {
+    const answers = [[{ address: '93.184.216.34', family: 4 }], [{ address: '127.0.0.1', family: 4 }]]
+    const state = { calls: 0 }
+    const lookup: HostLookup = async () => answers[Math.min(state.calls++, 1)]
+    await expect(createPageFetcher({ lookup })('http://rebind.example/')).rejects.toThrow('not allowed')
+    expect(state.calls).toBe(2)
+  })
+})
