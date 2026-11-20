@@ -142,8 +142,9 @@ CI runs the same three on every pull request and on pushes to `main`. Agent rule
 
 ## Deploy to the cloud
 
-Every push to `main` runs CI, then the `Deploy` workflow copies the sources to the Hetzner server over SSH and
-builds the image there with `docker-compose.cloud.yml`. The existing reverse proxy serves the domain over HTTPS and
+Every push to `main` runs CI, then the `Deploy` workflow builds the image, pushes it to `ghcr.io/cnotv/recipes` tagged
+with the commit, copies `docker-compose.cloud.yml` and the settings to the Hetzner server over SSH, and the server pulls
+that image (the same pattern as the games and strudel repositories). To roll back, re-run the workflow on an older commit. The existing reverse proxy serves the domain over HTTPS and
 forwards it to the port published on the server. The job is skipped while the `RECIPES_DOMAIN` variable is unset.
 
 Set these by hand, in this order (Settings, Secrets and variables, Actions):

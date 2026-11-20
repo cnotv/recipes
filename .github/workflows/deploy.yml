@@ -17,10 +17,38 @@ jobs:
   checks:
     uses: ./.github/workflows/ci.yml
 
-  deploy:
+  # The image CI builds is the one the server runs: it is pushed to ghcr.io tagged with the
+  # commit, and the server only pulls it. The same gate as the deploy keeps an unconfigured
+  # repository from filling the registry.
+  image:
     needs: checks
-    # Nothing to deploy to until the domain is set; see "Deploy to the cloud" in the README.
     if: vars.RECIPES_DOMAIN != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/cnotv/recipes:${{ github.sha }}
+            ghcr.io/cnotv/recipes:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: image
     runs-on: ubuntu-latest
     env:
       DEPLOY_DIRECTORY: ${{ vars.DEPLOY_DIRECTORY || 'recipes' }}
@@ -29,8 +57,9 @@ jobs:
         with:
           persist-credentials: false
 
-      # Written on the runner and copied with the sources, readable by the SSH user only. Every
-      # value comes from the repository settings.
+      # Written on the runner and copied next to the compose file, readable by the SSH user
+      # only. Every value comes from the repository settings; RECIPES_IMAGE_TAG pins the
+      # server to the exact image this run pushed, so a rollback is a re-run of an older commit.
       - name: Write the server settings
         env:
           RECIPES_DOMAIN: ${{ vars.RECIPES_DOMAIN }}
@@ -42,6 +71,7 @@ jobs:
         run: |
           umask 077
           cat > .env <<EOF
+          RECIPES_IMAGE_TAG=${{ github.sha }}
           RECIPES_DOMAIN=$RECIPES_DOMAIN
           RECIPES_PUBLISH_ADDRESS=$RECIPES_PUBLISH_ADDRESS
           RECIPES_PUBLISH_PORT=$RECIPES_PUBLISH_PORT
@@ -53,36 +83,39 @@ jobs:
           EOF
 
       # Both SSH actions hold the server key, so they are pinned to the exact commit of a
-      # release rather than a tag that could be moved. The directory is cleared first (the
-      # action's rm option): copying on top of the previous copy leaves files deleted from the
-      # repository behind, and a stale source file breaks the image build. The data is in a
-      # named volume, not here.
-      - name: Copy the sources and settings to the server
+      # release rather than a tag that could be moved. Only the two files the server needs are
+      # copied; the data is in a named volume, not here.
+      - name: Copy the compose file and settings to the server
         uses: appleboy/scp-action@ff85246acaad7bdce478db94a363cd2bf7c90345 # v1.0.0
         with:
-          rm: true
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USERNAME }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           port: ${{ secrets.HETZNER_PORT || '22' }}
-          source: .env,Dockerfile,.dockerignore,docker-compose.cloud.yml,package.json,pnpm-lock.yaml,index.html,vite.config.ts,tsconfig.json,tsconfig.app.json,tsconfig.node.json,eslint.config.ts,public,src,server,scripts
+          source: .env,docker-compose.cloud.yml
           target: ${{ env.DEPLOY_DIRECTORY }}
 
-      # The server builds the image itself. --wait fails the deploy if the new version never
-      # becomes healthy.
-      - name: Start the new version
+      # The registry token lives as long as this job, so the server logs in for the pull and
+      # out again. --wait fails the deploy if the new version never becomes healthy.
+      - name: Pull and start the new version
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
+        env:
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USERNAME }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           port: ${{ secrets.HETZNER_PORT || '22' }}
-          envs: DEPLOY_DIRECTORY
+          envs: DEPLOY_DIRECTORY,REGISTRY_USER,REGISTRY_TOKEN
           script: |
             set -eu
             cd "$DEPLOY_DIRECTORY"
             chmod 600 .env
-            docker compose --file docker-compose.cloud.yml up --detach --build --remove-orphans --wait --wait-timeout 120
+            echo "$REGISTRY_TOKEN" | docker login ghcr.io --username "$REGISTRY_USER" --password-stdin
+            docker compose --file docker-compose.cloud.yml pull app
+            docker logout ghcr.io
+            docker compose --file docker-compose.cloud.yml up --detach --remove-orphans --wait --wait-timeout 120
             docker image prune --force
 
       # Through the domain, so DNS, the proxy and the certificate are proved too.
