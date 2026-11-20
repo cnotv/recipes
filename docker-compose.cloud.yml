@@ -6,8 +6,10 @@
 name: recipes
 services:
   app:
+    # The server pulls this image, which the Deploy workflow pushed. `build` is for CI, which
+    # builds it from the sources to test the same file.
     build: .
-    image: recipes:cloud
+    image: ghcr.io/cnotv/recipes:${RECIPES_IMAGE_TAG:-latest}
     env_file: .env
     environment:
       NODE_ENV: production

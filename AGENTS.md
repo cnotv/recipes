@@ -120,7 +120,7 @@ hand is an MP4, never a GIF.
 - **Scoped rules:** none yet
 - **Local skills:** none
 - **Auto-merge:** squash
-- **Deploy:** Hetzner server behind the existing reverse proxy; `.github/workflows/deploy.yml` after CI on `main`, skipped
+- **Deploy:** Server behind the existing reverse proxy; `.github/workflows/deploy.yml` after CI on `main`, skipped
   while `RECIPES_DOMAIN` is unset; `docker-compose.cloud.yml` (app port 4330, health `/api/health`, data `/data/recipes.db`,
   nightly backup); `scripts/smoke-test.sh <url>`. Owner steps: README, "Deploy to the cloud"
 

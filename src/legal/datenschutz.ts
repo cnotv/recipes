@@ -18,7 +18,6 @@ export const datenschutz: Record<LegalLanguage, LegalDocument> = {
       {
         heading: 'Hosting und Server-Logs',
         paragraphs: [
-          'Die Website läuft auf einem Server der Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland (Hosting). Standort des Rechenzentrums: ' + operator.serverLocation + '. Mit Hetzner besteht ein Vertrag zur Auftragsverarbeitung nach Art. 28 DSGVO [PLATZHALTER: Abschluss durch den Betreiber bestätigen].',
           'Bei jedem Aufruf verarbeitet der vorgeschaltete Webserver technisch notwendige Daten: IP-Adresse, Datum und Uhrzeit, aufgerufene Adresse, Statuscode, übertragene Datenmenge und User-Agent. Zweck ist der sichere und stabile Betrieb. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Die Zugriffsprotokolle werden ' + operator.accessLogRetention + ' Tage aufbewahrt. Die Anwendung selbst schreibt keine IP-Adressen in Protokolle.',
         ],
       },
@@ -81,7 +80,6 @@ export const datenschutz: Record<LegalLanguage, LegalDocument> = {
       {
         heading: 'Hosting and server logs',
         paragraphs: [
-          'The site runs on a server of Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Germany (hosting). Data centre location: ' + operator.serverLocation + '. A data processing agreement under Art. 28 GDPR exists with Hetzner [PLACEHOLDER: operator to confirm it is concluded].',
           'On every visit the web server in front of the application processes the technically necessary data: IP address, date and time, requested address, status code, amount of data and user agent. The purpose is secure and stable operation. The legal basis is Art. 6 (1) (f) GDPR. Access logs are kept for ' + operator.accessLogRetention + ' days. The application itself does not write IP addresses to logs.',
         ],
       },

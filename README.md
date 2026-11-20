@@ -142,8 +142,9 @@ CI runs the same three on every pull request and on pushes to `main`. Agent rule
 
 ## Deploy to the cloud
 
-Every push to `main` runs CI, then the `Deploy` workflow copies the sources to the Hetzner server over SSH and
-builds the image there with `docker-compose.cloud.yml`. The existing reverse proxy serves the domain over HTTPS and
+Every push to `main` runs CI, then the `Deploy` workflow builds the image, pushes it to `ghcr.io/cnotv/recipes` tagged
+with the commit, copies `docker-compose.cloud.yml` and the settings to the server over SSH, and the server pulls
+that image (the same pattern as the games and strudel repositories). To roll back, re-run the workflow on an older commit. The existing reverse proxy serves the domain over HTTPS and
 forwards it to the port published on the server. The job is skipped while the `RECIPES_DOMAIN` variable is unset.
 
 Set these by hand, in this order (Settings, Secrets and variables, Actions):
@@ -152,13 +153,13 @@ Set these by hand, in this order (Settings, Secrets and variables, Actions):
 2. DNS: an `A` record for the domain pointing at the server.
 3. The proxy entry: the domain forwards to `127.0.0.1:<port>`, with a certificate and the `Host` header passed through.
    If the proxy runs in Docker, set `RECIPES_PUBLISH_ADDRESS` to the Docker bridge address instead.
-4. Secrets: `HETZNER_HOST`, `HETZNER_USERNAME`, `HETZNER_SSH_KEY`, `HETZNER_PORT` (optional, 22),
+4. Secrets: `SERVER_HOST`, `SERVER_USERNAME`, `SERVER_SSH_KEY`, `SERVER_PORT` (optional, 22),
    `OPENROUTER_API_KEY`, `RECIPES_ADMIN_TOKEN`.
 5. Variables: `RECIPES_PUBLISH_PORT`, `OPENROUTER_MODEL`, optionally `RECIPES_PUBLISH_ADDRESS` and
    `DEPLOY_DIRECTORY` (default `recipes`), and last `RECIPES_DOMAIN`, because setting it switches the job on.
 6. An off-server copy of the backups.
 
-The workflow writes `.env` from these, with `RECIPES_ALLOWED_HOSTS` derived from the domain. After the start it runs
+The workflow writes `.env` on the server, over SSH, from these, with `RECIPES_ALLOWED_HOSTS` derived from the domain. After the start it runs
 `scripts/smoke-test.sh https://<domain>`; the same script runs against the cloud compose file in CI.
 
 The database lives in the `recipes_app-data` volume. The `backup` service writes a consistent copy to the

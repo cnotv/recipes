@@ -71,7 +71,7 @@ jobs:
       - if: always()
         run: docker compose down --volumes
 
-  # The compose file the Hetzner server runs, with a throwaway .env and no proxy in front.
+  # The compose file the server runs, with a throwaway .env and no proxy in front.
   container-cloud:
     runs-on: ubuntu-latest
     env:
