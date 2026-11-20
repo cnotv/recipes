@@ -16,3 +16,7 @@ export type PendingSubmission = {
 }
 
 export type AdminSession = { enabled: boolean; signedIn: boolean }
+
+export type ModelOption = { id: string; name: string }
+
+export type AdminSettings = { model: string; openRouterConfigured: boolean }

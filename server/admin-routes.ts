@@ -4,10 +4,12 @@ import { deleteCookie, getCookie, setCookie } from 'hono/cookie'
 import { z } from 'zod'
 import { createRateLimiter } from './rate-limit.ts'
 import { findRecipeById, toRecipeDetail } from './recipes.ts'
+import { OPENROUTER_MODEL_SETTING, readSetting, writeSetting } from './settings.ts'
 import { clientAddress } from './submission-routes.ts'
 import { decideSubmission, findSubmission, listSubmissionsWithStatus } from './submissions.ts'
 import type { SubmissionContext } from './submission-types.ts'
 import type { ServerConfig } from './types.ts'
+import { userMessage } from './user-error.ts'
 
 const COOKIE_NAME = 'recipes_admin'
 const SESSION_MS = 8 * 60 * 60 * 1000
@@ -15,6 +17,7 @@ const SIGN_IN_ATTEMPTS = 10
 const SIGN_IN_WINDOW_MS = 15 * 60 * 1000
 
 const signInBodySchema = z.object({ token: z.string().max(500) })
+const settingsBodySchema = z.object({ model: z.string().trim().min(1).max(200) })
 
 const digest = (value: string): Buffer => createHash('sha256').update(value).digest()
 
@@ -74,6 +77,28 @@ export const registerAdminRoutes = (app: Hono, { database, services }: Submissio
     if (token !== undefined) sessions.delete(token)
     deleteCookie(context, COOKIE_NAME, { path: '/' })
     return context.json({ signedIn: false })
+  })
+
+  app.get('/api/admin/settings', (context) =>
+    context.json({
+      model: readSetting(database, OPENROUTER_MODEL_SETTING) ?? config.openRouterModel,
+      openRouterConfigured: config.openRouterApiKey !== undefined,
+    }),
+  )
+
+  app.put('/api/admin/settings', async (context) => {
+    const body = settingsBodySchema.safeParse(await context.req.json().catch(() => undefined))
+    if (!body.success) return context.json({ error: 'Send a JSON body with a model id' }, 400)
+    writeSetting(database, OPENROUTER_MODEL_SETTING, body.data.model)
+    return context.json({ model: body.data.model })
+  })
+
+  app.get('/api/admin/models', async (context) => {
+    try {
+      return context.json(await services.listModels())
+    } catch (error) {
+      return context.json({ error: userMessage(error, 'The OpenRouter model list could not be loaded') }, 502)
+    }
   })
 
   app.get('/api/admin/submissions', (context) =>

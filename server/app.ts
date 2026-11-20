@@ -39,7 +39,7 @@ const slugSchema = z.string().regex(/^[a-z0-9-]{1,200}$/)
 export const createApp = (
   database: DatabaseSync,
   config: ServerConfig,
-  submissionServices: SubmissionServices = createDefaultServices(config),
+  submissionServices: SubmissionServices = createDefaultServices(config, database),
 ): Hono => {
   const app = new Hono()
 

@@ -7,7 +7,7 @@ const TIMEOUT_MS = 120_000
 
 const completionSchema = z.object({ choices: z.array(z.object({ message: z.object({ content: z.string() }) })).min(1) })
 
-type OpenRouterOptions = { apiKey: string; model: string; fetchImpl?: typeof fetch }
+type OpenRouterOptions = { apiKey: string; model: string | (() => string); fetchImpl?: typeof fetch }
 
 /**
  * A model call over plain fetch. The key goes into one header and nowhere else: failures name the
@@ -20,7 +20,7 @@ export const createOpenRouterCall =
       method: 'POST',
       headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
       body: JSON.stringify({
-        model,
+        model: typeof model === 'function' ? model() : model,
         temperature: 0.2,
         response_format: { type: 'json_object' },
         messages: [

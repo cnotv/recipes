@@ -40,12 +40,13 @@ The Netlify build (`pnpm build:static`) writes JSON from the same files, so a ne
 
 `/submit` takes a recipe link. The server reads its schema.org `Recipe` JSON-LD, or asks an OpenRouter free model to extract the
 recipe when the page has none, translates it into en, de, jp and th, and holds it as pending. `/admin` lists pending recipes for
-approval or rejection (a rejected link is never imported twice).
+approval or rejection (a rejected link is never imported twice). Signing in there also shows the OpenRouter catalogue: the chosen
+model is stored in the database and applies to the next import, without a restart.
 
 | Variable | Purpose |
 | --- | --- |
 | `OPENROUTER_API_KEY` | Enables model extraction and translation. Without it JSON-LD pages still import, untranslated. |
-| `OPENROUTER_MODEL` | Default `google/gemma-4-31b-it:free` (262k context). Free model ids rotate; see https://openrouter.ai/api/v1/models. |
+| `OPENROUTER_MODEL` | Fallback model, default `google/gemma-4-31b-it:free` (262k context); `/admin` overrides it. Free model ids rotate; see https://openrouter.ai/api/v1/models. |
 | `RECIPES_ADMIN_TOKEN` | 16 characters or more; signs in `/admin`. Unset disables admin. |
 | `RECIPES_TRUST_PROXY` | `true` behind the reverse proxy, so the per address rate limit uses the address the proxy appended. |
 

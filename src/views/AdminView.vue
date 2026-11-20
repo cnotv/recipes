@@ -1,19 +1,23 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import UiBadge from '../ui/UiBadge.vue'
 import UiButton from '../ui/UiButton.vue'
 import UiEmptyState from '../ui/UiEmptyState.vue'
 import UiInput from '../ui/UiInput.vue'
+import UiSelect from '../ui/UiSelect.vue'
 import UiTabs from '../ui/UiTabs.vue'
 import {
   decideSubmission,
+  fetchAdminModels,
   fetchAdminSession,
+  fetchAdminSettings,
   fetchPendingSubmissions,
+  saveAdminModel,
   signInAsAdmin,
   signOutAdmin,
 } from '../lib/submissionApi'
-import type { PendingSubmission } from '../types/submission'
+import type { ModelOption, PendingSubmission } from '../types/submission'
 
 const { t } = useI18n()
 
@@ -27,6 +31,18 @@ const signInError = ref<string | undefined>()
 const submissions = ref<PendingSubmission[]>([])
 const chosenLanguage = ref<Record<string, string>>({})
 const notice = ref<string | undefined>()
+const catalogue = ref<ModelOption[]>([])
+const savedModel = ref('')
+const chosenModel = ref('')
+const openRouterConfigured = ref(true)
+const settingsNotice = ref<string | undefined>()
+
+const modelChoices = computed(() => {
+  const options = catalogue.value.map((model) => ({ value: model.id, label: `${model.name} (${model.id})` }))
+  return savedModel.value !== '' && !options.some((option) => option.value === savedModel.value)
+    ? [{ value: savedModel.value, label: savedModel.value }, ...options]
+    : options
+})
 
 const languagesOf = (submission: PendingSubmission): string[] => Object.keys(submission.recipe.languages)
 const tabsOf = (submission: PendingSubmission) =>
@@ -44,15 +60,31 @@ const loadList = async (): Promise<void> => {
   phase.value = 'list'
 }
 
+const loadSettings = async (): Promise<void> => {
+  const settings = await fetchAdminSettings()
+  if (settings === undefined) return
+  savedModel.value = settings.model
+  chosenModel.value = settings.model
+  openRouterConfigured.value = settings.openRouterConfigured
+  catalogue.value = await fetchAdminModels()
+}
+
+const saveModel = async (): Promise<void> => {
+  const failure = await saveAdminModel(chosenModel.value)
+  settingsNotice.value = failure ?? t('adminModelSaved')
+  if (failure === undefined) savedModel.value = chosenModel.value
+}
+
 const signIn = async (): Promise<void> => {
   signInError.value = await signInAsAdmin(token.value)
   token.value = ''
-  if (signInError.value === undefined) await loadList()
+  if (signInError.value === undefined) await Promise.all([loadList(), loadSettings()])
 }
 
 const signOut = async (): Promise<void> => {
   await signOutAdmin()
   submissions.value = []
+  settingsNotice.value = undefined
   phase.value = 'signin'
 }
 
@@ -65,7 +97,7 @@ const decide = async (submission: PendingSubmission, decision: 'approve' | 'reje
 onMounted(async () => {
   const session = await fetchAdminSession()
   if (!session.enabled) phase.value = 'disabled'
-  else if (session.signedIn) await loadList()
+  else if (session.signedIn) await Promise.all([loadList(), loadSettings()])
   else phase.value = 'signin'
 })
 </script>
@@ -93,6 +125,19 @@ onMounted(async () => {
         <p v-if="notice" role="status">{{ notice }}</p>
         <UiButton variant="ghost" size="sm" @click="signOut">{{ t('adminSignOut') }}</UiButton>
       </div>
+
+      <section v-if="savedModel !== ''" class="admin-view__settings">
+        <h2 class="admin-view__settings-title">{{ t('adminModelTitle') }}</h2>
+        <p class="admin-view__hint">{{ t('adminModelDescription') }}</p>
+        <p v-if="!openRouterConfigured" class="admin-view__hint">{{ t('adminModelNoKey') }}</p>
+        <UiSelect v-model="chosenModel" :label="t('adminModelLabel')" :options="modelChoices" />
+        <div class="admin-view__actions">
+          <UiButton :disabled="chosenModel === '' || chosenModel === savedModel" @click="saveModel">
+            {{ t('adminModelSave') }}
+          </UiButton>
+          <p v-if="settingsNotice" role="status" class="admin-view__hint">{{ settingsNotice }}</p>
+        </div>
+      </section>
 
       <UiEmptyState v-if="submissions.length === 0" icon="check" :title="t('adminEmptyTitle')" />
 
@@ -160,6 +205,24 @@ onMounted(async () => {
 
 .admin-view__bar {
   justify-content: space-between;
+}
+
+.admin-view__settings {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border: var(--size-border) solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
+}
+
+.admin-view__settings-title {
+  font: 700 var(--font-size-lg, 1.25rem) / var(--font-line-snug) var(--font-family-body);
+}
+
+.admin-view__hint {
+  color: var(--color-text-secondary);
+  font: 400 var(--font-size-sm) / var(--font-line-snug) var(--font-family-body);
 }
 
 .admin-view__item {

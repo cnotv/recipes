@@ -1,6 +1,9 @@
 import { lookup as dnsLookup } from 'node:dns/promises'
+import type { DatabaseSync } from 'node:sqlite'
 import { createOpenRouterCall } from './openrouter.ts'
+import { createOpenRouterModelList } from './openrouter-models.ts'
 import { createImageFetcher, createPageFetcher } from './safe-fetch.ts'
+import { OPENROUTER_MODEL_SETTING, readSetting } from './settings.ts'
 import type { JobQueue, SubmissionServices } from './submission-types.ts'
 import type { ServerConfig } from './types.ts'
 
@@ -18,7 +21,7 @@ export const createJobQueue = (): JobQueue => {
   }
 }
 
-export const createDefaultServices = (config: ServerConfig): SubmissionServices => {
+export const createDefaultServices = (config: ServerConfig, database: DatabaseSync): SubmissionServices => {
   const lookup: SubmissionServices['lookup'] = (hostname) => dnsLookup(hostname, { all: true, verbatim: true })
   return {
     fetchPage: createPageFetcher({ lookup }),
@@ -26,7 +29,12 @@ export const createDefaultServices = (config: ServerConfig): SubmissionServices 
     callModel:
       config.openRouterApiKey === undefined
         ? undefined
-        : createOpenRouterCall({ apiKey: config.openRouterApiKey, model: config.openRouterModel }),
+        : createOpenRouterCall({
+            apiKey: config.openRouterApiKey,
+            // Read per call, so a model saved in the admin panel applies without a restart.
+            model: () => readSetting(database, OPENROUTER_MODEL_SETTING) ?? config.openRouterModel,
+          }),
+    listModels: createOpenRouterModelList(),
     queue: createJobQueue(),
     now: () => new Date(),
     lookup,

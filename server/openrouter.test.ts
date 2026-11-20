@@ -53,4 +53,21 @@ describe('createOpenRouterCall', () => {
     const failure = await call({ system: 's', user: 'u' }).catch((error: unknown) => error)
     expect(String(failure)).not.toContain(KEY)
   })
+
+  it('reads a model getter on every call, so a saved model applies without a restart', async () => {
+    const used: string[] = []
+    let current = 'first/model:free'
+    const call = createOpenRouterCall({
+      apiKey: KEY,
+      model: () => current,
+      fetchImpl: async (_url, init) => {
+        used.push(JSON.parse(String(init?.body)).model)
+        return new Response(JSON.stringify({ choices: [{ message: { content: '{}' } }] }))
+      },
+    })
+    await call({ system: 's', user: 'u' })
+    current = 'second/model:free'
+    await call({ system: 's', user: 'u' })
+    expect(used).toEqual(['first/model:free', 'second/model:free'])
+  })
 })

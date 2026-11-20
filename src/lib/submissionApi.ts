@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import type { AdminSession, PendingSubmission, Submission, SubmitOutcome } from '../types/submission'
+import type { AdminSession, AdminSettings, ModelOption, PendingSubmission, Submission, SubmitOutcome } from '../types/submission'
 
 const submissionSchema: z.ZodType<Submission> = z.object({
   id: z.string(),
@@ -30,6 +30,8 @@ const pendingListSchema: z.ZodType<PendingSubmission[]> = z.array(
 )
 
 const adminSessionSchema: z.ZodType<AdminSession> = z.object({ enabled: z.boolean(), signedIn: z.boolean() })
+const adminSettingsSchema: z.ZodType<AdminSettings> = z.object({ model: z.string(), openRouterConfigured: z.boolean() })
+const modelListSchema: z.ZodType<ModelOption[]> = z.array(z.object({ id: z.string(), name: z.string() }))
 const errorSchema = z.object({ error: z.string() })
 
 const request = (method: string, path: string, body?: unknown): Promise<Response> =>
@@ -80,6 +82,26 @@ export const fetchPendingSubmissions = async (): Promise<PendingSubmission[] | u
   const response = await request('GET', '/api/admin/submissions').catch(() => undefined)
   const parsed = pendingListSchema.safeParse(response?.ok ? await response.json().catch(() => undefined) : undefined)
   return parsed.success ? parsed.data : undefined
+}
+
+export const fetchAdminSettings = async (): Promise<AdminSettings | undefined> => {
+  const response = await request('GET', '/api/admin/settings').catch(() => undefined)
+  const parsed = adminSettingsSchema.safeParse(response?.ok ? await response.json().catch(() => undefined) : undefined)
+  return parsed.success ? parsed.data : undefined
+}
+
+/** The catalogue is a convenience; the saved model stays usable when it cannot be loaded. */
+export const fetchAdminModels = async (): Promise<ModelOption[]> => {
+  const response = await request('GET', '/api/admin/models').catch(() => undefined)
+  const parsed = modelListSchema.safeParse(response?.ok ? await response.json().catch(() => undefined) : undefined)
+  return parsed.success ? parsed.data : []
+}
+
+/** Returns an error message, or undefined when the model was stored. */
+export const saveAdminModel = async (model: string): Promise<string | undefined> => {
+  const response = await request('PUT', '/api/admin/settings', { model }).catch(() => undefined)
+  if (response === undefined) return 'The server could not be reached'
+  return response.ok ? undefined : failureMessage(response)
 }
 
 /** Returns an error message, or undefined when the decision was stored. */

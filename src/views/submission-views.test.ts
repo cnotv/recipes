@@ -5,6 +5,7 @@ import { createMemoryHistory, createRouter } from 'vue-router'
 import { i18n } from '../composables/useI18n'
 import AdminView from './AdminView.vue'
 import SubmitView from './SubmitView.vue'
+import UiSelect from '../ui/UiSelect.vue'
 
 const plugins = () => [
   i18n,
@@ -125,6 +126,8 @@ describe('AdminView', () => {
       { method: 'GET', path: '/api/admin/session', body: { enabled: true, signedIn: false } },
       { method: 'POST', path: '/api/admin/session', body: { signedIn: true } },
       { method: 'GET', path: '/api/admin/submissions', body: pending },
+      { method: 'GET', path: '/api/admin/settings', body: { model: 'test/model:free', openRouterConfigured: true } },
+      { method: 'GET', path: '/api/admin/models', body: [{ id: 'test/model:free', name: 'Test Model' }] },
       { method: 'POST', path: `/api/admin/submissions/${pending[0].id}/approve`, body: { id: pending[0].id, status: 'published' } },
     ])
     const wrapper = mount(AdminView, { global: { plugins: plugins() } })
@@ -132,6 +135,7 @@ describe('AdminView', () => {
     await wrapper.find('input').setValue('the-token')
     await wrapper.find('form').trigger('submit')
     await flushPromises()
+    expect(wrapper.text()).toContain('Recipe import model')
     expect(wrapper.text()).toContain('Soup')
     expect(wrapper.text()).toContain('Not translated')
     expect(wrapper.text()).toContain('tomato')
@@ -142,6 +146,33 @@ describe('AdminView', () => {
     await flushPromises()
     expect(calls.at(-1)).toMatchObject({ method: 'POST', path: `/api/admin/submissions/${pending[0].id}/approve` })
     expect(wrapper.text()).toContain('Nothing is waiting for approval')
+  })
+
+  it('picks another OpenRouter model and saves it', async () => {
+    const calls = stubServer([
+      { method: 'GET', path: '/api/admin/session', body: { enabled: true, signedIn: true } },
+      { method: 'GET', path: '/api/admin/submissions', body: [] },
+      { method: 'GET', path: '/api/admin/settings', body: { model: 'first/model:free', openRouterConfigured: true } },
+      {
+        method: 'GET',
+        path: '/api/admin/models',
+        body: [
+          { id: 'first/model:free', name: 'First Model' },
+          { id: 'second/model:free', name: 'Second Model' },
+        ],
+      },
+      { method: 'PUT', path: '/api/admin/settings', body: { model: 'second/model:free' } },
+    ])
+    const wrapper = mount(AdminView, { global: { plugins: plugins() } })
+    await flushPromises()
+    await wrapper.findComponent(UiSelect).vm.$emit('update:modelValue', 'second/model:free')
+    await flushPromises()
+
+    const save = wrapper.findAll('button').find((button) => button.text() === 'Save model')
+    await save?.trigger('click')
+    await flushPromises()
+    expect(calls.at(-1)).toMatchObject({ method: 'PUT', path: '/api/admin/settings', body: { model: 'second/model:free' } })
+    expect(wrapper.text()).toContain('The model is saved.')
   })
 
   it('shows the sign in error and keeps the form', async () => {

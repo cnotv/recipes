@@ -6,7 +6,7 @@ import { z } from 'zod'
 import { createApp } from './app.ts'
 import { createJobQueue } from './submission-services.ts'
 import { createTestDatabase, testConfig } from './test-support.ts'
-import type { MediaStore, ModelCall, PageFetcher, SubmissionServices } from './submission-types.ts'
+import type { MediaStore, ModelCall, ModelOption, PageFetcher, SubmissionServices } from './submission-types.ts'
 import type { ServerConfig } from './types.ts'
 
 export const ADMIN_TOKEN = 'a-long-admin-token-for-tests'
@@ -65,6 +65,7 @@ export const pagesFetcher =
 type Setup = {
   pages?: Record<string, string>
   callModel?: ModelCall
+  listModels?: () => Promise<ModelOption[]>
   config?: Partial<ServerConfig>
   now?: () => Date
 }
@@ -76,6 +77,7 @@ export const createSubmissionTestApp = (setup: Setup = {}) => {
     fetchPage: pagesFetcher(setup.pages ?? {}),
     media: testMedia(),
     callModel: setup.callModel,
+    listModels: setup.listModels ?? (async () => []),
     queue,
     now: setup.now ?? (() => new Date()),
     lookup: async () => [{ address: '93.184.216.34', family: 4 }],

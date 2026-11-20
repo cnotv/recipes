@@ -29,6 +29,9 @@ export type ModelPrompt = { system: string; user: string }
 /** Sends one prompt to the language model and returns the raw text of its answer. */
 export type ModelCall = (prompt: ModelPrompt) => Promise<string>
 
+/** One model the admin can choose for extraction and translation. */
+export type ModelOption = { id: string; name: string }
+
 export type SourceLanguage = 'en' | 'de' | 'jp' | 'th'
 
 /** A recipe read from a page, in the language of the page. */
@@ -67,6 +70,8 @@ export type SubmissionServices = {
   media: MediaStore
   /** Undefined when no OpenRouter key is configured. */
   callModel: ModelCall | undefined
+  /** The OpenRouter catalogue shown in the admin panel. */
+  listModels: () => Promise<ModelOption[]>
   queue: JobQueue
   now: () => Date
   lookup: HostLookup

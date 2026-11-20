@@ -143,6 +143,7 @@ describe('importing a link', () => {
       fetchPage: async (url) => ({ finalUrl: url, body: recipePage() }),
       media: testMedia(),
       callModel: undefined,
+      listModels: async () => [],
       queue,
       now: () => new Date(),
       lookup: async () => [{ address: '93.184.216.34', family: 4 }],
@@ -190,6 +191,7 @@ describe('submission limits', () => {
       fetchPage: async () => ({ finalUrl: '', body: '' }),
       media: testMedia(),
       callModel: undefined,
+      listModels: async () => [],
       queue: rebinding.queue,
       now: () => new Date(),
       lookup: async () => [{ address: '127.0.0.1', family: 4 }],
@@ -343,5 +345,49 @@ describe('admin access', () => {
   it('keeps the public list working alongside', async () => {
     const { app } = createSubmissionTestApp()
     expect((await get(app, '/api/recipes')).status).toBe(200)
+  })
+})
+
+describe('admin model settings', () => {
+  it('needs a session for the settings and the model list', async () => {
+    const { app } = createSubmissionTestApp()
+    expect((await send(app, 'GET', '/api/admin/settings')).status).toBe(401)
+    expect((await send(app, 'GET', '/api/admin/models')).status).toBe(401)
+    expect((await send(app, 'PUT', '/api/admin/settings', { model: 'a/b' })).status).toBe(401)
+  })
+
+  it('serves the configured default and saves a model for later calls', async () => {
+    const { app } = createSubmissionTestApp({ config: { openRouterModel: 'default/model:free', openRouterApiKey: API_KEY } })
+    const cookie = await signIn(app)
+    expect(await (await send(app, 'GET', '/api/admin/settings', undefined, cookie)).json()).toEqual({
+      model: 'default/model:free',
+      openRouterConfigured: true,
+    })
+    expect((await send(app, 'PUT', '/api/admin/settings', { model: 'other/model:free' }, cookie)).status).toBe(200)
+    expect(await (await send(app, 'GET', '/api/admin/settings', undefined, cookie)).json()).toMatchObject({ model: 'other/model:free' })
+  })
+
+  it('refuses an empty model and keeps the saved one', async () => {
+    const { app } = createSubmissionTestApp()
+    const cookie = await signIn(app)
+    expect((await send(app, 'PUT', '/api/admin/settings', { model: '   ' }, cookie)).status).toBe(400)
+    expect(await (await send(app, 'GET', '/api/admin/settings', undefined, cookie)).json()).toMatchObject({ model: 'test/model:free' })
+  })
+
+  it('lists the catalogue and keeps a fetch failure readable and quiet', async () => {
+    const models = [{ id: 'a/b:free', name: 'A' }]
+    const { app } = createSubmissionTestApp({ listModels: async () => models })
+    const cookie = await signIn(app)
+    expect(await (await send(app, 'GET', '/api/admin/models', undefined, cookie)).json()).toEqual(models)
+
+    const failing = createSubmissionTestApp({
+      listModels: async () => {
+        throw new Error('socket hung up with a secret')
+      },
+    })
+    const failingCookie = await signIn(failing.app)
+    const response = await send(failing.app, 'GET', '/api/admin/models', undefined, failingCookie)
+    expect(response.status).toBe(502)
+    expect(await response.json()).toEqual({ error: 'The OpenRouter model list could not be loaded' })
   })
 })
