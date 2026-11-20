@@ -17,7 +17,7 @@ const emit = defineEmits<{ open: [] }>()
 
 <template>
   <article class="ui-recipe-card">
-    <div class="ui-recipe-card__media">
+    <div class="ui-recipe-card__media" :class="{ 'ui-recipe-card__media--empty': !recipe.imageUrl }">
       <img
         v-if="recipe.imageUrl"
         :src="recipe.imageUrl"
@@ -61,15 +61,19 @@ const emit = defineEmits<{ open: [] }>()
   position: relative;
   display: grid;
   place-items: center;
-  aspect-ratio: 16 / 10;
   background: var(--color-bg-brand-subtle);
   color: var(--color-text-brand);
 }
 
+/* Without a picture the box keeps a frame; a real picture sets its own height. */
+.ui-recipe-card__media--empty {
+  aspect-ratio: 16 / 10;
+}
+
 .ui-recipe-card__media img {
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .ui-recipe-card__flag {

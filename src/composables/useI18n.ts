@@ -108,6 +108,12 @@ export interface UITranslations {
   adminReject: string
   adminApproved: string
   adminRejected: string
+  adminModelTitle: string
+  adminModelDescription: string
+  adminModelLabel: string
+  adminModelSave: string
+  adminModelSaved: string
+  adminModelNoKey: string
   
   // Daily voting system
   dailyVote: {
@@ -224,6 +230,12 @@ const messages = {
     adminReject: 'Reject',
     adminApproved: '{title} was approved and published.',
     adminRejected: '{title} was rejected.',
+    adminModelTitle: 'Recipe import model',
+    adminModelDescription: 'The OpenRouter model that reads a page without recipe data and translates every submission.',
+    adminModelLabel: 'OpenRouter model',
+    adminModelSave: 'Save model',
+    adminModelSaved: 'The model is saved.',
+    adminModelNoKey: 'OPENROUTER_API_KEY is not set, so imports use recipe data on the page only until the key is added.',
     
     // Daily voting system
     dailyVote: {
@@ -339,6 +351,12 @@ const messages = {
     adminReject: 'Ablehnen',
     adminApproved: '{title} wurde freigegeben und veröffentlicht.',
     adminRejected: '{title} wurde abgelehnt.',
+    adminModelTitle: 'Modell für den Rezeptimport',
+    adminModelDescription: 'Das OpenRouter-Modell, das Seiten ohne Rezeptdaten liest und jede Einsendung übersetzt.',
+    adminModelLabel: 'OpenRouter-Modell',
+    adminModelSave: 'Modell speichern',
+    adminModelSaved: 'Das Modell ist gespeichert.',
+    adminModelNoKey: 'OPENROUTER_API_KEY ist nicht gesetzt. Importe nutzen daher nur Rezeptdaten auf der Seite, bis der Schlüssel hinzugefügt wird.',
     
     // Daily voting system
     dailyVote: {
@@ -454,6 +472,12 @@ const messages = {
     adminReject: '却下',
     adminApproved: '{title}を承認して公開しました。',
     adminRejected: '{title}を却下しました。',
+    adminModelTitle: 'レシピ取り込みモデル',
+    adminModelDescription: 'レシピデータのないページを読み取り、すべての投稿を翻訳するOpenRouterモデルです。',
+    adminModelLabel: 'OpenRouterモデル',
+    adminModelSave: 'モデルを保存',
+    adminModelSaved: 'モデルを保存しました。',
+    adminModelNoKey: 'OPENROUTER_API_KEYが設定されていないため、キーが追加されるまで取り込みはページ上のレシピデータのみを使用します。',
     
     // Daily voting system
     dailyVote: {
@@ -569,6 +593,12 @@ const messages = {
     adminReject: 'ปฏิเสธ',
     adminApproved: 'อนุมัติและเผยแพร่ {title} แล้ว',
     adminRejected: 'ปฏิเสธ {title} แล้ว',
+    adminModelTitle: 'โมเดลนำเข้าสูตรอาหาร',
+    adminModelDescription: 'โมเดล OpenRouter ที่อ่านหน้าที่ไม่มีข้อมูลสูตรอาหารและแปลทุกการส่ง',
+    adminModelLabel: 'โมเดล OpenRouter',
+    adminModelSave: 'บันทึกโมเดล',
+    adminModelSaved: 'บันทึกโมเดลแล้ว',
+    adminModelNoKey: 'ยังไม่ได้ตั้งค่า OPENROUTER_API_KEY การนำเข้าจะใช้ข้อมูลสูตรอาหารบนหน้าเว็บเท่านั้นจนกว่าจะเพิ่มคีย์',
     
     // Daily voting system
     dailyVote: {
