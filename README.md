@@ -159,7 +159,7 @@ Set these by hand, in this order (Settings, Secrets and variables, Actions):
    `DEPLOY_DIRECTORY` (default `recipes`), and last `RECIPES_DOMAIN`, because setting it switches the job on.
 6. An off-server copy of the backups.
 
-The workflow writes `.env` from these, with `RECIPES_ALLOWED_HOSTS` derived from the domain. After the start it runs
+The workflow writes `.env` on the server, over SSH, from these, with `RECIPES_ALLOWED_HOSTS` derived from the domain. After the start it runs
 `scripts/smoke-test.sh https://<domain>`; the same script runs against the cloud compose file in CI.
 
 The database lives in the `recipes_app-data` volume. The `backup` service writes a consistent copy to the

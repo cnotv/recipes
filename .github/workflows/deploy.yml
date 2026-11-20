@@ -24,6 +24,7 @@ jobs:
     needs: checks
     if: vars.RECIPES_DOMAIN != ''
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       packages: write
@@ -50,56 +51,53 @@ jobs:
   deploy:
     needs: image
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
+      # The app's own folder, relative to the SSH user's home unless absolute. Never the home
+      # itself or a folder another app on the server uses: its compose file would be replaced.
       DEPLOY_DIRECTORY: ${{ vars.DEPLOY_DIRECTORY || 'recipes' }}
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
-      # Written on the runner and copied next to the compose file, readable by the SSH user
-      # only. Every value comes from the repository settings; RECIPES_IMAGE_TAG pins the
-      # server to the exact image this run pushed, so a rollback is a re-run of an older commit.
-      - name: Write the server settings
-        env:
-          RECIPES_DOMAIN: ${{ vars.RECIPES_DOMAIN }}
-          RECIPES_PUBLISH_ADDRESS: ${{ vars.RECIPES_PUBLISH_ADDRESS || '127.0.0.1' }}
-          RECIPES_PUBLISH_PORT: ${{ vars.RECIPES_PUBLISH_PORT }}
-          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          RECIPES_ADMIN_TOKEN: ${{ secrets.RECIPES_ADMIN_TOKEN }}
+      # scp-action creates the folder; this only refuses a name that is not the app's own.
+      - name: Check the deploy folder
         run: |
-          umask 077
-          cat > .env <<EOF
-          RECIPES_IMAGE_TAG=${{ github.sha }}
-          RECIPES_DOMAIN=$RECIPES_DOMAIN
-          RECIPES_PUBLISH_ADDRESS=$RECIPES_PUBLISH_ADDRESS
-          RECIPES_PUBLISH_PORT=$RECIPES_PUBLISH_PORT
-          RECIPES_ALLOWED_HOSTS=$RECIPES_DOMAIN,localhost,127.0.0.1,[::1]
-          RECIPES_SITE_URL=https://$RECIPES_DOMAIN
-          OPENROUTER_MODEL=$OPENROUTER_MODEL
-          OPENROUTER_API_KEY=$OPENROUTER_API_KEY
-          RECIPES_ADMIN_TOKEN=$RECIPES_ADMIN_TOKEN
-          EOF
+          case "$DEPLOY_DIRECTORY" in
+            '' | . | ./ | / | '~' | '~/' | *..*)
+              echo "DEPLOY_DIRECTORY must name the app's own folder, not '$DEPLOY_DIRECTORY'" >&2
+              exit 1 ;;
+          esac
 
       # Both SSH actions hold the server key, so they are pinned to the exact commit of a
-      # release rather than a tag that could be moved. Only the two files the server needs are
-      # copied; the data is in a named volume, not here.
-      - name: Copy the compose file and settings to the server
+      # release rather than a tag that could be moved. Only the compose file is copied; the
+      # data is in a named volume, not here.
+      - name: Copy the compose file to the server
         uses: appleboy/scp-action@ff85246acaad7bdce478db94a363cd2bf7c90345 # v1.0.0
         with:
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USERNAME }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           port: ${{ secrets.HETZNER_PORT || '22' }}
-          source: .env,docker-compose.cloud.yml
+          source: docker-compose.cloud.yml
           target: ${{ env.DEPLOY_DIRECTORY }}
 
-      # The registry token lives as long as this job, so the server logs in for the pull and
-      # out again. --wait fails the deploy if the new version never becomes healthy.
-      - name: Pull and start the new version
+      # The settings are written on the server, so the secrets reach it only through the SSH
+      # session, never a file on the runner or a command line. RECIPES_IMAGE_TAG pins the
+      # server to the exact image this run pushed, so a rollback is a re-run of an older commit.
+      - name: Write the settings, pull and start the new version
         uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
         env:
+          RECIPES_IMAGE_TAG: ${{ github.sha }}
+          RECIPES_DOMAIN: ${{ vars.RECIPES_DOMAIN }}
+          RECIPES_PUBLISH_ADDRESS: ${{ vars.RECIPES_PUBLISH_ADDRESS || '127.0.0.1' }}
+          RECIPES_PUBLISH_PORT: ${{ vars.RECIPES_PUBLISH_PORT }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          RECIPES_ADMIN_TOKEN: ${{ secrets.RECIPES_ADMIN_TOKEN }}
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -107,15 +105,48 @@ jobs:
           username: ${{ secrets.HETZNER_USERNAME }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
           port: ${{ secrets.HETZNER_PORT || '22' }}
-          envs: DEPLOY_DIRECTORY,REGISTRY_USER,REGISTRY_TOKEN
+          envs: DEPLOY_DIRECTORY,RECIPES_IMAGE_TAG,RECIPES_DOMAIN,RECIPES_PUBLISH_ADDRESS,RECIPES_PUBLISH_PORT,OPENROUTER_MODEL,OPENROUTER_API_KEY,RECIPES_ADMIN_TOKEN,REGISTRY_USER,REGISTRY_TOKEN
           script: |
-            set -eu
+            # Without this a failed pull still reports success, and the old container keeps
+            # running behind a green deploy.
+            set -e
             cd "$DEPLOY_DIRECTORY"
+
+            # The file holds secrets, so it is private before anything is written to it, and
+            # nothing below prints a value or turns on tracing.
+            set +x
+            umask 077
+            touch .env
             chmod 600 .env
+            : > .env
+
+            RECIPES_ALLOWED_HOSTS="$RECIPES_DOMAIN,localhost,127.0.0.1,[::1]"
+            RECIPES_SITE_URL="https://$RECIPES_DOMAIN"
+
+            # Only the settings that have a value, so an unset key or model falls back to the
+            # server's own default. Plain sh, whatever shell the SSH user has.
+            newline='
+            '
+            for name in RECIPES_IMAGE_TAG RECIPES_DOMAIN RECIPES_PUBLISH_ADDRESS \
+              RECIPES_PUBLISH_PORT RECIPES_ALLOWED_HOSTS RECIPES_SITE_URL OPENROUTER_MODEL \
+              OPENROUTER_API_KEY RECIPES_ADMIN_TOKEN; do
+              eval "value=\${$name}"
+              [ -n "$value" ] || continue
+              # Single quotes keep a value literal in .env, so one inside it would break out.
+              case "$value" in
+                *\'* | *"$newline"*)
+                  echo "$name must not contain a quote or a line break" >&2
+                  exit 1 ;;
+              esac
+              printf "%s='%s'\n" "$name" "$value" >> .env
+            done
+
+            # The registry token lives as long as this job, so log in for the pull and out
+            # again. --wait fails the deploy if the new version never becomes healthy.
             echo "$REGISTRY_TOKEN" | docker login ghcr.io --username "$REGISTRY_USER" --password-stdin
             docker compose --file docker-compose.cloud.yml pull app
             docker logout ghcr.io
-            docker compose --file docker-compose.cloud.yml up --detach --remove-orphans --wait --wait-timeout 120
+            docker compose --file docker-compose.cloud.yml up --detach --no-build --remove-orphans --wait --wait-timeout 120
             docker image prune --force
 
       # Through the domain, so DNS, the proxy and the certificate are proved too.
