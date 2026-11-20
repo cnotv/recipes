@@ -16,7 +16,6 @@ describe('LegalView', () => {
     const other = mount(LegalView, { props: { page: 'datenschutz' }, global: { plugins: [i18n] } })
     expect(other.find('h1').text()).toBe('Privacy policy')
     expect(other.attributes('lang')).toBe('en')
-    expect(other.text()).toContain('Hetzner')
     expect(other.text()).toContain('OpenRouter')
   })
 })

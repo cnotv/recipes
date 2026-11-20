@@ -12,7 +12,6 @@ export const operator: Operator = {
   vatId: '[PLACEHOLDER: VAT ID under section 27a UStG, or delete the line if there is none]',
   contentResponsible: '[PLACEHOLDER: name and address of the person responsible for content under section 18 (2) MStV, or delete the line]',
   supervisoryAuthority: '[PLACEHOLDER: data protection authority of the federal state of the operator]',
-  serverLocation: '[PLACEHOLDER: data centre location of the Hetzner server]',
   accessLogRetention: '[PLACEHOLDER: days the reverse proxy keeps access logs]',
   modelProviders: '[PLACEHOLDER: the providers OpenRouter routes the configured model to]',
 }

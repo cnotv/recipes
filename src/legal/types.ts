@@ -17,7 +17,6 @@ export type Operator = {
   vatId: string
   contentResponsible: string
   supervisoryAuthority: string
-  serverLocation: string
   accessLogRetention: string
   modelProviders: string
 }
