@@ -78,10 +78,10 @@ jobs:
       - name: Copy the compose file to the server
         uses: appleboy/scp-action@ff85246acaad7bdce478db94a363cd2bf7c90345 # v1.0.0
         with:
-          host: ${{ secrets.HETZNER_HOST }}
-          username: ${{ secrets.HETZNER_USERNAME }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          port: ${{ secrets.HETZNER_PORT || '22' }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
           source: docker-compose.cloud.yml
           target: ${{ env.DEPLOY_DIRECTORY }}
 
@@ -101,10 +101,10 @@ jobs:
           REGISTRY_USER: ${{ github.actor }}
           REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          host: ${{ secrets.HETZNER_HOST }}
-          username: ${{ secrets.HETZNER_USERNAME }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          port: ${{ secrets.HETZNER_PORT || '22' }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
           envs: DEPLOY_DIRECTORY,RECIPES_IMAGE_TAG,RECIPES_DOMAIN,RECIPES_PUBLISH_ADDRESS,RECIPES_PUBLISH_PORT,OPENROUTER_MODEL,OPENROUTER_API_KEY,RECIPES_ADMIN_TOKEN,REGISTRY_USER,REGISTRY_TOKEN
           script: |
             # Without this a failed pull still reports success, and the old container keeps
